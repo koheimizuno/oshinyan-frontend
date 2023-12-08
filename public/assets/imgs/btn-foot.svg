@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48" height="48" viewBox="0 0 48 48">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_33" data-name="Rectangle 33" width="48" height="48" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="btn-推し-off" opacity="0.5">
+    <g id="Group_98" data-name="Group 98">
+      <g id="Group_97" data-name="Group 97" clip-path="url(#clip-path)">
+        <path id="Path_9" data-name="Path 9" d="M48,24A24,24,0,1,1,24,0,24,24,0,0,1,48,24"/>
+        <path id="Path_10" data-name="Path 10" d="M19.837,15.733A3.43,3.43,0,1,0,15.481,13.6a3.431,3.431,0,0,0,4.356,2.134m-6.479,5.152h0A3.431,3.431,0,0,0,7.6,17.157h0a3.43,3.43,0,0,0,5.76,3.727m14.806-5.152a3.43,3.43,0,1,0-2.133-4.356,3.431,3.431,0,0,0,2.133,4.356M24,16.891c-6.453,0-13.574,8.936-11.512,15.294C14.478,38.324,20.7,35.794,24,35.794s9.522,2.53,11.513-3.609C37.575,25.827,30.454,16.891,24,16.891m16.4.267h0A3.43,3.43,0,1,0,39.386,21.9,3.431,3.431,0,0,0,40.4,17.157" fill="#fff"/>
+      </g>
+    </g>
+  </g>
+</svg>
