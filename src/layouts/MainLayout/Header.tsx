@@ -14,7 +14,7 @@ const Header = () => {
         <div className="flex justify-between items-center">
           <div className="flex justify-between items-center text-[16px]">
             <div className="pr-[15x] hover:text-[#C38154]">
-              <Link to="/manatee" className="px-[15px]">
+              <Link to="/concept_intro" className="px-[15px]">
                 推しニャンとは？
               </Link>
             </div>

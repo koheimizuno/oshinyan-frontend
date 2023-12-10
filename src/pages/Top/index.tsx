@@ -7,18 +7,31 @@ import BlogAD from "../../components/common/BlogAD";
 import FindSignboard from "../../components/common/FindSignboard";
 import Store from "../../components/common/Store";
 import Notices from "../../components/common/Notices";
+import CustomButton from "../../components/basic/BasicButton";
 
 const Top = () => {
-  const [list, setList] = useState<string[]>([]);
+  const [regions, setRegions] = useState<string[]>([]);
 
   return (
     <>
       <MainLayout>
         <Carousel />
-        <SearchBar list={list} setList={setList} />
+        <SearchBar list={regions} setList={setRegions} />
         <div className="bg-[#F5F4EC]">
-          <div className="  w-[960px] m-auto ">
+          <div className="w-[960px] m-auto ">
             <RankingBar />
+            {regions.length > 0 && (
+              <div className="flex">
+                <span className="me-[22px] w-[72px]">エリア</span>
+                <div className="flex grow flex-wrap">
+                  {regions.map((e) => (
+                    <div className="mx-1 my-1">
+                      <CustomButton value={e}></CustomButton>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
             <div className="mt-[12px]">
               <BlogAD />
             </div>

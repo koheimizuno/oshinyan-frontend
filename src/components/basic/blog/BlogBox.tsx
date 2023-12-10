@@ -3,13 +3,13 @@ import CustomButton from "../BasicButton";
 
 export interface Props {
   imgUrl: string;
-  isNew: boolean;
-  isChu: boolean;
-  name: string;
-  cafe: string;
-  vote: number;
-  character: string[] | null;
-  description: string | null;
+  isNew?: boolean;
+  isChu?: boolean;
+  name?: string;
+  cafe?: string;
+  vote?: number;
+  character?: string[] | null;
+  description?: string | null;
 }
 
 const BlogBox = ({
@@ -51,9 +51,9 @@ const BlogBox = ({
             </div>
             <div className="flex justify-between">
               <div>
-                <h4 className=" w-[145px] underline text-[16px] text-ellipsis overflow-hidden tracking-tighter whitespace-nowrap ">
-                  にゃんにゃんカフェまごめまごめまごめ
-                </h4>
+                <a href="javascript:;" className=" w-[145px] underline text-[16px] text-ellipsis overflow-hidden tracking-tighter whitespace-nowrap ">
+                  にゃんにゃんカフェ
+                </a>
               </div>
               <div>
                 <CustomButton value={"東京都"}></CustomButton>
