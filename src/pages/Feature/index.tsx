@@ -3,10 +3,9 @@ import Carousel from "../../components/common/Carousel";
 import MainLayout from "../../layouts/MainLayout";
 import Container from "../../components/basic/Container";
 import PageBar from "../../components/common/PageBar";
-import LoginForm from "../../components/common/LoginForm";
+import { Pagination } from "@mui/material";
 
-const Register = () => {
-  const [regions, setRegions] = useState<string[]>([]);
+const Feature = () => {
 
   return (
     <>
@@ -14,12 +13,11 @@ const Register = () => {
         <Carousel />
         <Container>
           <div className="mt-4">
-            <PageBar page="会員登録"/>
+            <PageBar page="特集"/>
           </div>
-          <div className="text-[24px] leading-[40px] mt-4 pb-4 border-b border-[#CBB279]">会員登録ニャ！</div>
-          <div className="mt-[16px] text-[16px] leading-[21px]">会員登録して、推しニャンを見つけて楽しむニャー</div>
+          <div className="text-[32px] leading-[43px] mt-4 pb-[14px] border-b border-[#CBB279]">特集（仮）一覧</div>
           <div className="mt-[32px] mb-[56px]">
-            <LoginForm/>
+          <Pagination count={11} defaultPage={6} siblingCount={0} />
           </div>
         </Container>
       </MainLayout>
@@ -27,4 +25,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Feature;

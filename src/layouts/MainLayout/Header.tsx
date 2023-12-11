@@ -26,7 +26,7 @@ const Header = () => {
             </div>
             <div className="w-[1px] h-[16px] bg-black"></div>
             <div className="pl-[15px] hover:text-[#C38154]">
-              <Link to="/manatee" className="px-[15px]">
+              <Link to="/feature" className="px-[15px]">
                 特集見るニャ！
               </Link>
             </div>

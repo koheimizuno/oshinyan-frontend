@@ -6,7 +6,6 @@ import PageBar from "../../components/common/PageBar";
 import LoginForm from "../../components/common/LoginForm";
 
 const Register = () => {
-  const [regions, setRegions] = useState<string[]>([]);
 
   return (
     <>
