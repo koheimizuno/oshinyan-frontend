@@ -20,7 +20,7 @@ const Header = () => {
             </div>
             <div className="w-[1px] h-[16px] bg-black"></div>
             <div className="px-[15x] hover:text-[rgb(195,129,84)]">
-              <Link to="/manatee" className="px-[15px]">
+              <Link to="/register" className="px-[15px]">
                 会員登録ニャ！
               </Link>
             </div>
