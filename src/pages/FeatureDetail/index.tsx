@@ -63,12 +63,17 @@ const FeatureDetail = () => {
         <Carousel />
         <Container>
           <div className="mt-4">
-            <PageBar page="特集" />
+            <PageBar page="各特集" />
           </div>
           <div className="text-[32px] leading-[43px] mt-4 pb-[14px] border-b border-[#CBB279]">
             特集（仮）一覧
           </div>
 
+          <div className="mt-[24px] text-[20px] leading-[27px]">
+            東京には看板猫が出勤している素敵なカフェがたくさんあるニャン！
+            <br />
+            東京には看板猫が出勤している素敵なカフェがたくさんあるニャン！
+          </div>
           <div className="mt-[32px] mb-[56px] flex flex-wrap justify-between">
             <div className="flex justify-between flex-wrap ">
               {Cats.map((e, i) => (
@@ -86,7 +91,7 @@ const FeatureDetail = () => {
               ))}
             </div>
           </div>
-          <div className="flex justify-center mt-[48px] mb-[52px]">
+          <div className="flex justify-center mt-[32px] mb-[68px]">
             <Pagination
               count={1000}
               defaultPage={10}

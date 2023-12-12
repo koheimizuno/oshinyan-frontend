@@ -32,14 +32,14 @@ const Header = () => {
             </div>
           </div>
           <div className="bg-[#FBA1B7] rounded w-[120px] hover:opacity-70">
-            <button className="px-[8px] pb-[5px] pt-[3px] flex justify-start items-center ">
+            <a href="/mypage" className="px-[8px] pb-[5px] pt-[3px] flex justify-start items-center ">
               <div className="pr-[8px]">
                 <img src="assets/Path 134.svg" alt="" />
               </div>
               <p className="text-white text-[16px] tracking-[-.15em] ">
                 マイページ
               </p>
-            </button>
+            </a>
           </div>
         </div>
       </div>

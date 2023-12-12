@@ -27,13 +27,13 @@ const LargeCard = ({
       <>
         <div className="relative w-full h-[400px] mb-[15px] hover:opacity-70 flex">
           <div
-            className="w-full h-full w-[50%] bg-center bg-no-repeat"
+            className="h-full w-[50%] bg-center bg-no-repeat"
             style={{ backgroundImage: "url('"+imgUrl+"')" }}
           ></div>
           <div className="px-[24px]  bg-white h-full w-[50%] flex flex-col">
             <div className="pt-[24px]">
               <h3 className="text-[24px] font-bold text-left text-ellipsis overflow-hidden whitespace-nowrap">
-                なまむぎなまごめまごめまごめ
+              なまむぎなまごめ
               </h3>
             </div>
             <div className="flex justify-between pb-[24px]">

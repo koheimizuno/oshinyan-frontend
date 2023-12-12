@@ -46,7 +46,7 @@ const BlogBox = ({
           <div className=" px-[16px]  bg-white h-[278px]">
             <div>
               <h3 className="text-[24px] font-bold text-left text-ellipsis overflow-hidden whitespace-nowrap">
-                なまむぎなまごめまごめまごめ
+              なまむぎなまごめ
               </h3>
             </div>
             <div className="flex justify-between">

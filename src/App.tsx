@@ -5,6 +5,8 @@ import MonthRanking from "./pages/MonthRanking";
 import ConceptIntro from "./pages/ConceptIntro";
 import Register from "./pages/Register";
 import Feature from "./pages/Feature";
+import FeatureDetail from "./pages/FeatureDetail";
+import MyPage from "./pages/MyPage";
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
           <Route path="concept_intro" element={<ConceptIntro/>} />
           <Route path="register" element={<Register/>} />
           <Route path="feature" element={<Feature/>} />
+          <Route path="feature/detail" element={<FeatureDetail/>} />
+          <Route path="/mypage" element={<MyPage/>} />
         </Route>
       </Routes>
     </BrowserRouter>
