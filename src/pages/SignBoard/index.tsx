@@ -13,34 +13,34 @@ import SignboardCard from "../../components/basic/SignboardCard";
 
 const Cats = [
   {
-    imgUrl: "/assets/imgs/cats/favorite_cat.png",
-    isNew: true,
-    isChu: false,
+    imgUrl: "/assets/imgs/cats/signboard_cat.png",
+    cafe: "カフェ",
+    prefecture: "東京都",
   },
   {
-    imgUrl: "/assets/imgs/cats/favorite_cat.png",
-    isNew: true,
-    isChu: false,
+    imgUrl: "/assets/imgs/cats/signboard_cat.png",
+    cafe: "カフェ",
+    prefecture: "東京都",
   },
   {
-    imgUrl: "/assets/imgs/cats/favorite_cat.png",
-    isNew: true,
-    isChu: false,
+    imgUrl: "/assets/imgs/cats/signboard_cat.png",
+    cafe: "カフェ",
+    prefecture: "東京都",
   },
   {
-    imgUrl: "/assets/imgs/cats/favorite_cat.png",
-    isNew: true,
-    isChu: false,
+    imgUrl: "/assets/imgs/cats/signboard_cat.png",
+    cafe: "カフェ",
+    prefecture: "東京都",
   },
   {
-    imgUrl: "/assets/imgs/cats/favorite_cat.png",
-    isNew: true,
-    isChu: false,
+    imgUrl: "/assets/imgs/cats/signboard_cat.png",
+    cafe: "カフェ",
+    prefecture: "東京都",
   },
   {
-    imgUrl: "/assets/imgs/cats/favorite_cat.png",
-    isNew: true,
-    isChu: false,
+    imgUrl: "/assets/imgs/cats/signboard_cat.png",
+    cafe: "カフェ",
+    prefecture: "東京都",
   },
 ];
 
@@ -62,10 +62,10 @@ export default () => {
           <div className="bg-white mt-[24px]">
             <SignboardSearchBar  list={regions} setList={setRegions}/>
           </div>
-          <div className="mt-[40px] mb-[64px] flex flex-wrap justify-between">
+          <div className="mt-[40px] mb-[64px] flex flex-wrap justify-between gap-y-4">
             {Cats.map((e) => {
               return (
-                <SignboardCard imgUrl={e.imgUrl} date="2023.01.01" vote="000" />
+                <SignboardCard imgUrl={e.imgUrl} cafe={e.cafe} prefecture={e.prefecture} />
               );
             })}
           </div>
