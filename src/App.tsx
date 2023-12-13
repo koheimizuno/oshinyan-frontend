@@ -7,6 +7,7 @@ import Register from "./pages/Register";
 import Feature from "./pages/Feature";
 import FeatureDetail from "./pages/FeatureDetail";
 import MyPage from "./pages/MyPage";
+import SignBoard from "./pages/SignBoard";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="feature" element={<Feature/>} />
           <Route path="feature/detail" element={<FeatureDetail/>} />
           <Route path="/mypage" element={<MyPage/>} />
+          <Route path="/signboard" element={<SignBoard/>} />
         </Route>
       </Routes>
     </BrowserRouter>

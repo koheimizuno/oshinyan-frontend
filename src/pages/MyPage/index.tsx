@@ -11,32 +11,26 @@ import FavoriteCard from "../../components/basic/FavoriteCard";
 const Cats = [
   {
     imgUrl: "/assets/imgs/cats/favorite_cat.png",
-    isNew: true,
     isChu: false,
   },
   {
     imgUrl: "/assets/imgs/cats/favorite_cat.png",
-    isNew: true,
     isChu: false,
   },
   {
     imgUrl: "/assets/imgs/cats/favorite_cat.png",
-    isNew: true,
     isChu: false,
   },
   {
     imgUrl: "/assets/imgs/cats/favorite_cat.png",
-    isNew: true,
     isChu: false,
   },
   {
     imgUrl: "/assets/imgs/cats/favorite_cat.png",
-    isNew: true,
     isChu: false,
   },
   {
     imgUrl: "/assets/imgs/cats/favorite_cat.png",
-    isNew: true,
     isChu: false,
   },
 ];
@@ -96,13 +90,12 @@ const MyPage = () => {
               {Cats.map((e, i) => (
                 <BlogBox
                   key={i}
-                  imgUrl={e.imgUrl}
-                  isNew={e.isNew}
-                  isChu={e.isChu}
+                  imgUrl='/assets/imgs/cats/cat1.png'
+                  isChu={true}
                   name={"heracles"}
                   cafe={"cafe"}
                   vote={2}
-                  character={["fdsa", "reqw"]}
+                  character={["a", "a"]}
                   description={"this is description"}
                 />
               ))}

@@ -7,6 +7,9 @@ import { Pagination } from "@mui/material";
 import BlogBox from "../../components/basic/blog/BlogBox";
 import EditButton from "../../components/basic/EditButton";
 import FavoriteCard from "../../components/basic/FavoriteCard";
+import SearchBar from "../../components/common/SearchBar";
+import SignboardSearchBar from "../../components/common/SignboardSearchBar";
+import SignboardCard from "../../components/basic/SignboardCard";
 
 const Cats = [
   {
@@ -41,8 +44,9 @@ const Cats = [
   },
 ];
 
-const MyPage = () => {
+export default () => {
   const [page, setPage] = useState<number>(0);
+  const [regions, setRegions] = useState<string[]>([]);
 
   return (
     <>
@@ -53,16 +57,16 @@ const MyPage = () => {
             <PageBar page="各特集" />
           </div>
           <div className="text-[32px] leading-[43px] mt-4 pb-[14px] border-b border-[#CBB279]">
-            マイページ
+            『看板猫』に会える場所一覧
           </div>
-          <div className="mt-[40px] text-[20px] leading-[27px]">
-            マイページには自分の推しニャン（サイト内で推しボタンを押した猫）が一覧で出てくるニャー
+          <div className="bg-white mt-[24px]">
+            <SignboardSearchBar  list={regions} setList={setRegions}/>
           </div>
-          <div className="mt-[40px] mb-[64px] flex flex-wrap justify-between gap-4">
-            {Cats.map(e => {
+          <div className="mt-[40px] mb-[64px] flex flex-wrap justify-between">
+            {Cats.map((e) => {
               return (
-                <FavoriteCard imgUrl={e.imgUrl} date="2023.01.01" vote="000"/>
-              )
+                <SignboardCard imgUrl={e.imgUrl} date="2023.01.01" vote="000" />
+              );
             })}
           </div>
         </Container>
@@ -70,5 +74,3 @@ const MyPage = () => {
     </>
   );
 };
-
-export default MyPage;

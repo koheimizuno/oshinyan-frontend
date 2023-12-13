@@ -6,7 +6,7 @@ const Header = () => {
     <div className="w-[960px] m-auto">
       <div className="flex justify-between items-center py-[13px]">
         <div className="hover:opacity-70">
-          <img src="assets/imgs/logo.svg" alt="" />
+          <a href="/"><img src="assets/imgs/logo.svg" alt="" /></a>
           <h1 className="text-[12px] tracking-tighter ">
             お気に入りの看板猫が探せる！推せるサイト
           </h1>
