@@ -15,31 +15,31 @@ const Footer = () => {
         <div className="flex justify-between items-center w-[595px] py-[24px] m-auto">
           <div className="flex justify-between items-center text-[16px] tracking-[-.15em]">
             <div className="pr-[15x] ">
-              <a href="#" className="px-[15px]">
+              <a href="/concept_intro" className="px-[15px]">
                 推しニャンとは
               </a>
             </div>
             <div className="w-[1px] h-[16px] bg-black"></div>
             <div className="px-[15x]">
-              <a href="#" className="px-[15px]">
+              <a href="/register" className="px-[15px]">
                 会員登録
               </a>
             </div>
             <div className="w-[1px] h-[16px] bg-black"></div>
             <div className="px-[15x]">
-              <a href="#" className="px-[15px]">
+              <a href="contact-us" className="px-[15px]">
                 お問合せ
               </a>
             </div>
             <div className="w-[1px] h-[16px] bg-black"></div>
             <div className="px-[15x]">
-              <a href="#" className="px-[15px]">
+              <a href="/privacy" className="px-[15px]">
                 プライバシーポリシー
               </a>
             </div>
             <div className="w-[1px] h-[16px] bg-black"></div>
             <div className="pl-[15px]">
-              <a href="#" className="px-[15px]">
+              <a href="company" className="px-[15px]">
                 運営会社
               </a>
             </div>
@@ -54,7 +54,7 @@ const Footer = () => {
             </div>
             <div className="px-[20px]">
               <p className="tracking-[-.1em]">
-                <a href="">推しニャン申請（店舗登録はこちらから）</a>
+                <a href="/application">推しニャン申請（店舗登録はこちらから）</a>
               </p>
             </div>
           </div>

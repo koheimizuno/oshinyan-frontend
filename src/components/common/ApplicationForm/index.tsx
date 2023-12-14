@@ -6,7 +6,34 @@ const SignboardRegisterForm = () => {
       <div className="w-[640px] m-auto">
         {/* row 1 */}
         <div className="pt-[48px] flex justify-between items-center">
-          <label className="text-[14px]" htmlFor="name_kana">
+          <label className="text-[14px]" htmlFor="">
+            個人／法人のお客さま
+          </label>
+          <div className="w-[456px] h-[40px] rounded-[4px] flex items-center">
+            <input type="radio" name="type" id="individual" value="individual" />
+            <label className="ms-2" htmlFor="individual">個人のお客様</label>
+            <input className="ms-[42px]" type="radio" name="type" id="corp" value="corp" />
+            <label className="ms-2" htmlFor="corp">個人のお客様</label>
+          </div>
+        </div>
+        <div className="border-b border-[#CCCCCC] mt-[27px]"></div>
+        {/* row 1 */}
+        <div className="pt-[27px] flex justify-between items-center">
+          <label className="text-[14px]" htmlFor="">
+          会社名・法人名
+            <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
+              *
+            </span>
+          </label>
+          <input
+            type="text"
+            className="w-[456px] h-[40px] rounded-[4px] border border-[#CCCCCC]"
+          />
+        </div>
+        <div className="border-b border-[#CCCCCC] mt-[32px]"></div>
+        {/* row 1 */}
+        <div className="pt-[27px] flex justify-between items-center">
+          <label className="text-[14px]" htmlFor="">
             氏名（漢字）
             <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
               *
@@ -14,12 +41,11 @@ const SignboardRegisterForm = () => {
           </label>
           <input
             type="text"
-            id="name_kana"
             className="w-[456px] h-[40px] rounded-[4px] border border-[#CCCCCC]"
           />
         </div>
         <div className="pt-[48px] flex justify-between items-center">
-          <label className="text-[14px]" htmlFor="name">
+          <label className="text-[14px]" htmlFor="">
             氏名（ふりがな）
             <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
               *
@@ -27,14 +53,13 @@ const SignboardRegisterForm = () => {
           </label>
           <input
             type="text"
-            id="name"
             className="w-[456px] h-[40px] rounded-[4px] border border-[#CCCCCC]"
           />
         </div>
         <div className="border-b border-[#CCCCCC] mt-[32px]"></div>
         {/* row 2 */}
         <div className="pt-[32px] flex justify-between items-center">
-          <label className="text-[14px]" htmlFor="email">
+          <label className="text-[14px]" htmlFor="">
             メールアドレス
             <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
               *
@@ -42,12 +67,11 @@ const SignboardRegisterForm = () => {
           </label>
           <input
             type="text"
-            id="email"
             className="w-[456px] h-[40px] rounded-[4px] border border-[#CCCCCC]"
           />
         </div>
         <div className="pt-[48px] flex justify-between items-center">
-          <label className="text-[14px]" htmlFor="email_confirm">
+          <label className="text-[14px]" htmlFor="">
             (▼確認のため再入力）
             <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
               *
@@ -55,7 +79,6 @@ const SignboardRegisterForm = () => {
           </label>
           <input
             type="text"
-            id="email_confirm"
             className="w-[456px] h-[40px] rounded-[4px] border border-[#CCCCCC]"
           />
         </div>
@@ -79,15 +102,15 @@ const SignboardRegisterForm = () => {
         <div className="border-b border-[#CCCCCC] mt-[27px]"></div>
         {/* row 4 */}
         <div className="pt-[32px] flex justify-between items-center">
-          <label className="text-[14px]" htmlFor="infomation">
+          <label className="text-[14px]" htmlFor="place">
             看板猫情報
             <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
               *
             </span>
           </label>
           <textarea
-            name="infomation"
-            id="infomation"
+            name="place"
+            id="place"
             className="h-[192px] w-[456px] border border-[#CCCCCC]"
           ></textarea>
         </div>
@@ -126,7 +149,9 @@ const SignboardRegisterForm = () => {
       <div className="border-b border-[#CCCCCC] mt-[27px]"></div>
       <div className="mt-[47px] text-center">
         <button
-          className={'text-[24px] bg-[#FBA1B7] h-[48px] border-solid rounded-full py-2 ps-[42px] pe-[40px] leading-[32px] text-center text-white'}
+          className={
+            "text-[24px] bg-[#FBA1B7] h-[48px] border-solid rounded-full py-2 ps-[42px] pe-[40px] leading-[32px] text-center text-white"
+          }
         >
           確認ニャ！
         </button>
