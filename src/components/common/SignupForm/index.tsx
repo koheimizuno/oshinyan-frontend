@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { PREFECTURE } from "../../../constant";
 
-const LoginForm = () => {
+const SignupForm = () => {
   const fileRef = useRef(null);
   const [prefecture, setPrefecture] = useState("東京都");
 
@@ -112,4 +112,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default SignupForm;
