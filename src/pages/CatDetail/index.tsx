@@ -2,7 +2,6 @@ import Carousel from "../../components/common/Carousel";
 import MainLayout from "../../layouts/MainLayout";
 import Container from "../../components/basic/Container";
 import PageBar from "../../components/common/PageBar";
-import ContactUsForm from "../../components/common/ContactUsForm";
 
 export default () => {
   return (
@@ -22,7 +21,6 @@ export default () => {
         ＊＝必須
         </div>
         <div className="mt-[8px] mb-[88px]">
-          <ContactUsForm />
         </div>
       </Container>
     </MainLayout>

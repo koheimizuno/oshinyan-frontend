@@ -13,6 +13,7 @@ import Privacy from "./pages/Privacy";
 import Company from "./pages/Company";
 import Application from "./pages/Application";
 import ContactUs from "./pages/ContactUs";
+import CatDetail from "./pages/CatDetail";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/company" element={<Company/>} />
           <Route path="/application" element={<Application/>} />
           <Route path="/contact-us" element={<ContactUs/>} />
+          <Route path="/cat/detail" element={<CatDetail/>} />
         </Route>
       </Routes>
     </BrowserRouter>
