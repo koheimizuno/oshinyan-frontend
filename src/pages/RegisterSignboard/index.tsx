@@ -1,11 +1,10 @@
-import { useState } from "react";
 import Carousel from "../../components/common/Carousel";
 import MainLayout from "../../layouts/MainLayout";
 import Container from "../../components/basic/Container";
 import PageBar from "../../components/common/PageBar";
 import SignboardRegisterForm from "../../components/common/SignboardRegisterForm";
 
-export default () => {
+const RegisterSignboard = () => {
   return (
     <MainLayout>
       <Carousel />
@@ -29,3 +28,5 @@ export default () => {
     </MainLayout>
   );
 };
+
+export default RegisterSignboard;

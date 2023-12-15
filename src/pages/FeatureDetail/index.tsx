@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Carousel from "../../components/common/Carousel";
 import MainLayout from "../../layouts/MainLayout";
 import Container from "../../components/basic/Container";
@@ -55,7 +54,6 @@ const Cats = [
 ];
 
 const FeatureDetail = () => {
-  const [page, setPage] = useState<number>(0);
 
   return (
     <>

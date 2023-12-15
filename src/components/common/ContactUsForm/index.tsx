@@ -1,6 +1,6 @@
 import FileUpload from "../../basic/icons/FileUpload";
 
-const SignboardRegisterForm = () => {
+const ContactUsForm = () => {
   return (
     <div className="bg-white px-[24px] pb-[48px]">
       <div className="w-[640px] m-auto">
@@ -203,4 +203,4 @@ const SignboardRegisterForm = () => {
   );
 };
 
-export default SignboardRegisterForm;
+export default ContactUsForm;

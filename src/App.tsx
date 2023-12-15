@@ -33,7 +33,7 @@ function App() {
           <Route path="/company" element={<Company/>} />
           <Route path="/application" element={<Application/>} />
           <Route path="/contact-us" element={<ContactUs/>} />
-          <Route path="/cat/detail" element={<CatDetail/>} />
+          <Route path="/cat/detail/:id" element={<CatDetail/>} />
         </Route>
       </Routes>
     </BrowserRouter>

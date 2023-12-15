@@ -1,9 +1,10 @@
+import React from "react";
 import Carousel from "../../components/common/Carousel";
 import MainLayout from "../../layouts/MainLayout";
 import Container from "../../components/basic/Container";
 import PageBar from "../../components/common/PageBar";
 
-export default () => {
+const CompanyPage = () => {
   return (
     <MainLayout>
       <Carousel />
@@ -44,3 +45,5 @@ export default () => {
     </MainLayout>
   );
 };
+
+export default CompanyPage;

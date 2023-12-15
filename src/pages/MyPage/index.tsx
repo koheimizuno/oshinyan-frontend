@@ -1,9 +1,7 @@
-import { useState } from "react";
 import Carousel from "../../components/common/Carousel";
 import MainLayout from "../../layouts/MainLayout";
 import Container from "../../components/basic/Container";
 import PageBar from "../../components/common/PageBar";
-import { Pagination } from "@mui/material";
 import BlogBox from "../../components/basic/blog/BlogBox";
 import EditButton from "../../components/basic/EditButton";
 import FavoriteCard from "../../components/basic/FavoriteCard";
@@ -36,7 +34,6 @@ const Cats = [
 ];
 
 const MyPage = () => {
-  const [page, setPage] = useState<number>(0);
 
   return (
     <>

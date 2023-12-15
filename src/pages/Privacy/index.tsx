@@ -3,7 +3,7 @@ import MainLayout from "../../layouts/MainLayout";
 import Container from "../../components/basic/Container";
 import PageBar from "../../components/common/PageBar";
 
-export default () => {
+const PrivacyPage = () => {
   return (
     <MainLayout>
       <Carousel />
@@ -162,3 +162,5 @@ export default () => {
     </MainLayout>
   );
 };
+
+export default PrivacyPage;

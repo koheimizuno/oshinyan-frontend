@@ -1,11 +1,10 @@
-import { useState } from "react";
 import Carousel from "../../components/common/Carousel";
 import MainLayout from "../../layouts/MainLayout";
 import Container from "../../components/basic/Container";
 import PageBar from "../../components/common/PageBar";
 import SignupForm from "../../components/common/SignupForm";
 
-const Register = () => {
+const RegisterPage = () => {
 
   return (
     <>
@@ -26,4 +25,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default RegisterPage;

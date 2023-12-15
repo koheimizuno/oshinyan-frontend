@@ -1,5 +1,7 @@
 import React from "react";
 import CustomButton from "../BasicButton";
+import { useNavigate } from "react-router-dom";
+
 
 export interface Props {
   imgUrl: string;
@@ -22,10 +24,15 @@ const BlogBox = ({
   character,
   description,
 }: Props) => {
+
+  const navigate = useNavigate();
+  const goCatDetail = (id: number) => {
+    navigate(`/cat/detail/${id}`);
+  }
   return (
     <>
       <>
-        <div className=" w-[312px] h-[512px] mb-[15px] hover:opacity-70">
+        <div className=" w-[312px] h-[512px] mb-[15px] hover:opacity-70" onClick={() => {goCatDetail(1)}}>
           <div className="relative w-[312px] h-[234px]">
             <img src={imgUrl} className="cover" alt="" />
             {isChu ? (

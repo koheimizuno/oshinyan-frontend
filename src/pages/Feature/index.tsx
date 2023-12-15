@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Carousel from "../../components/common/Carousel";
 import MainLayout from "../../layouts/MainLayout";
 import Container from "../../components/basic/Container";
@@ -11,8 +10,7 @@ const features = new Array(12).fill({
   text: "特集内容コピー特集内容コピー特集内容コピー特集内容コピー",
 });
 
-const Feature = () => {
-  const [page, setPage] = useState<number>(0);
+const FeaturePage = () => {
 
   return (
     <>
@@ -40,4 +38,4 @@ const Feature = () => {
   );
 };
 
-export default Feature;
+export default FeaturePage;

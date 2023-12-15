@@ -2,10 +2,9 @@ import Carousel from "../../components/common/Carousel";
 import MainLayout from "../../layouts/MainLayout";
 import Container from "../../components/basic/Container";
 import PageBar from "../../components/common/PageBar";
-import SignboardRegisterForm from "../../components/common/SignboardRegisterForm";
 import ApplicationForm from "../../components/common/ApplicationForm";
 
-export default () => {
+const ApplicationPage = () => {
   return (
     <MainLayout>
       <Carousel />
@@ -29,3 +28,5 @@ export default () => {
     </MainLayout>
   );
 };
+
+export default ApplicationPage;

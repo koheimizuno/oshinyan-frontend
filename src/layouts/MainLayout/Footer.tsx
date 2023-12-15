@@ -39,7 +39,7 @@ const Footer = () => {
             </div>
             <div className="w-[1px] h-[16px] bg-black"></div>
             <div className="pl-[15px]">
-              <a href="company" className="px-[15px]">
+              <a href="/company" className="px-[15px]">
                 運営会社
               </a>
             </div>

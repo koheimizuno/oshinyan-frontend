@@ -3,7 +3,6 @@ import Carousel from "../../components/common/Carousel";
 import MainLayout from "../../layouts/MainLayout";
 import SearchBar from "../../components/common/SearchBar";
 import RankingBar from "../../components/common/RankingBar";
-import BlogAD from "../../components/common/BlogAD";
 import FindSignboard from "../../components/common/FindSignboard";
 import Store from "../../components/common/Store";
 import Notices from "../../components/common/Notices";

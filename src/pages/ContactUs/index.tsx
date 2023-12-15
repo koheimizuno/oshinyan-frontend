@@ -4,13 +4,13 @@ import Container from "../../components/basic/Container";
 import PageBar from "../../components/common/PageBar";
 import ContactUsForm from "../../components/common/ContactUsForm";
 
-export default () => {
+const ContactUsPage = () => {
   return (
     <MainLayout>
       <Carousel />
       <Container>
         <div className="mt-4">
-          <PageBar page="未登録看板猫情報募集" />
+          <PageBar page="お問い合わせ" />
         </div>
         <div className="text-[32px] leading-[40px] mt-[24px] pb-[14px] border-b border-[#CBB279]">
         お問い合わせ
@@ -28,3 +28,5 @@ export default () => {
     </MainLayout>
   );
 };
+
+export default ContactUsPage;

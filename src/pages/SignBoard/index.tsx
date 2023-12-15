@@ -3,11 +3,6 @@ import Carousel from "../../components/common/Carousel";
 import MainLayout from "../../layouts/MainLayout";
 import Container from "../../components/basic/Container";
 import PageBar from "../../components/common/PageBar";
-import { Pagination } from "@mui/material";
-import BlogBox from "../../components/basic/blog/BlogBox";
-import EditButton from "../../components/basic/EditButton";
-import FavoriteCard from "../../components/basic/FavoriteCard";
-import SearchBar from "../../components/common/SearchBar";
 import SignboardSearchBar from "../../components/common/SignboardSearchBar";
 import SignboardCard from "../../components/basic/SignboardCard";
 
@@ -44,8 +39,7 @@ const Cats = [
   },
 ];
 
-export default () => {
-  const [page, setPage] = useState<number>(0);
+const SignBoardPage = () => {
   const [regions, setRegions] = useState<string[]>([]);
 
   return (
@@ -74,3 +68,5 @@ export default () => {
     </>
   );
 };
+
+export default SignBoardPage;
