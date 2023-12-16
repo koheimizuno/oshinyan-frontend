@@ -3,7 +3,7 @@ const PageBar = ({ page }: { page: string }) => {
     <div className="flex gap-2">
       <a href="/" className="">TOP</a>
       <span>&gt;</span>
-      <a href="javascript:;">{page}</a>
+      <a href="#">{page}</a>
     </div>
   );
 };

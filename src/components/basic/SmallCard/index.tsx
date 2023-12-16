@@ -1,6 +1,3 @@
-import CustomButton from "../BasicButton";
-import Calendar from "../icons/Calendar";
-
 type Props = {
   imgUrl?: string;
   isNew?: boolean;
@@ -27,7 +24,7 @@ const SmallCard = ({
       <>
         <div className="relative w-full h-[144px] hover:opacity-70 flex">
           <div
-            className="relative w-full h-full w-[192px] bg-center bg-no-repeat"
+            className="relative h-full w-[192px] bg-center bg-no-repeat"
             style={{ backgroundImage: "url('" + imgUrl + "')" }}
           >
             {isChu ? (

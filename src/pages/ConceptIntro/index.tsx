@@ -1,8 +1,6 @@
-import { useState } from "react";
 import Carousel from "../../components/common/Carousel";
 import MainLayout from "../../layouts/MainLayout";
 import Container from "../../components/basic/Container";
-import NormalButton from "../../components/basic/NormalButton";
 
 const ConceptIntro = () => {
   return (
@@ -33,7 +31,7 @@ const ConceptIntro = () => {
             <div className="flex">
               <div className="w-[424px] me-auto">
                 <button
-                  className={`text-[28px] h-[56px] border-solid rounded-[15px] px-[14px] py-[8px] text-[#C38154] translate-x-0.51 bg-[#FBA1B7] text-white`}
+                  className={`text-[28px] h-[56px] border-solid rounded-[15px] px-[14px] py-[8px] translate-x-0.51 bg-[#FBA1B7] text-white`}
                 >
                   その１ニャン!
                 </button>
@@ -52,7 +50,7 @@ const ConceptIntro = () => {
               </div>
               <div className="w-[424px]">
                 <button
-                  className={`text-[28px] h-[56px] border-solid rounded-[15px] px-[14px] py-[8px] text-[#C38154] translate-x-0.51 bg-[#FBA1B7] text-white`}
+                  className={`text-[28px] h-[56px] border-solid rounded-[15px] px-[14px] py-[8px] translate-x-0.51 bg-[#FBA1B7] text-white`}
                 >
                   その2ニャン!
                 </button>
@@ -65,7 +63,7 @@ const ConceptIntro = () => {
             <div className="flex mt-[72px]">
               <div className="w-[424px] me-auto">
                 <button
-                  className={`text-[28px] h-[56px] border-solid rounded-[15px] px-[14px] py-[8px] text-[#C38154] translate-x-0.51 bg-[#FBA1B7] text-white`}
+                  className={`text-[28px] h-[56px] border-solid rounded-[15px] px-[14px] py-[8px] translate-x-0.51 bg-[#FBA1B7] text-white`}
                 >
                   その3ニャン!
                 </button>
@@ -84,7 +82,7 @@ const ConceptIntro = () => {
               </div>
               <div className="w-[424px]">
                 <button
-                  className={`text-[28px] h-[56px] border-solid rounded-[15px] px-[14px] py-[8px] text-[#C38154] translate-x-0.51 bg-[#FBA1B7] text-white`}
+                  className={`text-[28px] h-[56px] border-solid rounded-[15px] px-[14px] py-[8px] translate-x-0.51 bg-[#FBA1B7] text-white`}
                 >
                   その4ニャン!
                 </button>

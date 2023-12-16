@@ -1,5 +1,4 @@
 import CustomButton from "../BasicButton";
-import Heart from "../icons/Heart";
 
 interface Props {
   imgUrl: string;
@@ -7,7 +6,7 @@ interface Props {
   prefecture: string;
 }
 
-export default ({ imgUrl, cafe, prefecture = "0" }: Props) => {
+const SignboardCard = ({ imgUrl, cafe, prefecture = "0" }: Props) => {
   return (
     <div className="w-[312px] bg-white">
       <div className="w-full h-[234px]">
@@ -25,3 +24,5 @@ export default ({ imgUrl, cafe, prefecture = "0" }: Props) => {
     </div>
   );
 };
+
+export default SignboardCard;

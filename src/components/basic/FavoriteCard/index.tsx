@@ -6,7 +6,7 @@ interface Props {
   vote: string;
 }
 
-export default ({ imgUrl, date, vote = "0" }: Props) => {
+const FavoriteCard = ({ imgUrl, date, vote = "0" }: Props) => {
   return (
     <div className="w-[288px] h-[241px]">
       <div className="w-full h-[216px] relative">
@@ -27,3 +27,5 @@ export default ({ imgUrl, date, vote = "0" }: Props) => {
     </div>
   );
 };
+
+export default FavoriteCard;

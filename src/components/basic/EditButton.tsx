@@ -1,6 +1,6 @@
 import React from "react";
 
-export default ({
+const EditButton = ({
   onClick,
 }: {
   onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
@@ -16,3 +16,5 @@ export default ({
     </button>
   );
 };
+
+export default EditButton;

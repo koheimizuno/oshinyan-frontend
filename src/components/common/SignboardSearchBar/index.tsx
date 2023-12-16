@@ -7,12 +7,12 @@ interface Props {
   list: string[];
   setList: (val: string[]) => void;
 }
-export default ({ list, setList }: Props) => {
+const SignboardSearchBar = ({ list, setList }: Props) => {
   const [check, setCheck] = useState(false);
   const [showPreperties, setShowProperties] = useState(false);
 
   const selectRegion = (item: string) => {
-    const exist = list.find((e) => e == item);
+    const exist = list.find((e) => e === item);
     if (exist) {
       const temps = list.filter((e) => e !== item);
       setList(temps);
@@ -140,3 +140,5 @@ border-solid border-r-transparent border-l-transparent border-t-white ml-[20px] 
     </>
   );
 };
+
+export default SignboardSearchBar;

@@ -37,16 +37,16 @@ const BlogBox = ({
             <img src={imgUrl} className="cover" alt="" />
             {isChu ? (
               <span className="absolute top-[8px] right-[8px]">
-                <img src="assets/imgs/mark_chu.png" alt="" />
+                <img src="/assets/imgs/mark_chu.png" alt="" />
               </span>
             ) : (
               <span className="absolute top-[8px] right-[8px]">
-                <img src="assets/imgs/btn-foot.svg" alt="" />
+                <img src="/assets/imgs/btn-foot.svg" alt="" />
               </span>
             )}
             {isNew && (
               <span className="absolute top-0 left-0">
-                <img src="assets/imgs/parts-new.svg" alt="" />
+                <img src="/assets/imgs/parts-new.svg" alt="" />
               </span>
             )}
           </div>
@@ -69,7 +69,7 @@ const BlogBox = ({
             <div className="flex justify-content-start items-center mt-[15px] mb-[8px]">
               <span className=" flex d-inline-block align-items-center w-[24px] h-[24px]  mr-[9px]">
                 <img
-                  src="assets/imgs/recommend.svg"
+                  src="/assets/imgs/recommend.svg"
                   className=" align-items-center "
                   alt=""
                 />
@@ -79,7 +79,7 @@ const BlogBox = ({
             <hr className="border border-[#CCC]" />
             <div className="flex justify-content-start items-center pt-[10px] pb-[19px] ">
               <div>
-                <img src="assets/imgs/hear-yellow.svg" alt="" />
+                <img src="/assets/imgs/hear-yellow.svg" alt="" />
               </div>
               <div className="pl-[8px]">
                 <p>性格</p>

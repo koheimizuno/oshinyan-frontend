@@ -1,4 +1,4 @@
-export default () => {
+const Heart = () => {
   return (
     <svg
       id="Group_607"
@@ -31,3 +31,5 @@ export default () => {
     </svg>
   );
 };
+
+export default Heart;
