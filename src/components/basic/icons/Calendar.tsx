@@ -20,7 +20,7 @@ const Calendar = () => {
           />
         </clipPath>
       </defs>
-      <g id="Group_81" data-name="Group 81" clip-path="url(#clip-path)">
+      <g id="Group_81" data-name="Group 81" clipPath="url(#clip-path)">
         <path
           id="Path_3"
           data-name="Path 3"

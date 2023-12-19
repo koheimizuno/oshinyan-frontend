@@ -5,8 +5,8 @@ const favorites = new Array(12).fill({
 const Fanciers = () => {
   return (
     <div className="flex flex-wrap gap-x-20 gap-y-4">
-      {favorites.map((e) => (
-        <div className="flex items-center">
+      {favorites.map((e, i) => (
+        <div className="flex items-center" key={i}>
           <img
             className="w-7 h-7"
             src="/assets/imgs/icons/fancier.png"

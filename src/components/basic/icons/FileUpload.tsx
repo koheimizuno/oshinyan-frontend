@@ -20,7 +20,7 @@ const FileUpload = () => (
         />
       </clipPath>
     </defs>
-    <g id="Group_705" data-name="Group 705" clip-path="url(#clip-path)">
+    <g id="Group_705" data-name="Group 705" clipPath="url(#clip-path)">
       <path
         id="Path_12502"
         data-name="Path 12502"

@@ -120,7 +120,7 @@ const MonthRanking = () => {
                 ))}
               </div>
             </div>
-            <div className="flex flex-wrap mt-[16px] grid grid-cols-2 gap-x-[24px] gap-y-[16px]">
+            <div className="flex-wrap mt-[16px] grid grid-cols-2 gap-x-[24px] gap-y-[16px]">
               {Cats.slice(4, 11).map((e, i) => (
                 <div className="flex flex-col">
                   <div className="flex leading-[27px] mb-[7px]">{i + 5}位</div>
@@ -152,9 +152,9 @@ const MonthRanking = () => {
                     transform="translate(-877.52 -1577.555) rotate(135)"
                     fill="none"
                     stroke="#000"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="1"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1"
                     opacity="0.75"
                   />
                 </svg>
@@ -174,9 +174,9 @@ const MonthRanking = () => {
                     transform="translate(890.247 1590.283) rotate(-45)"
                     fill="none"
                     stroke="#000"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="1"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1"
                     opacity="0.75"
                   />
                 </svg>

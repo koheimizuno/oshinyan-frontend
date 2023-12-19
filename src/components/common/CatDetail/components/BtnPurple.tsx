@@ -1,12 +1,14 @@
 const BtnPurple = ({
   text,
   isShowIcon,
+  onClick,
 }: {
   text: string;
   isShowIcon?: boolean;
+  onClick: (e: any)=> void;
 }) => {
   return (
-    <button className="px-[38px] py-[6px] text-base bg-[#FBA1B7] text-white rounded-full relative" style={{textWrap: "nowrap"}}>
+    <button className="px-[38px] py-[6px] text-base bg-[#FBA1B7] text-white rounded-full relative" style={{textWrap: "nowrap"}} onClick={onClick}>
       {text}
       {isShowIcon && (
         <span className="absolute right-2 top-[14px]">
@@ -23,9 +25,9 @@ const BtnPurple = ({
               transform="translate(890.247 1588.869) rotate(-45)"
               fill="none"
               stroke="#fff"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="1"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="1"
             />
           </svg>
         </span>

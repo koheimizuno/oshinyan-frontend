@@ -20,7 +20,7 @@ const HeartCircle = () => {
           />
         </clipPath>
       </defs>
-      <g id="Group_89" data-name="Group 89" clip-path="url(#clip-path)">
+      <g id="Group_89" data-name="Group 89" clipPath="url(#clip-path)">
         <path
           id="Path_8"
           data-name="Path 8"

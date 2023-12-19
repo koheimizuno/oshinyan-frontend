@@ -20,7 +20,7 @@ const Heart = () => {
           />
         </clipPath>
       </defs>
-      <g id="Group_606" data-name="Group 606" clip-path="url(#clip-path)">
+      <g id="Group_606" data-name="Group 606" clipPath="url(#clip-path)">
         <path
           id="Path_684"
           data-name="Path 684"

@@ -18,6 +18,7 @@ import CatImage from "./components/CatImage";
 import BlogBox from "../../basic/blog/BlogBox";
 import ImageGallery from "./components/ImageGallery";
 import { useState } from "react";
+import ImageDetail from "./components/ImageDetail";
 
 const Cats = [
   {
@@ -112,7 +113,8 @@ const actions = [
 ];
 
 const CatDetail = () => {
-  const [showImageGallery, setShowImageGallery] = useState(false); 
+  const [showImageGallery, setShowImageGallery] = useState(false);
+  const [showImageDetail, setShowImageDetail] = useState(false);
   return (
     <div className="w-full relative">
       <CatDetailCarousel />
@@ -128,7 +130,13 @@ const CatDetail = () => {
           </div>
         </div>
         <div className="mt-2">
-          <BtnPurple text="ニャンアルバム" isShowIcon={true} />
+          <BtnPurple
+            text="ニャンアルバム"
+            isShowIcon={true}
+            onClick={() => {
+              setShowImageGallery(true);
+            }}
+          />
         </div>
         <div className="mt-4 break-all">
           □□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
@@ -192,7 +200,11 @@ const CatDetail = () => {
             □□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□ニャン
           </div>
           <div className="w-[184px] grow ms-10">
-            <BtnPurple text="ニャンアルバム" isShowIcon={false} />
+            <BtnPurple
+              text="ニャンアルバム"
+              isShowIcon={false}
+              onClick={() => {}}
+            />
           </div>
         </div>
         <Border className="mt-4" color="#CCCCCC" />
@@ -214,16 +226,21 @@ const CatDetail = () => {
           </div>
         </div>
         <div className="mt-6 flex gap-2">
-          {Cats.map((e) => {
-            return <CatFavorite imgUrl={e.imgUrl} vote="000" />;
+          {Cats.map((e, i) => {
+            return <CatFavorite imgUrl={e.imgUrl} vote="000" key={i} onClick={() => setShowImageDetail(true)}/>;
           })}
         </div>
         <div className="mt-6">
           <BtnAdd />
         </div>
         <div className="flex gap-2 mt-4">
-          {actions.map((e) => (
-            <img className="w-7 h-7" src={`/assets/imgs/icons/${e}`} alt="" />
+          {actions.map((e, i) => (
+            <img
+              className="w-7 h-7"
+              src={`/assets/imgs/icons/${e}`}
+              alt=""
+              key={i}
+            />
           ))}
         </div>
         {/* 2 */}
@@ -248,8 +265,13 @@ const CatDetail = () => {
           <BtnAdd />
         </div>
         <div className="flex gap-2 mt-4">
-          {actions.map((e) => (
-            <img className="w-7 h-7" src={`/assets/imgs/icons/${e}`} alt="" />
+          {actions.map((e, i) => (
+            <img
+              className="w-7 h-7"
+              src={`/assets/imgs/icons/${e}`}
+              alt=""
+              key={i}
+            />
           ))}
         </div>
         {/* add button */}
@@ -262,12 +284,13 @@ const CatDetail = () => {
         <div className="text-base mt-14 font-medium">ニャンアルバム</div>
         <div className="w-full border-b border-black mt-4"></div>
         <div className="flex justify-between mt-6 flex-wrap gap-y-3">
-          {CatImgs.map((e) => {
+          {CatImgs.map((e, i) => {
             return (
               <CatImage
                 imgUrl={e.imgUrl}
                 personName={e.personName}
                 vote="000"
+                key={i}
               />
             );
           })}
@@ -293,7 +316,8 @@ const CatDetail = () => {
           />
         ))}
       </div>
-      <ImageGallery show={showImageGallery} setShow={setShowImageGallery}/>
+      <ImageGallery show={showImageGallery} setShow={setShowImageGallery} />
+      <ImageDetail show={showImageDetail} setShow={setShowImageDetail} />
     </div>
   );
 };

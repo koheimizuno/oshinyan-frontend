@@ -18,8 +18,8 @@ const Multi = () => (
           y2="40"
           fill="none"
           stroke="#fff"
-          stroke-linecap="round"
-          stroke-width="2"
+          strokeLinecap="round"
+          strokeWidth="2"
         />
         <line
           id="Line_185"
@@ -28,8 +28,8 @@ const Multi = () => (
           y2="40"
           fill="none"
           stroke="#fff"
-          stroke-linecap="round"
-          stroke-width="2"
+          strokeLinecap="round"
+          strokeWidth="2"
         />
       </g>
     </g>

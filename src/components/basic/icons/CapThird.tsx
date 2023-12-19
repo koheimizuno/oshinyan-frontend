@@ -27,7 +27,7 @@ export const CapThird = () => (
       </clipPath>
     </defs>
     <g id="Group_647" data-name="Group 647">
-      <g id="Group_639" data-name="Group 639" clip-path="url(#clip-path)">
+      <g id="Group_639" data-name="Group 639" clipPath="url(#clip-path)">
         <path
           id="Path_738"
           data-name="Path 738"
@@ -37,7 +37,7 @@ export const CapThird = () => (
       </g>
     </g>
     <g id="Group_648" data-name="Group 648">
-      <g id="Group_639-2" data-name="Group 639" clip-path="url(#clip-path-2)">
+      <g id="Group_639-2" data-name="Group 639" clipPath="url(#clip-path-2)">
         <path
           id="Path_738-2"
           data-name="Path 738"
