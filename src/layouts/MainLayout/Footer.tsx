@@ -5,17 +5,17 @@ const Footer = () => {
     <div className="bg-[#F5F4EC] pt-[32px]">
       <div className="w-[960px] m-auto">
         <div className="flex justify-between items-center">
-          <div>
+          <a href="/about">
             <img src="assets/imgs/footer-1.png" alt="" />
-          </div>
-          <div>
+          </a>
+          <a href="/signboard/register">
             <img src="assets/imgs/footer-2.png" alt="" />
-          </div>
+          </a>
         </div>
         <div className="flex justify-between items-center w-[595px] py-[24px] m-auto">
           <div className="flex justify-between items-center text-[16px] tracking-[-.15em]">
             <div className="pr-[15x] ">
-              <a href="/concept_intro" className="px-[15px]">
+              <a href="/about" className="px-[15px]">
                 推しニャンとは
               </a>
             </div>
@@ -54,7 +54,9 @@ const Footer = () => {
             </div>
             <div className="px-[20px]">
               <p className="tracking-[-.1em]">
-                <a href="/application">推しニャン申請（店舗登録はこちらから）</a>
+                <a href="/application">
+                  推しニャン申請（店舗登録はこちらから）
+                </a>
               </p>
             </div>
           </div>

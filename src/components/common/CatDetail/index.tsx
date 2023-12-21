@@ -112,6 +112,12 @@ const actions = [
   "cat_avatar_8.png",
 ];
 
+const IMAGES: string[] = [
+  "/assets/imgs/cats/cat_detail_carousel.png",
+  "/assets/imgs/cats/cat_detail_carousel.png",
+  "/assets/imgs/cats/cat_detail_carousel.png",
+];
+
 const CatDetail = () => {
   const [showImageGallery, setShowImageGallery] = useState(false);
   const [showImageDetail, setShowImageDetail] = useState(false);
@@ -227,7 +233,14 @@ const CatDetail = () => {
         </div>
         <div className="mt-6 flex gap-2">
           {Cats.map((e, i) => {
-            return <CatFavorite imgUrl={e.imgUrl} vote="000" key={i} onClick={() => setShowImageDetail(true)}/>;
+            return (
+              <CatFavorite
+                imgUrl={e.imgUrl}
+                vote="000"
+                key={i}
+                onClick={() => setShowImageDetail(true)}
+              />
+            );
           })}
         </div>
         <div className="mt-6">

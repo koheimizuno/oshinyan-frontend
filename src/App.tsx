@@ -2,7 +2,7 @@ import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Top from "./pages/Top";
 import MonthRanking from "./pages/MonthRanking";
-import ConceptIntro from "./pages/ConceptIntro";
+import About from "./pages/About";
 import Register from "./pages/Register";
 import Feature from "./pages/Feature";
 import FeatureDetail from "./pages/FeatureDetail";
@@ -14,26 +14,29 @@ import Company from "./pages/Company";
 import Application from "./pages/Application";
 import ContactUs from "./pages/ContactUs";
 import CatDetail from "./pages/CatDetail";
+import LocationDetail from "./pages/LocationDetail";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/">
-          <Route index element={<Top/>}/>
-          <Route path="ranking" element={<MonthRanking/>} />
-          <Route path="concept_intro" element={<ConceptIntro/>} />
-          <Route path="register" element={<Register/>} />
-          <Route path="feature" element={<Feature/>} />
-          <Route path="feature/detail" element={<FeatureDetail/>} />
-          <Route path="/mypage" element={<MyPage/>} />
-          <Route path="/signboard" element={<SignBoard/>} />
-          <Route path="/signboard/register" element={<RegisterSignboard/>} />
-          <Route path="/privacy" element={<Privacy/>} />
-          <Route path="/company" element={<Company/>} />
-          <Route path="/application" element={<Application/>} />
-          <Route path="/contact-us" element={<ContactUs/>} />
-          <Route path="/cat/detail/:id" element={<CatDetail/>} />
+          //1 <Route index element={<Top />} />
+          <Route path="ranking" element={<MonthRanking />} />
+          //2 <Route path="about" element={<About />} />
+          //3 <Route path="/register" element={<Register />} />
+          //4 <Route path="feature" element={<Feature />} />
+          <Route path="feature/detail" element={<FeatureDetail />} />
+          //5 <Route path="/mypage" element={<MyPage />} />
+          //6 <Route path="/signboard" element={<SignBoard />} />
+          //7{" "}
+          <Route path="/signboard/register" element={<RegisterSignboard />} />
+          //8 <Route path="/privacy" element={<Privacy />} />
+          //9 <Route path="/company" element={<Company />} />
+          //10 <Route path="/application" element={<Application />} />
+          //11 <Route path="/locationdetail" element={<LocationDetail />} />
+          //12 <Route path="/cat/detail/:id" element={<CatDetail />} />
+          //17 <Route path="/contact-us" element={<ContactUs />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -2,7 +2,7 @@ import Carousel from "../../components/common/Carousel";
 import MainLayout from "../../layouts/MainLayout";
 import Container from "../../components/basic/Container";
 
-const ConceptIntro = () => {
+const About = () => {
   return (
     <>
       <MainLayout>
@@ -150,44 +150,84 @@ const ConceptIntro = () => {
 
           <div className="mt-[32px] mb-[72px]">
             <div className="mt-[16px] flex">
-                <div className="mt-[6px] w-[24px] h-[24px] me-[16px] bg-[#C38154] rounded-[50%] text-[16px] text-white flex justify-center items-center font-bold">1</div>
-                <div className="text-[24px] font-bold leading-[32px]">看板猫はいない時もある。その日にもし出会えたら幸運を噛み締めるニャー</div>
+              <div className="mt-[6px] w-[24px] h-[24px] me-[16px] bg-[#C38154] rounded-[50%] text-[16px] text-white flex justify-center items-center font-bold">
+                1
+              </div>
+              <div className="text-[24px] font-bold leading-[32px]">
+                看板猫はいない時もある。その日にもし出会えたら幸運を噛み締めるニャー
+              </div>
             </div>
             <div className="mt-[16px] flex">
-                <div className="mt-[6px] w-[24px] h-[24px] me-[16px] bg-[#C38154] rounded-[50%] text-[16px] text-white flex justify-center items-center font-bold">2</div>
-                <div className="text-[24px] font-bold leading-[32px]">看板猫へのすべての行為をする前に、お店の方に一言聞く礼節を大切にするニャー</div>
+              <div className="mt-[6px] w-[24px] h-[24px] me-[16px] bg-[#C38154] rounded-[50%] text-[16px] text-white flex justify-center items-center font-bold">
+                2
+              </div>
+              <div className="text-[24px] font-bold leading-[32px]">
+                看板猫へのすべての行為をする前に、お店の方に一言聞く礼節を大切にするニャー
+              </div>
             </div>
             <div className="mt-[16px] flex">
-                <div className="mt-[6px] w-[24px] h-[24px] me-[16px] bg-[#C38154] rounded-[50%] text-[16px] text-white flex justify-center items-center font-bold">3</div>
-                <div className="text-[24px] font-bold leading-[32px]">看板猫が寝ているときこそ、温かく見守る広い心を持つニャー</div>
+              <div className="mt-[6px] w-[24px] h-[24px] me-[16px] bg-[#C38154] rounded-[50%] text-[16px] text-white flex justify-center items-center font-bold">
+                3
+              </div>
+              <div className="text-[24px] font-bold leading-[32px]">
+                看板猫が寝ているときこそ、温かく見守る広い心を持つニャー
+              </div>
             </div>
             <div className="mt-[16px] flex">
-                <div className="mt-[6px] w-[24px] h-[24px] me-[16px] bg-[#C38154] rounded-[50%] text-[16px] text-white flex justify-center items-center font-bold">4</div>
-                <div className="text-[24px] font-bold leading-[32px]">看板猫の表情で今の気分や気持ちを察する心眼を開くニャー</div>
+              <div className="mt-[6px] w-[24px] h-[24px] me-[16px] bg-[#C38154] rounded-[50%] text-[16px] text-white flex justify-center items-center font-bold">
+                4
+              </div>
+              <div className="text-[24px] font-bold leading-[32px]">
+                看板猫の表情で今の気分や気持ちを察する心眼を開くニャー
+              </div>
             </div>
             <div className="mt-[16px] flex">
-                <div className="mt-[6px] w-[24px] h-[24px] me-[16px] bg-[#C38154] rounded-[50%] text-[16px] text-white flex justify-center items-center font-bold">5</div>
-                <div className="text-[24px] font-bold leading-[32px]">衝動的に看板猫に触りたい気持ちをグッとこらえる忍耐力をつけるニャー</div>
+              <div className="mt-[6px] w-[24px] h-[24px] me-[16px] bg-[#C38154] rounded-[50%] text-[16px] text-white flex justify-center items-center font-bold">
+                5
+              </div>
+              <div className="text-[24px] font-bold leading-[32px]">
+                衝動的に看板猫に触りたい気持ちをグッとこらえる忍耐力をつけるニャー
+              </div>
             </div>
             <div className="mt-[16px] flex">
-                <div className="mt-[6px] w-[24px] h-[24px] me-[16px] bg-[#C38154] rounded-[50%] text-[16px] text-white flex justify-center items-center font-bold">6</div>
-                <div className="text-[24px] font-bold leading-[32px]">食事中やトイレ中の看板猫を邪魔しないで欲しいニャー</div>
+              <div className="mt-[6px] w-[24px] h-[24px] me-[16px] bg-[#C38154] rounded-[50%] text-[16px] text-white flex justify-center items-center font-bold">
+                6
+              </div>
+              <div className="text-[24px] font-bold leading-[32px]">
+                食事中やトイレ中の看板猫を邪魔しないで欲しいニャー
+              </div>
             </div>
             <div className="mt-[16px] flex">
-                <div className="mt-[6px] w-[24px] h-[24px] me-[16px] bg-[#C38154] rounded-[50%] text-[16px] text-white flex justify-center items-center font-bold">7</div>
-                <div className="text-[24px] font-bold leading-[32px]">看板猫のペースを尊重し、目配り・気配り・心配りニャー</div>
+              <div className="mt-[6px] w-[24px] h-[24px] me-[16px] bg-[#C38154] rounded-[50%] text-[16px] text-white flex justify-center items-center font-bold">
+                7
+              </div>
+              <div className="text-[24px] font-bold leading-[32px]">
+                看板猫のペースを尊重し、目配り・気配り・心配りニャー
+              </div>
             </div>
             <div className="mt-[16px] flex">
-                <div className="mt-[6px] w-[24px] h-[24px] me-[16px] bg-[#C38154] rounded-[50%] text-[16px] text-white flex justify-center items-center font-bold">8</div>
-                <div className="text-[24px] font-bold leading-[32px]">立ったまま上から見下ろすのではなく、看板猫と同じ目線で楽しむニャー</div>
+              <div className="mt-[6px] w-[24px] h-[24px] me-[16px] bg-[#C38154] rounded-[50%] text-[16px] text-white flex justify-center items-center font-bold">
+                8
+              </div>
+              <div className="text-[24px] font-bold leading-[32px]">
+                立ったまま上から見下ろすのではなく、看板猫と同じ目線で楽しむニャー
+              </div>
             </div>
             <div className="mt-[16px] flex">
-                <div className="mt-[6px] w-[24px] h-[24px] me-[16px] bg-[#C38154] rounded-[50%] text-[16px] text-white flex justify-center items-center font-bold">9</div>
-                <div className="text-[24px] font-bold leading-[32px]">ニャン参りできない時は、モフモフ・ツヤツヤを妄想する力をつけるニャー</div>
+              <div className="mt-[6px] w-[24px] h-[24px] me-[16px] bg-[#C38154] rounded-[50%] text-[16px] text-white flex justify-center items-center font-bold">
+                9
+              </div>
+              <div className="text-[24px] font-bold leading-[32px]">
+                ニャン参りできない時は、モフモフ・ツヤツヤを妄想する力をつけるニャー
+              </div>
             </div>
             <div className="mt-[16px] flex">
-                <div className="mt-[6px] w-[24px] h-[24px] me-[16px] bg-[#C38154] rounded-[50%] text-[16px] text-white flex justify-center items-center font-bold">10</div>
-                <div className="text-[24px] font-bold leading-[32px]">他の人のニャン参り体験を尊重し、共有する喜びを知るニャー</div>
+              <div className="mt-[6px] w-[24px] h-[24px] me-[16px] bg-[#C38154] rounded-[50%] text-[16px] text-white flex justify-center items-center font-bold">
+                10
+              </div>
+              <div className="text-[24px] font-bold leading-[32px]">
+                他の人のニャン参り体験を尊重し、共有する喜びを知るニャー
+              </div>
             </div>
           </div>
         </Container>
@@ -196,4 +236,4 @@ const ConceptIntro = () => {
   );
 };
 
-export default ConceptIntro;
+export default About;

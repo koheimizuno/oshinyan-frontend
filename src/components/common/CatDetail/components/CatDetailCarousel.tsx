@@ -7,6 +7,13 @@ import {
 } from "pure-react-carousel";
 import ArrowLeft from "../../../basic/icons/ArrowLeft";
 import ArrowRight from "../../../basic/icons/ArrowRight";
+
+const IMAGES: string[] = [
+  "/assets/imgs/cats/cat_detail_carousel.png",
+  "/assets/imgs/cats/cat_detail_carousel.png",
+  "/assets/imgs/cats/cat_detail_carousel.png",
+];
+
 const CatDetailCarousel = () => {
   return (
     <CarouselProvider
@@ -17,27 +24,11 @@ const CatDetailCarousel = () => {
       className="relative mb-0 bg-white"
     >
       <Slider>
-        <Slide index={0}>
-          <img
-            className="w-full h-full"
-            src="/assets/imgs/cats/cat_detail_carousel.png"
-            alt="1"
-          />
-        </Slide>
-        <Slide index={1}>
-          <img
-            className="w-full h-full"
-            src="/assets/imgs/cats/cat_detail_carousel.png"
-            alt="1"
-          />
-        </Slide>
-        <Slide index={2}>
-          <img
-            className="w-full h-full"
-            src="/assets/imgs/cats/cat_detail_carousel.png"
-            alt="1"
-          />
-        </Slide>
+        {IMAGES.map((item: any, key: any) => (
+          <Slide index={key}>
+            <img src={item} alt="1" className="w-full h-full" />
+          </Slide>
+        ))}
       </Slider>
       <ButtonBack>
         <div className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">

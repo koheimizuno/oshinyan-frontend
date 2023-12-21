@@ -11,7 +11,6 @@ const features = new Array(12).fill({
 });
 
 const FeaturePage = () => {
-
   return (
     <>
       <MainLayout>
@@ -30,7 +29,14 @@ const FeaturePage = () => {
             })}
           </div>
           <div className="flex justify-center mt-[48px] mb-[52px]">
-            <Pagination count={1000} defaultPage={10} boundaryCount={1} color="secondary" variant="outlined" shape="rounded"/>
+            <Pagination
+              count={1000}
+              defaultPage={10}
+              boundaryCount={1}
+              color="secondary"
+              variant="outlined"
+              shape="rounded"
+            />
           </div>
         </Container>
       </MainLayout>

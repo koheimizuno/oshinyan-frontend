@@ -23,8 +23,8 @@ const SearchBar = ({ list, setList }: Props) => {
 
   return (
     <>
-      <div className="relative">
-        <div className=" relative flex justify-between items-center w-[960px] m-auto pt-[19px] pb-[13px]">
+      <div className="relative bg-white">
+        <div className=" relative flex justify-between items-center w-[960px] m-auto py-4">
           <div className="flex justify-start items-center">
             <div>
               <p className="text-[24px]">看板猫を探す</p>
@@ -55,7 +55,7 @@ const SearchBar = ({ list, setList }: Props) => {
                 </p>
                 <div
                   className="h-0 w-0 border-t-[8px] border-r-[6px] border-l-[6px] 
-border-solid border-r-transparent border-l-transparent border-t-white ml-[20px] mt-[5px]"
+                            border-solid border-r-transparent border-l-transparent border-t-white ml-[20px] mt-[5px]"
                 ></div>
               </button>
             </div>
@@ -72,7 +72,7 @@ border-solid border-r-transparent border-l-transparent border-t-white ml-[20px] 
                 </p>
                 <div
                   className="h-0 w-0 border-t-[8px] border-r-[6px] border-l-[6px] 
-border-solid border-r-transparent border-l-transparent border-t-white ml-[20px] mt-[5px]"
+                            border-solid border-r-transparent border-l-transparent border-t-white ml-[20px] mt-[5px]"
                 ></div>
               </button>
             </div>
@@ -124,7 +124,9 @@ border-solid border-r-transparent border-l-transparent border-t-white ml-[20px] 
               <div className="pt-[16px] text-center">
                 <button
                   className="bg-[#FBA1B7] rounded-full shadow-inner text-white hover:opacity-70"
-                  onClick={() => {setShowProperties(false)}}
+                  onClick={() => {
+                    setShowProperties(false);
+                  }}
                 >
                   <p className="py-[6px] px-[26px] drop-shadow-[1px_1px_rgba(230,149,169,1)]">
                     検索するニャン！
