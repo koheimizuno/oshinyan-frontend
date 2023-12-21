@@ -23,7 +23,7 @@ const SearchBar = ({ list, setList }: Props) => {
 
   return (
     <>
-      <div className="relative bg-white">
+      <div className="relative">
         <div className=" relative flex justify-between items-center w-[960px] m-auto py-4">
           <div className="flex justify-start items-center">
             <div>

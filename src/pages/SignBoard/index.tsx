@@ -5,6 +5,7 @@ import Container from "../../components/basic/Container";
 import PageBar from "../../components/common/PageBar";
 import SignboardSearchBar from "../../components/common/SignboardSearchBar";
 import SignboardCard from "../../components/basic/SignboardCard";
+import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 
 const Cats = [
   {
@@ -45,7 +46,7 @@ const SignBoardPage = () => {
   return (
     <>
       <MainLayout>
-        <Carousel />
+        <SocialLinkGroup />
         <Container>
           <div className="mt-4">
             <PageBar page="各特集" />
@@ -54,12 +55,16 @@ const SignBoardPage = () => {
             『看板猫』に会える場所一覧
           </div>
           <div className="bg-white mt-[24px]">
-            <SignboardSearchBar  list={regions} setList={setRegions}/>
+            <SignboardSearchBar list={regions} setList={setRegions} />
           </div>
           <div className="mt-[40px] mb-[64px] flex flex-wrap justify-between gap-y-4">
             {Cats.map((e) => {
               return (
-                <SignboardCard imgUrl={e.imgUrl} cafe={e.cafe} prefecture={e.prefecture} />
+                <SignboardCard
+                  imgUrl={e.imgUrl}
+                  cafe={e.cafe}
+                  prefecture={e.prefecture}
+                />
               );
             })}
           </div>

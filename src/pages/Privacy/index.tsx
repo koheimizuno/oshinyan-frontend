@@ -2,11 +2,12 @@ import Carousel from "../../components/common/Carousel";
 import MainLayout from "../../layouts/MainLayout";
 import Container from "../../components/basic/Container";
 import PageBar from "../../components/common/PageBar";
+import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 
 const PrivacyPage = () => {
   return (
     <MainLayout>
-      <Carousel />
+      <SocialLinkGroup />
       <Container>
         <div className="mt-4">
           <PageBar page="プライバシーポリシー" />
@@ -20,11 +21,11 @@ const PrivacyPage = () => {
           <br />
           <strong>1. 事業者情報</strong>
           <br />
-           法人名：株式会社シーピーユー
-           <br />
-          住所：東京都港区元赤坂１－２－７　赤坂Kタワー4階 
+          法人名：株式会社シーピーユー
           <br />
-          代表者：米田　哲郎 
+          住所：東京都港区元赤坂１－２－７　赤坂Kタワー4階
+          <br />
+          代表者：米田　哲郎
           <br />
           <br />
           <strong>2.個人情報の取得方法</strong>
@@ -35,7 +36,7 @@ const PrivacyPage = () => {
           <br />
           <strong>3. 個人情報の利用目的</strong>
           <br />
-          ① 当社サービスの提供・運営のため 
+          ① 当社サービスの提供・運営のため
           <br />
           ②ユーザーからのコメントやお問い合わせに回答するため（本人確認を行うことを含む）
           <br />
@@ -82,7 +83,7 @@ const PrivacyPage = () => {
           <br />
           本人の求めに応じて当該個人情報の第三者への提供を停止すること
           <br />
-          本人の求めを受け付ける方法 
+          本人の求めを受け付ける方法
           <br />
           <br />
           <strong>6. 匿名加工情報に関する取扱い</strong>
@@ -95,7 +96,7 @@ const PrivacyPage = () => {
           <br />
           匿名加工情報に含まれる個人に関する情報の項目を公表する
           <br />
-          作成元となった個人情報の本人を識別するため、他の情報と照合すること 
+          作成元となった個人情報の本人を識別するため、他の情報と照合すること
           <br />
           <br />
           <strong>7.保有個人データの開示、訂正</strong>
@@ -137,9 +138,9 @@ const PrivacyPage = () => {
           <br />
           制定：○○年○月○日
           <br />
-          改定：○○年○月○日 
+          改定：○○年○月○日
           <br />
-          改定：○○年○月○日 
+          改定：○○年○月○日
           <br />
           <br />
           <strong>12. 免責事項</strong>

@@ -5,12 +5,14 @@ import PageBar from "../../components/common/PageBar";
 import SignboardRegisterForm from "../../components/common/SignboardRegisterForm";
 import RecruitRegisterFrom from "../../components/common/RecruitRegisterFrom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import { Modal } from "@mui/material";
+import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 
 const RegisterSignboard = () => {
-  const [tabValue, setTabValue] = useState(2);
-
+  const [tabValue, setTabValue] = useState(1);
   return (
     <MainLayout>
+      <SocialLinkGroup />
       <Container>
         <div className="mt-4 mb-14">
           <PageBar page="未登録看板猫情報募集" />

@@ -6,6 +6,7 @@ import CustomButton from "../../components/basic/BasicButton";
 import BlogBox from "../../components/basic/blog/BlogBox";
 import SignboardCard from "../../components/basic/SignboardCard";
 import SignboardSearchBar from "../../components/common/SignboardSearchBar";
+import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 
 const CONTACTINFO = [
   {
@@ -89,6 +90,7 @@ function LocationDetail() {
   const [regions, setRegions] = useState<string[]>([]);
   return (
     <MainLayout>
+      <SocialLinkGroup />
       <section className="bg-[#F7F7F7] border-b-4 border-[#FAD2B5]">
         <Container>
           <div className="my-4">

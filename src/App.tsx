@@ -15,6 +15,7 @@ import Application from "./pages/Application";
 import ContactUs from "./pages/ContactUs";
 import CatDetail from "./pages/CatDetail";
 import LocationDetail from "./pages/LocationDetail";
+import Comment from "./pages/Comment";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           //10 <Route path="/application" element={<Application />} />
           //11 <Route path="/locationdetail" element={<LocationDetail />} />
           //12 <Route path="/cat/detail/:id" element={<CatDetail />} />
+          //15 <Route path="/comment" element={<Comment />} />
           //17 <Route path="/contact-us" element={<ContactUs />} />
         </Route>
       </Routes>
