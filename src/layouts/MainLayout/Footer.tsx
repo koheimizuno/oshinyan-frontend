@@ -6,10 +6,10 @@ const Footer = () => {
       <div className="w-[960px] m-auto">
         <div className="flex justify-between items-center">
           <a href="/about">
-            <img src="assets/imgs/footer-1.png" alt="" />
+            <img src="assets/imgs/footer-1.png" alt="footer-1" />
           </a>
           <a href="/signboard/register">
-            <img src="assets/imgs/footer-2.png" alt="" />
+            <img src="assets/imgs/footer-2.png" alt="footer-2" />
           </a>
         </div>
         <div className="flex justify-between items-center w-[595px] py-[24px] m-auto">
@@ -61,7 +61,7 @@ const Footer = () => {
             </div>
           </div>
           <span className="absolute bottom-0 right-0 hover:opacity-70">
-            <img src="assets/imgs/footer-logo.png" alt="" />
+            <img src="assets/imgs/footer-logo.png" alt="footer-logo" />
           </span>
         </div>
         <div className="py-[16px] text-center">

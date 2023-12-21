@@ -7,18 +7,23 @@ import {
   Checkbox,
 } from "@mui/material";
 
-const SignboardRegisterForm = () => {
+const RecruitRegisterFrom = () => {
   return (
     <div className="bg-white px-[24px] pb-[48px] border-2 border-[#CBB279]">
-      <p className="py-8 border-b border-[#CCCCCC] text-xl">
-        推しニャンWebサイトに掲載されていない看板猫がいるお店を発見した際のご依頼ニャ
-      </p>
+      <div className="flex">
+        <p className="py-8 border-b border-[#CCCCCC] text-xl">
+          「推しニャン」サイトのアンバサダーとして活躍してくれる方を大募集しているニャー
+        </p>
+        <span>
+          <img src="assets/imgs/icons/questionmark.png" alt="questionmark" />
+        </span>
+      </div>
       <span className="text-red-500 mt-2 inline-block">＊＝必須</span>
       <div className="w-[640px] m-auto">
         {/* row 1 */}
         <div className="pt-[16px] pb-8 border-b border-[#ccc] flex justify-between items-center">
           <label className="text-[14px]" htmlFor="name_kana">
-            店舗名
+            <span className="tracking-tighter">アンバサダー名</span>
             <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
               *
             </span>
@@ -30,6 +35,17 @@ const SignboardRegisterForm = () => {
           />
         </div>
         {/* row 2 */}
+        <div className="py-8 border-b border-[#ccc] flex justify-between items-center">
+          <label className="text-[14px]" htmlFor="name_kana">
+            <span className="tracking-tighter">氏名</span>
+          </label>
+          <input
+            type="text"
+            id="name_kana"
+            className="w-[456px] h-[40px] rounded-[4px] border border-[#CCCCCC]"
+          />
+        </div>
+        {/* row 3 */}
         <div className="py-4 border-b border-[#ccc]">
           <div className="flex justify-between py-4">
             <div className="flex items-center">
@@ -94,12 +110,10 @@ const SignboardRegisterForm = () => {
             </div>
           </div>
         </div>
-        {/* row 3 */}
+        {/* row 4 */}
         <div className="flex justify-between border-b border-[#ccc] py-8">
           <div className="flex items-center">
-            <p className="text-[14px] tracking-tighter">
-              メールアドレス（登録者）
-            </p>
+            <p className="text-[14px] tracking-tighter">メールアドレス</p>
             <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
               *
             </span>
@@ -110,10 +124,10 @@ const SignboardRegisterForm = () => {
             className="w-[456px] h-[40px] rounded-[4px] border border-[#CCCCCC]"
           />
         </div>
-        {/* row 4 */}
+        {/* row 5 */}
         <div className="flex justify-between border-b border-[#ccc] py-8">
           <div className="flex items-center">
-            <p className="text-[14px] tracking-tighter">電話番号（登録者）</p>
+            <p className="text-[14px] tracking-tighter">電話番号</p>
           </div>
           <input
             type="text"
@@ -121,37 +135,10 @@ const SignboardRegisterForm = () => {
             className="w-[456px] h-[40px] rounded-[4px] border border-[#CCCCCC]"
           />
         </div>
-        {/* row 5 */}
-        <div className="flex justify-between border-b border-[#ccc] py-6">
-          <div className="flex items-center">
-            <p className="text-[14px] tracking-tighter">店舗の許諾</p>
-          </div>
-          <div className="w-[456px]">
-            <FormControl>
-              <RadioGroup
-                aria-labelledby="demo-radio-buttons-group-label"
-                defaultValue="yes"
-                name="radio-buttons-group"
-              >
-                <div className="flex">
-                  <FormControlLabel
-                    value="yes"
-                    control={<Radio />}
-                    label="あり"
-                  />
-                  <FormControlLabel
-                    value="no"
-                    control={<Radio />}
-                    label="なし"
-                  />
-                </div>
-              </RadioGroup>
-            </FormControl>
-          </div>
-        </div>
+        {/* row 6 */}
         <div className="pt-[32px] flex justify-between">
           <label className="text-[14px]" htmlFor="infomation">
-            看板猫情報
+            ご希望
             <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
               *
             </span>
@@ -159,17 +146,12 @@ const SignboardRegisterForm = () => {
           <textarea
             name="infomation"
             id="infomation"
-            className="h-[192px] w-[456px] border border-[#CCCCCC]"
+            className="h-[192px] w-[456px] border border-[#CCCCCC] p-2"
+            placeholder="推しニャンアンバサダーとして、どんな活動をしたいかをご記入ください。（店舗取材、看板猫の写真撮影など）"
           ></textarea>
         </div>
-        <button className="w-full mt-[24px] h-[48px] flex justify-center bg-[#F3F3F3] py-3">
-          <FileUpload />{" "}
-          <span className="test-[14px] leading-[19px] ms-[10px]">
-            画像をドラック＆ドロップまたはファイル名選択
-          </span>
-        </button>
         <div className="border-b border-[#CCCCCC] mt-[32px]"></div>
-        {/* row 5 */}
+        {/* row 7 */}
         <div className="pt-[32px] flex justify-between items-center flex-wrap">
           <div className="w-full flex justify-center">
             <label className="text-[16px]" htmlFor="privacy">
@@ -205,4 +187,4 @@ const SignboardRegisterForm = () => {
   );
 };
 
-export default SignboardRegisterForm;
+export default RecruitRegisterFrom;
