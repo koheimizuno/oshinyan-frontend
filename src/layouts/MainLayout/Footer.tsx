@@ -8,7 +8,7 @@ const Footer = () => {
           <a href="/about">
             <img src="assets/imgs/footer-1.png" alt="footer-1" />
           </a>
-          <a href="/signboard/register">
+          <a href="/registersignboard">
             <img src="assets/imgs/footer-2.png" alt="footer-2" />
           </a>
         </div>
@@ -54,7 +54,7 @@ const Footer = () => {
             </div>
             <div className="px-[20px]">
               <p className="tracking-[-.1em]">
-                <a href="/application">
+                <a href="/registersignboard">
                   推しニャン申請（店舗登録はこちらから）
                 </a>
               </p>

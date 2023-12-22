@@ -1,21 +1,17 @@
 import React from "react";
-import Carousel from "../../components/common/Carousel";
 import MainLayout from "../../layouts/MainLayout";
 import Container from "../../components/basic/Container";
 import PageBar from "../../components/common/PageBar";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
+import Title from "../../components/common/Typography/Title";
 
 const CompanyPage = () => {
   return (
     <MainLayout>
       <SocialLinkGroup />
       <Container>
-        <div className="mt-4">
-          <PageBar page="プライバシーポリシー" />
-        </div>
-        <div className="text-[32px] leading-[40px] mt-[24px] pb-[14px] border-b border-[#CBB279]">
-          運営会社
-        </div>
+        <PageBar page="プライバシーポリシー" />
+        <Title title="運営会社" />
         <div className="w-full text-[16px] pt-[28px]">
           <div className="w-full flex py-[28px] border-b border-[#B7B7B7]">
             <div className="w-[160px]">社名</div>

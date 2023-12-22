@@ -2,13 +2,124 @@ import Carousel from "../../components/common/Carousel";
 import MainLayout from "../../layouts/MainLayout";
 import Container from "../../components/basic/Container";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
+import PageBar from "../../components/common/PageBar";
+import Title from "../../components/common/Typography/Title";
+
+const CAROUSELIMAGES: object[] = [
+  {
+    src: "/assets/imgs/cats/about-cat-1.png",
+    alt: "about-cat-1",
+  },
+  {
+    src: "/assets/imgs/cats/about-cat-2.png",
+    alt: "about-cat-2",
+  },
+  {
+    src: "/assets/imgs/cats/about-cat-3.png",
+    alt: "about-cat-3",
+  },
+  {
+    src: "/assets/imgs/cats/about-cat-4.png",
+    alt: "about-cat-4",
+  },
+  {
+    src: "/assets/imgs/cats/about-cat-5.png",
+    alt: "about-cat-5",
+  },
+  {
+    src: "/assets/imgs/cats/about-cat-6.png",
+    alt: "about-cat-6",
+  },
+  {
+    src: "/assets/imgs/cats/about-cat-1.png",
+    alt: "about-cat-1",
+  },
+  {
+    src: "/assets/imgs/cats/about-cat-2.png",
+    alt: "about-cat-2",
+  },
+  {
+    src: "/assets/imgs/cats/about-cat-3.png",
+    alt: "about-cat-3",
+  },
+  {
+    src: "/assets/imgs/cats/about-cat-4.png",
+    alt: "about-cat-4",
+  },
+  {
+    src: "/assets/imgs/cats/about-cat-5.png",
+    alt: "about-cat-5",
+  },
+  {
+    src: "/assets/imgs/cats/about-cat-6.png",
+    alt: "about-cat-6",
+  },
+  {
+    src: "/assets/imgs/cats/about-cat-1.png",
+    alt: "about-cat-1",
+  },
+  {
+    src: "/assets/imgs/cats/about-cat-2.png",
+    alt: "about-cat-2",
+  },
+  {
+    src: "/assets/imgs/cats/about-cat-3.png",
+    alt: "about-cat-3",
+  },
+  {
+    src: "/assets/imgs/cats/about-cat-4.png",
+    alt: "about-cat-4",
+  },
+  {
+    src: "/assets/imgs/cats/about-cat-5.png",
+    alt: "about-cat-5",
+  },
+  {
+    src: "/assets/imgs/cats/about-cat-6.png",
+    alt: "about-cat-6",
+  },
+  {
+    src: "/assets/imgs/cats/about-cat-1.png",
+    alt: "about-cat-1",
+  },
+  {
+    src: "/assets/imgs/cats/about-cat-2.png",
+    alt: "about-cat-2",
+  },
+  {
+    src: "/assets/imgs/cats/about-cat-3.png",
+    alt: "about-cat-3",
+  },
+  {
+    src: "/assets/imgs/cats/about-cat-4.png",
+    alt: "about-cat-4",
+  },
+  {
+    src: "/assets/imgs/cats/about-cat-5.png",
+    alt: "about-cat-5",
+  },
+  {
+    src: "/assets/imgs/cats/about-cat-6.png",
+    alt: "about-cat-6",
+  },
+];
 
 const About = () => {
   return (
     <MainLayout>
       <SocialLinkGroup />
       <Container>
-        <div className="mt-[40px]">
+        <PageBar page="推しニャンとは" />
+        <Title title="推しニャンとは？" />
+      </Container>
+      <Carousel
+        data={CAROUSELIMAGES}
+        totalSlides={CAROUSELIMAGES.length}
+        visibleSlides={window.innerWidth / 240}
+        bgColor="bg-[#F5F4EC]"
+      />
+      <Container>
+        <div>
           <p className="text-[20px] leading-[27px]">
             「にゃんこ好きのみなさん、お待たせしました！
             <br />
@@ -24,7 +135,10 @@ const About = () => {
           </p>
         </div>
         <div className="text-center mt-[72px]">
-          <img src="/assets/imgs/how_to_have_good_time.png" alt="" />
+          <img
+            src="/assets/imgs/how_to_have_good_time.png"
+            alt="how_to_have_good_time"
+          />
         </div>
         <div className="mt-[48px]">
           {/* 1 */}

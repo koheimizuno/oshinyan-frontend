@@ -1,21 +1,17 @@
-import Carousel from "../../components/common/Carousel";
 import MainLayout from "../../layouts/MainLayout";
 import Container from "../../components/basic/Container";
 import PageBar from "../../components/common/PageBar";
 import SignupForm from "../../components/common/SignupForm";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
+import Title from "../../components/common/Typography/Title";
 
 const RegisterPage = () => {
   return (
     <MainLayout>
       <SocialLinkGroup />
       <Container>
-        <div className="mt-4">
-          <PageBar page="会員登録" />
-        </div>
-        <div className="text-[24px] leading-[40px] mt-4 pb-4 border-b border-[#CBB279]">
-          会員登録ニャ！
-        </div>
+        <PageBar page="会員登録ニャ！" />
+        <Title title="会員登録ニャ！" />
         <div className="mt-[16px] text-[16px] leading-[21px]">
           会員登録して、推しニャンを見つけて楽しむニャー
         </div>

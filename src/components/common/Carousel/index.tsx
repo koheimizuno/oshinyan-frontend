@@ -9,29 +9,23 @@ import {
 import ArrowLeft from "../../basic/icons/ArrowLeft";
 import ArrowRight from "../../basic/icons/ArrowRight";
 
-const IMAGES: string[] = [
-  "/assets/imgs/carousel-1.png",
-  "/assets/imgs/carousel-2.png",
-  "/assets/imgs/carousel-3.png",
-];
-
-function Carousel() {
+function Carousel(props: any) {
   return (
-    <div className="py-3 bg-white">
+    <div className={`py-3 ${props.bgColor}`}>
       <CarouselProvider
         naturalSlideWidth={5}
-        naturalSlideHeight={3}
-        totalSlides={3}
-        interval={5000}
+        naturalSlideHeight={55}
+        totalSlides={props.totalSlides}
+        interval={3000}
         isPlaying={true}
-        visibleSlides={3}
-        className="relative bg-white h-[240px]"
+        visibleSlides={props.visibleSlides}
+        className="relative bg-white h-[240px] mt-[30px] mb-[40px]"
       >
         <Slider>
-          {IMAGES.map((item: any, key: any) => (
+          {props.data.map((item: any, key: any) => (
             <Slide index={key}>
               <div className="">
-                <img src={item} alt="1" className="h-full m-auto" />
+                <img src={item.src} alt={item.alt} className="h-full m-auto" />
               </div>
             </Slide>
           ))}

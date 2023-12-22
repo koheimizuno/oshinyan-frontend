@@ -1,10 +1,10 @@
-import Carousel from "../../components/common/Carousel";
 import MainLayout from "../../layouts/MainLayout";
 import Container from "../../components/basic/Container";
 import PageBar from "../../components/common/PageBar";
 import { Pagination } from "@mui/material";
 import BlogBox from "../../components/basic/blog/BlogBox";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
+import Title from "../../components/common/Typography/Title";
 
 const Cats = [
   {
@@ -59,13 +59,8 @@ const FeatureDetail = () => {
     <MainLayout>
       <SocialLinkGroup />
       <Container>
-        <div className="mt-4">
-          <PageBar page="各特集" />
-        </div>
-        <div className="text-[32px] leading-[43px] mt-4 pb-[14px] border-b border-[#CBB279]">
-          特集（仮）一覧
-        </div>
-
+        <PageBar page="各特集" />
+        <Title title="特集（仮）一覧" />
         <div className="mt-[24px] text-[20px] leading-[27px]">
           東京には看板猫が出勤している素敵なカフェがたくさんあるニャン！
           <br />

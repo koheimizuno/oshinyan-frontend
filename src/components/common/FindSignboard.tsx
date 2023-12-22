@@ -10,7 +10,7 @@ const FindSignboard = () => {
           </a>
         </div>
         <div className="hover:opacity-70">
-          <a href="/signboard/register">
+          <a href="/registersignboard">
             <img src="assets/imgs/member.png" alt="" />
           </a>
         </div>

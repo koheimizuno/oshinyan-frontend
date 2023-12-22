@@ -1,4 +1,3 @@
-import Carousel from "../../components/common/Carousel";
 import MainLayout from "../../layouts/MainLayout";
 import Container from "../../components/basic/Container";
 import PageBar from "../../components/common/PageBar";
@@ -6,6 +5,7 @@ import BlogBox from "../../components/basic/blog/BlogBox";
 import EditButton from "../../components/basic/EditButton";
 import FavoriteCard from "../../components/basic/FavoriteCard";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
+import Title from "../../components/common/Typography/Title";
 
 const Cats = [
   {
@@ -40,12 +40,8 @@ const MyPage = () => {
       <MainLayout>
         <SocialLinkGroup />
         <Container>
-          <div className="mt-4">
-            <PageBar page="各特集" />
-          </div>
-          <div className="text-[32px] leading-[43px] mt-4 pb-[14px] border-b border-[#CBB279]">
-            マイページ
-          </div>
+          <PageBar page="各特集" />
+          <Title title="マイページ" />
           <div className="p-[24px] pb-[16px] bg-white">
             <div className="flex pb-[24px] border-b border-[#CCCCCC]">
               <div className="w-[72px] h-[72px] me-[40px]">

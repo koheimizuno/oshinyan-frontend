@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Carousel from "../../components/common/Carousel";
 import MainLayout from "../../layouts/MainLayout";
 import SearchBar from "../../components/common/SearchBar";
 import RankingBar from "../../components/common/RankingBar";

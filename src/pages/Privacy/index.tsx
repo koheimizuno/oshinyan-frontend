@@ -1,20 +1,16 @@
-import Carousel from "../../components/common/Carousel";
 import MainLayout from "../../layouts/MainLayout";
 import Container from "../../components/basic/Container";
 import PageBar from "../../components/common/PageBar";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
+import Title from "../../components/common/Typography/Title";
 
 const PrivacyPage = () => {
   return (
     <MainLayout>
       <SocialLinkGroup />
       <Container>
-        <div className="mt-4">
-          <PageBar page="プライバシーポリシー" />
-        </div>
-        <div className="text-[32px] leading-[40px] mt-[24px] pb-[14px] border-b border-[#CBB279]">
-          プライバシーポリシー
-        </div>
+        <PageBar page="プライバシーポリシー" />
+        <Title title="プライバシーポリシー" />
         <div className="mt-[47px] mb-[48px]">
           株式会社シーピーユー（以下、「当社」という。）は，ユーザーの個人情報の取り扱いについて以下のとおりプライバシーポリシー（以下、「本ポリシー」という。）を定めます。本
           <br />

@@ -7,6 +7,7 @@ import BlogBox from "../../components/basic/blog/BlogBox";
 import SignboardCard from "../../components/basic/SignboardCard";
 import SignboardSearchBar from "../../components/common/SignboardSearchBar";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
+import Title from "../../components/common/Typography/Title";
 
 const CONTACTINFO = [
   {
@@ -93,14 +94,8 @@ function LocationDetail() {
       <SocialLinkGroup />
       <section className="bg-[#F7F7F7] border-b-4 border-[#FAD2B5]">
         <Container>
-          <div className="my-4">
-            <PageBar page="XXXXXXXXX > XXXXXXXXX " />
-          </div>
-
-          <div className="text-[32px] leading-[43px] mt-4 pb-[14px] border-b border-[#CBB279] inline-block">
-            店名店名店名店名店名店名店名店名店名店名店名店名
-          </div>
-
+          <PageBar page="場所詳細" />
+          <Title title="店名店名店名店名店名店名店名店名店名店名店名店名" />
           <div className="flex gap-4">
             <div className="mt-[33px] mb-[25px] hover:opacity-70">
               <CustomButton value="東京都" />

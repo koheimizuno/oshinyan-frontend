@@ -11,6 +11,7 @@ import {
   Radio,
   RadioGroup,
 } from "@mui/material";
+import Title from "../../components/common/Typography/Title";
 
 function Comment() {
   return (
@@ -18,9 +19,7 @@ function Comment() {
       <SocialLinkGroup />
       <Container>
         <PageBar page="コメント入力ページ" />
-        <h2 className="text-[32px] mt-6 pb-2 border-b-2 border-[#CBB279]">
-          推しコメント入力
-        </h2>
+        <Title title="推しコメント入力" />
         <section className="flex items-center py-9">
           <div className="flex items-center gap-4 mr-10">
             <img src="assets/imgs/icons/cat_avatar_3.png" alt="cat_avatar_3" />

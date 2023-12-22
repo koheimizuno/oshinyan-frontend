@@ -11,13 +11,85 @@ import CustomButton from "../../components/basic/BasicButton";
 import Container from "../../components/basic/Container";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 
+const CAROUSELIMAGES: object[] = [
+  {
+    src: "/assets/imgs/carousel-1.png",
+    alt: "carousel-1",
+  },
+  {
+    src: "/assets/imgs/carousel-2.png",
+    alt: "carousel-2",
+  },
+  {
+    src: "/assets/imgs/carousel-3.png",
+    alt: "carousel-3",
+  },
+  {
+    src: "/assets/imgs/carousel-4.png",
+    alt: "carousel-4",
+  },
+  {
+    src: "/assets/imgs/carousel-1.png",
+    alt: "carousel-1",
+  },
+  {
+    src: "/assets/imgs/carousel-2.png",
+    alt: "carousel-2",
+  },
+  {
+    src: "/assets/imgs/carousel-3.png",
+    alt: "carousel-3",
+  },
+  {
+    src: "/assets/imgs/carousel-4.png",
+    alt: "carousel-4",
+  },
+  {
+    src: "/assets/imgs/carousel-1.png",
+    alt: "carousel-1",
+  },
+  {
+    src: "/assets/imgs/carousel-2.png",
+    alt: "carousel-2",
+  },
+  {
+    src: "/assets/imgs/carousel-3.png",
+    alt: "carousel-3",
+  },
+  {
+    src: "/assets/imgs/carousel-4.png",
+    alt: "carousel-4",
+  },
+  {
+    src: "/assets/imgs/carousel-1.png",
+    alt: "carousel-1",
+  },
+  {
+    src: "/assets/imgs/carousel-2.png",
+    alt: "carousel-2",
+  },
+  {
+    src: "/assets/imgs/carousel-3.png",
+    alt: "carousel-3",
+  },
+  {
+    src: "/assets/imgs/carousel-4.png",
+    alt: "carousel-4",
+  },
+];
+
 const Top = () => {
   const [regions, setRegions] = useState<string[]>([]);
 
   return (
     <MainLayout>
       <SocialLinkGroup page="top" />
-      <Carousel />
+      <Carousel
+        data={CAROUSELIMAGES}
+        totalSlides={CAROUSELIMAGES.length}
+        visibleSlides={window.outerWidth / 344 - 0.3}
+        bgColor="bg-white"
+      />
       <SearchBar list={regions} setList={setRegions} />
       <Container>
         <RankingBar />

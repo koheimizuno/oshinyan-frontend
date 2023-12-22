@@ -16,6 +16,7 @@ import ContactUs from "./pages/ContactUs";
 import CatDetail from "./pages/CatDetail";
 import LocationDetail from "./pages/LocationDetail";
 import Comment from "./pages/Comment";
+import Column from "./pages/Column";
 
 function App() {
   return (
@@ -31,13 +32,14 @@ function App() {
           //5 <Route path="/mypage" element={<MyPage />} />
           //6 <Route path="/signboard" element={<SignBoard />} />
           //7{" "}
-          <Route path="/signboard/register" element={<RegisterSignboard />} />
+        <Route path="/registersignboard" element={<RegisterSignboard />} />
           //8 <Route path="/privacy" element={<Privacy />} />
           //9 <Route path="/company" element={<Company />} />
           //10 <Route path="/application" element={<Application />} />
           //11 <Route path="/locationdetail" element={<LocationDetail />} />
           //12 <Route path="/cat/detail/:id" element={<CatDetail />} />
           //15 <Route path="/comment" element={<Comment />} />
+          //16 <Route path="/column" element={<Column />} />
           //17 <Route path="/contact-us" element={<ContactUs />} />
         </Route>
       </Routes>
