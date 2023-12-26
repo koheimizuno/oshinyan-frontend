@@ -52,20 +52,22 @@ const Cats = [
 const BlogAD = () => {
   return (
     <>
-      <div className="flex justify-between flex-wrap ">
-        {Cats.map((e, i) => (
-          <BlogBox
-            key={i}
-            imgUrl={e.imgUrl}
-            isNew={e.isNew}
-            isChu={e.isChu}
-            name={"heracles"}
-            cafe={"cafe"}
-            vote={2}
-            character={["fdsa", "reqw"]}
-            description={"this is description"}
-          />
-        ))}
+      <div className="m-auto">
+        <div className="flex justify-between flex-wrap ">
+          {Cats.map((e, i) => (
+            <BlogBox
+              key={i}
+              imgUrl={e.imgUrl}
+              isNew={e.isNew}
+              isChu={e.isChu}
+              name={"heracles"}
+              cafe={"cafe"}
+              vote={2}
+              character={["fdsa", "reqw"]}
+              description={"this is description"}
+            />
+          ))}
+        </div>
       </div>
     </>
   );

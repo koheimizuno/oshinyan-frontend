@@ -112,12 +112,14 @@ const About = () => {
         <PageBar page="推しニャンとは" />
         <Title title="推しニャンとは？" />
       </Container>
-      <Carousel
-        data={CAROUSELIMAGES}
-        totalSlides={CAROUSELIMAGES.length}
-        visibleSlides={window.innerWidth / 240}
-        bgColor="bg-[#F5F4EC]"
-      />
+      <div className="pt-[30px] pb-[40px]">
+        <Carousel
+          data={CAROUSELIMAGES}
+          visibleSlides={window.innerWidth / 240}
+          spaceBetween={0}
+          bgColor="bg-[#F5F4EC]"
+        />
+      </div>
       <Container>
         <div>
           <p className="text-[20px] leading-[27px]">

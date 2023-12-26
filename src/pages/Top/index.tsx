@@ -86,8 +86,8 @@ const Top = () => {
       <SocialLinkGroup page="top" />
       <Carousel
         data={CAROUSELIMAGES}
-        totalSlides={CAROUSELIMAGES.length}
-        visibleSlides={window.outerWidth / 344 - 0.3}
+        visibleSlides={window.innerWidth / 344}
+        spaceBetween={window.innerWidth < 640 ? 8 : 16}
         bgColor="bg-white"
       />
       <SearchBar list={regions} setList={setRegions} />

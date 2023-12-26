@@ -2,13 +2,20 @@ import React from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import { PropsWithChildren } from "react";
+import Container from "../../components/basic/Container";
 
 const MainLayout = (props: PropsWithChildren) => {
   return (
     <div>
-      <Header />
+      <div className="bg-white">
+        <Container>
+          <Header />
+        </Container>
+      </div>
       {props.children}
-      <Footer />
+      <Container>
+        <Footer />
+      </Container>
     </div>
   );
 };

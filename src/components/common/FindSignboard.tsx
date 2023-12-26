@@ -6,7 +6,8 @@ const FindSignboard = () => {
       <div className="pt-[48px] pb-[80px]">
         <div className="mb-[24px] hover:opacity-70">
           <a href="/signboard">
-            <img src="assets/imgs/signboard.png" alt="" />
+            <img src="assets/imgs/signboard.png" alt="signboard" />
+            <p></p>
           </a>
         </div>
         <div className="hover:opacity-70">

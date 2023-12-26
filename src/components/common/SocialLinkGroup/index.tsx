@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function SocialLinkGroup(props: any) {
   return (
     <div
-      className={`fixed left-0 z-10 bg-white flex flex-col ${
+      className={`fixed left-0 z-10 bg-white xs:hidden sm:flex sm:flex-col  ${
         props.page === "top" ? "top-[450px]" : "top-[150px]"
       }`}
     >
