@@ -28,17 +28,20 @@ const LargeCard = ({
         <div className="relative w-full h-[400px] mb-[15px] hover:opacity-70 flex">
           <div
             className="h-full w-[50%] bg-center bg-no-repeat"
-            style={{ backgroundImage: "url('"+imgUrl+"')" }}
+            style={{ backgroundImage: "url('" + imgUrl + "')" }}
           ></div>
           <div className="px-[24px]  bg-white h-full w-[50%] flex flex-col">
             <div className="pt-[24px]">
               <h3 className="text-[24px] font-bold text-left text-ellipsis overflow-hidden whitespace-nowrap">
-              なまむぎなまごめ
+                なまむぎなまごめ
               </h3>
             </div>
             <div className="flex justify-between pb-[24px]">
               <div>
-                <a href="javascript:;" className=" w-[145px] underline text-[16px] text-ellipsis overflow-hidden tracking-tighter whitespace-nowrap ">
+                <a
+                  href="javascript:;"
+                  className=" w-[145px] underline text-[16px] text-ellipsis overflow-hidden tracking-tighter whitespace-nowrap "
+                >
                   にゃんにゃんカフェ
                 </a>
               </div>
@@ -49,7 +52,7 @@ const LargeCard = ({
             <hr className="border border-[#CCC]" />
             <div className="flex justify-content-start items-center pt-[10px] pb-[16px] ">
               <div>
-                <img src="assets/imgs/hear-yellow.svg" alt="" />
+                <img src="/assets/imgs/hear-yellow.svg" alt="" />
               </div>
               <div className="pl-[8px]">
                 <p>性格</p>
@@ -77,7 +80,7 @@ const LargeCard = ({
             <div className="flex justify-content-start items-center mt-[15px] mb-[8px]">
               <span className=" flex d-inline-block align-items-center w-[24px] h-[24px]  mr-[9px]">
                 <img
-                  src="assets/imgs/recommend.svg"
+                  src="/assets/imgs/recommend.svg"
                   className=" align-items-center "
                   alt=""
                 />
@@ -87,16 +90,16 @@ const LargeCard = ({
 
             {isChu ? (
               <span className="absolute bottom-[8px] right-[8px]">
-                <img src="assets/imgs/mark_chu.png" alt="" />
+                <img src="/assets/imgs/mark_chu.png" alt="" />
               </span>
             ) : (
               <span className="absolute bottom-[8px] right-[8px]">
-                <img src="assets/imgs/btn-foot.svg" alt="" />
+                <img src="/assets/imgs/btn-foot.svg" alt="" />
               </span>
             )}
             {!isNew && (
               <span className="absolute top-0 left-0">
-                <img src="assets/imgs/parts-new.svg" alt="" />
+                <img src="/assets/imgs/parts-new.svg" alt="" />
               </span>
             )}
           </div>

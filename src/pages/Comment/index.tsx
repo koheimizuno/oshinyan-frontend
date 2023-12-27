@@ -22,16 +22,16 @@ function Comment() {
         <Title title="推しコメント入力" />
         <section className="flex items-center py-9">
           <div className="flex items-center gap-4 mr-10">
-            <img src="assets/imgs/icons/cat_avatar_3.png" alt="cat_avatar_3" />
+            <img src="/assets/imgs/icons/cat_avatar_3.png" alt="cat_avatar_3" />
             <a href="#" className="border-b border-[#6d6d6d]">
               猫好きさん
             </a>
           </div>
           <div className="mr-5">
-            <img src="assets/imgs/icons/pink-arrow.png" alt="pink-arrow" />
+            <img src="/assets/imgs/icons/pink-arrow.png" alt="pink-arrow" />
           </div>
           <div className="flex items-center gap-4 mr-12">
-            <img src="assets/imgs/icons/face_empty.png" alt="face_empty" />
+            <img src="/assets/imgs/icons/face_empty.png" alt="face_empty" />
             <p className="text-xl font-medium">なまむぎなまごめ</p>
           </div>
           <p>への投稿をするニャー</p>
@@ -41,7 +41,7 @@ function Comment() {
             {/* row 1 */}
             <div>
               <img
-                src="assets/imgs/cats/cat_detail_carousel.png"
+                src="/assets/imgs/cats/cat_detail_carousel.png"
                 alt="cat_detail_carousel"
               />
             </div>

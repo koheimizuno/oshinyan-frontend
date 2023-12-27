@@ -29,7 +29,7 @@ const BlogBox = ({
   };
   return (
     <div
-      className="m-auto w-[312px] h-[512px] mb-[15px] hover:opacity-70"
+      className="m-auto w-[312px] h-[512px] mb-[15px] hover:opacity-70 cursor-pointer"
       onClick={() => {
         goCatDetail(1);
       }}

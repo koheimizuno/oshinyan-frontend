@@ -253,11 +253,11 @@ const About = () => {
         </div>
 
         <div className="mt-[40px] hover:opacity-70">
-          <img src="assets/imgs/member.png" alt="" />
+          <img src="/assets/imgs/member.png" alt="" />
         </div>
 
         <div className="mt-[80px]">
-          <img src="assets/imgs/rule_begin_fan.png" alt="" />
+          <img src="/assets/imgs/rule_begin_fan.png" alt="" />
         </div>
 
         <div className="text-[16px] leading-[21px]">

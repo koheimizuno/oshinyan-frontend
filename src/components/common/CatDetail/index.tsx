@@ -148,7 +148,10 @@ const CatDetail = () => {
           □□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
         </div>
         <div className="mt-2">
-          <a href="#" className="underline text-base w-[180px] inline-block">
+          <a
+            href="/locationdetail"
+            className="underline text-base w-[180px] inline-block"
+          >
             にゃんにゃんカフェ
           </a>
           <CustomButton value={"東京都"}></CustomButton>

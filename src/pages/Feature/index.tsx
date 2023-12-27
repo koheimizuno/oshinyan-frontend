@@ -7,7 +7,7 @@ import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import Title from "../../components/common/Typography/Title";
 
 const features = new Array(12).fill({
-  imgUrl: "assets/imgs/cats/feature_cat.png",
+  imgUrl: "/assets/imgs/cats/feature_cat.png",
   text: "特集内容コピー特集内容コピー特集内容コピー特集内容コピー",
 });
 

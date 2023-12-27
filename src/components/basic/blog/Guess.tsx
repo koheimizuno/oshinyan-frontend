@@ -1,19 +1,26 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 type Item = {
-  imgUrl: string,
-}
+  imgUrl: string;
+};
 
 const Guess = (props: Item) => {
+  const navigate = useNavigate();
+  const goLocationDetail = (id: number) => {
+    navigate(`/location/detail/${id}`);
+  };
+
   return (
     <>
-      <div className=" w-[312px] h-[384px] border border-solid border-[#EAEAEA] mb-[15px] hover:opacity-70">
+      <div
+        className=" w-[312px] h-[384px] border border-solid border-[#EAEAEA] mb-[15px] hover:opacity-70 cursor-pointer"
+        onClick={() => {
+          goLocationDetail(1);
+        }}
+      >
         <div className="relative">
-          <img
-            src={props.imgUrl}
-            className="w-[312px] h-[234px]"
-            alt=""
-          />
+          <img src={props.imgUrl} className="w-[312px] h-[234px]" alt="" />
         </div>
         <div className="p-[16px] ">
           <h3 className="text-[20px] font-bold tracking-[-0.1em] leading-normal h-[60px] text-ellipsis overflow-hidden whitespace-nowrap">
@@ -22,7 +29,7 @@ const Guess = (props: Item) => {
           <hr className="border border-[#CCC] mt-[16px]" />
           <div className="flex justify-between items-center pt-[16px] text-[16px]">
             <div className="flex items-center">
-              <img src="assets/imgs/circle-pen.svg" alt="" />
+              <img src="/assets/imgs/circle-pen.svg" alt="" />
               <p className="pl-[8px] underline">猫太郎</p>
             </div>
             <div>

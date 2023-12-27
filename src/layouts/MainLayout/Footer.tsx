@@ -6,10 +6,10 @@ const Footer = () => {
       <div className="">
         <div className="flex xs:flex-col xs:gap-5 sm:flex-row sm:justify-between sm:items-center">
           <a href="/about">
-            <img src="assets/imgs/footer-1.png" alt="footer-1" />
+            <img src="/assets/imgs/footer-1.png" alt="footer-1" />
           </a>
           <a href="/registersignboard">
-            <img src="assets/imgs/footer-2.png" alt="footer-2" />
+            <img src="/assets/imgs/footer-2.png" alt="footer-2" />
           </a>
         </div>
         <div className="flex justify-center items-center xs:pt-6 sm:py-[24px] m-auto">
@@ -63,7 +63,7 @@ const Footer = () => {
           <div className="xs:mt-12 sm:mt-0 border-b-2 border-solid border-[#CCC]">
             <span className="sm:absolute sm:bottom-0 sm:right-0 hover:opacity-70">
               <img
-                src="assets/imgs/footer-logo.png"
+                src="/assets/imgs/footer-logo.png"
                 alt="footer-logo"
                 className="xs:m-auto sm:m-0"
               />

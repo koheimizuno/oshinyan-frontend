@@ -31,7 +31,7 @@ const SmallCard = ({
               <span className="absolute top-[8px] right-[8px]">
                 <img
                   style={{ width: "32px", height: "32px" }}
-                  src="assets/imgs/mark_chu.png"
+                  src="/assets/imgs/mark_chu.png"
                   alt=""
                 />
               </span>
@@ -39,7 +39,7 @@ const SmallCard = ({
               <span className="absolute top-[8px] right-[8px]">
                 <img
                   style={{ width: "32px", height: "32px" }}
-                  src="assets/imgs/btn-foot.svg"
+                  src="/assets/imgs/btn-foot.svg"
                   alt=""
                 />
               </span>
@@ -48,7 +48,7 @@ const SmallCard = ({
           <div className="px-[24px] w-[282px] bg-white h-full flex flex-col">
             <div className="pt-[16px]">
               <h3 className="text-[24px] leading-[24px] vertical-bottom font-bold text-left text-ellipsis overflow-hidden whitespace-nowrap">
-              なまむぎなまごめ
+                なまむぎなまごめ
               </h3>
               <a
                 href="javascript:;"
@@ -60,7 +60,7 @@ const SmallCard = ({
             <div className="flex justify-content-start items-center mt-[auto] mb-[8px]">
               <span className=" flex d-inline-block align-items-center w-[24px] h-[24px]  mr-[9px]">
                 <img
-                  src="assets/imgs/recommend.svg"
+                  src="/assets/imgs/recommend.svg"
                   className=" align-items-center"
                   alt=""
                 />

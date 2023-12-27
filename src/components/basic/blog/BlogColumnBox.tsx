@@ -59,7 +59,7 @@ const BlogColumnBox = ({
             </p>
             <div className="flex justify-between py-4">
               <div className="flex gap-2">
-                <img src="assets/imgs/icons/pen.png" alt="pen" />
+                <img src="/assets/imgs/icons/pen.png" alt="pen" />
                 <a href="#" className="border-b border-black">
                   猫太郎
                 </a>

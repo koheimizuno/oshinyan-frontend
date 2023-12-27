@@ -12,25 +12,25 @@ import Title from "../../components/common/Typography/Title";
 const CONTACTINFO = [
   {
     title: "最寄り駅",
-    icon: "assets/imgs/icons/neareststation.png",
+    icon: "/assets/imgs/icons/neareststation.png",
     alt: "neareststation",
     content: "□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□",
   },
   {
     title: "電話番号",
-    icon: "assets/imgs/icons/phone.png",
+    icon: "/assets/imgs/icons/phone.png",
     alt: "phone",
     content: "□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□",
   },
   {
     title: "営業時間",
-    icon: "assets/imgs/icons/clock.png",
+    icon: "/assets/imgs/icons/clock.png",
     alt: "clock",
     content: "□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□",
   },
   {
     title: "定休日",
-    icon: "assets/imgs/icons/closingday.png",
+    icon: "/assets/imgs/icons/closingday.png",
     alt: "closingday",
     content: "□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□",
   },
@@ -109,13 +109,13 @@ function LocationDetail() {
           </div>
 
           <div>
-            <img src="assets/imgs/location1.png" alt="location1" />
+            <img src="/assets/imgs/location1.png" alt="location1" />
           </div>
 
           <div className="py-8 flex flex-col gap-[18px]">
             <div className="flex gap-2">
               <div>
-                <img src="assets/imgs/icons/address.png" alt="address" />
+                <img src="/assets/imgs/icons/address.png" alt="address" />
               </div>
               <span className="w-[65px]">住所</span>
               <a href="#" className="ml-2 border-b border-gray-400">
@@ -159,7 +159,7 @@ function LocationDetail() {
             </div>
             <div className="mt-[124px]">
               <img
-                src="assets/imgs/Group 802.png"
+                src="/assets/imgs/Group 802.png"
                 alt="Group 802"
                 className="m-auto"
               />

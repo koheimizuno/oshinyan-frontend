@@ -36,7 +36,8 @@ function App() {
           //8 <Route path="/privacy" element={<Privacy />} />
           //9 <Route path="/company" element={<Company />} />
           //10 <Route path="/application" element={<Application />} />
-          //11 <Route path="/locationdetail" element={<LocationDetail />} />
+          //11{" "}
+          <Route path="/location/detail/:id" element={<LocationDetail />} />
           //12 <Route path="/cat/detail/:id" element={<CatDetail />} />
           //15 <Route path="/comment" element={<Comment />} />
           //16 <Route path="/column" element={<Column />} />

@@ -50,7 +50,7 @@ function Column() {
           </h2>
         </div>
         <div className="py-12">
-          <img src="assets/imgs/column-1.png" alt="column-1" />
+          <img src="/assets/imgs/column-1.png" alt="column-1" />
         </div>
         <p className="text-2xl mb-[70px] text-[#515151]">
           H3小見出しH3小見出しH3小見出しH3小見出しH3小見出しH3小見出しH3小見出しH3小見出しH3小見出しH3小見出しH3小見出しH3小見出しH3小見出し
@@ -61,7 +61,7 @@ function Column() {
         <div className="grid grid-cols-12 mb-[60px]">
           <div className="col-span-5">
             <img
-              src="assets/imgs/cats/column-hero-cat-1.png"
+              src="/assets/imgs/cats/column-hero-cat-1.png"
               alt="column-cat"
             />
             <p className="text-sm mt-4 tracking-[-.2em]">
@@ -78,7 +78,7 @@ function Column() {
           </p>
           <div className=" col-span-5">
             <img
-              src="assets/imgs/cats/column-hero-cat-2.png"
+              src="/assets/imgs/cats/column-hero-cat-2.png"
               alt="column-cat"
             />
             <p className="text-sm mt-4 tracking-[-.2em]">
