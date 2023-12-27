@@ -32,7 +32,7 @@ function App() {
           //5 <Route path="/mypage" element={<MyPage />} />
           //6 <Route path="/signboard" element={<SignBoard />} />
           //7{" "}
-        <Route path="/registersignboard" element={<RegisterSignboard />} />
+          <Route path="/registersignboard" element={<RegisterSignboard />} />
           //8 <Route path="/privacy" element={<Privacy />} />
           //9 <Route path="/company" element={<Company />} />
           //10 <Route path="/application" element={<Application />} />
@@ -40,7 +40,7 @@ function App() {
           //12 <Route path="/cat/detail/:id" element={<CatDetail />} />
           //15 <Route path="/comment" element={<Comment />} />
           //16 <Route path="/column" element={<Column />} />
-          //17 <Route path="/contact-us" element={<ContactUs />} />
+          //17 <Route path="/contactus" element={<ContactUs />} />
         </Route>
       </Routes>
     </BrowserRouter>

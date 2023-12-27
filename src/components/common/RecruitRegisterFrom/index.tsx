@@ -12,7 +12,7 @@ const modalBoxSytle = {
   borderRadius: "32px",
   bgcolor: "background.paper",
   boxShadow: 50,
-  p: 3,
+  overflow: "visible",
 };
 
 const RecruitRegisterFrom = () => {
@@ -20,8 +20,8 @@ const RecruitRegisterFrom = () => {
 
   return (
     <div className="bg-white px-[24px] pb-[48px] border-2 border-[#CBB279]">
-      <div className="flex">
-        <p className="py-8 border-b border-[#CCCCCC] text-xl">
+      <div className="flex justify-between border-b border-[#CCCCCC]">
+        <p className="py-8  text-xl">
           「推しニャン」サイトのアンバサダーとして活躍してくれる方を大募集しているニャー
         </p>
         <button onClick={() => setOpenModal(true)}>
@@ -200,57 +200,59 @@ const RecruitRegisterFrom = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={modalBoxSytle}>
-          <Close
-            className="absolute top-4 right-4 bg-[#474747] rounded-full text-white p-1 cursor-pointer"
-            onClick={() => setOpenModal(false)}
-          />
-          <h2 className="text-[32px] text-[#E695A9] text-center pt-[18px] pb-[35px] border-b border-[#CCCCCC] tracking-[-0.15em] font-medium">
-            推しニャンアンバサダーとは？
-          </h2>
-          <div className="flex justify-between px-[54px] py-[27px]">
-            <div className="text-xl text-[#515151] tracking-[-0.1em]">
-              <p className="font-thin">
-                <span>推しニャンWebサイトでは、</span>
-                <br />
-                <span>アンバサダーを大募集しております。</span>
-                <br />
-                <span>にゃんこが好きで好きでたまらない、あなた！</span>
-                <br />
-                <span>是非、私たちの活動にご協力をお願いします。</span>
-                <br />
-              </p>
-              <p className="py-6 font-thin">
-                アンバサダーの方にお願いをしていること
-              </p>
-              <p className="font-medium">
-                <span>・推しニャンサイトを愛していただくこと</span>
-                <br />
-                <span>・看板猫がいるお店への許諾</span>
-                <br />
-                <span>・看板猫がいるお店への取材</span>
-                <br />
-                <span>・看板猫の写真投稿</span>
-                <br />
-                <span>・推しニャンサイトのSNS運用</span>
-                <br />
-                <span>・推しニャンサイトの宣伝業務お手伝い</span>
-                <br />
-              </p>
-              <p className="font-thin pt-6">
-                <span>
-                  ご協力いただいた方には、推しニャンオリジナルグッズ提供他
-                </span>
-                <br />
-                <span>アンバサダー認定証をお送りさせていただきます。</span>
-                <br />
-                <span>
-                  また、お仕事として受けてくださる方も募集しております。
-                </span>
-                <br />
-              </p>
-            </div>
-            <div className="w-[240px]">
-              <div className="h-[340px] bg-[#E6E6E6]"></div>
+          <div className="p-6">
+            <Close
+              className="absolute top-4 right-4 bg-[#474747] rounded-full text-white p-1 cursor-pointer"
+              onClick={() => setOpenModal(false)}
+            />
+            <h2 className="text-[32px] text-[#E695A9] text-center pt-[18px] pb-[35px] border-b border-[#CCCCCC] tracking-[-0.15em] font-medium">
+              推しニャンアンバサダーとは？
+            </h2>
+            <div className="flex justify-between px-[54px] py-[27px]">
+              <div className="text-xl text-[#515151] tracking-[-0.1em]">
+                <p className="font-thin">
+                  <span>推しニャンWebサイトでは、</span>
+                  <br />
+                  <span>アンバサダーを大募集しております。</span>
+                  <br />
+                  <span>にゃんこが好きで好きでたまらない、あなた！</span>
+                  <br />
+                  <span>是非、私たちの活動にご協力をお願いします。</span>
+                  <br />
+                </p>
+                <p className="py-6 font-thin">
+                  アンバサダーの方にお願いをしていること
+                </p>
+                <p className="font-medium">
+                  <span>・推しニャンサイトを愛していただくこと</span>
+                  <br />
+                  <span>・看板猫がいるお店への許諾</span>
+                  <br />
+                  <span>・看板猫がいるお店への取材</span>
+                  <br />
+                  <span>・看板猫の写真投稿</span>
+                  <br />
+                  <span>・推しニャンサイトのSNS運用</span>
+                  <br />
+                  <span>・推しニャンサイトの宣伝業務お手伝い</span>
+                  <br />
+                </p>
+                <p className="font-thin pt-6">
+                  <span>
+                    ご協力いただいた方には、推しニャンオリジナルグッズ提供他
+                  </span>
+                  <br />
+                  <span>アンバサダー認定証をお送りさせていただきます。</span>
+                  <br />
+                  <span>
+                    また、お仕事として受けてくださる方も募集しております。
+                  </span>
+                  <br />
+                </p>
+              </div>
+              <div className="w-[240px]">
+                <div className="h-[340px] bg-[#E6E6E6]"></div>
+              </div>
             </div>
           </div>
           <div>

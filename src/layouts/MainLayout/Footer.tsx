@@ -27,7 +27,7 @@ const Footer = () => {
             </div>
             <div className="w-[1px] h-[16px] bg-black xs:hidden sm:block"></div>
             <div className="px-[15x] xs:mb-8 sm:mb-0 text-center">
-              <a href="contact-us" className="px-[15px]">
+              <a href="contactus" className="px-[15px]">
                 お問合せ
               </a>
             </div>

@@ -36,7 +36,7 @@ function Comment() {
           </div>
           <p>への投稿をするニャー</p>
         </section>
-        <div className="bg-white pt-14 pb-12">
+        <div className="bg-white pt-14 pb-12 mb-24">
           <div className="w-[640px] m-auto border-b pb-[27px] border-[#CCC]">
             {/* row 1 */}
             <div>
@@ -91,15 +91,15 @@ function Comment() {
               </div>
             </div>
           </div>
-        </div>
-        <div className="mt-[47px] text-center">
-          <button
-            className={
-              "text-[24px] bg-[#FBA1B7] h-[48px] border-solid rounded-full py-2 ps-[42px] pe-[40px] leading-[32px] text-center text-white"
-            }
-          >
-            確認ニャ！
-          </button>
+          <div className="mt-[47px] text-center">
+            <button
+              className={
+                "text-[24px] bg-[#FBA1B7] h-[48px] border-solid rounded-full py-2 ps-[42px] pe-[40px] leading-[32px] text-center text-white"
+              }
+            >
+              確認ニャ！
+            </button>
+          </div>
         </div>
       </Container>
     </MainLayout>
