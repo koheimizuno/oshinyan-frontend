@@ -149,7 +149,7 @@ const CatDetail = () => {
         </div>
         <div className="mt-2">
           <a
-            href="/locationdetail"
+            href="/location/detail/1"
             className="underline text-base w-[180px] inline-block"
           >
             にゃんにゃんカフェ
@@ -204,21 +204,60 @@ const CatDetail = () => {
         </div>
         <div className="mt-9">推しニャンコメント</div>
         <div className={`w-full border-b border-black mt-5`}></div>
-        <div className="flex mt-5">
-          <div className="break-all grow-0 break-words text-sm">
-            □□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□ニャン
-          </div>
-          <div className="w-[184px] grow ms-10">
-            <BtnPurple
-              text="ニャンアルバム"
-              isShowIcon={false}
-              onClick={() => {}}
-            />
+        <div className="pt-8 pb-[63px] ">
+          <div className="bg-[#FBA1B7] grid grid-cols-2 h-[92px] overflow-visible rounded-xl">
+            <div className="flex justify-between relative">
+              <div>
+                <div className="relative h-full">
+                  <div className="h-full w-[150px] absolute top-0 left-[-11px] ">
+                    <img
+                      src="/assets/imgs/Group 864.png"
+                      alt="Group 864"
+                      className="h-full w-auto m-auto"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div className="absolute top-[-20px] right-[20px]">
+                  <p className="flex flex-col text-[20px] font-bold text-[#767676] pt-4 pr-6 pb-4 pl-10 comment-link-tooptip">
+                    <span>推し写真のアップ＆</span>
+                    <span>推しコメントを書いてね！</span>
+                  </p>
+                  <img
+                    src="/assets/imgs/Group 867.png"
+                    alt="Group 867"
+                    className="absolute top-0 left-0 -z-10"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="flex justify-between ">
+              <div>
+                <a href="/comment" className="flex items-center h-full">
+                  <span className="text-[28px] tracking-[-3px] text-white font-bold">
+                    コメントするニャン！
+                  </span>
+                  <span>
+                    <img
+                      src="/assets/imgs/icons/arr-right-white.png"
+                      alt="arr-right-white"
+                    />
+                  </span>
+                </a>
+              </div>
+              <div className="">
+                <div className="bg-red-400 relative w-[150px]">
+                  <div className="absolute top-0 right-[-11px]">
+                    <img src="/assets/imgs/Group 863.png" alt="Group 864" />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <Border className="mt-4" color="#CCCCCC" />
         {/* 1 */}
-        <div className="mt-6">
+        <div>
           <div className="flex items-center">
             <div className="w-10 h-10">
               <img

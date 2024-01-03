@@ -2,7 +2,7 @@ const LargeCard = ({ imgUrl, text }: { imgUrl: string; text: string }) => {
   return (
     <div className="w-[312px] h-[328px] bg-white">
       <div className="w-full h-[234px] text-center">
-        <a href="/feature/detail">
+        <a href="/feature/detail/1">
           <img className="max-h-[234px]" src={imgUrl} alt="cat" />
         </a>
       </div>

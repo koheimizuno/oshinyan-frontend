@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MainLayout from "../../layouts/MainLayout";
 import Container from "../../components/basic/Container";
 import PageBar from "../../components/common/PageBar";
@@ -6,9 +6,23 @@ import SignboardRegisterForm from "../../components/common/SignboardRegisterForm
 import RecruitRegisterFrom from "../../components/common/RecruitRegisterFrom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
+import { useNavigate } from "react-router-dom";
 
-const RegisterSignboard = () => {
+const RegisterOther = () => {
+  const navigate = useNavigate();
+
   const [tabValue, setTabValue] = useState(1);
+
+  useEffect(() => {
+    window.location.pathname === "/registercat" && setTabValue(1);
+    window.location.pathname === "/registerambassador" && setTabValue(2);
+  }, []);
+
+  useEffect(() => {
+    tabValue === 1 && navigate("/registercat");
+    tabValue === 2 && navigate("/registerambassador");
+  }, [tabValue]);
+
   return (
     <MainLayout>
       <SocialLinkGroup />
@@ -57,4 +71,4 @@ const RegisterSignboard = () => {
   );
 };
 
-export default RegisterSignboard;
+export default RegisterOther;

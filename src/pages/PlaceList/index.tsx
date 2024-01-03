@@ -40,7 +40,7 @@ const Cats = [
   },
 ];
 
-const SignBoardPage = () => {
+const PlaceList = () => {
   const [regions, setRegions] = useState<string[]>([]);
 
   return (
@@ -70,4 +70,4 @@ const SignBoardPage = () => {
   );
 };
 
-export default SignBoardPage;
+export default PlaceList;

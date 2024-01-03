@@ -7,8 +7,8 @@ import Register from "./pages/Register";
 import Feature from "./pages/Feature";
 import FeatureDetail from "./pages/FeatureDetail";
 import MyPage from "./pages/MyPage";
-import SignBoard from "./pages/SignBoard";
-import RegisterSignboard from "./pages/RegisterSignboard";
+import PlaceList from "./pages/PlaceList";
+import RegisterOther from "./pages/RegisterOther";
 import Privacy from "./pages/Privacy";
 import Company from "./pages/Company";
 import Application from "./pages/Application";
@@ -17,6 +17,9 @@ import CatDetail from "./pages/CatDetail";
 import LocationDetail from "./pages/LocationDetail";
 import Comment from "./pages/Comment";
 import Column from "./pages/Column";
+import axios from "axios";
+
+axios.defaults.baseURL = "http://127.0.0.1:8000/api/";
 
 function App() {
   return (
@@ -28,14 +31,13 @@ function App() {
           //2 <Route path="about" element={<About />} />
           //3 <Route path="/register" element={<Register />} />
           //4 <Route path="feature" element={<Feature />} />
-          <Route path="feature/detail" element={<FeatureDetail />} />
+          <Route path="feature/detail/:id" element={<FeatureDetail />} />
           //5 <Route path="/mypage" element={<MyPage />} />
-          //6 <Route path="/signboard" element={<SignBoard />} />
-          //7{" "}
-          <Route path="/registersignboard" element={<RegisterSignboard />} />
+          //6 <Route path="/placelist" element={<PlaceList />} />
+          //7 <Route path="/registercat" element={<RegisterOther />} />
           //8 <Route path="/privacy" element={<Privacy />} />
           //9 <Route path="/company" element={<Company />} />
-          //10 <Route path="/application" element={<Application />} />
+          //10 <Route path="/registerambassador" element={<RegisterOther />} />
           //11{" "}
           <Route path="/location/detail/:id" element={<LocationDetail />} />
           //12 <Route path="/cat/detail/:id" element={<CatDetail />} />

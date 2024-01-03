@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { PREFECTURE } from "../../../constant";
+import { Checkbox, FormControlLabel } from "@mui/material";
 
 const SignupForm = () => {
   const fileRef = useRef(null);
@@ -13,10 +14,10 @@ const SignupForm = () => {
             <div
               className="w-[72px] h-[72px] me-[38px]"
               onClick={() => {
-                //   fileRef?.current?.click();
+                // fileRef?.current?.click();
               }}
             >
-              <img src="/assets/imgs/icon_add.png" alt="" />
+              <img src="/assets/imgs/icon_add.png" alt="icon_add" />
             </div>
             <input type="file" name="icon" className="hidden" ref={fileRef} />
           </div>
@@ -94,10 +95,7 @@ const SignupForm = () => {
             個人情報の取扱い方針個人情報の取扱い方針個人情報の取扱い方針個人情報の取扱い方針個人情報の取扱い方針
           </textarea>
           <div className="text-center mt-[27px] pb-[27px] border-b border-[#CCCCCC]">
-            <input type="checkbox" name="agree" id="agree" />
-            <label htmlFor="agree" className="ms-2">
-              同意するニャン
-            </label>
+            <FormControlLabel control={<Checkbox />} label="同意するニャン" />
           </div>
           <div className="mt-[47px] text-center">
             <button

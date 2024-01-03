@@ -26,8 +26,10 @@ function Carousel(props: any) {
         className="h-[240px] cursor-pointer"
       >
         {props.data.map((item: any, key: any) => (
-          <SwiperSlide>
-            <img src={item.src} alt={item.alt} className="h-full m-auto" />
+          <SwiperSlide key={key}>
+            <a href="/feature/detail/1">
+              <img src={item.src} alt={item.alt} className="h-full m-auto" />
+            </a>
           </SwiperSlide>
         ))}
         <button className="arrow-left xs:hidden md:block">

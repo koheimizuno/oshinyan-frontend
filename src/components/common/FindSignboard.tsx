@@ -5,13 +5,13 @@ const FindSignboard = () => {
     <>
       <div className="pt-[48px] pb-[80px]">
         <div className="mb-[24px] hover:opacity-70">
-          <a href="/signboard">
+          <a href="/placelist">
             <img src="/assets/imgs/signboard.png" alt="signboard" />
             <p></p>
           </a>
         </div>
         <div className="hover:opacity-70">
-          <a href="/registersignboard">
+          <a href="/registercat">
             <img src="/assets/imgs/member.png" alt="" />
           </a>
         </div>
