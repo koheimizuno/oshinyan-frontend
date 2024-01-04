@@ -11,7 +11,6 @@ import PlaceList from "./pages/PlaceList";
 import RegisterOther from "./pages/RegisterOther";
 import Privacy from "./pages/Privacy";
 import Company from "./pages/Company";
-import Application from "./pages/Application";
 import ContactUs from "./pages/ContactUs";
 import CatDetail from "./pages/CatDetail";
 import LocationDetail from "./pages/LocationDetail";

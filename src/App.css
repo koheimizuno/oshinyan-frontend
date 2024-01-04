@@ -41,3 +41,7 @@
   background: url("../public/assets/imgs/Group 867.png") no-repeat;
   background-size: cover;
 }
+
+.TextField.Mui-focus {
+  outline: none;
+}

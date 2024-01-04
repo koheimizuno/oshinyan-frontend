@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import MainLayout from "../../layouts/MainLayout";
 import Container from "../../components/basic/Container";
 import PageBar from "../../components/common/PageBar";
-import SignboardRegisterForm from "../../components/common/SignboardRegisterForm";
-import RecruitRegisterFrom from "../../components/common/RecruitRegisterFrom";
+import RegisterCatForm from "../../components/common/RegisterCatForm";
+import AmbassadorRegisterFrom from "../../components/common/AmbassadorRegisterFrom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import { useNavigate } from "react-router-dom";
@@ -28,7 +28,7 @@ const RegisterOther = () => {
       <SocialLinkGroup />
       <Container>
         <PageBar page="未登録看板猫情報募集" />
-        <Tabs className="mt-10">
+        <Tabs className="mt-10 mb-24">
           <TabList className="flex">
             <Tab
               className={`text-center rounded-tl-lg rounded-tr-lg ${
@@ -60,10 +60,10 @@ const RegisterOther = () => {
             </Tab>
           </TabList>
           <TabPanel>
-            <SignboardRegisterForm />
+            <RegisterCatForm />
           </TabPanel>
           <TabPanel>
-            <RecruitRegisterFrom />
+            <AmbassadorRegisterFrom />
           </TabPanel>
         </Tabs>
       </Container>
