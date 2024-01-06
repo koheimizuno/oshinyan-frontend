@@ -1,18 +1,14 @@
 import axios from "axios";
 
-const upload = (
-  file: File,
-  onUploadProgress: (progressEvent: any) => void
-): Promise<any> => {
+const upload = (file: File): Promise<any> => {
   let formData = new FormData();
 
-  formData.append("file", file);
+  formData.append("imgs", file);
 
   return axios.post("/upload", formData, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
-    onUploadProgress,
   });
 };
 

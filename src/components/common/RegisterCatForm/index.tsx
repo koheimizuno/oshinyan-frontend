@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import FileUpload from "../../basic/icons/FileUpload";
 import {
   FormControl,
@@ -8,7 +8,6 @@ import {
   Checkbox,
   Select,
   MenuItem,
-  TextField,
 } from "@mui/material";
 import { PREFECTURE } from "../../../constant";
 import axios from "axios";
@@ -20,11 +19,8 @@ interface ProgressInfo {
 
 const RegisterCatForm = () => {
   const hiddenFileInput = useRef<HTMLInputElement>(null);
-  const progressInfosRef = useRef<any>(null);
   const [checked, setChecked] = useState(false);
   const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
-  const [progressInfos, setProgressInfos] = useState<Array<ProgressInfo>>([]);
-  const [message, setMessage] = useState<Array<string>>([]);
   const [registerCatValues, setRegisterCatValues] = useState({
     store_name: "",
     prefecture: "東京都",
@@ -45,29 +41,33 @@ const RegisterCatForm = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    let formData = new FormData();
 
-    // formData.append("file", file);
-    const store_name = registerCatValues.store_name;
-    const prefecture = registerCatValues.prefecture;
-    const city = registerCatValues.city;
-    const street = registerCatValues.street;
-    const room_no = registerCatValues.room_no;
-    const email = registerCatValues.email;
-    const phone = registerCatValues.phone;
-    const store_permission = registerCatValues.store_permission;
-    const description = registerCatValues.description;
-    const res = await axios.post("cat", {
-      store_name,
-      prefecture,
-      city,
-      street,
-      room_no,
-      email,
-      phone,
-      store_permission,
-      description,
-    });
+    // const data = Array.from(e.target.elements)
+    //   .filter((input: any) => input.name)
+    //   .reduce(
+    //     (obj: any, input: any) =>
+    //       Object.assign(obj, { [input.name]: input.value }),
+    //     {}
+    //   );
+    // console.log(data);
+
+    let formData = new FormData();
+    formData.append("store_name", registerCatValues.store_name);
+    formData.append("prefecture", registerCatValues.prefecture);
+    formData.append("city", registerCatValues.city);
+    formData.append("street", registerCatValues.street);
+    formData.append("room_no", registerCatValues.room_no);
+    formData.append("email", registerCatValues.email);
+    formData.append("phone", registerCatValues.phone);
+    formData.append("store_permission", registerCatValues.store_permission);
+    formData.append("description", registerCatValues.description);
+
+    if (selectedFiles != null) {
+      const files = Array.from(selectedFiles);
+      files.forEach((file) => formData.append("imgs", file));
+    }
+
+    const res = await axios.post("cat", formData);
     console.log(res);
   };
 
@@ -79,8 +79,6 @@ const RegisterCatForm = () => {
 
   const selectFiles = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedFiles(event.target.files);
-    setProgressInfos([]);
-    setMessage([]);
   };
 
   return (
@@ -261,25 +259,6 @@ const RegisterCatForm = () => {
           ></textarea>
         </div>
         <div>
-          {progressInfos &&
-            progressInfos.length > 0 &&
-            progressInfos.map((progressInfo: ProgressInfo, index: number) => (
-              <div className="mb-2" key={index}>
-                <span>{progressInfo.fileName}</span>
-                <div className="progress">
-                  <div
-                    className="progress-bar progress-bar-info"
-                    role="progressbar"
-                    aria-valuenow={progressInfo.percentage}
-                    aria-valuemin={0}
-                    aria-valuemax={100}
-                    style={{ width: progressInfo.percentage + "%" }}
-                  >
-                    {progressInfo.percentage}%
-                  </div>
-                </div>
-              </div>
-            ))}
           <button
             type="button"
             className="w-full mt-[24px] h-[48px] flex justify-center bg-[#F3F3F3] py-3"
@@ -294,18 +273,10 @@ const RegisterCatForm = () => {
               ref={hiddenFileInput}
               className="hidden"
               multiple
+              accept="image/*"
               onChange={selectFiles}
             />
           </button>
-          {message.length > 0 && (
-            <div className="alert alert-secondary" role="alert">
-              <ul>
-                {message.map((item, i) => {
-                  return <li key={i}>{item}</li>;
-                })}
-              </ul>
-            </div>
-          )}
         </div>
         <div className="border-b border-[#CCCCCC] mt-[32px]"></div>
         {/* row 5 */}
