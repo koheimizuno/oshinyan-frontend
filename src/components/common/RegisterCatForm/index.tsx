@@ -41,16 +41,6 @@ const RegisterCatForm = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-
-    // const data = Array.from(e.target.elements)
-    //   .filter((input: any) => input.name)
-    //   .reduce(
-    //     (obj: any, input: any) =>
-    //       Object.assign(obj, { [input.name]: input.value }),
-    //     {}
-    //   );
-    // console.log(data);
-
     let formData = new FormData();
     formData.append("store_name", registerCatValues.store_name);
     formData.append("prefecture", registerCatValues.prefecture);
@@ -66,15 +56,14 @@ const RegisterCatForm = () => {
       const files = Array.from(selectedFiles);
       files.forEach((file) => formData.append("imgs", file));
     }
-
-    const res = await axios.post("cat", formData);
-    console.log(res);
+    if (checked) {
+      const res = await axios.post("cat", formData);
+      console.log(res);
+    }
   };
 
   const handleUpload = () => {
-    if (hiddenFileInput.current) {
-      hiddenFileInput.current.click();
-    }
+    hiddenFileInput.current && hiddenFileInput.current.click();
   };
 
   const selectFiles = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -271,7 +260,7 @@ const RegisterCatForm = () => {
             <input
               type="file"
               ref={hiddenFileInput}
-              className="hidden"
+              className=""
               multiple
               accept="image/*"
               onChange={selectFiles}

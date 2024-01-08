@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Carousel from "../../components/common/Carousel";
 import MainLayout from "../../layouts/MainLayout";
 import SearchBar from "../../components/common/SearchBar";
@@ -10,6 +10,8 @@ import Notices from "../../components/common/Notices";
 import CustomButton from "../../components/basic/BasicButton";
 import Container from "../../components/basic/Container";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
+import axios from "axios";
+import BlogBox from "../../components/basic/blog/BlogBox";
 
 const CAROUSELIMAGES: object[] = [
   {
@@ -78,8 +80,70 @@ const CAROUSELIMAGES: object[] = [
   },
 ];
 
+const Cats = [
+  {
+    imgUrl: ["/assets/imgs/cats/cat1.png", "/assets/imgs/cats/cat1-2.png"],
+    isNew: true,
+    isChu: false,
+  },
+  {
+    imgUrl: ["/assets/imgs/cats/cat2.png", "/assets/imgs/cats/cat2-2.png"],
+    isNew: true,
+    isChu: true,
+  },
+  {
+    imgUrl: ["/assets/imgs/cats/cat3.png", "/assets/imgs/cats/cat3-2.png"],
+    isNew: true,
+    isChu: false,
+  },
+  {
+    imgUrl: ["/assets/imgs/cats/cat4.png", "/assets/imgs/cats/cat4-2.png"],
+    isNew: true,
+    isChu: false,
+  },
+  {
+    imgUrl: ["/assets/imgs/cats/cat5.png", "/assets/imgs/cats/cat5-2.png"],
+    isNew: true,
+    isChu: false,
+  },
+  {
+    imgUrl: ["/assets/imgs/cats/cat6.png", "/assets/imgs/cats/cat6-2.png"],
+    isNew: true,
+    isChu: false,
+  },
+  {
+    imgUrl: ["/assets/imgs/cats/cat7.png", "/assets/imgs/cats/cat7-2.png"],
+    isNew: true,
+    isChu: false,
+  },
+  {
+    imgUrl: ["/assets/imgs/cats/cat8.png", "/assets/imgs/cats/cat8-2.png"],
+    isNew: true,
+    isChu: false,
+  },
+  {
+    imgUrl: ["/assets/imgs/cats/cat9.png", "/assets/imgs/cats/cat9-2.png"],
+    isNew: true,
+    isChu: false,
+  },
+];
+
 const Top = () => {
   const [regions, setRegions] = useState<string[]>([]);
+  const [catData, setCatData] = useState<object[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get("cat");
+        console.log(res.data);
+        setCatData(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
     <MainLayout>
@@ -106,12 +170,42 @@ const Top = () => {
           </div>
         )}
         <div className="mt-[12px]">
-          <BlogAD />
+          <div className="flex justify-between flex-wrap ">
+            {Cats.map((e, i) => (
+              <BlogBox
+                key={i}
+                imgUrl={e.imgUrl}
+                isNew={e.isNew}
+                isChu={e.isChu}
+                name={"heracles"}
+                cafe={"cafe"}
+                vote={2}
+                character={["fdsa", "reqw"]}
+                description={"this is description"}
+              />
+            ))}
+          </div>
         </div>
         <div className="bg-white text-center py-[65px] mb-[16px]">
           <h3 className="text-[16px]">キャンペーン / AD</h3>
         </div>
-        <BlogAD />
+        <div>
+          <div className="flex justify-between flex-wrap ">
+            {Cats.map((e, i) => (
+              <BlogBox
+                key={i}
+                imgUrl={e.imgUrl}
+                isNew={e.isNew}
+                isChu={e.isChu}
+                name={"heracles"}
+                cafe={"cafe"}
+                vote={2}
+                character={["fdsa", "reqw"]}
+                description={"this is description"}
+              />
+            ))}
+          </div>
+        </div>
         <div className="pt-[15px] pb-[35px] text-center border-b border-b-solid border-[#CCC]">
           <button className="w-[161px] h-[32px] rounded text-white bg-[#CBB279] shadow-inner text-[16px] py-[5px]">
             <p className="drop-shadow-[1px_1px_rgba(195,129,84,1)] translate-x-0.5">

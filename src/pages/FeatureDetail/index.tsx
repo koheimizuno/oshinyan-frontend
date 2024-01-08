@@ -8,47 +8,47 @@ import Title from "../../components/common/Typography/Title";
 
 const Cats = [
   {
-    imgUrl: "/assets/imgs/cats/cat1.png",
+    imgUrl: ["/assets/imgs/cats/cat1.png", "/assets/imgs/cats/cat1-2.png"],
     isNew: true,
     isChu: false,
   },
   {
-    imgUrl: "/assets/imgs/cats/cat2.png",
+    imgUrl: ["/assets/imgs/cats/cat2.png", "/assets/imgs/cats/cat2-2.png"],
     isNew: true,
     isChu: true,
   },
   {
-    imgUrl: "/assets/imgs/cats/cat3.png",
+    imgUrl: ["/assets/imgs/cats/cat3.png", "/assets/imgs/cats/cat3-2.png"],
     isNew: true,
     isChu: false,
   },
   {
-    imgUrl: "/assets/imgs/cats/cat4.png",
+    imgUrl: ["/assets/imgs/cats/cat4.png", "/assets/imgs/cats/cat4-2.png"],
     isNew: true,
     isChu: false,
   },
   {
-    imgUrl: "/assets/imgs/cats/cat5.png",
+    imgUrl: ["/assets/imgs/cats/cat5.png", "/assets/imgs/cats/cat5-2.png"],
     isNew: true,
     isChu: false,
   },
   {
-    imgUrl: "/assets/imgs/cats/cat6.png",
+    imgUrl: ["/assets/imgs/cats/cat6.png", "/assets/imgs/cats/cat6-2.png"],
     isNew: true,
     isChu: false,
   },
   {
-    imgUrl: "/assets/imgs/cats/cat7.png",
+    imgUrl: ["/assets/imgs/cats/cat7.png", "/assets/imgs/cats/cat7-2.png"],
     isNew: true,
     isChu: false,
   },
   {
-    imgUrl: "/assets/imgs/cats/cat8.png",
+    imgUrl: ["/assets/imgs/cats/cat8.png", "/assets/imgs/cats/cat8-2.png"],
     isNew: true,
     isChu: false,
   },
   {
-    imgUrl: "/assets/imgs/cats/cat9.png",
+    imgUrl: ["/assets/imgs/cats/cat9.png", "/assets/imgs/cats/cat9-2.png"],
     isNew: true,
     isChu: false,
   },

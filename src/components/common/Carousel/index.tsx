@@ -12,14 +12,16 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
 function Carousel(props: any) {
-  console.log();
-
   return (
     <div className={`${props.bgColor}`}>
       <Swiper
         modules={[Navigation, Pagination, Scrollbar, A11y]}
         loop={true}
         centeredSlides
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
         spaceBetween={props.spaceBetween}
         slidesPerView={props.visibleSlides}
         navigation={{ nextEl: ".arrow-left", prevEl: ".arrow-right" }}

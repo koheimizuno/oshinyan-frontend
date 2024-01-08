@@ -34,6 +34,11 @@ const Cats = [
   },
 ];
 
+const imgUrl: string[] = [
+  "/assets/imgs/cats/cat1.png",
+  "/assets/imgs/cats/cat1-2.png",
+];
+
 const MyPage = () => {
   return (
     <>
@@ -83,7 +88,7 @@ const MyPage = () => {
               {Cats.map((e, i) => (
                 <BlogBox
                   key={i}
-                  imgUrl="/assets/imgs/cats/cat1.png"
+                  imgUrl={imgUrl}
                   isChu={true}
                   name={"heracles"}
                   cafe={"cafe"}

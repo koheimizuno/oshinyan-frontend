@@ -118,6 +118,11 @@ const IMAGES: string[] = [
   "/assets/imgs/cats/cat_detail_carousel.png",
 ];
 
+const imgUrl: string[] = [
+  "/assets/imgs/cats/cat1.png",
+  "/assets/imgs/cats/cat1-2.png",
+];
+
 const CatDetail = () => {
   const [showImageGallery, setShowImageGallery] = useState(false);
   const [showImageDetail, setShowImageDetail] = useState(false);
@@ -361,7 +366,7 @@ const CatDetail = () => {
         {CatsInSamePlace.map((e, i) => (
           <BlogBox
             key={i}
-            imgUrl="/assets/imgs/cats/cat1.png"
+            imgUrl={imgUrl}
             isChu={true}
             name={"heracles"}
             cafe={"cafe"}

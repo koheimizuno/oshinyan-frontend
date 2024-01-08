@@ -1,9 +1,13 @@
 import React from "react";
 import CustomButton from "../BasicButton";
 import { useNavigate } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import ArrowLeft from "../icons/ArrowLeft";
+import ArrowRight from "../icons/ArrowRight";
 
 export interface Props {
-  imgUrl: string;
+  imgUrl: string[];
   isNew?: boolean;
   isChu?: boolean;
   name?: string;
@@ -14,7 +18,7 @@ export interface Props {
 }
 
 const BlogBox = ({
-  imgUrl = "",
+  imgUrl = [],
   isNew = false,
   isChu = false,
   name,
@@ -36,7 +40,43 @@ const BlogBox = ({
     >
       <div className="w-full">
         <div className="relative w-[312px] h-[234px]">
-          <img src={imgUrl} className="cover" alt="" />
+          <Swiper
+            modules={[Navigation, Pagination, Scrollbar, A11y]}
+            speed={800}
+            autoplay={{
+              delay: 1000,
+              disableOnInteraction: false,
+              waitForTransition: true,
+              // reverseDirection: autoplay,
+            }}
+            loop={true}
+            centeredSlides
+            slidesPerView={1}
+            navigation={{ nextEl: ".arrow-left", prevEl: ".arrow-right" }}
+            className="cursor-pointer"
+          >
+            {imgUrl.map((item: any, key: any) => (
+              <SwiperSlide key={key}>
+                <a href="/feature/detail/1">
+                  <img src={item} alt={item.alt} className="h-full m-auto" />
+                </a>
+              </SwiperSlide>
+            ))}
+            <button className="arrow-left xs:hidden md:block">
+              <div className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
+                <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                  <ArrowLeft />
+                </span>
+              </div>
+            </button>
+            <button className="arrow-left xs:hidden md:block">
+              <div className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
+                <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                  <ArrowRight />
+                </span>
+              </div>
+            </button>
+          </Swiper>
           {isChu ? (
             <span className="absolute top-[8px] right-[8px]">
               <img src="/assets/imgs/mark_chu.png" alt="" />

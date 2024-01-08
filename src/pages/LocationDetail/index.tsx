@@ -38,17 +38,17 @@ const CONTACTINFO = [
 
 const Cats = [
   {
-    imgUrl: "/assets/imgs/cats/cat1.png",
+    imgUrl: ["/assets/imgs/cats/cat1.png", "/assets/imgs/cats/cat1-2.png"],
     isNew: false,
     isChu: false,
   },
   {
-    imgUrl: "/assets/imgs/cats/cat2.png",
+    imgUrl: ["/assets/imgs/cats/cat2.png", "/assets/imgs/cats/cat2-2.png"],
     isNew: false,
     isChu: true,
   },
   {
-    imgUrl: "/assets/imgs/cats/cat3.png",
+    imgUrl: ["/assets/imgs/cats/cat3.png", "/assets/imgs/cats/cat3-2.png"],
     isNew: false,
     isChu: false,
   },
