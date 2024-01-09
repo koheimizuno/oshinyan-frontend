@@ -257,6 +257,12 @@ const ShopRegisterForm = () => {
             <span className="test-[14px] leading-[19px] ms-[10px]">
               画像をドラック＆ドロップまたはファイル名選択
             </span>
+            {selectedFiles && selectedFiles.length > 0 && (
+              <span>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{selectedFiles.length} file(s)
+                selected
+              </span>
+            )}
             <input
               type="file"
               ref={hiddenFileInput}

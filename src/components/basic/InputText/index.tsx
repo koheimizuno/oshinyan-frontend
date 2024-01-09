@@ -1,4 +1,16 @@
-import { useState } from "react";
+import React, { useState } from "react";
+
+type PropsType = {
+  labelTitle: string;
+  labelStyle: string;
+  type: string;
+  containerStyle: string;
+  defaultValue: string;
+  placeholder: string;
+  updateFormValue: any;
+  updateType: string;
+  autoFocus: boolean;
+};
 
 function InputText({
   labelTitle,
@@ -10,10 +22,10 @@ function InputText({
   updateFormValue,
   updateType,
   autoFocus,
-}) {
+}: PropsType) {
   const [value, setValue] = useState(defaultValue);
 
-  const updateInputValue = (e) => {
+  const updateInputValue = (e: any) => {
     setValue(e.target.value);
     updateFormValue({ updateType, value: e.target.value });
   };
