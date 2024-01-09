@@ -3,7 +3,13 @@ import ArrowLeft from "../../basic/icons/ArrowLeft";
 import ArrowRight from "../../basic/icons/ArrowRight";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import {
+  Navigation,
+  Pagination,
+  Scrollbar,
+  A11y,
+  Autoplay,
+} from "swiper/modules";
 
 // Import Swiper styles
 import "swiper/css";
@@ -15,7 +21,7 @@ function Carousel(props: any) {
   return (
     <div className={`${props.bgColor}`}>
       <Swiper
-        modules={[Navigation, Pagination, Scrollbar, A11y]}
+        modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
         loop={true}
         centeredSlides
         autoplay={{

@@ -28,26 +28,17 @@ const BlogBox = ({
   description,
 }: Props) => {
   const navigate = useNavigate();
-  const goCatDetail = (id: number) => {
-    navigate(`/cat/detail/${id}`);
-  };
   return (
-    <div
-      className="m-auto w-[312px] h-[512px] mb-[15px] hover:opacity-70 cursor-pointer"
-      onClick={() => {
-        goCatDetail(1);
-      }}
-    >
+    <div className="m-auto w-[312px] h-[512px] mb-[15px] hover:opacity-70">
       <div className="w-full">
         <div className="relative w-[312px] h-[234px]">
           <Swiper
             modules={[Navigation, Pagination, Scrollbar, A11y]}
             speed={800}
-            autoplay={{
-              delay: 1000,
-              disableOnInteraction: false,
-              waitForTransition: true,
-              // reverseDirection: autoplay,
+            pagination={{
+              el: ".swiper-pagination",
+              type: "bullets",
+              clickable: true,
             }}
             loop={true}
             centeredSlides
@@ -57,42 +48,80 @@ const BlogBox = ({
           >
             {imgUrl.map((item: any, key: any) => (
               <SwiperSlide key={key}>
-                <a href="/feature/detail/1">
-                  <img src={item} alt={item.alt} className="h-full m-auto" />
+                <a href={`/cat/detail/${1}`}>
+                  <img
+                    src={item}
+                    alt={item.alt}
+                    className="h-full m-auto cursor-pointer"
+                  />
                 </a>
               </SwiperSlide>
             ))}
+            <div className="swiper-pagination custom-pagination-bullets"></div>
             <button className="arrow-left xs:hidden md:block">
               <div className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
-                <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                  <ArrowLeft />
-                </span>
+                {/* <ArrowLeft /> */}
+                <svg
+                  style={{ marginRight: "4px" }}
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="12.728"
+                  height="12.728"
+                  viewBox="0 0 12.728 12.728"
+                >
+                  <path
+                    id="arr_left"
+                    d="M499-1749v8h-8"
+                    transform="translate(-877.52 -1577.555) rotate(135)"
+                    fill="none"
+                    stroke="#fff"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1"
+                    opacity="0.75"
+                  />
+                </svg>
               </div>
             </button>
             <button className="arrow-left xs:hidden md:block">
               <div className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
-                <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                  <ArrowRight />
-                </span>
+                {/* <ArrowRight /> */}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="12.728"
+                  height="12.728"
+                  viewBox="0 0 12.728 12.728"
+                >
+                  <path
+                    id="arr_right"
+                    d="M499-1749v8h-8"
+                    transform="translate(890.247 1590.283) rotate(-45)"
+                    fill="none"
+                    stroke="#fff"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1"
+                    opacity="0.75"
+                  />
+                </svg>
               </div>
             </button>
           </Swiper>
           {isChu ? (
-            <span className="absolute top-[8px] right-[8px]">
+            <span className="absolute top-[8px] right-[8px] z-10">
               <img src="/assets/imgs/mark_chu.png" alt="" />
             </span>
           ) : (
-            <span className="absolute top-[8px] right-[8px]">
+            <span className="absolute top-[8px] right-[8px] z-10">
               <img src="/assets/imgs/btn-foot.svg" alt="" />
             </span>
           )}
           {isNew && (
-            <span className="absolute top-0 left-0">
+            <span className="absolute top-0 left-0 z-10">
               <img src="/assets/imgs/parts-new.svg" alt="" />
             </span>
           )}
         </div>
-        <div className=" px-[16px]  bg-white h-[278px]">
+        <div className="px-[16px]  bg-white h-[278px]">
           <div>
             <h3 className="text-[24px] font-bold text-left text-ellipsis overflow-hidden whitespace-nowrap">
               なまむぎなまごめ

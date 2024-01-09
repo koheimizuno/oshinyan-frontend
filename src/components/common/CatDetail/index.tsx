@@ -76,27 +76,27 @@ const CatImgs = [
 
 const CatsInSamePlace = [
   {
-    imgUrl: "/assets/imgs/cats/favorite_cat.png",
+    imgUrl: ["/assets/imgs/cats/favorite_cat.png"],
     isChu: false,
   },
   {
-    imgUrl: "/assets/imgs/cats/favorite_cat.png",
+    imgUrl: ["/assets/imgs/cats/favorite_cat.png"],
     isChu: false,
   },
   {
-    imgUrl: "/assets/imgs/cats/favorite_cat.png",
+    imgUrl: ["/assets/imgs/cats/favorite_cat.png"],
     isChu: false,
   },
   {
-    imgUrl: "/assets/imgs/cats/favorite_cat.png",
+    imgUrl: ["/assets/imgs/cats/favorite_cat.png"],
     isChu: false,
   },
   {
-    imgUrl: "/assets/imgs/cats/favorite_cat.png",
+    imgUrl: ["/assets/imgs/cats/favorite_cat.png"],
     isChu: false,
   },
   {
-    imgUrl: "/assets/imgs/cats/favorite_cat.png",
+    imgUrl: ["/assets/imgs/cats/favorite_cat.png"],
     isChu: false,
   },
 ];

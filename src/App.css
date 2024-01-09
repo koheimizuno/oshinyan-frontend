@@ -45,3 +45,30 @@
 .TextField.Mui-focus {
   outline: none;
 }
+
+.swiper-pagination {
+  position: absolute;
+  display: block;
+  text-align: center;
+  transition: 300ms opacity;
+  transform: translate3d(0, 0, 0);
+  z-index: 2;
+  bottom: 0;
+  margin-left: 16px;
+  margin-bottom: 5px;
+  text-align: left;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.custom-pagination-bullets .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background-color: #fff;
+  border-radius: 2px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+.swiper-pagination-bullet-active {
+  background-color: #fff;
+}

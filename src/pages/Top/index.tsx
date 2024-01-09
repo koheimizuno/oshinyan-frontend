@@ -108,22 +108,22 @@ const Cats = [
   },
   {
     imgUrl: ["/assets/imgs/cats/cat6.png", "/assets/imgs/cats/cat6-2.png"],
-    isNew: true,
+    isNew: false,
     isChu: false,
   },
   {
     imgUrl: ["/assets/imgs/cats/cat7.png", "/assets/imgs/cats/cat7-2.png"],
-    isNew: true,
+    isNew: false,
     isChu: false,
   },
   {
     imgUrl: ["/assets/imgs/cats/cat8.png", "/assets/imgs/cats/cat8-2.png"],
-    isNew: true,
+    isNew: false,
     isChu: false,
   },
   {
     imgUrl: ["/assets/imgs/cats/cat9.png", "/assets/imgs/cats/cat9-2.png"],
-    isNew: true,
+    isNew: false,
     isChu: false,
   },
 ];
