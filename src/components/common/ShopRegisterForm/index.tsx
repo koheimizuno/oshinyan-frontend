@@ -17,7 +17,7 @@ interface ProgressInfo {
   percentage: number;
 }
 
-const RegisterCatForm = () => {
+const ShopRegisterForm = () => {
   const hiddenFileInput = useRef<HTMLInputElement>(null);
   const [checked, setChecked] = useState(false);
   const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
@@ -57,7 +57,7 @@ const RegisterCatForm = () => {
       files.forEach((file) => formData.append("imgs", file));
     }
     if (checked) {
-      const res = await axios.post("cat", formData);
+      const res = await axios.post("shop", formData);
       console.log(res);
     }
   };
@@ -121,8 +121,8 @@ const RegisterCatForm = () => {
                   sx={{ borderRadius: "20px" }}
                 >
                   {PREFECTURE.map((item, key) => (
-                    <MenuItem value={item} key={key}>
-                      {item}
+                    <MenuItem value={item[0]} key={key}>
+                      {item[0]}
                     </MenuItem>
                   ))}
                 </Select>
@@ -260,7 +260,7 @@ const RegisterCatForm = () => {
             <input
               type="file"
               ref={hiddenFileInput}
-              className=""
+              className="hidden"
               multiple
               accept="image/*"
               onChange={selectFiles}
@@ -313,4 +313,4 @@ const RegisterCatForm = () => {
   );
 };
 
-export default RegisterCatForm;
+export default ShopRegisterForm;

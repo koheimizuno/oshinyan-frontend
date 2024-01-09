@@ -8,7 +8,7 @@ import Feature from "./pages/Feature";
 import FeatureDetail from "./pages/FeatureDetail";
 import MyPage from "./pages/MyPage";
 import Nyanplace from "./pages/Nyanplace";
-import RegisterOther from "./pages/Shopresister";
+import RegisterOther from "./pages/RegisterOther";
 import Privacy from "./pages/Privacy";
 import Company from "./pages/Company";
 import Inquiry from "./pages/Inquiry";

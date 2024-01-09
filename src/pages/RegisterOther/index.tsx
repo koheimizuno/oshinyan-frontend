@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import MainLayout from "../../layouts/MainLayout";
 import Container from "../../components/basic/Container";
 import PageBar from "../../components/common/PageBar";
-import RegisterCatForm from "../../components/common/RegisterCatForm";
+import ShopRegisterForm from "../../components/common/ShopRegisterForm";
 import AmbassadorRegisterFrom from "../../components/common/AmbassadorRegisterFrom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
@@ -60,7 +60,7 @@ const RegisterOther = () => {
             </Tab>
           </TabList>
           <TabPanel>
-            <RegisterCatForm />
+            <ShopRegisterForm />
           </TabPanel>
           <TabPanel>
             <AmbassadorRegisterFrom />

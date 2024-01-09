@@ -133,7 +133,7 @@ const Top = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("cat");
+        const res = await axios.get("shop");
         console.log(res.data);
         setCatData(res.data);
       } catch (error) {
