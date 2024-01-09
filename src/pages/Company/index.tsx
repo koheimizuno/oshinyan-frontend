@@ -5,7 +5,7 @@ import PageBar from "../../components/common/PageBar";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import Title from "../../components/common/Typography/Title";
 
-const CompanyPage = () => {
+const Company = () => {
   return (
     <MainLayout>
       <SocialLinkGroup />
@@ -52,4 +52,4 @@ const CompanyPage = () => {
   );
 };
 
-export default CompanyPage;
+export default Company;

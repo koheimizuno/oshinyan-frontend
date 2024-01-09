@@ -85,8 +85,8 @@ const FeatureDetail = () => {
         </div>
         <div className="flex justify-center mt-[32px] mb-[68px]">
           <Pagination
-            count={1000}
-            defaultPage={10}
+            count={10}
+            defaultPage={1}
             boundaryCount={1}
             color="secondary"
             variant="outlined"

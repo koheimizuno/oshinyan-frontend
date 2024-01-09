@@ -4,7 +4,7 @@ import PageBar from "../../components/common/PageBar";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import Title from "../../components/common/Typography/Title";
 
-const PrivacyPage = () => {
+const Privacy = () => {
   return (
     <MainLayout>
       <SocialLinkGroup />
@@ -160,4 +160,4 @@ const PrivacyPage = () => {
   );
 };
 
-export default PrivacyPage;
+export default Privacy;

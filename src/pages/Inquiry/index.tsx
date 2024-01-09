@@ -5,7 +5,7 @@ import ContactUsForm from "../../components/common/ContactUsForm";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import Title from "../../components/common/Typography/Title";
 
-const ContactUsPage = () => {
+const Inquiry = () => {
   return (
     <MainLayout>
       <SocialLinkGroup />
@@ -24,4 +24,4 @@ const ContactUsPage = () => {
   );
 };
 
-export default ContactUsPage;
+export default Inquiry;

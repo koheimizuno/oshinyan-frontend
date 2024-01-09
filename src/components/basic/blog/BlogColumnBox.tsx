@@ -25,7 +25,7 @@ const BlogColumnBox = ({
 }: Props) => {
   const navigate = useNavigate();
   const goCatDetail = (id: number) => {
-    navigate(`/cat/detail/${id}`);
+    navigate(`/oshinyan/${id}`);
   };
   return (
     <>

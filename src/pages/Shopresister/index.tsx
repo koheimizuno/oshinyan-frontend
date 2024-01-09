@@ -14,13 +14,13 @@ const RegisterOther = () => {
   const [tabValue, setTabValue] = useState(1);
 
   useEffect(() => {
-    window.location.pathname === "/registercat" && setTabValue(1);
-    window.location.pathname === "/registerambassador" && setTabValue(2);
+    window.location.pathname === "/shopresister" && setTabValue(1);
+    window.location.pathname === "/ambassador" && setTabValue(2);
   }, []);
 
   useEffect(() => {
-    tabValue === 1 && navigate("/registercat");
-    tabValue === 2 && navigate("/registerambassador");
+    tabValue === 1 && navigate("/shopresister");
+    tabValue === 2 && navigate("/ambassador");
   }, [tabValue]);
 
   return (

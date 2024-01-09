@@ -48,7 +48,7 @@ const BlogBox = ({
           >
             {imgUrl.map((item: any, key: any) => (
               <SwiperSlide key={key}>
-                <a href={`/cat/detail/${1}`}>
+                <a href={`/oshinyan/${1}`}>
                   <img
                     src={item}
                     alt={item.alt}

@@ -24,7 +24,7 @@ const Header = () => {
         >
           <li className="hover:text-[#C38154] sm:pt-3 md:pt-0">
             <Link
-              to="/about"
+              to="/guide"
               className="px-[15px] font-medium block sm:py-3 hover:bg-zinc-100"
             >
               推しニャンとは？
@@ -33,7 +33,7 @@ const Header = () => {
           <li className="w-[1px] h-[16px] bg-black sm:hidden md:block"></li>
           <li className="hover:text-[rgb(195,129,84)]">
             <Link
-              to="/register"
+              to="/registration"
               className="px-[15px] font-medium block sm:py-3 sm:hover:bg-zinc-100"
             >
               会員登録ニャ！

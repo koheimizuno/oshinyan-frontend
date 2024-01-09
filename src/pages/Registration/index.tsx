@@ -5,7 +5,7 @@ import SignupForm from "../../components/common/SignupForm";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import Title from "../../components/common/Typography/Title";
 
-const RegisterPage = () => {
+const Registration = () => {
   return (
     <MainLayout>
       <SocialLinkGroup />
@@ -23,4 +23,4 @@ const RegisterPage = () => {
   );
 };
 
-export default RegisterPage;
+export default Registration;

@@ -7,104 +7,104 @@ import Title from "../../components/common/Typography/Title";
 
 const CAROUSELIMAGES: object[] = [
   {
-    src: "/assets/imgs/cats/about-cat-1.png",
-    alt: "about-cat-1",
+    src: "/assets/imgs/cats/guide-cat-1.png",
+    alt: "guide-cat-1",
   },
   {
-    src: "/assets/imgs/cats/about-cat-2.png",
-    alt: "about-cat-2",
+    src: "/assets/imgs/cats/guide-cat-2.png",
+    alt: "guide-cat-2",
   },
   {
-    src: "/assets/imgs/cats/about-cat-3.png",
-    alt: "about-cat-3",
+    src: "/assets/imgs/cats/guide-cat-3.png",
+    alt: "guide-cat-3",
   },
   {
-    src: "/assets/imgs/cats/about-cat-4.png",
-    alt: "about-cat-4",
+    src: "/assets/imgs/cats/guide-cat-4.png",
+    alt: "guide-cat-4",
   },
   {
-    src: "/assets/imgs/cats/about-cat-5.png",
-    alt: "about-cat-5",
+    src: "/assets/imgs/cats/guide-cat-5.png",
+    alt: "guide-cat-5",
   },
   {
-    src: "/assets/imgs/cats/about-cat-6.png",
-    alt: "about-cat-6",
+    src: "/assets/imgs/cats/guide-cat-6.png",
+    alt: "guide-cat-6",
   },
   {
-    src: "/assets/imgs/cats/about-cat-1.png",
-    alt: "about-cat-1",
+    src: "/assets/imgs/cats/guide-cat-1.png",
+    alt: "guide-cat-1",
   },
   {
-    src: "/assets/imgs/cats/about-cat-2.png",
-    alt: "about-cat-2",
+    src: "/assets/imgs/cats/guide-cat-2.png",
+    alt: "guide-cat-2",
   },
   {
-    src: "/assets/imgs/cats/about-cat-3.png",
-    alt: "about-cat-3",
+    src: "/assets/imgs/cats/guide-cat-3.png",
+    alt: "guide-cat-3",
   },
   {
-    src: "/assets/imgs/cats/about-cat-4.png",
-    alt: "about-cat-4",
+    src: "/assets/imgs/cats/guide-cat-4.png",
+    alt: "guide-cat-4",
   },
   {
-    src: "/assets/imgs/cats/about-cat-5.png",
-    alt: "about-cat-5",
+    src: "/assets/imgs/cats/guide-cat-5.png",
+    alt: "guide-cat-5",
   },
   {
-    src: "/assets/imgs/cats/about-cat-6.png",
-    alt: "about-cat-6",
+    src: "/assets/imgs/cats/guide-cat-6.png",
+    alt: "guide-cat-6",
   },
   {
-    src: "/assets/imgs/cats/about-cat-1.png",
-    alt: "about-cat-1",
+    src: "/assets/imgs/cats/guide-cat-1.png",
+    alt: "guide-cat-1",
   },
   {
-    src: "/assets/imgs/cats/about-cat-2.png",
-    alt: "about-cat-2",
+    src: "/assets/imgs/cats/guide-cat-2.png",
+    alt: "guide-cat-2",
   },
   {
-    src: "/assets/imgs/cats/about-cat-3.png",
-    alt: "about-cat-3",
+    src: "/assets/imgs/cats/guide-cat-3.png",
+    alt: "guide-cat-3",
   },
   {
-    src: "/assets/imgs/cats/about-cat-4.png",
-    alt: "about-cat-4",
+    src: "/assets/imgs/cats/guide-cat-4.png",
+    alt: "guide-cat-4",
   },
   {
-    src: "/assets/imgs/cats/about-cat-5.png",
-    alt: "about-cat-5",
+    src: "/assets/imgs/cats/guide-cat-5.png",
+    alt: "guide-cat-5",
   },
   {
-    src: "/assets/imgs/cats/about-cat-6.png",
-    alt: "about-cat-6",
+    src: "/assets/imgs/cats/guide-cat-6.png",
+    alt: "guide-cat-6",
   },
   {
-    src: "/assets/imgs/cats/about-cat-1.png",
-    alt: "about-cat-1",
+    src: "/assets/imgs/cats/guide-cat-1.png",
+    alt: "guide-cat-1",
   },
   {
-    src: "/assets/imgs/cats/about-cat-2.png",
-    alt: "about-cat-2",
+    src: "/assets/imgs/cats/guide-cat-2.png",
+    alt: "guide-cat-2",
   },
   {
-    src: "/assets/imgs/cats/about-cat-3.png",
-    alt: "about-cat-3",
+    src: "/assets/imgs/cats/guide-cat-3.png",
+    alt: "guide-cat-3",
   },
   {
-    src: "/assets/imgs/cats/about-cat-4.png",
-    alt: "about-cat-4",
+    src: "/assets/imgs/cats/guide-cat-4.png",
+    alt: "guide-cat-4",
   },
   {
-    src: "/assets/imgs/cats/about-cat-5.png",
-    alt: "about-cat-5",
+    src: "/assets/imgs/cats/guide-cat-5.png",
+    alt: "guide-cat-5",
   },
   {
-    src: "/assets/imgs/cats/about-cat-6.png",
-    alt: "about-cat-6",
+    src: "/assets/imgs/cats/guide-cat-6.png",
+    alt: "guide-cat-6",
   },
 ];
 
-const About = () => {
+const Guide = () => {
   return (
     <MainLayout>
       <SocialLinkGroup />
@@ -118,6 +118,7 @@ const About = () => {
           visibleSlides={window.innerWidth / 240}
           spaceBetween={0}
           bgColor="bg-[#F5F4EC]"
+          nextBtnShow="none"
         />
       </div>
       <Container>
@@ -351,4 +352,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default Guide;

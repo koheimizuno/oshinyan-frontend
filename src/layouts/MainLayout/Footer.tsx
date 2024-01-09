@@ -5,29 +5,29 @@ const Footer = () => {
     <div className="bg-[#F5F4EC] ">
       <div className="">
         <div className="flex xs:flex-col xs:gap-5 sm:flex-row sm:justify-between sm:items-center">
-          <a href="/about">
+          <a href="/guide">
             <img src="/assets/imgs/footer-1.png" alt="footer-1" />
           </a>
-          <a href="/registercat">
+          <a href="/shopresister">
             <img src="/assets/imgs/footer-2.png" alt="footer-2" />
           </a>
         </div>
         <div className="flex justify-center items-center xs:pt-6 sm:py-[24px] m-auto">
           <div className="xs:block sm:flex sm:justify-between sm:items-center text-[16px] tracking-[-.15em]">
             <div className="pr-[15x] xs:mb-8 sm:mb-0 text-center">
-              <a href="/about" className="px-[15px]">
+              <a href="/guide" className="px-[15px]">
                 推しニャンとは
               </a>
             </div>
             <div className="w-[1px] h-[16px] bg-black xs:hidden sm:block"></div>
             <div className="px-[15x] xs:mb-8 sm:mb-0 text-center">
-              <a href="/register" className="px-[15px]">
+              <a href="/registration" className="px-[15px]">
                 会員登録
               </a>
             </div>
             <div className="w-[1px] h-[16px] bg-black xs:hidden sm:block"></div>
             <div className="px-[15x] xs:mb-8 sm:mb-0 text-center">
-              <a href="contactus" className="px-[15px]">
+              <a href="/inquiry" className="px-[15px]">
                 お問合せ
               </a>
             </div>
@@ -54,7 +54,7 @@ const Footer = () => {
             </div>
             <div className="px-[20px]">
               <p className="tracking-[-.1em]">
-                <a href="/registerambassador" className="border-b border-black">
+                <a href="/oshiresister" className="border-b border-black">
                   推しニャン申請（店舗登録はこちらから）
                 </a>
               </p>
