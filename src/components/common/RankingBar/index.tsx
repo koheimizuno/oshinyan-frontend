@@ -16,12 +16,15 @@ const RankingBar = ({ page }: { page?: "ranking" | "top" }) => {
             {page === "ranking" ? (
               <a
                 className="text-[#E695A9] underline-0 hover:underline"
-                href="/ranking"
+                href="/ranking/gekkan"
               >
                 月間TOP10
               </a>
             ) : (
-              <a className="hover:text-[#E695A9] underline-0" href="/ranking">
+              <a
+                className="hover:text-[#E695A9] underline-0"
+                href="/ranking/gekkan"
+              >
                 月間TOP10
               </a>
             )}
@@ -29,13 +32,13 @@ const RankingBar = ({ page }: { page?: "ranking" | "top" }) => {
           <div className="w-0 h-[16px] border border-solid border-[#CBB279] mt-[2px]"></div>
           <div>
             {page === "top" ? (
-              <a className="text-[#E695A9] underline-0" href="/">
+              <a className="text-[#E695A9] underline-0" href="/ranking">
                 総合TOP10
               </a>
             ) : (
               <a
                 className="hover:text-[#E695A9] underline-0 hover:underline"
-                href="/"
+                href="/ranking"
               >
                 総合TOP10
               </a>

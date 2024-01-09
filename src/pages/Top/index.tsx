@@ -3,8 +3,6 @@ import Carousel from "../../components/common/Carousel";
 import MainLayout from "../../layouts/MainLayout";
 import SearchBar from "../../components/common/SearchBar";
 import RankingBar from "../../components/common/RankingBar";
-import BlogAD from "../../components/common/BlogAD";
-import FindSignboard from "../../components/common/FindSignboard";
 import Store from "../../components/common/Store";
 import Notices from "../../components/common/Notices";
 import CustomButton from "../../components/basic/BasicButton";
@@ -213,7 +211,23 @@ const Top = () => {
             </p>
           </button>
         </div>
-        <FindSignboard />
+        <div>
+          <div className="pt-[48px] pb-[80px]">
+            <div className="mb-[24px] hover:opacity-70">
+              <a href="/nyanplace" className="relative">
+                <img src="/assets/imgs/signboard.png" alt="signboard" />
+                <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[32px] text-white font-bold tracking-widest">
+                  『看板猫に会える場所』一覧
+                </p>
+              </a>
+            </div>
+            <div className="hover:opacity-70">
+              <a href="/shopresister">
+                <img src="/assets/imgs/member.png" alt="" />
+              </a>
+            </div>
+          </div>
+        </div>
       </Container>
       <Store />
       <Notices />

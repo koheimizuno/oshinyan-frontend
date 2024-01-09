@@ -87,13 +87,13 @@ border-solid border-r-transparent border-l-transparent border-t-white ml-[20px] 
                     <div
                       key={index}
                       className={`mb-[16px] mr-[16px] w-[78px] hover:opacity-70 ${
-                        list.includes(item) ? "opacity-70" : ""
+                        list.includes(item[0]) ? "opacity-70" : ""
                       }`}
                       onClick={() => {
-                        selectRegion(item);
+                        selectRegion(item[0]);
                       }}
                     >
-                      <CustomButton value={item} />
+                      <CustomButton value={item[0]} />
                     </div>
                   );
                 })}
