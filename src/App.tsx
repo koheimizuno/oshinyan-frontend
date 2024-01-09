@@ -12,8 +12,8 @@ import RegisterOther from "./pages/RegisterOther";
 import Privacy from "./pages/Privacy";
 import Company from "./pages/Company";
 import Inquiry from "./pages/Inquiry";
-import CatDetail from "./pages/CatDetail";
-import LocationDetail from "./pages/LocationDetail";
+import OshinyanDetail from "./pages/OshinyanDetail";
+import NyanplaceDetail from "./pages/NyanplaceDetail";
 import Comment from "./pages/Comment";
 import Column from "./pages/Column";
 import axios from "axios";
@@ -40,9 +40,8 @@ function App() {
           //8 <Route path="/privacy" element={<Privacy />} />
           //9 <Route path="/company" element={<Company />} />
           //10 <Route path="/oshiresister" element={<Oshiresister />} />
-          //*11{" "}
-          <Route path="/location/detail/:id" element={<LocationDetail />} />
-          //12 <Route path="/oshinyan/:id" element={<CatDetail />} />
+          //*11 <Route path="/nyanplace/:id" element={<NyanplaceDetail />} />
+          //12 <Route path="/oshinyan/:id" element={<OshinyanDetail />} />
           //15 <Route path="/comment" element={<Comment />} />
           //16 <Route path="/column" element={<Column />} />
           //17 <Route path="/inquiry" element={<Inquiry />} />

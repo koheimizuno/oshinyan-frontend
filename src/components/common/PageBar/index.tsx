@@ -4,7 +4,7 @@ const PageBar = ({ page }: { page: string }) => {
       <a href="/" className="">
         TOP
       </a>
-      <span>&gt;</span>
+      <span>&gt;&nbsp;</span>
       <a href="#">{page}</a>
     </div>
   );

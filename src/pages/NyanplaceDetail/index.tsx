@@ -87,7 +87,7 @@ const LOCATIONS = [
   },
 ];
 
-function LocationDetail() {
+function NyanplaceDetail() {
   const [regions, setRegions] = useState<string[]>([]);
   return (
     <MainLayout>
@@ -192,4 +192,4 @@ function LocationDetail() {
   );
 }
 
-export default LocationDetail;
+export default NyanplaceDetail;

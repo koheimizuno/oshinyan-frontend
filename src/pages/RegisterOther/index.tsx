@@ -27,7 +27,9 @@ const RegisterOther = () => {
     <MainLayout>
       <SocialLinkGroup />
       <Container>
-        <PageBar page="未登録看板猫情報募集" />
+        <PageBar
+          page={tabValue === 1 ? "未登録店舗登録" : "アンバサダー登録"}
+        />
         <Tabs className="mt-10 mb-24">
           <TabList className="flex">
             <Tab

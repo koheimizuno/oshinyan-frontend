@@ -10,7 +10,7 @@ const Company = () => {
     <MainLayout>
       <SocialLinkGroup />
       <Container>
-        <PageBar page="プライバシーポリシー" />
+        <PageBar page="運営会社" />
         <Title title="運営会社" />
         <div className="w-full text-[16px] pt-[28px]">
           <div className="w-full flex py-[28px] border-b border-[#B7B7B7]">

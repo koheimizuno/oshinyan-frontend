@@ -59,7 +59,7 @@ const FeatureDetail = () => {
     <MainLayout>
       <SocialLinkGroup />
       <Container>
-        <PageBar page="各特集" />
+        <PageBar page="特集を見るニャ！（各特集）" />
         <Title title="特集（仮）一覧" />
         <div className="mt-[24px] text-[20px] leading-[27px]">
           東京には看板猫が出勤している素敵なカフェがたくさんあるニャン！

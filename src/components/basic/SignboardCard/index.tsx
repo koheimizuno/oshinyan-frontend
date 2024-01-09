@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import CustomButton from "../BasicButton";
 
 interface Props {
@@ -7,10 +8,14 @@ interface Props {
 }
 
 const SignboardCard = ({ imgUrl, cafe, prefecture = "0" }: Props) => {
+  const navigate = useNavigate();
   return (
     <div className="w-[312px] bg-white">
-      <div className="w-full h-[234px]">
-        <img src={imgUrl} alt="cat" className="h-auto w-full"/>
+      <div
+        className="w-full h-[234px] cursor-pointer"
+        onClick={() => navigate("/nyanplace/:id")}
+      >
+        <img src={imgUrl} alt="cat" className="h-auto w-full" />
       </div>
       <div className="m-4 mt-[19px] flex-wrap flex flex-end">
         <div className="w-full">

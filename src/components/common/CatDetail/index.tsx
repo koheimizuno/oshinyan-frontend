@@ -154,7 +154,7 @@ const CatDetail = () => {
         </div>
         <div className="mt-2">
           <a
-            href="/location/detail/1"
+            href="/nyanplace/1"
             className="underline text-base w-[180px] inline-block"
           >
             にゃんにゃんカフェ

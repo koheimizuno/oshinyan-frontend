@@ -45,7 +45,7 @@ const MyPage = () => {
       <MainLayout>
         <SocialLinkGroup />
         <Container>
-          <PageBar page="各特集" />
+          <PageBar page="マイページ" />
           <Title title="マイページ" />
           <div className="p-[24px] pb-[16px] bg-white">
             <div className="flex pb-[24px] border-b border-[#CCCCCC]">

@@ -16,7 +16,7 @@ const FeaturePage = () => {
     <MainLayout>
       <SocialLinkGroup />
       <Container>
-        <PageBar page="特集見るニャ！" />
+        <PageBar page="特集を見るニャ！（一覧）" />
         <Title title="特集（仮）一覧" />
         <div className="mt-[32px] mb-[56px] flex flex-wrap justify-between">
           {features.map((e) => {

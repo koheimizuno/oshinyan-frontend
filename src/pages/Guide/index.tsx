@@ -109,7 +109,7 @@ const Guide = () => {
     <MainLayout>
       <SocialLinkGroup />
       <Container>
-        <PageBar page="推しニャンとは" />
+        <PageBar page="推しニャンとは ?" />
         <Title title="推しニャンとは？" />
       </Container>
       <div className="pt-[30px] pb-[40px]">

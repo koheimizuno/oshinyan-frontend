@@ -4,7 +4,7 @@ import PageBar from "../../components/common/PageBar";
 import CatDetail from "../../components/common/CatDetail";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 
-const CatDetailPage = () => {
+const OshinyanDetail = () => {
   return (
     <MainLayout>
       <SocialLinkGroup />
@@ -18,4 +18,4 @@ const CatDetailPage = () => {
   );
 };
 
-export default CatDetailPage;
+export default OshinyanDetail;

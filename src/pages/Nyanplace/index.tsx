@@ -48,7 +48,7 @@ const Nyanplace = () => {
       <MainLayout>
         <SocialLinkGroup />
         <Container>
-          <PageBar page="『看板猫』に会える場所一覧" />
+          <PageBar page="看板猫に会える場所一覧" />
           <Title title="『看板猫』に会える場所一覧" />
           <div className="bg-white mt-[24px]">
             <SignboardSearchBar list={regions} setList={setRegions} />

@@ -8,7 +8,7 @@ type Item = {
 const Guess = (props: Item) => {
   const navigate = useNavigate();
   const goLocationDetail = (id: number) => {
-    navigate(`/location/detail/${id}`);
+    navigate(`/nyanplace/${id}`);
   };
 
   return (

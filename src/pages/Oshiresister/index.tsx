@@ -8,7 +8,7 @@ const Oshiresister = () => {
     <MainLayout>
       <Container>
         <div className="mt-4">
-          <PageBar page="未登録看板猫情報募集" />
+          <PageBar page="推しニャン申請" />
         </div>
         <div className="text-[32px] leading-[40px] mt-[24px] pb-[14px] border-b border-[#CBB279]">
           未登録看板猫情報
