@@ -82,6 +82,7 @@ const isChu = true;
 const isNew = false;
 
 interface CatObjectType {
+  id: number;
   cat_name: string;
   shop_name: string;
   prefecture: string;
@@ -89,7 +90,12 @@ interface CatObjectType {
   character: string[];
   favorite_things: string[];
   description: string;
-  like_num: number;
+  recommend_user: object[];
+}
+
+interface ImageObjectType {
+  cat_id: number;
+  path: string;
 }
 
 const Top = () => {
@@ -101,6 +107,16 @@ const Top = () => {
       try {
         const res = await axios.get("cat");
         setCatData(res.data);
+        // console.log(res.data.serializer);
+        // res.data.serializer.foreach((serItem: CatObjectType, key: number) => {
+        //   const list = [];
+        //   res.data.images.foreach((image: ImageObjectType, key: number) => {
+        //     if (serItem.id === image.cat_id) {
+        //       list.push(image.path);
+        //       // setCatData({ ...catData, serItem.cat_images: image });
+        //     }
+        //   });
+        // });
       } catch (error) {
         console.log(error);
       }
@@ -109,7 +125,6 @@ const Top = () => {
   }, []);
 
   // catData.map((e, i) => console.log(e.path));
-
   console.log(catData);
 
   return (
@@ -149,7 +164,7 @@ const Top = () => {
                   character={e.character}
                   favorite_things={e.favorite_things}
                   description={e.description}
-                  like_num={e.like_num}
+                  like_num={e.recommend_user.length}
                   isNew={isNew}
                   isChu={isChu}
                 />
@@ -172,7 +187,7 @@ const Top = () => {
                   character={e.character}
                   favorite_things={e.favorite_things}
                   description={e.description}
-                  like_num={e.like_num}
+                  like_num={e.recommend_user.length}
                   isNew={isNew}
                   isChu={isChu}
                 />

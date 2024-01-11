@@ -50,17 +50,18 @@ const BlogBox = ({
             navigation={{ nextEl: ".arrow-left", prevEl: ".arrow-right" }}
             className="cursor-pointer"
           >
-            {cat_images.map((item: any, key: any) => (
-              <SwiperSlide key={key}>
-                <a href={`/oshinyan/${1}`}>
-                  <img
-                    src={item.imgs}
-                    alt={item.imgs}
-                    className="h-full m-auto cursor-pointer"
-                  />
-                </a>
-              </SwiperSlide>
-            ))}
+            {cat_images &&
+              cat_images.map((item: any, key: any) => (
+                <SwiperSlide key={key}>
+                  <a href={`/oshinyan/${1}`}>
+                    <img
+                      src={item.imgs}
+                      alt={item.imgs}
+                      className="h-full m-auto cursor-pointer"
+                    />
+                  </a>
+                </SwiperSlide>
+              ))}
             <div className="swiper-pagination custom-pagination-bullets"></div>
             <button className="arrow-left xs:hidden md:block">
               <div className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">

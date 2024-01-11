@@ -76,7 +76,7 @@ const FeatureDetail = () => {
     const fetchData = async () => {
       try {
         const res = await axios.get("cat");
-        setCatData(res.data);
+        setCatData(res.data.serializer);
       } catch (error) {
         console.log(error);
       }
