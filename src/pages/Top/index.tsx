@@ -78,63 +78,28 @@ const CAROUSELIMAGES: object[] = [
   },
 ];
 
-const Cats = [
-  {
-    imgUrl: ["/assets/imgs/cats/cat1.png", "/assets/imgs/cats/cat1-2.png"],
-    isNew: true,
-    isChu: false,
-  },
-  {
-    imgUrl: ["/assets/imgs/cats/cat2.png", "/assets/imgs/cats/cat2-2.png"],
-    isNew: true,
-    isChu: true,
-  },
-  {
-    imgUrl: ["/assets/imgs/cats/cat3.png", "/assets/imgs/cats/cat3-2.png"],
-    isNew: true,
-    isChu: false,
-  },
-  {
-    imgUrl: ["/assets/imgs/cats/cat4.png", "/assets/imgs/cats/cat4-2.png"],
-    isNew: true,
-    isChu: false,
-  },
-  {
-    imgUrl: ["/assets/imgs/cats/cat5.png", "/assets/imgs/cats/cat5-2.png"],
-    isNew: true,
-    isChu: false,
-  },
-  {
-    imgUrl: ["/assets/imgs/cats/cat6.png", "/assets/imgs/cats/cat6-2.png"],
-    isNew: false,
-    isChu: false,
-  },
-  {
-    imgUrl: ["/assets/imgs/cats/cat7.png", "/assets/imgs/cats/cat7-2.png"],
-    isNew: false,
-    isChu: false,
-  },
-  {
-    imgUrl: ["/assets/imgs/cats/cat8.png", "/assets/imgs/cats/cat8-2.png"],
-    isNew: false,
-    isChu: false,
-  },
-  {
-    imgUrl: ["/assets/imgs/cats/cat9.png", "/assets/imgs/cats/cat9-2.png"],
-    isNew: false,
-    isChu: false,
-  },
-];
+const isChu = true;
+const isNew = false;
+
+interface CatObjectType {
+  cat_name: string;
+  shop_name: string;
+  prefecture: string;
+  cat_images: string[];
+  character: string[];
+  favorite_things: string[];
+  description: string;
+  like_num: number;
+}
 
 const Top = () => {
   const [regions, setRegions] = useState<string[]>([]);
-  const [catData, setCatData] = useState<object[]>([]);
+  const [catData, setCatData] = useState<CatObjectType[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("shop");
-        console.log(res.data);
+        const res = await axios.get("cat");
         setCatData(res.data);
       } catch (error) {
         console.log(error);
@@ -142,6 +107,10 @@ const Top = () => {
     };
     fetchData();
   }, []);
+
+  // catData.map((e, i) => console.log(e.path));
+
+  console.log(catData);
 
   return (
     <MainLayout>
@@ -169,19 +138,22 @@ const Top = () => {
         )}
         <div className="mt-[12px]">
           <div className="flex justify-between flex-wrap ">
-            {Cats.map((e, i) => (
-              <BlogBox
-                key={i}
-                imgUrl={e.imgUrl}
-                isNew={e.isNew}
-                isChu={e.isChu}
-                name={"heracles"}
-                cafe={"cafe"}
-                vote={2}
-                character={["fdsa", "reqw"]}
-                description={"this is description"}
-              />
-            ))}
+            {catData &&
+              catData.map((e, i) => (
+                <BlogBox
+                  key={i}
+                  cat_name={e.cat_name}
+                  shop_name={e.shop_name}
+                  prefecture={e.prefecture}
+                  cat_images={e.cat_images}
+                  character={e.character}
+                  favorite_things={e.favorite_things}
+                  description={e.description}
+                  like_num={e.like_num}
+                  isNew={isNew}
+                  isChu={isChu}
+                />
+              ))}
           </div>
         </div>
         <div className="bg-white text-center py-[65px] mb-[16px]">
@@ -189,19 +161,22 @@ const Top = () => {
         </div>
         <div>
           <div className="flex justify-between flex-wrap ">
-            {Cats.map((e, i) => (
-              <BlogBox
-                key={i}
-                imgUrl={e.imgUrl}
-                isNew={e.isNew}
-                isChu={e.isChu}
-                name={"heracles"}
-                cafe={"cafe"}
-                vote={2}
-                character={["fdsa", "reqw"]}
-                description={"this is description"}
-              />
-            ))}
+            {catData &&
+              catData.map((e, i) => (
+                <BlogBox
+                  key={i}
+                  cat_name={e.cat_name}
+                  shop_name={e.shop_name}
+                  prefecture={e.prefecture}
+                  cat_images={e.cat_images}
+                  character={e.character}
+                  favorite_things={e.favorite_things}
+                  description={e.description}
+                  like_num={e.like_num}
+                  isNew={isNew}
+                  isChu={isChu}
+                />
+              ))}
           </div>
         </div>
         <div className="pt-[15px] pb-[35px] text-center border-b border-b-solid border-[#CCC]">

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MainLayout from "../../layouts/MainLayout";
 import SearchBar from "../../components/common/SearchBar";
 import RankingBar from "../../components/common/RankingBar";
@@ -10,6 +10,7 @@ import { CapSecond } from "../../components/basic/icons/CapSecond";
 import { CapThird } from "../../components/basic/icons/CapThird";
 import SmallCard from "../../components/basic/SmallCard";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
+import axios from "axios";
 
 const Cats = [
   {
@@ -67,8 +68,37 @@ const Cats = [
   },
 ];
 
+interface CatObjectType {
+  cat_name: string;
+  shop_name: string;
+  prefecture: string;
+  cat_images: any[];
+  character: string[];
+  favorite_things: string[];
+  description: string;
+  like_num: number;
+}
+
+const isChu = true;
+const isNew = false;
+
 const MonthRanking = () => {
   const [list, setList] = useState<string[]>([]);
+  const [catData, setCatData] = useState<CatObjectType[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get("cat");
+        setCatData(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  catData && console.log(catData[0]?.cat_images[0]?.imgs);
 
   return (
     <MainLayout>
@@ -86,37 +116,40 @@ const MonthRanking = () => {
               <span className="text-[24px] font-bold leading-[32px]">1位</span>
             </div>
           </div>
-          <LargeCard imgUrl={Cats[0].imgUrl[0]} />
+          <LargeCard imgUrl={catData[0]?.cat_images[0]?.imgs} />
           <div className="mt-[24px]">
             <div className="flex justify-between flex-wrap ">
-              {Cats.slice(1, 4).map((e, i) => (
-                <div className="flex flex-col">
-                  <div className="flex leading-[27px] mb-[7px]">
-                    {i === 0 && (
-                      <div className="w-[36px] h-[26px] me-[12px]">
-                        <CapSecond />
-                      </div>
-                    )}
-                    {i === 1 && (
-                      <div className="w-[36px] h-[26px] me-[12px]">
-                        <CapThird />
-                      </div>
-                    )}
-                    {i + 2}位
+              {catData &&
+                catData.slice(1, 4).map((e, i) => (
+                  <div className="flex flex-col">
+                    <div className="flex leading-[27px] mb-[7px]">
+                      {i === 0 && (
+                        <div className="w-[36px] h-[26px] me-[12px]">
+                          <CapSecond />
+                        </div>
+                      )}
+                      {i === 1 && (
+                        <div className="w-[36px] h-[26px] me-[12px]">
+                          <CapThird />
+                        </div>
+                      )}
+                      {i + 2}位
+                    </div>
+                    <BlogBox
+                      key={i}
+                      cat_name={e.cat_name}
+                      shop_name={e.shop_name}
+                      prefecture={e.prefecture}
+                      cat_images={e.cat_images}
+                      character={e.character}
+                      favorite_things={e.favorite_things}
+                      description={e.description}
+                      like_num={e.like_num}
+                      isNew={isNew}
+                      isChu={isChu}
+                    />
                   </div>
-                  <BlogBox
-                    key={i}
-                    imgUrl={e.imgUrl}
-                    isNew={e.isNew}
-                    isChu={e.isChu}
-                    name={"heracles"}
-                    cafe={"cafe"}
-                    vote={2}
-                    character={["fdsa", "reqw"]}
-                    description={"this is description"}
-                  />
-                </div>
-              ))}
+                ))}
             </div>
           </div>
           <div className="flex-wrap mt-[16px] grid grid-cols-2 gap-x-[24px] gap-y-[16px]">

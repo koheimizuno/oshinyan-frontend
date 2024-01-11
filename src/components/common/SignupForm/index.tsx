@@ -1,7 +1,8 @@
 import React, { useRef, useState } from "react";
+import axios from "axios";
 import { PREFECTURE } from "../../../constant";
 import { Checkbox, FormControlLabel } from "@mui/material";
-import axios from "axios";
+import { Store } from "react-notifications-component";
 
 const SignupForm = () => {
   const fileRef = useRef<HTMLInputElement>(null);
@@ -10,6 +11,7 @@ const SignupForm = () => {
     username: "",
     prefecture: "北海道",
     email: "",
+    password: "",
   });
   const [selectedFile, setSelectedFile] = useState<FileList | null>(null);
 
@@ -17,14 +19,52 @@ const SignupForm = () => {
     setChecked(event.target.checked);
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     let formData = new FormData();
     formData.append("username", values.username);
     formData.append("prefecture", values.prefecture);
     formData.append("email", values.email);
+    formData.append("password", values.password);
     selectedFile != null && formData.append("avatar", selectedFile[0]);
-    checked === true && axios.post("register", formData);
+    if (checked === true) {
+      try {
+        const res = await axios.post("register", formData);
+        Store.addNotification({
+          title: "Success!",
+          message: "Successfully created!",
+          type: "success",
+          container: "top-right",
+          dismiss: {
+            duration: 2000,
+            onScreen: true,
+          },
+        });
+      } catch (error: any) {
+        if (error.response.status === 400)
+          Store.addNotification({
+            title: "Warning!",
+            message: "Already exist!",
+            type: "warning",
+            container: "top-right",
+            dismiss: {
+              duration: 2000,
+              onScreen: true,
+            },
+          });
+        else
+          Store.addNotification({
+            title: "Error!",
+            message: "Server Error!",
+            type: "danger",
+            container: "top-right",
+            dismiss: {
+              duration: 2000,
+              onScreen: true,
+            },
+          });
+      }
+    }
   };
 
   const handleChange = (e: any) => {
@@ -115,6 +155,18 @@ const SignupForm = () => {
                 type="email"
                 name="email"
                 id="email"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="flex justify-between h-[80px] border-b border-[#CCCCCC] items-center mt-[4px]">
+              <label htmlFor="password" className="w-[134px]">
+                パスワード
+              </label>
+              <input
+                className="bg-[#F7F7F7] border border-[#CCCCCC] rounded-[5px] me-auto h-[40px] w-full p-2 focus:outline-none"
+                type="password"
+                name="password"
+                id="password"
                 onChange={handleChange}
               />
             </div>

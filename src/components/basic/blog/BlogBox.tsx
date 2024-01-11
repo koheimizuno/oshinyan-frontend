@@ -3,35 +3,39 @@ import CustomButton from "../BasicButton";
 import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
-import ArrowLeft from "../icons/ArrowLeft";
-import ArrowRight from "../icons/ArrowRight";
 
-export interface Props {
-  imgUrl: string[];
+interface Props {
+  cat_name: string;
+  shop_name: string;
+  prefecture: string;
+  cat_images: string[];
+  character: string[];
+  favorite_things: string[];
+  description: string;
+  like_num: number;
+
   isNew?: boolean;
   isChu?: boolean;
-  name?: string;
-  cafe?: string;
-  vote?: number;
-  character?: string[] | null;
-  description?: string | null;
 }
 
 const BlogBox = ({
-  imgUrl = [],
+  cat_name,
+  shop_name,
+  prefecture,
+  cat_images,
+  character,
+  favorite_things,
+  description,
+  like_num,
+
   isNew = false,
   isChu = false,
-  name,
-  cafe,
-  vote,
-  character,
-  description,
 }: Props) => {
   const navigate = useNavigate();
   return (
     <div className="m-auto w-[312px] h-[512px] mb-[15px] hover:opacity-70">
       <div className="w-full">
-        <div className="relative w-[312px] h-[234px]">
+        <div className="relative w-[312px] h-[234px] bg-white">
           <Swiper
             modules={[Navigation, Pagination, Scrollbar, A11y]}
             speed={800}
@@ -46,12 +50,12 @@ const BlogBox = ({
             navigation={{ nextEl: ".arrow-left", prevEl: ".arrow-right" }}
             className="cursor-pointer"
           >
-            {imgUrl.map((item: any, key: any) => (
+            {cat_images.map((item: any, key: any) => (
               <SwiperSlide key={key}>
                 <a href={`/oshinyan/${1}`}>
                   <img
-                    src={item}
-                    alt={item.alt}
+                    src={item.imgs}
+                    alt={item.imgs}
                     className="h-full m-auto cursor-pointer"
                   />
                 </a>
@@ -124,7 +128,7 @@ const BlogBox = ({
         <div className="px-[16px]  bg-white h-[278px]">
           <div>
             <h3 className="text-[24px] font-bold text-left text-ellipsis overflow-hidden whitespace-nowrap">
-              なまむぎなまごめ
+              {cat_name}
             </h3>
           </div>
           <div className="flex justify-between">
@@ -133,11 +137,11 @@ const BlogBox = ({
                 href="javascript:;"
                 className=" w-[145px] underline text-[16px] text-ellipsis overflow-hidden tracking-tighter whitespace-nowrap "
               >
-                にゃんにゃんカフェ
+                {shop_name}
               </a>
             </div>
             <div>
-              <CustomButton value={"東京都"}></CustomButton>
+              <CustomButton value={prefecture}></CustomButton>
             </div>
           </div>
           <div className="flex justify-content-start items-center mt-[15px] mb-[8px]">
@@ -148,7 +152,7 @@ const BlogBox = ({
                 alt=""
               />
             </span>
-            <h2 className="text-[24px] d-inline-block">000ニャン</h2>
+            <h2 className="text-[24px] d-inline-block">{like_num}ニャン</h2>
           </div>
           <hr className="border border-[#CCC]" />
           <div className="flex justify-content-start items-center pt-[10px] pb-[19px] ">
@@ -158,16 +162,17 @@ const BlogBox = ({
             <div className="pl-[8px]">
               <p>性格</p>
             </div>
-            <div className="pl-[8px]">
-              <CustomButton value={"やさしい"} />
-            </div>
-            <div className="pl-[8px]">
-              <CustomButton value={"気分屋さん"} />
+            <div className="flex">
+              {character.map((item, key) => (
+                <div className="pl-[8px]" key={key}>
+                  <CustomButton value={item} />
+                </div>
+              ))}
             </div>
           </div>
           <div className=" pb-[43px]">
             <p className="break-words	text-[16px] text-ellipsis overflow-hidden whitespace-wrap ">
-              □□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+              {description}
             </p>
           </div>
         </div>

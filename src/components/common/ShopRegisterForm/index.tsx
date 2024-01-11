@@ -11,25 +11,21 @@ import {
 } from "@mui/material";
 import { PREFECTURE } from "../../../constant";
 import axios from "axios";
-
-interface ProgressInfo {
-  fileName: string;
-  percentage: number;
-}
+import { Store } from "react-notifications-component";
 
 const ShopRegisterForm = () => {
   const hiddenFileInput = useRef<HTMLInputElement>(null);
   const [checked, setChecked] = useState(false);
   const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
   const [registerCatValues, setRegisterCatValues] = useState({
-    store_name: "",
+    shop_name: "",
     prefecture: "東京都",
     city: "",
     street: "",
     room_no: "",
     email: "",
     phone: "",
-    store_permission: "yes",
+    shop_permission: true,
     description: "",
   });
 
@@ -42,14 +38,17 @@ const ShopRegisterForm = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     let formData = new FormData();
-    formData.append("store_name", registerCatValues.store_name);
+    formData.append("shop_name", registerCatValues.shop_name);
     formData.append("prefecture", registerCatValues.prefecture);
     formData.append("city", registerCatValues.city);
     formData.append("street", registerCatValues.street);
     formData.append("room_no", registerCatValues.room_no);
     formData.append("email", registerCatValues.email);
     formData.append("phone", registerCatValues.phone);
-    formData.append("store_permission", registerCatValues.store_permission);
+    formData.append(
+      "shop_permission",
+      registerCatValues.shop_permission.toString()
+    );
     formData.append("description", registerCatValues.description);
 
     if (selectedFiles != null) {
@@ -57,8 +56,42 @@ const ShopRegisterForm = () => {
       files.forEach((file) => formData.append("imgs", file));
     }
     if (checked) {
-      const res = await axios.post("shop", formData);
-      console.log(res);
+      try {
+        const res = await axios.post("shop", formData);
+        Store.addNotification({
+          title: "Success!",
+          message: "Successfully created!",
+          type: "success",
+          container: "top-right",
+          dismiss: {
+            duration: 2000,
+            onScreen: true,
+          },
+        });
+      } catch (error: any) {
+        if (error.response.status === 400)
+          Store.addNotification({
+            title: "Warning!",
+            message: "Already exist!",
+            type: "warning",
+            container: "top-right",
+            dismiss: {
+              duration: 2000,
+              onScreen: true,
+            },
+          });
+        else
+          Store.addNotification({
+            title: "Error!",
+            message: "Server Error!",
+            type: "danger",
+            container: "top-right",
+            dismiss: {
+              duration: 2000,
+              onScreen: true,
+            },
+          });
+      }
     }
   };
 
@@ -91,7 +124,7 @@ const ShopRegisterForm = () => {
           <input
             type="text"
             id="name_kana"
-            name="store_name"
+            name="shop_name"
             className="w-[456px] h-[40px] rounded-[4px] border border-[#CCCCCC] p-2 focus:outline-none"
             onChange={handleChange}
           />
@@ -213,18 +246,18 @@ const ShopRegisterForm = () => {
             <FormControl>
               <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
-                name="store_permission"
-                value={registerCatValues.store_permission}
+                name="shop_permission"
+                value={registerCatValues.shop_permission}
                 onChange={handleChange}
               >
                 <div className="flex">
                   <FormControlLabel
-                    value="yes"
+                    value={true}
                     control={<Radio />}
                     label="あり"
                   />
                   <FormControlLabel
-                    value="no"
+                    value={false}
                     control={<Radio />}
                     label="なし"
                   />

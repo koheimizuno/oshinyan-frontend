@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "pure-react-carousel/dist/react-carousel.es.css";
@@ -17,8 +18,8 @@ import BtnSolid from "./components/BtnSolid";
 import CatImage from "./components/CatImage";
 import BlogBox from "../../basic/blog/BlogBox";
 import ImageGallery from "./components/ImageGallery";
-import { useState } from "react";
 import ImageDetail from "./components/ImageDetail";
+import axios from "axios";
 
 const Cats = [
   {
@@ -118,14 +119,41 @@ const IMAGES: string[] = [
   "/assets/imgs/cats/cat_detail_carousel.png",
 ];
 
-const imgUrl: string[] = [
-  "/assets/imgs/cats/cat1.png",
-  "/assets/imgs/cats/cat1-2.png",
+const imgUrl: object[] = [
+  { imgUrl: ["/assets/imgs/cats/cat1.png", "/assets/imgs/cats/cat1-2.png"] },
 ];
+
+interface CatObjectType {
+  cat_name: string;
+  shop_name: string;
+  prefecture: string;
+  cat_images: string[];
+  character: string[];
+  favorite_things: string[];
+  description: string;
+  like_num: number;
+}
+
+const isChu = true;
+const isNew = false;
 
 const CatDetail = () => {
   const [showImageGallery, setShowImageGallery] = useState(false);
   const [showImageDetail, setShowImageDetail] = useState(false);
+  const [catData, setCatData] = useState<CatObjectType[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get("cat");
+        setCatData(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <div className="w-full relative">
       <CatDetailCarousel />
@@ -363,16 +391,19 @@ const CatDetail = () => {
       </div>
       <div className="w-full border-b border-[#CBB279] mt-4"></div>
       <div className="mt-6 flex flex-wrap justify-between">
-        {CatsInSamePlace.map((e, i) => (
+        {catData.map((e, i) => (
           <BlogBox
             key={i}
-            imgUrl={imgUrl}
-            isChu={true}
-            name={"heracles"}
-            cafe={"cafe"}
-            vote={2}
-            character={["a", "a"]}
-            description={"this is description"}
+            cat_name={e.cat_name}
+            shop_name={e.shop_name}
+            prefecture={e.prefecture}
+            cat_images={e.cat_images}
+            character={e.character}
+            favorite_things={e.favorite_things}
+            description={e.description}
+            like_num={e.like_num}
+            isNew={isNew}
+            isChu={isChu}
           />
         ))}
       </div>

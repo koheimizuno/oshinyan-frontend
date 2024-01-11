@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MainLayout from "../../layouts/MainLayout";
 import PageBar from "../../components/common/PageBar";
 import Container from "../../components/basic/Container";
@@ -8,6 +8,7 @@ import SignboardCard from "../../components/basic/SignboardCard";
 import SignboardSearchBar from "../../components/common/SignboardSearchBar";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import Title from "../../components/common/Typography/Title";
+import axios from "axios";
 
 const CONTACTINFO = [
   {
@@ -87,8 +88,36 @@ const LOCATIONS = [
   },
 ];
 
+const isChu = true;
+const isNew = false;
+
+interface CatObjectType {
+  cat_name: string;
+  shop_name: string;
+  prefecture: string;
+  cat_images: string[];
+  character: string[];
+  favorite_things: string[];
+  description: string;
+  like_num: number;
+}
+
 function NyanplaceDetail() {
   const [regions, setRegions] = useState<string[]>([]);
+  const [catData, setCatData] = useState<CatObjectType[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get("cat");
+        setCatData(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <MainLayout>
       <SocialLinkGroup />
@@ -143,17 +172,19 @@ function NyanplaceDetail() {
           <div>
             <p className="text-2xl pt-6 pb-4">ここで会える「看板猫」</p>
             <div className="flex justify-between flex-wrap ">
-              {Cats.map((e, i) => (
+              {catData.map((e, i) => (
                 <BlogBox
                   key={i}
-                  imgUrl={e.imgUrl}
-                  isNew={e.isNew}
-                  isChu={e.isChu}
-                  name={"heracles"}
-                  cafe={"cafe"}
-                  vote={2}
-                  character={["fdsa", "reqw"]}
-                  description={"this is description"}
+                  cat_name={e.cat_name}
+                  shop_name={e.shop_name}
+                  prefecture={e.prefecture}
+                  cat_images={e.cat_images}
+                  character={e.character}
+                  favorite_things={e.favorite_things}
+                  description={e.description}
+                  like_num={e.like_num}
+                  isNew={isNew}
+                  isChu={isChu}
                 />
               ))}
             </div>

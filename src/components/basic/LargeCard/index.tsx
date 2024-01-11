@@ -28,7 +28,10 @@ const LargeCard = ({
         <div className="relative w-full h-[400px] mb-[15px] hover:opacity-70 flex">
           <div
             className="h-full w-[50%] bg-center bg-no-repeat"
-            style={{ backgroundImage: "url('" + imgUrl + "')" }}
+            style={{
+              backgroundImage: "url('" + imgUrl + "')",
+              backgroundColor: "white",
+            }}
           ></div>
           <div className="px-[24px]  bg-white h-full w-[50%] flex flex-col">
             <div className="pt-[24px]">

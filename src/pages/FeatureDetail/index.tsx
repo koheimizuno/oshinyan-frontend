@@ -5,6 +5,8 @@ import { Pagination } from "@mui/material";
 import BlogBox from "../../components/basic/blog/BlogBox";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import Title from "../../components/common/Typography/Title";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Cats = [
   {
@@ -54,7 +56,33 @@ const Cats = [
   },
 ];
 
+const isChu = true;
+const isNew = false;
+
+interface CatObjectType {
+  cat_name: string;
+  shop_name: string;
+  prefecture: string;
+  cat_images: string[];
+  character: string[];
+  favorite_things: string[];
+  description: string;
+  like_num: number;
+}
+
 const FeatureDetail = () => {
+  const [catData, setCatData] = useState<CatObjectType[]>([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get("cat");
+        setCatData(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
   return (
     <MainLayout>
       <SocialLinkGroup />
@@ -68,17 +96,19 @@ const FeatureDetail = () => {
         </div>
         <div className="mt-[32px] mb-[56px] flex flex-wrap justify-between">
           <div className="flex justify-between flex-wrap ">
-            {Cats.map((e, i) => (
+            {catData.map((e, i) => (
               <BlogBox
                 key={i}
-                imgUrl={e.imgUrl}
-                isNew={e.isNew}
-                isChu={e.isChu}
-                name={"heracles"}
-                cafe={"cafe"}
-                vote={2}
-                character={["fdsa", "reqw"]}
-                description={"this is description"}
+                cat_name={e.cat_name}
+                shop_name={e.shop_name}
+                prefecture={e.prefecture}
+                cat_images={e.cat_images}
+                character={e.character}
+                favorite_things={e.favorite_things}
+                description={e.description}
+                like_num={e.like_num}
+                isNew={isNew}
+                isChu={isChu}
               />
             ))}
           </div>
