@@ -16,10 +16,11 @@ import CatFavorite from "./components/CatFavorite";
 import BtnAdd from "./components/BtnAdd";
 import BtnSolid from "./components/BtnSolid";
 import CatImage from "./components/CatImage";
-import BlogBox from "../../basic/blog/BlogBox";
+import CatBox from "../../basic/blog/CatBox";
 import ImageGallery from "./components/ImageGallery";
 import ImageDetail from "./components/ImageDetail";
 import axios from "axios";
+import { CatObjectType } from "../../../constant/type";
 
 const Cats = [
   {
@@ -75,33 +76,6 @@ const CatImgs = [
   },
 ];
 
-const CatsInSamePlace = [
-  {
-    imgUrl: ["/assets/imgs/cats/favorite_cat.png"],
-    isChu: false,
-  },
-  {
-    imgUrl: ["/assets/imgs/cats/favorite_cat.png"],
-    isChu: false,
-  },
-  {
-    imgUrl: ["/assets/imgs/cats/favorite_cat.png"],
-    isChu: false,
-  },
-  {
-    imgUrl: ["/assets/imgs/cats/favorite_cat.png"],
-    isChu: false,
-  },
-  {
-    imgUrl: ["/assets/imgs/cats/favorite_cat.png"],
-    isChu: false,
-  },
-  {
-    imgUrl: ["/assets/imgs/cats/favorite_cat.png"],
-    isChu: false,
-  },
-];
-
 const actions = [
   "cat_avatar_1.png",
   "cat_avatar_2.png",
@@ -122,17 +96,6 @@ const IMAGES: string[] = [
 const imgUrl: object[] = [
   { imgUrl: ["/assets/imgs/cats/cat1.png", "/assets/imgs/cats/cat1-2.png"] },
 ];
-
-interface CatObjectType {
-  cat_name: string;
-  shop_name: string;
-  prefecture: string;
-  cat_images: string[];
-  character: string[];
-  favorite_things: string[];
-  description: string;
-  like_num: number;
-}
 
 const isChu = true;
 const isNew = false;
@@ -392,8 +355,9 @@ const CatDetail = () => {
       <div className="w-full border-b border-[#CBB279] mt-4"></div>
       <div className="mt-6 flex flex-wrap justify-between">
         {catData.map((e, i) => (
-          <BlogBox
+          <CatBox
             key={i}
+            id={e.id}
             cat_name={e.cat_name}
             shop_name={e.shop_name}
             prefecture={e.prefecture}
@@ -401,9 +365,8 @@ const CatDetail = () => {
             character={e.character}
             favorite_things={e.favorite_things}
             description={e.description}
-            like_num={e.like_num}
+            recommend_user={e.recommend_user}
             isNew={isNew}
-            isChu={isChu}
           />
         ))}
       </div>

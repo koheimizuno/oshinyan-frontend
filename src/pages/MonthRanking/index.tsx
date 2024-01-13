@@ -5,12 +5,13 @@ import RankingBar from "../../components/common/RankingBar";
 import Store from "../../components/common/Store";
 import Notices from "../../components/common/Notices";
 import LargeCard from "../../components/basic/LargeCard";
-import BlogBox from "../../components/basic/blog/BlogBox";
+import CatBox from "../../components/basic/blog/CatBox";
 import { CapSecond } from "../../components/basic/icons/CapSecond";
 import { CapThird } from "../../components/basic/icons/CapThird";
 import SmallCard from "../../components/basic/SmallCard";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import axios from "axios";
+import { CatObjectType } from "../../constant/type";
 
 const Cats = [
   {
@@ -68,17 +69,6 @@ const Cats = [
   },
 ];
 
-interface CatObjectType {
-  cat_name: string;
-  shop_name: string;
-  prefecture: string;
-  cat_images: any[];
-  character: string[];
-  favorite_things: string[];
-  description: string;
-  like_num: number;
-}
-
 const isChu = true;
 const isNew = false;
 
@@ -98,7 +88,7 @@ const MonthRanking = () => {
     fetchData();
   }, []);
 
-  catData && console.log(catData[0]?.cat_images[0]?.imgs);
+  catData && console.log(catData[0]?.cat_images[0]);
 
   return (
     <MainLayout>
@@ -116,7 +106,7 @@ const MonthRanking = () => {
               <span className="text-[24px] font-bold leading-[32px]">1位</span>
             </div>
           </div>
-          <LargeCard imgUrl={catData[0]?.cat_images[0]?.imgs} />
+          <LargeCard imgUrl={catData[0]?.cat_images[0]} />
           <div className="mt-[24px]">
             <div className="flex justify-between flex-wrap ">
               {catData &&
@@ -135,8 +125,9 @@ const MonthRanking = () => {
                       )}
                       {i + 2}位
                     </div>
-                    <BlogBox
+                    <CatBox
                       key={i}
+                      id={e.id}
                       cat_name={e.cat_name}
                       shop_name={e.shop_name}
                       prefecture={e.prefecture}
@@ -144,9 +135,8 @@ const MonthRanking = () => {
                       character={e.character}
                       favorite_things={e.favorite_things}
                       description={e.description}
-                      like_num={e.like_num}
-                      isNew={isNew}
-                      isChu={isChu}
+                      recommend_user={e.recommend_user}
+                      isNew={false}
                     />
                   </div>
                 ))}

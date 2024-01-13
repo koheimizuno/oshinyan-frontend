@@ -12,7 +12,7 @@ export interface Props {
   description: string | null;
 }
 
-const BlogBox = ({
+const CatBox = ({
   imgUrl = "",
   isNew = false,
   isChu = false,
@@ -96,4 +96,4 @@ const BlogBox = ({
   );
 };
 
-export default BlogBox;
+export default CatBox;

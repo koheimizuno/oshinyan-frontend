@@ -2,11 +2,12 @@ import MainLayout from "../../layouts/MainLayout";
 import Container from "../../components/basic/Container";
 import PageBar from "../../components/common/PageBar";
 import { Pagination } from "@mui/material";
-import BlogBox from "../../components/basic/blog/BlogBox";
+import CatBox from "../../components/basic/blog/CatBox";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import Title from "../../components/common/Typography/Title";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { CatObjectType } from "../../constant/type";
 
 const Cats = [
   {
@@ -59,17 +60,6 @@ const Cats = [
 const isChu = true;
 const isNew = false;
 
-interface CatObjectType {
-  cat_name: string;
-  shop_name: string;
-  prefecture: string;
-  cat_images: string[];
-  character: string[];
-  favorite_things: string[];
-  description: string;
-  like_num: number;
-}
-
 const FeatureDetail = () => {
   const [catData, setCatData] = useState<CatObjectType[]>([]);
   useEffect(() => {
@@ -97,8 +87,9 @@ const FeatureDetail = () => {
         <div className="mt-[32px] mb-[56px] flex flex-wrap justify-between">
           <div className="flex justify-between flex-wrap ">
             {catData.map((e, i) => (
-              <BlogBox
+              <CatBox
                 key={i}
+                id={e.id}
                 cat_name={e.cat_name}
                 shop_name={e.shop_name}
                 prefecture={e.prefecture}
@@ -106,9 +97,8 @@ const FeatureDetail = () => {
                 character={e.character}
                 favorite_things={e.favorite_things}
                 description={e.description}
-                like_num={e.like_num}
+                recommend_user={e.recommend_user}
                 isNew={isNew}
-                isChu={isChu}
               />
             ))}
           </div>

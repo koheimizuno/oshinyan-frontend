@@ -1,24 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CustomButton from "../BasicButton";
-import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import { CatObjectType } from "../../../constant/type";
+import { useDispatch, useSelector } from "react-redux";
+import { RecommendAction } from "../../../slices/recommend";
 
-interface Props {
-  cat_name: string;
-  shop_name: string;
-  prefecture: string;
-  cat_images: string[];
-  character: string[];
-  favorite_things: string[];
-  description: string;
-  like_num: number;
-
-  isNew?: boolean;
-  isChu?: boolean;
+interface PropsType extends CatObjectType {
+  isNew: false;
 }
-
-const BlogBox = ({
+const CatBox = ({
+  id,
   cat_name,
   shop_name,
   prefecture,
@@ -26,14 +18,33 @@ const BlogBox = ({
   character,
   favorite_things,
   description,
-  like_num,
+  recommend_user,
+}: PropsType) => {
+  const dispatch = useDispatch();
+  const [isRecommend, setIsRecommend] = useState(false);
+  const [isNew, setIsNew] = useState(false);
+  const { user } = useSelector((state: any) => state.user);
 
-  isNew = false,
-  isChu = false,
-}: Props) => {
-  const navigate = useNavigate();
+  useEffect(() => {
+    let list: number[] = [];
+    recommend_user.map((item, key) => {
+      list.push(item.user);
+    });
+    list.includes(user.user_id) && setIsRecommend(true);
+  }, []);
+
+  const handleRecommend = async () => {
+    if (!isRecommend) {
+      const submitData = {
+        cat_id: id,
+        user_id: user.user_id,
+      };
+      const res = await dispatch(RecommendAction(submitData));
+    }
+  };
+
   return (
-    <div className="m-auto w-[312px] h-[512px] mb-[15px] hover:opacity-70">
+    <div className="m-auto w-[312px] h-[512px] mb-[15px]">
       <div className="w-full">
         <div className="relative w-[312px] h-[234px] bg-white">
           <Swiper
@@ -48,7 +59,7 @@ const BlogBox = ({
             centeredSlides
             slidesPerView={1}
             navigation={{ nextEl: ".arrow-left", prevEl: ".arrow-right" }}
-            className="cursor-pointer"
+            className="cursor-pointer hover:opacity-70"
           >
             {cat_images &&
               cat_images.map((item: any, key: any) => (
@@ -111,15 +122,16 @@ const BlogBox = ({
               </div>
             </button>
           </Swiper>
-          {isChu ? (
-            <span className="absolute top-[8px] right-[8px] z-10">
-              <img src="/assets/imgs/mark_chu.png" alt="" />
-            </span>
-          ) : (
-            <span className="absolute top-[8px] right-[8px] z-10">
-              <img src="/assets/imgs/btn-foot.svg" alt="" />
-            </span>
-          )}
+          <span
+            className="absolute top-[8px] right-[8px] z-10 cursor-pointer rounded-full"
+            onClick={handleRecommend}
+          >
+            {isRecommend ? (
+              <img src="/assets/imgs/recommend-on.png" alt="" />
+            ) : (
+              <img src="/assets/imgs/recommend-off.png" alt="" />
+            )}
+          </span>
           {isNew && (
             <span className="absolute top-0 left-0 z-10">
               <img src="/assets/imgs/parts-new.svg" alt="" />
@@ -153,7 +165,9 @@ const BlogBox = ({
                 alt=""
               />
             </span>
-            <h2 className="text-[24px] d-inline-block">{like_num}ニャン</h2>
+            <h2 className="text-[24px] d-inline-block">
+              {recommend_user.length}ニャン
+            </h2>
           </div>
           <hr className="border border-[#CCC]" />
           <div className="flex justify-content-start items-center pt-[10px] pb-[19px] ">
@@ -182,4 +196,4 @@ const BlogBox = ({
   );
 };
 
-export default BlogBox;
+export default CatBox;

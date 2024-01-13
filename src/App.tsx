@@ -1,5 +1,6 @@
-import "./App.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import Top from "./pages/Top";
 import MonthRanking from "./pages/MonthRanking";
 import Guide from "./pages/Guide";
@@ -16,12 +17,38 @@ import OshinyanDetail from "./pages/OshinyanDetail";
 import NyanplaceDetail from "./pages/NyanplaceDetail";
 import Comment from "./pages/Comment";
 import Column from "./pages/Column";
-import axios from "axios";
 import Oshiresister from "./pages/Oshiresister";
+import Login from "./pages/Login";
+
+import axios from "axios";
+import { TokenLoginAction } from "./slices/auth";
+import "./App.css";
 
 axios.defaults.baseURL = "http://127.0.0.1:8000/api/";
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    let token: string | null = localStorage.getItem("token");
+    if (token) {
+      let data;
+      const now = new Date();
+      if (token !== null) data = JSON.parse(token);
+      axios.defaults.headers.common["Authorization"] = `Token ${data.value}`;
+      if (now.getTime() > data.expiry) {
+        localStorage.removeItem("token");
+        window.location.href = "/login";
+      }
+      try {
+        dispatch(TokenLoginAction());
+      } catch (error) {
+        window.location.href = "/login";
+      }
+    } else {
+      delete axios.defaults.headers.common["Authorization"];
+    }
+  }, []);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -45,6 +72,7 @@ function App() {
           //15 <Route path="/comment" element={<Comment />} />
           //16 <Route path="/column" element={<Column />} />
           //17 <Route path="/inquiry" element={<Inquiry />} />
+          <Route path="/login" element={<Login />} />
         </Route>
       </Routes>
     </BrowserRouter>

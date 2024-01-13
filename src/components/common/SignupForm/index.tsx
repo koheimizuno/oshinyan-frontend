@@ -1,12 +1,14 @@
-import React, { useRef, useState } from "react";
-import axios from "axios";
+import React, { useEffect, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
 import { PREFECTURE } from "../../../constant";
 import { Checkbox, FormControlLabel } from "@mui/material";
-import { Store } from "react-notifications-component";
+import { RegistrationAction } from "../../../slices/auth";
 
 const SignupForm = () => {
+  const dispatch = useDispatch();
   const fileRef = useRef<HTMLInputElement>(null);
-  const [checked, setChecked] = useState(true);
+  const checkRef = useRef<HTMLInputElement>(null);
+  const [checked, setChecked] = useState(false);
   const [values, setValues] = useState({
     username: "",
     prefecture: "北海道",
@@ -14,6 +16,14 @@ const SignupForm = () => {
     password: "",
   });
   const [selectedFile, setSelectedFile] = useState<FileList | null>(null);
+
+  useEffect(() => {
+    if (checked) {
+      const checkboxElement = checkRef.current as HTMLInputElement;
+      checkboxElement !== null &&
+        checkboxElement.classList.remove("bg-red-300");
+    }
+  }, [checked]);
 
   const handleChange1 = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
@@ -27,43 +37,11 @@ const SignupForm = () => {
     formData.append("email", values.email);
     formData.append("password", values.password);
     selectedFile != null && formData.append("avatar", selectedFile[0]);
-    if (checked === true) {
-      try {
-        const res = await axios.post("register", formData);
-        Store.addNotification({
-          title: "Success!",
-          message: "Successfully created!",
-          type: "success",
-          container: "top-right",
-          dismiss: {
-            duration: 2000,
-            onScreen: true,
-          },
-        });
-      } catch (error: any) {
-        if (error.response.status === 400)
-          Store.addNotification({
-            title: "Warning!",
-            message: "Already exist!",
-            type: "warning",
-            container: "top-right",
-            dismiss: {
-              duration: 2000,
-              onScreen: true,
-            },
-          });
-        else
-          Store.addNotification({
-            title: "Error!",
-            message: "Server Error!",
-            type: "danger",
-            container: "top-right",
-            dismiss: {
-              duration: 2000,
-              onScreen: true,
-            },
-          });
-      }
+    if (checked) {
+      dispatch(RegistrationAction(formData));
+    } else {
+      const checkboxElement = checkRef.current as HTMLInputElement;
+      checkboxElement !== null && checkboxElement.classList.add("bg-red-300");
     }
   };
 
@@ -114,6 +92,7 @@ const SignupForm = () => {
                   type="text"
                   name="username"
                   id="username"
+                  required
                   onChange={handleChange}
                 />
               </div>
@@ -156,6 +135,7 @@ const SignupForm = () => {
                 name="email"
                 id="email"
                 onChange={handleChange}
+                required
               />
             </div>
             <div className="flex justify-between h-[80px] border-b border-[#CCCCCC] items-center mt-[4px]">
@@ -168,6 +148,7 @@ const SignupForm = () => {
                 name="password"
                 id="password"
                 onChange={handleChange}
+                required
               />
             </div>
           </div>
@@ -198,6 +179,8 @@ const SignupForm = () => {
             <FormControlLabel
               control={<Checkbox checked={checked} onChange={handleChange1} />}
               label="同意するニャン"
+              ref={checkRef}
+              required
             />
           </div>
           <div className="mt-[47px] text-center">

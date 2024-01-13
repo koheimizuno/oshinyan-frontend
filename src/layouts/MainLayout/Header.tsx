@@ -1,12 +1,15 @@
 import React, { useRef, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Header = () => {
   const [hidden, setHidden] = useState("");
+  const { isAuthenticated } = useSelector((state: any) => state.user);
   const handleResponsive = () => {
     hidden === "max-h-full" && setHidden("");
     hidden === "" && setHidden("max-h-full");
   };
+
   return (
     <div className="flex justify-between items-center py-[13px] h-[96px]">
       <div className="hover:opacity-70">
@@ -49,17 +52,36 @@ const Header = () => {
             </Link>
           </li>
           <li className="hover:opacity-70 sm:py-3 sm:pb-6 md:pb-3">
-            <a
-              href="/mypage"
-              className="bg-[#FBA1B7] w-[120px] rounded sm:m-auto px-[8px] pb-[5px] pt-[3px] flex justify-start items-center"
-            >
-              <div className="pr-[8px]">
-                <img src="/assets/imgs/icons/mypage.png" alt="mypage-icon" />
-              </div>
-              <p className="text-white text-[16px] tracking-[-.15em] font-medium">
-                マイページ
-              </p>
-            </a>
+            {isAuthenticated ? (
+              <a
+                href="/mypage"
+                className="bg-[#FBA1B7] w-[120px] rounded sm:m-auto px-[8px] pb-[5px] pt-[3px] flex justify-start items-center"
+              >
+                <div className="pr-[8px]">
+                  <img src="/assets/imgs/icons/mypage.png" alt="mypage-icon" />
+                </div>
+                <p className="text-white text-[16px] tracking-[-.15em] font-medium">
+                  マイページ
+                </p>
+              </a>
+            ) : (
+              <a
+                href="/login"
+                className="bg-[#ffda89] w-[120px] rounded sm:m-auto px-[8px] pb-[5px] pt-[3px] flex justify-start items-center"
+              >
+                <div className="pr-[8px]">
+                  <img
+                    width="16"
+                    height="16"
+                    src="https://img.icons8.com/fluency/48/lock-2--v1.png"
+                    alt="lock-2--v1"
+                  />
+                </div>
+                <p className="text-white text-[16px] tracking-[-.15em] font-medium">
+                  ログイン
+                </p>
+              </a>
+            )}
           </li>
         </ul>
       </div>

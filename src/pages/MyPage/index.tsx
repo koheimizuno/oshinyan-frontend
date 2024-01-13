@@ -1,13 +1,14 @@
 import MainLayout from "../../layouts/MainLayout";
 import Container from "../../components/basic/Container";
 import PageBar from "../../components/common/PageBar";
-import BlogBox from "../../components/basic/blog/BlogBox";
+import CatBox from "../../components/basic/blog/CatBox";
 import EditButton from "../../components/basic/EditButton";
 import FavoriteCard from "../../components/basic/FavoriteCard";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import Title from "../../components/common/Typography/Title";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { CatObjectType } from "../../constant/type";
 
 const Cats = [
   {
@@ -41,17 +42,6 @@ const imgUrl: object[] = [
     imgUrl: ["/assets/imgs/cats/cat1.png", "/assets/imgs/cats/cat1-2.png"],
   },
 ];
-
-interface CatObjectType {
-  cat_name: string;
-  shop_name: string;
-  prefecture: string;
-  cat_images: string[];
-  character: string[];
-  favorite_things: string[];
-  description: string;
-  like_num: number;
-}
 
 const isChu = true;
 const isNew = false;
@@ -115,21 +105,22 @@ const MyPage = () => {
           </div>
           <div className="mt-[32px] mb-[48px] flex flex-wrap justify-between">
             <div className="flex justify-between flex-wrap ">
-              {catData.map((e, i) => (
-                <BlogBox
-                  key={i}
-                  cat_name={e.cat_name}
-                  shop_name={e.shop_name}
-                  prefecture={e.prefecture}
-                  cat_images={e.cat_images}
-                  character={e.character}
-                  favorite_things={e.favorite_things}
-                  description={e.description}
-                  like_num={e.like_num}
-                  isNew={isNew}
-                  isChu={isChu}
-                />
-              ))}
+              {catData &&
+                catData.map((e, i) => (
+                  <CatBox
+                    key={i}
+                    id={e.id}
+                    cat_name={e.cat_name}
+                    shop_name={e.shop_name}
+                    prefecture={e.prefecture}
+                    cat_images={e.cat_images}
+                    character={e.character}
+                    favorite_things={e.favorite_things}
+                    description={e.description}
+                    recommend_user={e.recommend_user}
+                    isNew={false}
+                  />
+                ))}
             </div>
           </div>
           <div className="mb-4 text-[24px] leading-[32px] border-b border-[#CBB279] pb-[16px]">

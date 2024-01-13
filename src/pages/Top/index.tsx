@@ -9,7 +9,9 @@ import CustomButton from "../../components/basic/BasicButton";
 import Container from "../../components/basic/Container";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import axios from "axios";
-import BlogBox from "../../components/basic/blog/BlogBox";
+import CatBox from "../../components/basic/blog/CatBox";
+import { CatObjectType } from "../../constant/type";
+import { useSelector } from "react-redux";
 
 const CAROUSELIMAGES: object[] = [
   {
@@ -78,51 +80,25 @@ const CAROUSELIMAGES: object[] = [
   },
 ];
 
-const isChu = true;
 const isNew = false;
-
-interface CatObjectType {
-  id: number;
-  cat_name: string;
-  shop_name: string;
-  prefecture: string;
-  cat_images: string[];
-  character: string[];
-  favorite_things: string[];
-  description: string;
-  recommend_user: object[];
-}
-
-interface ImageObjectType {
-  cat_id: number;
-  path: string;
-}
 
 const Top = () => {
   const [regions, setRegions] = useState<string[]>([]);
   const [catData, setCatData] = useState<CatObjectType[]>([]);
+  const { recommendLoading } = useSelector((state: any) => state.recommend);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await axios.get("cat");
         setCatData(res.data);
-        // console.log(res.data.serializer);
-        // res.data.serializer.foreach((serItem: CatObjectType, key: number) => {
-        //   const list = [];
-        //   res.data.images.foreach((image: ImageObjectType, key: number) => {
-        //     if (serItem.id === image.cat_id) {
-        //       list.push(image.path);
-        //       // setCatData({ ...catData, serItem.cat_images: image });
-        //     }
-        //   });
-        // });
       } catch (error) {
         console.log(error);
       }
     };
     fetchData();
-  }, []);
+  }, [recommendLoading]);
+  console.log(recommendLoading);
 
   // catData.map((e, i) => console.log(e.path));
   console.log(catData);
@@ -155,8 +131,9 @@ const Top = () => {
           <div className="flex justify-between flex-wrap ">
             {catData &&
               catData.map((e, i) => (
-                <BlogBox
+                <CatBox
                   key={i}
+                  id={e.id}
                   cat_name={e.cat_name}
                   shop_name={e.shop_name}
                   prefecture={e.prefecture}
@@ -164,9 +141,8 @@ const Top = () => {
                   character={e.character}
                   favorite_things={e.favorite_things}
                   description={e.description}
-                  like_num={e.recommend_user.length}
+                  recommend_user={e.recommend_user}
                   isNew={isNew}
-                  isChu={isChu}
                 />
               ))}
           </div>
@@ -178,8 +154,9 @@ const Top = () => {
           <div className="flex justify-between flex-wrap ">
             {catData &&
               catData.map((e, i) => (
-                <BlogBox
+                <CatBox
                   key={i}
+                  id={e.id}
                   cat_name={e.cat_name}
                   shop_name={e.shop_name}
                   prefecture={e.prefecture}
@@ -187,9 +164,8 @@ const Top = () => {
                   character={e.character}
                   favorite_things={e.favorite_things}
                   description={e.description}
-                  like_num={e.recommend_user.length}
+                  recommend_user={e.recommend_user}
                   isNew={isNew}
-                  isChu={isChu}
                 />
               ))}
           </div>
