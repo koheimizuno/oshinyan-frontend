@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CustomButton from "../../basic/BasicButton";
+import PrefectureBtn from "../../basic/CustomButton";
 
 import { PREFECTURE } from "../../../constant";
 
@@ -93,7 +93,7 @@ border-solid border-r-transparent border-l-transparent border-t-white ml-[20px] 
                         selectRegion(item[0]);
                       }}
                     >
-                      <CustomButton value={item[0]} />
+                      <PrefectureBtn value={item[0]} />
                     </div>
                   );
                 })}
@@ -118,7 +118,7 @@ border-solid border-r-transparent border-l-transparent border-t-white ml-[20px] 
                 <div
                   className={`mb-[16px] mr-[16px] w-[78px] hover:opacity-70`}
                 >
-                  <CustomButton value={"性格"} />
+                  <PrefectureBtn value={"性格"} />
                 </div>
               </div>
               <div className="pt-[16px] text-center">

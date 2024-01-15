@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import MainLayout from "../../layouts/MainLayout";
 import PageBar from "../../components/common/PageBar";
 import Container from "../../components/basic/Container";
-import CustomButton from "../../components/basic/BasicButton";
-import CatBox from "../../components/basic/blog/CatBox";
+import PrefectureBtn from "../../components/basic/CustomButton";
+import CatCard from "../../components/basic/blog/CatCard";
 import SignboardCard from "../../components/basic/SignboardCard";
 import SignboardSearchBar from "../../components/common/SignboardSearchBar";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
@@ -117,13 +117,13 @@ function NyanplaceDetail() {
           <Title title="店名店名店名店名店名店名店名店名店名店名店名店名" />
           <div className="flex gap-4">
             <div className="mt-[33px] mb-[25px] hover:opacity-70">
-              <CustomButton value="東京都" />
+              <PrefectureBtn value="東京都" />
             </div>
             <div className="mt-[33px] mb-[25px] hover:opacity-70">
-              <CustomButton value="XXX" />
+              <PrefectureBtn value="XXX" />
             </div>
             <div className="mt-[33px] mb-[25px] hover:opacity-70">
-              <CustomButton value="XXX" />
+              <PrefectureBtn value="XXX" />
             </div>
           </div>
 
@@ -163,7 +163,7 @@ function NyanplaceDetail() {
             <p className="text-2xl pt-6 pb-4">ここで会える「看板猫」</p>
             <div className="flex justify-between flex-wrap ">
               {catData.map((e, i) => (
-                <CatBox
+                <CatCard
                   key={i}
                   id={e.id}
                   cat_name={e.cat_name}
@@ -173,6 +173,7 @@ function NyanplaceDetail() {
                   character={e.character}
                   favorite_things={e.favorite_things}
                   description={e.description}
+                  attendance={e.attendance}
                   recommend_user={e.recommend_user}
                   isNew={isNew}
                 />

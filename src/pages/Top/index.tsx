@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import Carousel from "../../components/common/Carousel";
 import MainLayout from "../../layouts/MainLayout";
 import SearchBar from "../../components/common/SearchBar";
 import RankingBar from "../../components/common/RankingBar";
 import Store from "../../components/common/Store";
 import Notices from "../../components/common/Notices";
-import CustomButton from "../../components/basic/BasicButton";
+import PrefectureBtn from "../../components/basic/CustomButton";
 import Container from "../../components/basic/Container";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
+import CatCard from "../../components/basic/blog/CatCard";
 import axios from "axios";
-import CatBox from "../../components/basic/blog/CatBox";
 import { CatObjectType } from "../../constant/type";
-import { useSelector } from "react-redux";
 
 const CAROUSELIMAGES: object[] = [
   {
@@ -90,7 +90,7 @@ const Top = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("cat");
+        const res = await axios.get("randomcat");
         setCatData(res.data);
       } catch (error) {
         console.log(error);
@@ -98,11 +98,8 @@ const Top = () => {
     };
     fetchData();
   }, [recommendLoading]);
-  console.log(recommendLoading);
 
-  // catData.map((e, i) => console.log(e.path));
   console.log(catData);
-
   return (
     <MainLayout>
       <SocialLinkGroup page="top" />
@@ -121,7 +118,7 @@ const Top = () => {
             <div className="flex grow flex-wrap">
               {regions.map((e) => (
                 <div className="mx-1 my-1">
-                  <CustomButton value={e}></CustomButton>
+                  <PrefectureBtn value={e}></PrefectureBtn>
                 </div>
               ))}
             </div>
@@ -131,7 +128,7 @@ const Top = () => {
           <div className="flex justify-between flex-wrap ">
             {catData &&
               catData.map((e, i) => (
-                <CatBox
+                <CatCard
                   key={i}
                   id={e.id}
                   cat_name={e.cat_name}
@@ -140,6 +137,7 @@ const Top = () => {
                   cat_images={e.cat_images}
                   character={e.character}
                   favorite_things={e.favorite_things}
+                  attendance={e.attendance}
                   description={e.description}
                   recommend_user={e.recommend_user}
                   isNew={isNew}
@@ -154,7 +152,7 @@ const Top = () => {
           <div className="flex justify-between flex-wrap ">
             {catData &&
               catData.map((e, i) => (
-                <CatBox
+                <CatCard
                   key={i}
                   id={e.id}
                   cat_name={e.cat_name}
@@ -163,6 +161,7 @@ const Top = () => {
                   cat_images={e.cat_images}
                   character={e.character}
                   favorite_things={e.favorite_things}
+                  attendance={e.attendance}
                   description={e.description}
                   recommend_user={e.recommend_user}
                   isNew={isNew}
@@ -177,6 +176,8 @@ const Top = () => {
             </p>
           </button>
         </div>
+      </Container>
+      <Container>
         <div>
           <div className="pt-[48px] pb-[80px]">
             <div className="mb-[24px] hover:opacity-70">

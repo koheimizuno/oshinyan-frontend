@@ -1,5 +1,5 @@
 import React from "react";
-import CustomButton from "../BasicButton";
+import PrefectureBtn from "../CustomButton";
 
 export interface Props {
   imgUrl: string;
@@ -12,7 +12,7 @@ export interface Props {
   description: string | null;
 }
 
-const CatBox = ({
+const CatCard = ({
   imgUrl = "",
   isNew = false,
   isChu = false,
@@ -56,7 +56,7 @@ const CatBox = ({
                 </h4>
               </div>
               <div>
-                <CustomButton value={"東京都"}></CustomButton>
+                <PrefectureBtn value={"東京都"}></PrefectureBtn>
               </div>
             </div>
             <div className="flex justify-content-start items-center mt-[15px] mb-[8px]">
@@ -78,10 +78,10 @@ const CatBox = ({
                 <p>性格</p>
               </div>
               <div className="pl-[8px]">
-                <CustomButton value={"やさしい"} />
+                <PrefectureBtn value={"やさしい"} />
               </div>
               <div className="pl-[8px]">
-                <CustomButton value={"気分屋さん"} />
+                <PrefectureBtn value={"気分屋さん"} />
               </div>
             </div>
             <div className=" pb-[43px]">
@@ -96,4 +96,4 @@ const CatBox = ({
   );
 };
 
-export default CatBox;
+export default CatCard;

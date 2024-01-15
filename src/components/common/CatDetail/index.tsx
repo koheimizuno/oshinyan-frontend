@@ -3,7 +3,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "pure-react-carousel/dist/react-carousel.es.css";
 import BtnPurple from "./components/BtnPurple";
-import CustomButton from "../../basic/BasicButton";
+import PrefectureBtn from "../../basic/CustomButton";
 import Twitter from "../../basic/icons/Twitter";
 import Instagram from "../../basic/icons/Instagram";
 import Border from "./components/Border";
@@ -16,7 +16,7 @@ import CatFavorite from "./components/CatFavorite";
 import BtnAdd from "./components/BtnAdd";
 import BtnSolid from "./components/BtnSolid";
 import CatImage from "./components/CatImage";
-import CatBox from "../../basic/blog/CatBox";
+import CatCard from "../../basic/blog/CatCard";
 import ImageGallery from "./components/ImageGallery";
 import ImageDetail from "./components/ImageDetail";
 import axios from "axios";
@@ -150,7 +150,7 @@ const CatDetail = () => {
           >
             にゃんにゃんカフェ
           </a>
-          <CustomButton value={"東京都"}></CustomButton>
+          <PrefectureBtn value={"東京都"}></PrefectureBtn>
         </div>
         <div className="flex gap-[14px] mt-6">
           <div>
@@ -166,15 +166,15 @@ const CatDetail = () => {
             <CalendarMonthSharp fontSize="large" style={{ fill: "#FAD2B5" }} />
             <div className="ms-2">出勤頻度</div>
             <div className="ms-4">
-              <CustomButton value={"毎日"} />
+              <PrefectureBtn value={"毎日"} />
             </div>
           </div>
           <div className="flex gap-2">
             <HeartCircle />
             <div className="ms-2">性格</div>
             <div className="ms-4 flex gap-2">
-              <CustomButton value={"やさしい"} />
-              <CustomButton value={"気分屋さん"} />
+              <PrefectureBtn value={"やさしい"} />
+              <PrefectureBtn value={"気分屋さん"} />
             </div>
           </div>
         </div>
@@ -355,7 +355,7 @@ const CatDetail = () => {
       <div className="w-full border-b border-[#CBB279] mt-4"></div>
       <div className="mt-6 flex flex-wrap justify-between">
         {catData.map((e, i) => (
-          <CatBox
+          <CatCard
             key={i}
             id={e.id}
             cat_name={e.cat_name}
@@ -365,6 +365,7 @@ const CatDetail = () => {
             character={e.character}
             favorite_things={e.favorite_things}
             description={e.description}
+            attendance={e.attendance}
             recommend_user={e.recommend_user}
             isNew={isNew}
           />

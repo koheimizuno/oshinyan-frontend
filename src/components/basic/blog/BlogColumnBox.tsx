@@ -1,5 +1,5 @@
 import React from "react";
-import CustomButton from "../BasicButton";
+import PrefectureBtn from "../CustomButton";
 import { useNavigate } from "react-router-dom";
 
 export interface Props {

@@ -2,7 +2,7 @@ import MainLayout from "../../layouts/MainLayout";
 import Container from "../../components/basic/Container";
 import PageBar from "../../components/common/PageBar";
 import { Pagination } from "@mui/material";
-import CatBox from "../../components/basic/blog/CatBox";
+import CatCard from "../../components/basic/blog/CatCard";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import Title from "../../components/common/Typography/Title";
 import { useEffect, useState } from "react";
@@ -87,7 +87,7 @@ const FeatureDetail = () => {
         <div className="mt-[32px] mb-[56px] flex flex-wrap justify-between">
           <div className="flex justify-between flex-wrap ">
             {catData.map((e, i) => (
-              <CatBox
+              <CatCard
                 key={i}
                 id={e.id}
                 cat_name={e.cat_name}
@@ -97,6 +97,7 @@ const FeatureDetail = () => {
                 character={e.character}
                 favorite_things={e.favorite_things}
                 description={e.description}
+                attendance={e.attendance}
                 recommend_user={e.recommend_user}
                 isNew={isNew}
               />

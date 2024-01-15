@@ -1,4 +1,4 @@
-const LargeCard = ({ imgUrl, text }: { imgUrl: string; text: string }) => {
+const LargeCatCard = ({ imgUrl, text }: { imgUrl: string; text: string }) => {
   return (
     <div className="w-[312px] h-[328px] bg-white">
       <div className="w-full h-[234px] text-center">
@@ -12,4 +12,4 @@ const LargeCard = ({ imgUrl, text }: { imgUrl: string; text: string }) => {
     </div>
   );
 };
-export default LargeCard;
+export default LargeCatCard;

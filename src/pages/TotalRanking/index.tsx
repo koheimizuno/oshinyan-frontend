@@ -14,29 +14,15 @@ import axios from "axios";
 import { CatObjectType } from "../../constant/type";
 
 const isNew = false;
-interface dateType {
-  year: number;
-  month: number;
-  date: number;
-}
 
-const dateObj = new Date();
-
-const MonthRanking = () => {
+const TotalRanking = () => {
   const [list, setList] = useState<string[]>([]);
   const [catData, setCatData] = useState<CatObjectType[]>([]);
-  const [dates, setDates] = useState<dateType>({
-    year: dateObj.getFullYear(),
-    month: dateObj.getMonth() + 1,
-    date: dateObj.getDate() + 1,
-  });
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(
-          `monthrankingcat?date=${dates.year}-${dates.month}-${dates.date}`
-        );
+        const res = await axios.get("totalrankingcat");
         setCatData(res.data);
       } catch (error) {
         console.log(error);
@@ -45,59 +31,7 @@ const MonthRanking = () => {
     fetchData();
   }, []);
 
-  const previousMonthFetch = async () => {
-    try {
-      let year: number, month: number;
-      if (dates.month === 1) {
-        month = 12;
-        year = dates.year - 1;
-      } else {
-        year = dates.year;
-        month = dates.month - 1;
-      }
-      setDates((previousDate) => ({
-        ...previousDate,
-        year: year,
-        month: month,
-      }));
-      const res = await axios.get(
-        `monthrankingcat?date=${year}-${month}-${dates.date}`
-      );
-      setCatData(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const nextMonthFetch = async () => {
-    if (dates.month !== dateObj.getMonth() + 1) {
-      try {
-        let year: number, month: number;
-        if (dates.month === 12) {
-          month = 1;
-          year = dates.year + 1;
-        } else {
-          year = dates.year;
-          month = dates.month + 1;
-        }
-        setDates((previousDate) => ({
-          ...previousDate,
-          year: year,
-          month: month,
-        }));
-        const res = await axios.get(
-          `monthrankingcat?date=${year}-${month}-${dates.date}`
-        );
-        setCatData(res.data);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  };
-
-  console.log("💚💚💚" + dateObj.toString());
-  console.log("💘💘💘" + dates.month);
-  console.log("💙💙💙" + dates.date);
+  console.log(catData);
 
   return (
     <MainLayout>
@@ -106,11 +40,9 @@ const MonthRanking = () => {
       <div className="bg-[#F5F4EC]">
         <div className="  w-[960px] m-auto ">
           <RankingBar />
-          <div className="text-[40px] leading-[53px]">
-            <span>
-              {dates.year}年{dates.month}月
-            </span>
-          </div>
+          {/* <div className="text-[40px] leading-[53px]">
+            <span>2023年11月</span>
+          </div> */}
           <div className="ranking-1 mt-[24px] mb-[24px]">
             <div className="ranking-1-tle flex gap-[8px]">
               <img src="/assets/imgs/ranking-1-cap.svg" alt="cat" />{" "}
@@ -136,7 +68,7 @@ const MonthRanking = () => {
             <div className="flex justify-between flex-wrap ">
               {catData &&
                 catData.slice(1, 4).map((e, i) => (
-                  <div className="flex flex-col" key={i}>
+                  <div className="flex flex-col">
                     <div className="flex leading-[27px] mb-[7px]">
                       {i === 0 && (
                         <div className="w-[36px] h-[26px] me-[12px]">
@@ -168,7 +100,7 @@ const MonthRanking = () => {
                 ))}
             </div>
           </div>
-          <div className="flex-wrap mt-[16px] grid grid-cols-2 gap-x-[24px] gap-y-[16px]">
+          <div className="flex-wrap mt-[16px] grid grid-cols-2 gap-x-[24px] gap-y-[16px] pb-[65px] border-b border-[#CBB279]">
             {catData &&
               catData.slice(4, 11).map((e, i) => (
                 <div className="flex flex-col" key={i}>
@@ -189,61 +121,8 @@ const MonthRanking = () => {
                 </div>
               ))}
           </div>
-          <div className="flex justify-between pb-[8px] border-b border-[#CBB279] mb-[24px]">
-            <button
-              className="flex mt-[32px] items-center"
-              onClick={previousMonthFetch}
-            >
-              <svg
-                style={{ marginRight: "4px" }}
-                xmlns="http://www.w3.org/2000/svg"
-                width="12.728"
-                height="12.728"
-                viewBox="0 0 12.728 12.728"
-              >
-                <path
-                  id="arr_left"
-                  d="M499-1749v8h-8"
-                  transform="translate(-877.52 -1577.555) rotate(135)"
-                  fill="none"
-                  stroke="#000"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="1"
-                  opacity="0.75"
-                />
-              </svg>
-              次月
-            </button>
-            <button
-              className={`flex mt-[32px] items-center ${
-                dates.month === dateObj.getMonth() + 1 && "hidden"
-              }`}
-              onClick={nextMonthFetch}
-            >
-              前月
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="12.728"
-                height="12.728"
-                viewBox="0 0 12.728 12.728"
-              >
-                <path
-                  id="arr_right"
-                  d="M499-1749v8h-8"
-                  transform="translate(890.247 1590.283) rotate(-45)"
-                  fill="none"
-                  stroke="#000"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="1"
-                  opacity="0.75"
-                />
-              </svg>
-            </button>
-          </div>
           <div>
-            <div className="pt-[48px] pb-[80px]">
+            <div className="pt-[65px] pb-[80px]">
               <div className="mb-[24px] hover:opacity-70">
                 <a href="/nyanplace" className="relative">
                   <img src="/assets/imgs/signboard.png" alt="signboard" />
@@ -267,4 +146,4 @@ const MonthRanking = () => {
   );
 };
 
-export default MonthRanking;
+export default TotalRanking;

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import CustomButton from "../BasicButton";
+import PrefectureBtn from "../CustomButton";
 
 interface Props {
   imgUrl: string;
@@ -22,8 +22,8 @@ const SignboardCard = ({ imgUrl, cafe, prefecture = "0" }: Props) => {
           店名店名店名店名店名店名店名店名店名店名店名店名店名店名
         </div>
         <div className="ms-auto mt-[10px] flex gap-2">
-          <CustomButton value={cafe}></CustomButton>
-          <CustomButton value={prefecture}></CustomButton>
+          <PrefectureBtn value={cafe}></PrefectureBtn>
+          <PrefectureBtn value={prefecture}></PrefectureBtn>
         </div>
       </div>
     </div>

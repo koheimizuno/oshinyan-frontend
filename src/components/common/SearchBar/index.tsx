@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CustomButton from "../../basic/BasicButton";
+import PrefectureBtn from "../../basic/CustomButton";
 
 import { PREFECTURE } from "../../../constant";
 import Container from "../../basic/Container";
@@ -9,8 +9,8 @@ interface Props {
   setList: (val: string[]) => void;
 }
 const SearchBar = ({ list, setList }: Props) => {
-  const [check, setCheck] = useState(false);
-  const [showPreperties, setShowProperties] = useState(false);
+  const [prefectureShow, setPrefectureShow] = useState(false);
+  const [characterShow, setCharacterShow] = useState(false);
 
   const selectRegion = (item: string) => {
     const exist = list.find((e) => e === item);
@@ -47,8 +47,10 @@ const SearchBar = ({ list, setList }: Props) => {
               <div
                 className=" w-[112px] h-[32px] bg-[#CBB279] shadow-inner rounded pl-[16px] pt-[3px] pb-[5px] pr-[10px] hover:opacity-70 active:opacity-100"
                 onClick={() => {
-                  check ? setCheck(false) : setCheck(true);
-                  setShowProperties(false);
+                  prefectureShow
+                    ? setPrefectureShow(false)
+                    : setPrefectureShow(true);
+                  setCharacterShow(false);
                 }}
               >
                 <button className=" w-[100%] flex justify-between items-center ">
@@ -65,8 +67,10 @@ const SearchBar = ({ list, setList }: Props) => {
                 <button
                   className=" w-[100%] flex justify-between items-center "
                   onClick={() => {
-                    check ? setShowProperties(false) : setShowProperties(true);
-                    setCheck(false);
+                    prefectureShow
+                      ? setCharacterShow(false)
+                      : setCharacterShow(true);
+                    setPrefectureShow(false);
                   }}
                 >
                   <p className=" text-white text-[16px] drop-shadow-[1px_1px_rgba(195,129,84,1)]">
@@ -80,7 +84,7 @@ const SearchBar = ({ list, setList }: Props) => {
               </div>
             </div>
           </div>
-          {check && (
+          {prefectureShow && (
             <div className="absolute bg-white w-full xs:top-[168px] xs:px-5 sm:top-[70px] left-0 z-50">
               <div className="max-w-[960px] m-auto xs:px-5 lg:px-0 mt-[24px] mb-[16px]">
                 <div className="grid xs:grid-cols-4 sm:grid-cols-8 md:grid-cols-10 lg:grid-cols-12 whitespace-nowrap border-b border-b-solid border-[#EAEAEA]">
@@ -96,7 +100,7 @@ const SearchBar = ({ list, setList }: Props) => {
                             selectRegion(item[0]);
                           }}
                         >
-                          <CustomButton value={item[0]} />
+                          <PrefectureBtn value={item[0]} />
                         </div>
                       </div>
                     );
@@ -105,7 +109,7 @@ const SearchBar = ({ list, setList }: Props) => {
                 <div className="pt-[16px] text-center">
                   <button
                     className="bg-[#FBA1B7] rounded-full shadow-inner text-white hover:opacity-70"
-                    onClick={() => setCheck(false)}
+                    onClick={() => setPrefectureShow(false)}
                   >
                     <p className="py-[6px] px-[26px] drop-shadow-[1px_1px_rgba(230,149,169,1)]">
                       検索するニャン！
@@ -115,21 +119,21 @@ const SearchBar = ({ list, setList }: Props) => {
               </div>
             </div>
           )}
-          {showPreperties && (
+          {characterShow && (
             <div className="absolute bg-white w-full xs:top-[168px] xs:px-5 sm:top-[70px] left-0 z-50">
               <div className="max-w-[960px] m-auto xs:px-5 lg:px-0 mt-[24px] mb-[16px]">
                 <div className="flex flex-wrap whitespace-nowrap border-b border-b-solid border-[#EAEAEA]">
                   <div
                     className={`mb-[16px] mr-[16px] w-[78px] hover:opacity-70`}
                   >
-                    <CustomButton value={"性格"} />
+                    <PrefectureBtn value={"性格"} />
                   </div>
                 </div>
                 <div className="pt-[16px] text-center">
                   <button
                     className="bg-[#FBA1B7] rounded-full shadow-inner text-white hover:opacity-70"
                     onClick={() => {
-                      setShowProperties(false);
+                      setCharacterShow(false);
                     }}
                   >
                     <p className="py-[6px] px-[26px] drop-shadow-[1px_1px_rgba(230,149,169,1)]">

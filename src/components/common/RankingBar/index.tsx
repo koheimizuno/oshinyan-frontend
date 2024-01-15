@@ -1,5 +1,5 @@
 import React from "react";
-const RankingBar = ({ page }: { page?: "ranking" | "top" }) => {
+const RankingBar = () => {
   return (
     <>
       <div className="xs:block sm:flex sm:justify-start mt-[35px] mb-[12px] pt-[12px] pb-[11px]  border-y-2 border-y-solid border-y-[#CBB279] text-[20px] w-[100%]">
@@ -13,36 +13,29 @@ const RankingBar = ({ page }: { page?: "ranking" | "top" }) => {
         </div>
         <div className="w-[264px] flex justify-between items-center xs:m-auto sm:ml-[55px]">
           <div>
-            {page === "ranking" ? (
-              <a
-                className="text-[#E695A9] underline-0 hover:underline"
-                href="/ranking/gekkan"
-              >
-                月間TOP10
-              </a>
-            ) : (
-              <a
-                className="hover:text-[#E695A9] underline-0"
-                href="/ranking/gekkan"
-              >
-                月間TOP10
-              </a>
-            )}
+            <a
+              className={`${
+                window.location.pathname === "/ranking/gekkan"
+                  ? "text-[#E695A9]"
+                  : "hover:text-[#E695A9]"
+              } underline-0" `}
+              href="/ranking/gekkan"
+            >
+              月間TOP10
+            </a>
           </div>
           <div className="w-0 h-[16px] border border-solid border-[#CBB279] mt-[2px]"></div>
           <div>
-            {page === "top" ? (
-              <a className="text-[#E695A9] underline-0" href="/ranking">
-                総合TOP10
-              </a>
-            ) : (
-              <a
-                className="hover:text-[#E695A9] underline-0 hover:underline"
-                href="/ranking"
-              >
-                総合TOP10
-              </a>
-            )}
+            <a
+              className={`${
+                window.location.pathname === "/ranking"
+                  ? "text-[#E695A9]"
+                  : "hover:text-[#E695A9]"
+              } underline-0`}
+              href="/ranking"
+            >
+              総合TOP10
+            </a>
           </div>
         </div>
       </div>

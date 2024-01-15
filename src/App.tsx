@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useCallback, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import Top from "./pages/Top";
 import MonthRanking from "./pages/MonthRanking";
@@ -21,13 +21,17 @@ import Oshiresister from "./pages/Oshiresister";
 import Login from "./pages/Login";
 
 import axios from "axios";
-import { TokenLoginAction } from "./slices/auth";
+import { LogOutAction, TokenLoginAction } from "./slices/auth";
 import "./App.css";
+import { CatObjectType } from "./constant/type";
+import TotalRanking from "./pages/TotalRanking";
 
-axios.defaults.baseURL = "http://127.0.0.1:8000/api/";
+axios.defaults.baseURL = "http://127.0.0.1:8000/";
 
 function App() {
   const dispatch = useDispatch();
+  const { isAuthenticated } = useSelector((state: any) => state.user);
+
   useEffect(() => {
     let token: string | null = localStorage.getItem("token");
     if (token) {
@@ -36,6 +40,7 @@ function App() {
       if (token !== null) data = JSON.parse(token);
       axios.defaults.headers.common["Authorization"] = `Token ${data.value}`;
       if (now.getTime() > data.expiry) {
+        dispatch(LogOutAction(data.value));
         localStorage.removeItem("token");
         window.location.href = "/login";
       }
@@ -54,8 +59,8 @@ function App() {
       <Routes>
         <Route path="/">
           //1 <Route index element={<Top />} />
-          <Route path="/ranking" element={<MonthRanking />} />
           <Route path="/ranking/gekkan" element={<MonthRanking />} />
+          <Route path="/ranking" element={<TotalRanking />} />
           //2 <Route path="/guide" element={<Guide />} />
           //3 <Route path="/registration" element={<Registration />} />
           //4 <Route path="/feature" element={<Feature />} />

@@ -1,15 +1,18 @@
-import React, { useEffect, useState } from "react";
-import CustomButton from "../BasicButton";
+import React, { useEffect, useRef, useState } from "react";
+import CustomButton from "../CustomButton";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import { CatObjectType } from "../../../constant/type";
 import { useDispatch, useSelector } from "react-redux";
 import { RecommendAction } from "../../../slices/recommend";
+import { Notification } from "../../../constant/notification";
+import { useNavigate } from "react-router-dom";
 
 interface PropsType extends CatObjectType {
+  id: number;
   isNew: false;
 }
-const CatBox = ({
+const CatCard = ({
   id,
   cat_name,
   shop_name,
@@ -17,29 +20,46 @@ const CatBox = ({
   cat_images,
   character,
   favorite_things,
+  attendance,
   description,
   recommend_user,
 }: PropsType) => {
   const dispatch = useDispatch();
-  const [isRecommend, setIsRecommend] = useState(false);
+  const navigate = useNavigate();
+  const recommendLoginElement = useRef<HTMLDivElement>(null);
   const [isNew, setIsNew] = useState(false);
+  const [recommendLoginShow, setRecommendLoginShow] = useState(false);
   const { user } = useSelector((state: any) => state.user);
+  const { isAuthenticated } = useSelector((state: any) => state.user);
 
   useEffect(() => {
-    let list: number[] = [];
-    recommend_user.map((item, key) => {
-      list.push(item.user);
-    });
-    list.includes(user.user_id) && setIsRecommend(true);
+    const handleClickOutside = (event: any) => {
+      if (
+        recommendLoginElement.current &&
+        !recommendLoginElement.current.contains(event.target)
+      ) {
+        setRecommendLoginShow(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
   }, []);
 
   const handleRecommend = async () => {
-    if (!isRecommend) {
-      const submitData = {
-        cat_id: id,
-        user_id: user.user_id,
-      };
-      const res = await dispatch(RecommendAction(submitData));
+    if (isAuthenticated) {
+      if (!recommend_user.find((e) => e.user == user.user_id)) {
+        const submitData = {
+          cat_id: id,
+          user_id: user.user_id,
+        };
+        const res = await dispatch(RecommendAction(submitData));
+      }
+    } else {
+      setRecommendLoginShow(true);
     }
   };
 
@@ -122,16 +142,30 @@ const CatBox = ({
               </div>
             </button>
           </Swiper>
-          <span
-            className="absolute top-[8px] right-[8px] z-10 cursor-pointer rounded-full"
-            onClick={handleRecommend}
+          <div
+            className="absolute top-[8px] right-[8px] z-10"
+            ref={recommendLoginElement}
           >
-            {isRecommend ? (
-              <img src="/assets/imgs/recommend-on.png" alt="" />
-            ) : (
-              <img src="/assets/imgs/recommend-off.png" alt="" />
+            <span
+              className="cursor-pointer rounded-full"
+              onClick={handleRecommend}
+            >
+              {recommend_user.find((e) => e.user == user.user_id) ? (
+                <img src="/assets/imgs/recommend-on.png" alt="" />
+              ) : (
+                <img src="/assets/imgs/recommend-off.png" alt="" />
+              )}
+            </span>
+            {recommendLoginShow && (
+              <span
+                className="absolute -left-5 -bottom-[75px] w-[250px] bg-white px-4 py-2 shadow-md rounded-xl cursor-pointer"
+                onClick={() => navigate("/login")}
+              >
+                会員ログイン後にボタンを押すことが可能です
+                <span className="w-2 h-4 absolute left-10 -top-4 z-20 border-8 border-transparent border-b-white"></span>
+              </span>
             )}
-          </span>
+          </div>
           {isNew && (
             <span className="absolute top-0 left-0 z-10">
               <img src="/assets/imgs/parts-new.svg" alt="" />
@@ -154,7 +188,7 @@ const CatBox = ({
               </a>
             </div>
             <div>
-              <CustomButton value={prefecture}></CustomButton>
+              <CustomButton value={prefecture} />
             </div>
           </div>
           <div className="flex justify-content-start items-center mt-[15px] mb-[8px]">
@@ -196,4 +230,4 @@ const CatBox = ({
   );
 };
 
-export default CatBox;
+export default CatCard;

@@ -1,7 +1,7 @@
 import MainLayout from "../../layouts/MainLayout";
 import Container from "../../components/basic/Container";
 import PageBar from "../../components/common/PageBar";
-import CatBox from "../../components/basic/blog/CatBox";
+import CatCard from "../../components/basic/blog/CatCard";
 import EditButton from "../../components/basic/EditButton";
 import FavoriteCard from "../../components/basic/FavoriteCard";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
@@ -107,7 +107,7 @@ const MyPage = () => {
             <div className="flex justify-between flex-wrap ">
               {catData &&
                 catData.map((e, i) => (
-                  <CatBox
+                  <CatCard
                     key={i}
                     id={e.id}
                     cat_name={e.cat_name}
@@ -117,6 +117,7 @@ const MyPage = () => {
                     character={e.character}
                     favorite_things={e.favorite_things}
                     description={e.description}
+                    attendance={e.attendance}
                     recommend_user={e.recommend_user}
                     isNew={false}
                   />

@@ -1,13 +1,26 @@
+import axios from "axios";
 import React, { useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { LogOutAction } from "../../slices/auth";
 
 const Header = () => {
+  const dispatch = useDispatch();
   const [hidden, setHidden] = useState("");
   const { isAuthenticated } = useSelector((state: any) => state.user);
+
   const handleResponsive = () => {
     hidden === "max-h-full" && setHidden("");
     hidden === "" && setHidden("max-h-full");
+  };
+
+  const handleLogout = async () => {
+    const token: string | null = localStorage.getItem("token");
+    let data;
+    if (token !== null) data = JSON.parse(token);
+    dispatch(LogOutAction({ token: data.value }));
+    delete axios.defaults.headers.common["Authorization"];
+    localStorage.removeItem("token");
   };
 
   return (
@@ -34,14 +47,16 @@ const Header = () => {
             </Link>
           </li>
           <li className="w-[1px] h-[16px] bg-black sm:hidden md:block"></li>
-          <li className="hover:text-[rgb(195,129,84)]">
-            <Link
-              to="/registration"
-              className="px-[15px] font-medium block sm:py-3 sm:hover:bg-zinc-100"
-            >
-              会員登録ニャ！
-            </Link>
-          </li>
+          {!isAuthenticated && (
+            <li className="hover:text-[rgb(195,129,84)]">
+              <Link
+                to="/registration"
+                className="px-[15px] font-medium block sm:py-3 sm:hover:bg-zinc-100"
+              >
+                会員登録ニャ！
+              </Link>
+            </li>
+          )}
           <li className="w-[1px] h-[16px] bg-black sm:hidden md:block"></li>
           <li className="hover:text-[#C38154]">
             <Link
@@ -67,14 +82,14 @@ const Header = () => {
             ) : (
               <a
                 href="/login"
-                className="bg-[#ffda89] w-[120px] rounded sm:m-auto px-[8px] pb-[5px] pt-[3px] flex justify-start items-center"
+                className="bg-[#edc97a] w-[120px] rounded sm:m-auto px-[8px] pb-[5px] pt-[3px] flex justify-center items-center gap-1"
               >
                 <div className="pr-[8px]">
                   <img
                     width="16"
                     height="16"
-                    src="https://img.icons8.com/fluency/48/lock-2--v1.png"
-                    alt="lock-2--v1"
+                    src="https://img.icons8.com/office/16/lock--v1.png"
+                    alt="lock--v1"
                   />
                 </div>
                 <p className="text-white text-[16px] tracking-[-.15em] font-medium">
@@ -83,6 +98,22 @@ const Header = () => {
               </a>
             )}
           </li>
+          {isAuthenticated && (
+            <li className="hover:text-[rgb(195,129,84)] ml-4">
+              <button
+                className="w-[120px] h-8 bg-[#f2850c] text-white rounded sm:m-auto px-[8px] pb-[5px] pt-[3px] flex justify-center items-center gap-1"
+                onClick={handleLogout}
+              >
+                <img
+                  width="16"
+                  height="16"
+                  src="https://img.icons8.com/office/16/unlock.png"
+                  alt="unlock"
+                />
+                <span>ログアウト</span>
+              </button>
+            </li>
+          )}
         </ul>
       </div>
       <div className="md:hidden cursor-pointer" onClick={handleResponsive}>
