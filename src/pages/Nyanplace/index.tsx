@@ -54,15 +54,16 @@ const Nyanplace = () => {
             <SignboardSearchBar list={regions} setList={setRegions} />
           </div>
           <div className="mt-[40px] mb-[64px] flex flex-wrap justify-between gap-y-4">
-            {Cats.map((e) => {
-              return (
-                <SignboardCard
-                  imgUrl={e.imgUrl}
-                  cafe={e.cafe}
-                  prefecture={e.prefecture}
-                />
-              );
-            })}
+            {Cats &&
+              Cats.map((e) => {
+                return (
+                  <SignboardCard
+                    imgUrl={e.imgUrl}
+                    cafe={e.cafe}
+                    prefecture={e.prefecture}
+                  />
+                );
+              })}
           </div>
         </Container>
       </MainLayout>

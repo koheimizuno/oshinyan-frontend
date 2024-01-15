@@ -16,7 +16,7 @@ import { CatObjectType } from "../../constant/type";
 const isNew = false;
 
 const TotalRanking = () => {
-  const [list, setList] = useState<string[]>([]);
+  const [keyword, selectPrefectureKeyword] = useState<string>("");
   const [catData, setCatData] = useState<CatObjectType[]>([]);
 
   useEffect(() => {
@@ -36,13 +36,10 @@ const TotalRanking = () => {
   return (
     <MainLayout>
       <SocialLinkGroup />
-      <SearchBar list={list} setList={setList} />
+      <SearchBar selectPrefectureKeyword={selectPrefectureKeyword} />
       <div className="bg-[#F5F4EC]">
         <div className="  w-[960px] m-auto ">
           <RankingBar />
-          {/* <div className="text-[40px] leading-[53px]">
-            <span>2023年11月</span>
-          </div> */}
           <div className="ranking-1 mt-[24px] mb-[24px]">
             <div className="ranking-1-tle flex gap-[8px]">
               <img src="/assets/imgs/ranking-1-cap.svg" alt="cat" />{" "}

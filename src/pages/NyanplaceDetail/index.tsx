@@ -141,15 +141,16 @@ function NyanplaceDetail() {
                 □□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
               </a>
             </div>
-            {CONTACTINFO.map((item, key) => (
-              <div className="flex gap-2" key={key}>
-                <div>
-                  <img src={item.icon} alt={item.alt} />
+            {CONTACTINFO &&
+              CONTACTINFO.map((item, key) => (
+                <div className="flex gap-2" key={key}>
+                  <div>
+                    <img src={item.icon} alt={item.alt} />
+                  </div>
+                  <span className="w-[65px]">{item.title}</span>
+                  <span className="ml-2 text-black">{item.content}</span>
                 </div>
-                <span className="w-[65px]">{item.title}</span>
-                <span className="ml-2 text-black">{item.content}</span>
-              </div>
-            ))}
+              ))}
           </div>
 
           <div className="flex gap-4 pb-8 border-b border-[#CCCCCC]">
@@ -162,22 +163,23 @@ function NyanplaceDetail() {
           <div>
             <p className="text-2xl pt-6 pb-4">ここで会える「看板猫」</p>
             <div className="flex justify-between flex-wrap ">
-              {catData.map((e, i) => (
-                <CatCard
-                  key={i}
-                  id={e.id}
-                  cat_name={e.cat_name}
-                  shop_name={e.shop_name}
-                  prefecture={e.prefecture}
-                  cat_images={e.cat_images}
-                  character={e.character}
-                  favorite_things={e.favorite_things}
-                  description={e.description}
-                  attendance={e.attendance}
-                  recommend_user={e.recommend_user}
-                  isNew={isNew}
-                />
-              ))}
+              {catData &&
+                catData.map((e, i) => (
+                  <CatCard
+                    key={i}
+                    id={e.id}
+                    cat_name={e.cat_name}
+                    shop_name={e.shop_name}
+                    prefecture={e.prefecture}
+                    cat_images={e.cat_images}
+                    character={e.character}
+                    favorite_things={e.favorite_things}
+                    description={e.description}
+                    attendance={e.attendance}
+                    recommend_user={e.recommend_user}
+                    isNew={isNew}
+                  />
+                ))}
             </div>
             <div className="mt-[124px]">
               <img
@@ -195,15 +197,16 @@ function NyanplaceDetail() {
             近くの「看板猫」がいる場所
           </h3>
           <div className="mt-[40px] flex flex-wrap justify-between gap-y-4">
-            {LOCATIONS.map((e) => {
-              return (
-                <SignboardCard
-                  imgUrl={e.imgUrl}
-                  cafe={e.cafe}
-                  prefecture={e.prefecture}
-                />
-              );
-            })}
+            {LOCATIONS &&
+              LOCATIONS.map((e) => {
+                return (
+                  <SignboardCard
+                    imgUrl={e.imgUrl}
+                    cafe={e.cafe}
+                    prefecture={e.prefecture}
+                  />
+                );
+              })}
           </div>
           <div className="bg-white mt-[20px] mb-[64px]">
             <SignboardSearchBar list={regions} setList={setRegions} />

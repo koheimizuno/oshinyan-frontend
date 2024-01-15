@@ -33,13 +33,14 @@ function Carousel(props: any) {
         navigation={{ nextEl: ".arrow-left", prevEl: ".arrow-right" }}
         className="h-[240px] cursor-pointer"
       >
-        {props.data.map((item: any, key: any) => (
-          <SwiperSlide key={key}>
-            <a href="/feature/1">
-              <img src={item.src} alt={item.alt} className="h-full m-auto" />
-            </a>
-          </SwiperSlide>
-        ))}
+        {props.data &&
+          props.data.map((item: any, key: any) => (
+            <SwiperSlide key={key}>
+              <a href="/feature/1">
+                <img src={item.src} alt={item.alt} className="h-full m-auto" />
+              </a>
+            </SwiperSlide>
+          ))}
         {props.nextBtnShow !== "none" && (
           <>
             <button className="arrow-left xs:hidden md:block">

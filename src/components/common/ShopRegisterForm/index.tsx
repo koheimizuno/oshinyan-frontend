@@ -153,11 +153,12 @@ const ShopRegisterForm = () => {
                   className="bg-gradient-to-b from-[#EAEAEA] to-[#D3D3D3] h-10 text-center text-[16px] w-[144px]"
                   sx={{ borderRadius: "20px" }}
                 >
-                  {PREFECTURE.map((item, key) => (
-                    <MenuItem value={item[0]} key={key}>
-                      {item[0]}
-                    </MenuItem>
-                  ))}
+                  {PREFECTURE &&
+                    PREFECTURE.map((item, key) => (
+                      <MenuItem value={item[0]} key={key}>
+                        {item[0]}
+                      </MenuItem>
+                    ))}
                 </Select>
               </div>
             </div>

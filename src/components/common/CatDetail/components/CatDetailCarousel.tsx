@@ -24,11 +24,12 @@ const CatDetailCarousel = () => {
       className="relative mb-0 bg-white"
     >
       <Slider>
-        {IMAGES.map((item: any, key: any) => (
-          <Slide index={key}>
-            <img src={item} alt="1" className="w-full h-full" />
-          </Slide>
-        ))}
+        {IMAGES &&
+          IMAGES.map((item: any, key: any) => (
+            <Slide index={key}>
+              <img src={item} alt="1" className="w-full h-full" />
+            </Slide>
+          ))}
       </Slider>
       <ButtonBack>
         <div className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">

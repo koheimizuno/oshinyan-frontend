@@ -1,26 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PrefectureBtn from "../../basic/CustomButton";
 
 import { PREFECTURE } from "../../../constant";
 import Container from "../../basic/Container";
 
-interface Props {
-  list: string[];
-  setList: (val: string[]) => void;
+interface SearchProps {
+  selectPrefectureKeyword: (val: string) => void;
 }
-const SearchBar = ({ list, setList }: Props) => {
+const SearchBar = ({ selectPrefectureKeyword }: SearchProps) => {
   const [prefectureShow, setPrefectureShow] = useState(false);
   const [characterShow, setCharacterShow] = useState(false);
-
-  const selectRegion = (item: string) => {
-    const exist = list.find((e) => e === item);
-    if (exist) {
-      const temps = list.filter((e) => e !== item);
-      setList(temps);
-    } else {
-      setList([...list, item]);
-    }
-  };
 
   return (
     <>
@@ -88,23 +77,22 @@ const SearchBar = ({ list, setList }: Props) => {
             <div className="absolute bg-white w-full xs:top-[168px] xs:px-5 sm:top-[70px] left-0 z-50">
               <div className="max-w-[960px] m-auto xs:px-5 lg:px-0 mt-[24px] mb-[16px]">
                 <div className="grid xs:grid-cols-4 sm:grid-cols-8 md:grid-cols-10 lg:grid-cols-12 whitespace-nowrap border-b border-b-solid border-[#EAEAEA]">
-                  {PREFECTURE.map((item, index, arr) => {
-                    return (
-                      <div className="flex justify-center items-center ">
-                        <div
-                          key={index}
-                          className={`mb-[16px] hover:opacity-70 ${
-                            list.includes(item[0]) ? "opacity-70" : ""
-                          }`}
-                          onClick={() => {
-                            selectRegion(item[0]);
-                          }}
-                        >
-                          <PrefectureBtn value={item[0]} />
+                  {PREFECTURE &&
+                    PREFECTURE.map((item, index, arr) => {
+                      return (
+                        <div className="flex justify-center items-center ">
+                          <div
+                            key={index}
+                            className="mb-[16px] hover:opacity-70"
+                            onClick={() => {
+                              selectPrefectureKeyword(item[0]);
+                            }}
+                          >
+                            <PrefectureBtn value={item[0]} />
+                          </div>
                         </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
                 </div>
                 <div className="pt-[16px] text-center">
                   <button

@@ -84,16 +84,17 @@ const ImageGallery = ({
               </div>
               <div className="w-full border-b border-white mt-4"></div>
               <div className="flex justify-between flex-wrap gap-y-3 pt-6 grow overflow-y-auto">
-                {CatImgs.map((e, i) => {
-                  return (
-                    <CatImage
-                      imgUrl={e.imgUrl}
-                      personName={e.personName}
-                      vote="000"
-                      key={i}
-                    />
-                  );
-                })}
+                {CatImgs &&
+                  CatImgs.map((e, i) => {
+                    return (
+                      <CatImage
+                        imgUrl={e.imgUrl}
+                        personName={e.personName}
+                        vote="000"
+                        key={i}
+                      />
+                    );
+                  })}
               </div>
             </div>
           </Container>

@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Carousel from "../../components/common/Carousel";
 import MainLayout from "../../layouts/MainLayout";
 import SearchBar from "../../components/common/SearchBar";
 import RankingBar from "../../components/common/RankingBar";
 import Store from "../../components/common/Store";
 import Notices from "../../components/common/Notices";
-import PrefectureBtn from "../../components/basic/CustomButton";
 import Container from "../../components/basic/Container";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import CatCard from "../../components/basic/blog/CatCard";
@@ -83,15 +82,19 @@ const CAROUSELIMAGES: object[] = [
 const isNew = false;
 
 const Top = () => {
-  const [regions, setRegions] = useState<string[]>([]);
+  const dispatch = useDispatch();
+  const [prefectureKeyword, selectPrefectureKeyword] = useState<string | null>(
+    null
+  );
+  const [prefectureShowProps, setPrefectureShowProps] = useState(true);
   const [catData, setCatData] = useState<CatObjectType[]>([]);
   const { recommendLoading } = useSelector((state: any) => state.recommend);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("randomcat");
-        setCatData(res.data);
+        const { data } = await axios.get("randomcat");
+        setCatData(data);
       } catch (error) {
         console.log(error);
       }
@@ -100,6 +103,22 @@ const Top = () => {
   }, [recommendLoading]);
 
   console.log(catData);
+
+  useEffect(() => {
+    const fetchSearchData = async () => {
+      try {
+        const { data } = await axios.get(
+          "searchprefecture?keyword=" + prefectureKeyword
+        );
+        setCatData(data);
+        setPrefectureShowProps(false);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchSearchData();
+  }, [prefectureKeyword]);
+
   return (
     <MainLayout>
       <SocialLinkGroup page="top" />
@@ -109,21 +128,9 @@ const Top = () => {
         spaceBetween={window.innerWidth < 640 ? 8 : 16}
         bgColor="bg-white"
       />
-      <SearchBar list={regions} setList={setRegions} />
+      <SearchBar selectPrefectureKeyword={selectPrefectureKeyword} />
       <Container>
         <RankingBar />
-        {regions.length > 0 && (
-          <div className="flex">
-            <span className="me-[22px] w-[72px]">エリア</span>
-            <div className="flex grow flex-wrap">
-              {regions.map((e) => (
-                <div className="mx-1 my-1">
-                  <PrefectureBtn value={e}></PrefectureBtn>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
         <div className="mt-[12px]">
           <div className="flex justify-between flex-wrap ">
             {catData &&

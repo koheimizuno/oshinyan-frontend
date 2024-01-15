@@ -1,0 +1,70 @@
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { LoginAction } from "../../../slices/auth";
+
+const LoginForm = () => {
+  const dispatch = useDispatch();
+  const [submitData, setSubmitData] = useState({});
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSubmitData({ ...submitData, [e.target.name]: e.target.value });
+  };
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    dispatch(LoginAction(submitData));
+  };
+  return (
+    <form className="bg-white px-[84px] py-10" onSubmit={handleSubmit}>
+      <label
+        htmlFor="email"
+        className=" flex justify-between h-[80px] border-b border-[#CCCCCC] items-center mt-[4px]"
+      >
+        <p className="">メールアドレス</p>
+        <div className="w-[80%]">
+          <input
+            className="bg-[#F7F7F7] border border-[#CCCCCC] rounded-[5px] me-auto h-[40px] w-full p-2 focus:outline-none"
+            type="text"
+            name="username"
+            id="username"
+            required
+            onChange={handleChange}
+          />
+        </div>
+      </label>
+      <div className="border-b border-[#CCCCCC]">
+        <label
+          htmlFor="password"
+          className="flex justify-between gap-5 h-[85px] items-center mt-[4px]"
+        >
+          <p className="">パスワード</p>
+          <div className="w-[80%]">
+            <input
+              className="bg-[#F7F7F7] border border-[#CCCCCC] rounded-[5px] me-auto w-full h-[40px] p-2 focus:outline-none"
+              type="password"
+              name="password"
+              id="password"
+              required
+              onChange={handleChange}
+            />
+          </div>
+        </label>
+        <div className="ml-[20%] mb-12">
+          <a href="#" className="border-b border-[#707070]">
+            パスワードをお忘れですか？
+          </a>
+        </div>
+      </div>
+      <div className="text-center pt-12">
+        <button
+          type="submit"
+          className="text-[24px] bg-[#FBA1B7] h-[48px] border-solid rounded-full py-2 ps-[42px] pe-[40px] leading-[32px] text-center text-white"
+        >
+          確認ニャ！
+        </button>
+      </div>
+    </form>
+  );
+};
+
+export default LoginForm;
+
+// bg-[#FBA1B7]

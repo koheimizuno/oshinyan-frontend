@@ -86,22 +86,23 @@ const FeatureDetail = () => {
         </div>
         <div className="mt-[32px] mb-[56px] flex flex-wrap justify-between">
           <div className="flex justify-between flex-wrap ">
-            {catData.map((e, i) => (
-              <CatCard
-                key={i}
-                id={e.id}
-                cat_name={e.cat_name}
-                shop_name={e.shop_name}
-                prefecture={e.prefecture}
-                cat_images={e.cat_images}
-                character={e.character}
-                favorite_things={e.favorite_things}
-                description={e.description}
-                attendance={e.attendance}
-                recommend_user={e.recommend_user}
-                isNew={isNew}
-              />
-            ))}
+            {catData &&
+              catData.map((e, i) => (
+                <CatCard
+                  key={i}
+                  id={e.id}
+                  cat_name={e.cat_name}
+                  shop_name={e.shop_name}
+                  prefecture={e.prefecture}
+                  cat_images={e.cat_images}
+                  character={e.character}
+                  favorite_things={e.favorite_things}
+                  description={e.description}
+                  attendance={e.attendance}
+                  recommend_user={e.recommend_user}
+                  isNew={isNew}
+                />
+              ))}
           </div>
         </div>
         <div className="flex justify-center mt-[32px] mb-[68px]">

@@ -23,7 +23,7 @@ interface dateType {
 const dateObj = new Date();
 
 const MonthRanking = () => {
-  const [list, setList] = useState<string[]>([]);
+  const [keyword, selectPrefectureKeyword] = useState<string>();
   const [catData, setCatData] = useState<CatObjectType[]>([]);
   const [dates, setDates] = useState<dateType>({
     year: dateObj.getFullYear(),
@@ -95,14 +95,10 @@ const MonthRanking = () => {
     }
   };
 
-  console.log("💚💚💚" + dateObj.toString());
-  console.log("💘💘💘" + dates.month);
-  console.log("💙💙💙" + dates.date);
-
   return (
     <MainLayout>
       <SocialLinkGroup />
-      <SearchBar list={list} setList={setList} />
+      <SearchBar selectPrefectureKeyword={selectPrefectureKeyword} />
       <div className="bg-[#F5F4EC]">
         <div className="  w-[960px] m-auto ">
           <RankingBar />

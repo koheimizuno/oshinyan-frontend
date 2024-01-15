@@ -19,9 +19,10 @@ const FeaturePage = () => {
         <PageBar page="特集を見るニャ！（一覧）" />
         <Title title="特集（仮）一覧" />
         <div className="mt-[32px] mb-[56px] flex flex-wrap justify-between">
-          {features.map((e) => {
-            return <FeatureCard imgUrl={e.imgUrl} text={e.text} />;
-          })}
+          {features &&
+            features.map((e) => {
+              return <FeatureCard imgUrl={e.imgUrl} text={e.text} />;
+            })}
         </div>
         <div className="flex justify-center mt-[48px] mb-[52px]">
           <Pagination

@@ -22,38 +22,43 @@ const thumbItems = (
     React.Dispatch<React.SetStateAction<boolean>>
   ]
 ) => {
-  return imgs.map((e, i) => (
-    <div
-      className="thumb w-[200px] px-1 opacity-60"
-      onClick={() => (setThumbIndex(i), setThumbAnimation(true))}
-    >
-      <img src={e.imgUrl} onDragStart={handleDragStart} role="presentation" />
-    </div>
-  ));
+  return (
+    imgs &&
+    imgs.map((e, i) => (
+      <div
+        className="thumb w-[200px] px-1 opacity-60"
+        onClick={() => (setThumbIndex(i), setThumbAnimation(true))}
+      >
+        <img src={e.imgUrl} onDragStart={handleDragStart} role="presentation" />
+      </div>
+    ))
+  );
 };
 
-const items = imgs.map((e: { imgUrl: string }) => (
-  <div className="w-full">
-    <img
-      src={e.imgUrl}
-      onDragStart={handleDragStart}
-      role="presentation"
-      className="w-full"
-    />
-    <div className="flex justify-between mt-2">
-      <span className="text-base underline text-white">猫好きさん</span>
-      <div className="flex w-[48px] h-[18px] right-[5px] bottom-[5px]">
-        <div className="me-1">
-          <Heart />
+const items =
+  imgs &&
+  imgs.map((e: { imgUrl: string }) => (
+    <div className="w-full">
+      <img
+        src={e.imgUrl}
+        onDragStart={handleDragStart}
+        role="presentation"
+        className="w-full"
+      />
+      <div className="flex justify-between mt-2">
+        <span className="text-base underline text-white">猫好きさん</span>
+        <div className="flex w-[48px] h-[18px] right-[5px] bottom-[5px]">
+          <div className="me-1">
+            <Heart />
+          </div>
+          <div className="text-white text-[12px] leading-4">{111}</div>
         </div>
-        <div className="text-white text-[12px] leading-4">{111}</div>
+      </div>
+      <div className="mt-3 text-base text-white break-all">
+        □□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
       </div>
     </div>
-    <div className="mt-3 text-base text-white break-all">
-      □□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
-    </div>
-  </div>
-));
+  ));
 const ImageDetail = ({
   onClick,
   show,
@@ -156,34 +161,46 @@ const ImageDetail = ({
                     touchTracking={!thumbAnimation}
                   />
                 </div>
-                <div className="btn-prev absolute top-[50%] left-0 cursor-pointer" onClick={slidePrev}>
+                <div
+                  className="btn-prev absolute top-[50%] left-0 cursor-pointer"
+                  onClick={slidePrev}
+                >
                   <ArrowLeft />
                 </div>
-                <div className="btn-next absolute top-[50%] right-0 cursor-pointer" onClick={slideNext}>
+                <div
+                  className="btn-next absolute top-[50%] right-0 cursor-pointer"
+                  onClick={slideNext}
+                >
                   <ArrowRight />
                 </div>
               </div>
+              <div
+                className="thumbs mt-8 w-[100vw] "
+                style={{ marginLeft: `-${offset}px` }}
+              >
+                <AliceCarousel
+                  activeIndex={thumbIndex}
+                  autoWidth
+                  disableDotsControls
+                  disableButtonsControls
+                  items={thumbs}
+                  mouseTracking={false}
+                  onSlideChanged={syncThumbs}
+                  touchTracking={!mainAnimation}
+                />
                 <div
-                  className="thumbs mt-8 w-[100vw] "
-                  style={{ marginLeft: `-${offset}px` }}
+                  className="btn-prev absolute bottom-[40px] left-0 cursor-pointer"
+                  onClick={slidePrev}
                 >
-                  <AliceCarousel
-                    activeIndex={thumbIndex}
-                    autoWidth
-                    disableDotsControls
-                    disableButtonsControls
-                    items={thumbs}
-                    mouseTracking={false}
-                    onSlideChanged={syncThumbs}
-                    touchTracking={!mainAnimation}
-                  />
-                  <div className="btn-prev absolute bottom-[40px] left-0 cursor-pointer" onClick={slidePrev}>
-                    <ArrowLeft />
-                  </div>
-                  <div className="btn-next absolute bottom-[40px] right-0 cursor-pointer" onClick={slideNext}>
-                    <ArrowRight />
-                  </div>
+                  <ArrowLeft />
                 </div>
+                <div
+                  className="btn-next absolute bottom-[40px] right-0 cursor-pointer"
+                  onClick={slideNext}
+                >
+                  <ArrowRight />
+                </div>
+              </div>
             </div>
           </Container>
         </div>

@@ -128,11 +128,16 @@ const MyPage = () => {
             投稿した推しニャン画像
           </div>
           <div className="mt-[40px] mb-[64px] flex flex-wrap justify-between gap-4">
-            {Cats.map((e) => {
-              return (
-                <FavoriteCard imgUrl={e.imgUrl} date="2023.01.01" vote="000" />
-              );
-            })}
+            {Cats &&
+              Cats.map((e) => {
+                return (
+                  <FavoriteCard
+                    imgUrl={e.imgUrl}
+                    date="2023.01.01"
+                    vote="000"
+                  />
+                );
+              })}
           </div>
         </Container>
       </MainLayout>

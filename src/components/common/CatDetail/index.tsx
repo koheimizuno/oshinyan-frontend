@@ -270,29 +270,31 @@ const CatDetail = () => {
           </div>
         </div>
         <div className="mt-6 flex gap-2">
-          {Cats.map((e, i) => {
-            return (
-              <CatFavorite
-                imgUrl={e.imgUrl}
-                vote="000"
-                key={i}
-                onClick={() => setShowImageDetail(true)}
-              />
-            );
-          })}
+          {Cats &&
+            Cats.map((e, i) => {
+              return (
+                <CatFavorite
+                  imgUrl={e.imgUrl}
+                  vote="000"
+                  key={i}
+                  onClick={() => setShowImageDetail(true)}
+                />
+              );
+            })}
         </div>
         <div className="mt-6">
           <BtnAdd />
         </div>
         <div className="flex gap-2 mt-4">
-          {actions.map((e, i) => (
-            <img
-              className="w-7 h-7"
-              src={`/assets/imgs/icons/${e}`}
-              alt=""
-              key={i}
-            />
-          ))}
+          {actions &&
+            actions.map((e, i) => (
+              <img
+                className="w-7 h-7"
+                src={`/assets/imgs/icons/${e}`}
+                alt=""
+                key={i}
+              />
+            ))}
         </div>
         {/* 2 */}
         <Border className="mt-5 border-dashed" color="#CCCCCC" />
@@ -316,14 +318,15 @@ const CatDetail = () => {
           <BtnAdd />
         </div>
         <div className="flex gap-2 mt-4">
-          {actions.map((e, i) => (
-            <img
-              className="w-7 h-7"
-              src={`/assets/imgs/icons/${e}`}
-              alt=""
-              key={i}
-            />
-          ))}
+          {actions &&
+            actions.map((e, i) => (
+              <img
+                className="w-7 h-7"
+                src={`/assets/imgs/icons/${e}`}
+                alt=""
+                key={i}
+              />
+            ))}
         </div>
         {/* add button */}
         <Border className="mt-5 border-dashed" color="#CCCCCC" />
@@ -335,16 +338,17 @@ const CatDetail = () => {
         <div className="text-base mt-14 font-medium">ニャンアルバム</div>
         <div className="w-full border-b border-black mt-4"></div>
         <div className="flex justify-between mt-6 flex-wrap gap-y-3">
-          {CatImgs.map((e, i) => {
-            return (
-              <CatImage
-                imgUrl={e.imgUrl}
-                personName={e.personName}
-                vote="000"
-                key={i}
-              />
-            );
-          })}
+          {CatImgs &&
+            CatImgs.map((e, i) => {
+              return (
+                <CatImage
+                  imgUrl={e.imgUrl}
+                  personName={e.personName}
+                  vote="000"
+                  key={i}
+                />
+              );
+            })}
         </div>
       </div>
 
@@ -354,22 +358,23 @@ const CatDetail = () => {
       </div>
       <div className="w-full border-b border-[#CBB279] mt-4"></div>
       <div className="mt-6 flex flex-wrap justify-between">
-        {catData.map((e, i) => (
-          <CatCard
-            key={i}
-            id={e.id}
-            cat_name={e.cat_name}
-            shop_name={e.shop_name}
-            prefecture={e.prefecture}
-            cat_images={e.cat_images}
-            character={e.character}
-            favorite_things={e.favorite_things}
-            description={e.description}
-            attendance={e.attendance}
-            recommend_user={e.recommend_user}
-            isNew={isNew}
-          />
-        ))}
+        {catData &&
+          catData.map((e, i) => (
+            <CatCard
+              key={i}
+              id={e.id}
+              cat_name={e.cat_name}
+              shop_name={e.shop_name}
+              prefecture={e.prefecture}
+              cat_images={e.cat_images}
+              character={e.character}
+              favorite_things={e.favorite_things}
+              description={e.description}
+              attendance={e.attendance}
+              recommend_user={e.recommend_user}
+              isNew={isNew}
+            />
+          ))}
       </div>
       <ImageGallery show={showImageGallery} setShow={setShowImageGallery} />
       <ImageDetail show={showImageDetail} setShow={setShowImageDetail} />

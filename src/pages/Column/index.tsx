@@ -87,18 +87,19 @@ function Column() {
           </div>
         </div>
         <div className="mt-6 mb-10 flex flex-wrap justify-between">
-          {CatsInSamePlace.map((e, i) => (
-            <BlogColumnBox
-              key={i}
-              imgUrl={e.imgUrl}
-              isChu={true}
-              name={"heracles"}
-              cafe={"cafe"}
-              vote={2}
-              character={["a", "a"]}
-              description={"this is description"}
-            />
-          ))}
+          {CatsInSamePlace &&
+            CatsInSamePlace.map((e, i) => (
+              <BlogColumnBox
+                key={i}
+                imgUrl={e.imgUrl}
+                isChu={true}
+                name={"heracles"}
+                cafe={"cafe"}
+                vote={2}
+                character={["a", "a"]}
+                description={"this is description"}
+              />
+            ))}
         </div>
       </Container>
     </MainLayout>

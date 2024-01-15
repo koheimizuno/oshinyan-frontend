@@ -82,21 +82,22 @@ border-solid border-r-transparent border-l-transparent border-t-white ml-[20px] 
           <div className="absolute bg-white w-full top-[70px] z-50">
             <div className=" w-[960px] m-auto mt-[24px] mb-[16px]">
               <div className="flex flex-wrap whitespace-nowrap border-b border-b-solid border-[#EAEAEA]">
-                {PREFECTURE.map((item, index) => {
-                  return (
-                    <div
-                      key={index}
-                      className={`mb-[16px] mr-[16px] w-[78px] hover:opacity-70 ${
-                        list.includes(item[0]) ? "opacity-70" : ""
-                      }`}
-                      onClick={() => {
-                        selectRegion(item[0]);
-                      }}
-                    >
-                      <PrefectureBtn value={item[0]} />
-                    </div>
-                  );
-                })}
+                {PREFECTURE &&
+                  PREFECTURE.map((item, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className={`mb-[16px] mr-[16px] w-[78px] hover:opacity-70 ${
+                          list.includes(item[0]) ? "opacity-70" : ""
+                        }`}
+                        onClick={() => {
+                          selectRegion(item[0]);
+                        }}
+                      >
+                        <PrefectureBtn value={item[0]} />
+                      </div>
+                    );
+                  })}
               </div>
               <div className="pt-[16px] text-center">
                 <button

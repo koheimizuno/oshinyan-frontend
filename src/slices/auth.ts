@@ -113,7 +113,6 @@ const userSlice = createSlice({
     });
     builder.addCase(LogOutAction.fulfilled, (state, action) => {
       state.isAuthenticated = false;
-      alert("success!");
       window.location.href = "/";
     });
   },

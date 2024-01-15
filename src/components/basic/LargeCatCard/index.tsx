@@ -168,11 +168,12 @@ const LargeCatCard = ({
               <p>性格</p>
             </div>
             <div className="flex">
-              {character.map((item, key) => (
-                <div className="pl-[8px]" key={key}>
-                  <CustomButton value={item} />
-                </div>
-              ))}
+              {character &&
+                character.map((item, key) => (
+                  <div className="pl-[8px]" key={key}>
+                    <CustomButton value={item} />
+                  </div>
+                ))}
             </div>
           </div>
           <div className="flex pb-[16px]">

@@ -34,9 +34,7 @@ const Store = () => {
         </div>
         <div className="m-auto">
           <div className="flex justify-between flex-wrap">
-            {items.map((e, i) => (
-              <Guess key={i} imgUrl={e.imgUrl} />
-            ))}
+            {items && items.map((e, i) => <Guess key={i} imgUrl={e.imgUrl} />)}
           </div>
         </div>
         <MoreButton />
