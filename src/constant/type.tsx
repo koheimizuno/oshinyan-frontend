@@ -16,4 +16,5 @@ export interface CatObjectType {
   attendance: string;
   description: string;
   recommend_user: recommendType[];
+  last_update: string;
 }

@@ -100,7 +100,7 @@ const FeatureDetail = () => {
                   description={e.description}
                   attendance={e.attendance}
                   recommend_user={e.recommend_user}
-                  isNew={isNew}
+                  last_update={e.last_update}
                 />
               ))}
           </div>

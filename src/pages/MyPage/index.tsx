@@ -119,7 +119,7 @@ const MyPage = () => {
                     description={e.description}
                     attendance={e.attendance}
                     recommend_user={e.recommend_user}
-                    isNew={false}
+                    last_update={e.last_update}
                   />
                 ))}
             </div>

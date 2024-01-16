@@ -79,14 +79,10 @@ const CAROUSELIMAGES: object[] = [
   },
 ];
 
-const isNew = false;
-
 const Top = () => {
-  const dispatch = useDispatch();
   const [prefectureKeyword, selectPrefectureKeyword] = useState<string | null>(
     null
   );
-  const [prefectureShowProps, setPrefectureShowProps] = useState(true);
   const [catData, setCatData] = useState<CatObjectType[]>([]);
   const { recommendLoading } = useSelector((state: any) => state.recommend);
 
@@ -111,7 +107,6 @@ const Top = () => {
           "searchprefecture?keyword=" + prefectureKeyword
         );
         setCatData(data);
-        setPrefectureShowProps(false);
       } catch (error) {
         console.log(error);
       }
@@ -147,7 +142,7 @@ const Top = () => {
                   attendance={e.attendance}
                   description={e.description}
                   recommend_user={e.recommend_user}
-                  isNew={isNew}
+                  last_update={e.last_update}
                 />
               ))}
           </div>
@@ -171,7 +166,7 @@ const Top = () => {
                   attendance={e.attendance}
                   description={e.description}
                   recommend_user={e.recommend_user}
-                  isNew={isNew}
+                  last_update={e.last_update}
                 />
               ))}
           </div>

@@ -7,10 +7,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { RecommendAction } from "../../../slices/recommend";
 import { Notification } from "../../../constant/notification";
 import { useNavigate } from "react-router-dom";
+import { isNewUtil } from "../../../utils";
 
 interface PropsType extends CatObjectType {
   id: number;
-  isNew: false;
 }
 const CatCard = ({
   id,
@@ -23,16 +23,18 @@ const CatCard = ({
   attendance,
   description,
   recommend_user,
+  last_update,
 }: PropsType) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const recommendLoginElement = useRef<HTMLDivElement>(null);
-  const [isNew, setIsNew] = useState(false);
+  const [isNew, setIsNew] = useState<boolean | undefined>(false);
   const [recommendLoginShow, setRecommendLoginShow] = useState(false);
   const { user } = useSelector((state: any) => state.user);
   const { isAuthenticated } = useSelector((state: any) => state.user);
 
   useEffect(() => {
+    setIsNew(isNewUtil(last_update));
     const handleClickOutside = (event: any) => {
       if (
         recommendLoginElement.current &&
@@ -41,9 +43,7 @@ const CatCard = ({
         setRecommendLoginShow(false);
       }
     };
-
     document.addEventListener("click", handleClickOutside);
-
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };

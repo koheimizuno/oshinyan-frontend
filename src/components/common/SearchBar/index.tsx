@@ -80,7 +80,10 @@ const SearchBar = ({ selectPrefectureKeyword }: SearchProps) => {
                   {PREFECTURE &&
                     PREFECTURE.map((item, index, arr) => {
                       return (
-                        <div className="flex justify-center items-center ">
+                        <div
+                          className="flex justify-center items-center "
+                          key={index}
+                        >
                           <div
                             key={index}
                             className="mb-[16px] hover:opacity-70"

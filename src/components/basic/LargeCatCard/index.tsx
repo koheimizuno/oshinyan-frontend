@@ -7,10 +7,8 @@ import { CatObjectType } from "../../../constant/type";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
 import { RecommendAction } from "../../../slices/recommend";
-
-interface PropsType extends CatObjectType {
-  isNew: false;
-}
+import { reduceEachLeadingCommentRange } from "typescript";
+import { isNewUtil } from "../../../utils";
 
 const LargeCatCard = ({
   id,
@@ -23,16 +21,19 @@ const LargeCatCard = ({
   description,
   attendance,
   recommend_user,
-  isNew,
-}: PropsType) => {
+  last_update,
+}: CatObjectType) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const recommendLoginElement = useRef<HTMLDivElement>(null);
   const [recommendLoginShow, setRecommendLoginShow] = useState(false);
+  const [isNew, setIsNew] = useState<boolean | undefined>(false);
   const { user } = useSelector((state: any) => state.user);
   const { isAuthenticated } = useSelector((state: any) => state.user);
+  const { recommendLoading } = useSelector((state: any) => state.recommend);
 
   useEffect(() => {
+    setIsNew(isNewUtil(last_update));
     const handleClickOutside = (event: any) => {
       if (
         recommendLoginElement.current &&
@@ -210,9 +211,9 @@ const LargeCatCard = ({
               onClick={handleRecommend}
             >
               {recommend_user.find((e) => e.user == user.user_id) ? (
-                <img src="/assets/imgs/mark_chu.png" alt="" />
+                <img src="/assets/imgs/recommend-on.png" alt="recommend-on" />
               ) : (
-                <img src="/assets/imgs/btn-foot.svg" alt="" />
+                <img src="/assets/imgs/recommend-off.png" alt="recommend-off" />
               )}
             </span>
             {recommendLoginShow && (
@@ -225,7 +226,7 @@ const LargeCatCard = ({
               </span>
             )}
           </div>
-          {!isNew && (
+          {isNew && (
             <span className="absolute top-0 left-0 z-10">
               <img src="/assets/imgs/parts-new.svg" alt="" />
             </span>

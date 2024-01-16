@@ -19,12 +19,11 @@ import Comment from "./pages/Comment";
 import Column from "./pages/Column";
 import Oshiresister from "./pages/Oshiresister";
 import Login from "./pages/Login";
+import TotalRanking from "./pages/TotalRanking";
 
 import axios from "axios";
 import { LogOutAction, TokenLoginAction } from "./slices/auth";
 import "./App.css";
-import { CatObjectType } from "./constant/type";
-import TotalRanking from "./pages/TotalRanking";
 
 axios.defaults.baseURL = "http://127.0.0.1:8000/";
 

@@ -5,10 +5,7 @@ import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
 import { useEffect, useRef, useState } from "react";
 import { RecommendAction } from "../../../slices/recommend";
 import { useNavigate } from "react-router-dom";
-
-interface PropsType extends CatObjectType {
-  isNew: false;
-}
+import { isNewUtil } from "../../../utils";
 
 const SmallCatCard = ({
   id,
@@ -21,15 +18,17 @@ const SmallCatCard = ({
   description,
   attendance,
   recommend_user,
-  isNew,
-}: PropsType) => {
+  last_update,
+}: CatObjectType) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const recommendLoginElement = useRef<HTMLDivElement>(null);
   const [recommendLoginShow, setRecommendLoginShow] = useState(false);
+  const [isNew, setIsNew] = useState<boolean | undefined>(false);
   const { user } = useSelector((state: any) => state.user);
   const { isAuthenticated } = useSelector((state: any) => state.user);
   useEffect(() => {
+    setIsNew(isNewUtil(last_update));
     const handleClickOutside = (event: any) => {
       if (
         recommendLoginElement.current &&
@@ -62,7 +61,7 @@ const SmallCatCard = ({
   return (
     <>
       <>
-        <div className="relative w-full h-[144px] hover:opacity-70 flex">
+        <div className="relative w-full h-[144px] flex">
           <div className="relative h-full w-[192px] bg-center bg-no-repeat">
             <Swiper
               modules={[Navigation, Pagination, Scrollbar, A11y]}
@@ -169,6 +168,11 @@ const SmallCatCard = ({
                 </span>
               )}
             </div>
+            {isNew && (
+              <span className="absolute top-0 left-0 z-10">
+                <img src="/assets/imgs/parts-new.svg" alt="" />
+              </span>
+            )}
           </div>
           <div className="px-[24px] w-[282px] bg-white h-full flex flex-col">
             <div className="pt-[16px]">

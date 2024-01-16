@@ -12,12 +12,14 @@ import SmallCatCard from "../../components/basic/SmallCatCard";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import axios from "axios";
 import { CatObjectType } from "../../constant/type";
+import { useSelector } from "react-redux";
 
 const isNew = false;
 
 const TotalRanking = () => {
   const [keyword, selectPrefectureKeyword] = useState<string>("");
   const [catData, setCatData] = useState<CatObjectType[]>([]);
+  const { recommendLoading } = useSelector((state: any) => state.recommend);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,9 +31,7 @@ const TotalRanking = () => {
       }
     };
     fetchData();
-  }, []);
-
-  console.log(catData);
+  }, [recommendLoading]);
 
   return (
     <MainLayout>
@@ -48,7 +48,7 @@ const TotalRanking = () => {
           </div>
           {catData[0] && (
             <LargeCatCard
-              id={1}
+              id={catData[0].id}
               cat_name={catData[0].cat_name}
               shop_name={catData[0].shop_name}
               prefecture={catData[0].prefecture}
@@ -58,7 +58,7 @@ const TotalRanking = () => {
               attendance={catData[0].attendance}
               description={catData[0].description}
               recommend_user={catData[0].recommend_user}
-              isNew={isNew}
+              last_update={catData[0].last_update}
             />
           )}
           <div className="mt-[24px]">
@@ -91,7 +91,7 @@ const TotalRanking = () => {
                       attendance={e.attendance}
                       description={e.description}
                       recommend_user={e.recommend_user}
-                      isNew={false}
+                      last_update={e.last_update}
                     />
                   </div>
                 ))}
@@ -103,7 +103,7 @@ const TotalRanking = () => {
                 <div className="flex flex-col" key={i}>
                   <div className="flex leading-[27px] mb-[7px]">{i + 5}位</div>
                   <SmallCatCard
-                    id={1}
+                    id={e.id}
                     cat_name={e.cat_name}
                     shop_name={e.shop_name}
                     prefecture={e.prefecture}
@@ -113,7 +113,7 @@ const TotalRanking = () => {
                     attendance={e.attendance}
                     description={e.description}
                     recommend_user={e.recommend_user}
-                    isNew={isNew}
+                    last_update={e.last_update}
                   />
                 </div>
               ))}
