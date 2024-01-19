@@ -32,6 +32,7 @@ const MonthRanking = () => {
     date: dateObj.getDate() + 1,
   });
   const { recommendLoading } = useSelector((state: any) => state.recommend);
+  const { isAuthenticated } = useSelector((state: any) => state.user);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,7 +46,7 @@ const MonthRanking = () => {
       }
     };
     fetchData();
-  }, [recommendLoading]);
+  }, [isAuthenticated, recommendLoading]);
 
   const previousMonthFetch = async () => {
     try {

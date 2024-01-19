@@ -1,19 +1,34 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useCallback, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { LoginAction } from "../../../slices/auth";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
   const [submitData, setSubmitData] = useState({});
+  const [loginError, setLoginError] = useState("");
+  const { error } = useSelector((state: any) => state.user);
+
+  useEffect(() => {
+    setLoginError(error);
+  }, [error]);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSubmitData({ ...submitData, [e.target.name]: e.target.value });
+    setLoginError("");
   };
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(LoginAction(submitData));
   };
+
   return (
     <form className="bg-white px-[84px] py-10" onSubmit={handleSubmit}>
+      {loginError && (
+        <p className="ml-[20%] text-red-500">
+          {/* 無効なユーザー名またはパスワード。 */}
+          {loginError}
+        </p>
+      )}
       <label
         htmlFor="email"
         className=" flex justify-between h-[80px] border-b border-[#CCCCCC] items-center mt-[4px]"
@@ -24,7 +39,6 @@ const LoginForm = () => {
             className="bg-[#F7F7F7] border border-[#CCCCCC] rounded-[5px] me-auto h-[40px] w-full p-2 focus:outline-none"
             type="text"
             name="username"
-            id="username"
             required
             onChange={handleChange}
           />
@@ -41,7 +55,6 @@ const LoginForm = () => {
               className="bg-[#F7F7F7] border border-[#CCCCCC] rounded-[5px] me-auto w-full h-[40px] p-2 focus:outline-none"
               type="password"
               name="password"
-              id="password"
               required
               onChange={handleChange}
             />

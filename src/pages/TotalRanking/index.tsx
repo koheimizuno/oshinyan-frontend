@@ -20,6 +20,7 @@ const TotalRanking = () => {
   const [keyword, selectPrefectureKeyword] = useState<string>("");
   const [catData, setCatData] = useState<CatObjectType[]>([]);
   const { recommendLoading } = useSelector((state: any) => state.recommend);
+  const { isAuthenticated } = useSelector((state: any) => state.user);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,7 +32,7 @@ const TotalRanking = () => {
       }
     };
     fetchData();
-  }, [recommendLoading]);
+  }, [isAuthenticated, recommendLoading]);
 
   return (
     <MainLayout>

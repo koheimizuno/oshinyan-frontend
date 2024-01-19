@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Carousel from "../../components/common/Carousel";
 import MainLayout from "../../layouts/MainLayout";
 import SearchBar from "../../components/common/SearchBar";
@@ -84,7 +84,7 @@ const Top = () => {
     null
   );
   const [catData, setCatData] = useState<CatObjectType[]>([]);
-  const { recommendLoading } = useSelector((state: any) => state.recommend);
+  const { isLoading } = useSelector((state: any) => state.user);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -96,7 +96,7 @@ const Top = () => {
       }
     };
     fetchData();
-  }, [recommendLoading]);
+  }, [isLoading]);
 
   console.log(catData);
 
