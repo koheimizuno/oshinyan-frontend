@@ -3,7 +3,7 @@ import { CatObjectType } from "../../../constant/type";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
 import { useEffect, useRef, useState } from "react";
-import { RecommendAction } from "../../../slices/recommend";
+import { RecommendAction } from "../../../slices/cat";
 import { useNavigate } from "react-router-dom";
 import { isNewUtil } from "../../../utils";
 

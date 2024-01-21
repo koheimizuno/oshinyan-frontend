@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const RecommendAction: any = createAsyncThunk(
-  "recommend",
+  "catRecommend",
   async (payload, thunkApi) => {
     try {
       const { data } = await axios.post("recommend", payload);
@@ -13,29 +13,28 @@ export const RecommendAction: any = createAsyncThunk(
   }
 );
 
-const recommendSlice = createSlice({
-  name: "recommend",
+const catSlice = createSlice({
+  name: "cat",
   initialState: {
-    recommendLoading: false,
-    data: {},
+    catLoading: false,
+    recommend: {},
+    catData: [],
   },
   reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(RecommendAction.pending, (state, action) => {
-        state.recommendLoading = true;
+        state.catLoading = true;
       })
       .addCase(RecommendAction.fulfilled, (state, action) => {
-        state.recommendLoading = false;
-        console.log();
-
-        state.data = action.payload;
+        state.catLoading = false;
+        state.recommend = action.payload;
       })
       .addCase(RecommendAction.rejected, (state, action) => {
-        state.recommendLoading = false;
+        state.catLoading = false;
       });
   },
 });
 
-export const { reducer } = recommendSlice;
-export default recommendSlice;
+export const { reducer } = catSlice;
+export default catSlice;

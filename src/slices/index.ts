@@ -1,10 +1,10 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import userSlice from "./auth";
-import recommendSlice from "./recommend";
+import catSlice from "./cat";
 
 const rootReducer = combineReducers({
   user: userSlice.reducer,
-  recommend: recommendSlice.reducer,
+  cat: catSlice.reducer,
 });
 
 const store = configureStore({

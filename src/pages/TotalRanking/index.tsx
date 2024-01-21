@@ -19,7 +19,7 @@ const isNew = false;
 const TotalRanking = () => {
   const [keyword, selectPrefectureKeyword] = useState<string>("");
   const [catData, setCatData] = useState<CatObjectType[]>([]);
-  const { recommendLoading } = useSelector((state: any) => state.recommend);
+  const { catLoading } = useSelector((state: any) => state.cat);
   const { isAuthenticated } = useSelector((state: any) => state.user);
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const TotalRanking = () => {
       }
     };
     fetchData();
-  }, [isAuthenticated, recommendLoading]);
+  }, [isAuthenticated, catLoading]);
 
   return (
     <MainLayout>

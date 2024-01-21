@@ -85,7 +85,7 @@ const Top = () => {
   );
   const [catData, setCatData] = useState<CatObjectType[]>([]);
   const { isLoading } = useSelector((state: any) => state.user);
-  const { recommendLoading } = useSelector((state: any) => state.recommend);
+  const { catLoading } = useSelector((state: any) => state.cat);
   const { isAuthenticated } = useSelector((state: any) => state.user);
 
   useEffect(() => {
@@ -98,7 +98,7 @@ const Top = () => {
       }
     };
     fetchData();
-  }, [isLoading, recommendLoading, isAuthenticated]);
+  }, [isLoading, catLoading, isAuthenticated]);
 
   console.log(catData);
 

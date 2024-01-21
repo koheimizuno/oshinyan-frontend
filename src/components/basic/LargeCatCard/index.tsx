@@ -6,7 +6,7 @@ import CustomButton from "../CustomButton";
 import { CatObjectType } from "../../../constant/type";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
-import { RecommendAction } from "../../../slices/recommend";
+import { RecommendAction } from "../../../slices/cat";
 import { reduceEachLeadingCommentRange } from "typescript";
 import { isNewUtil } from "../../../utils";
 
@@ -30,7 +30,7 @@ const LargeCatCard = ({
   const [isNew, setIsNew] = useState<boolean | undefined>(false);
   const { user } = useSelector((state: any) => state.user);
   const { isAuthenticated } = useSelector((state: any) => state.user);
-  const { recommendLoading } = useSelector((state: any) => state.recommend);
+  const { catLoading } = useSelector((state: any) => state.cat);
 
   useEffect(() => {
     setIsNew(isNewUtil(last_update));
