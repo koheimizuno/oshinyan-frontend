@@ -209,7 +209,7 @@ const MonthRanking = () => {
             }`}
           >
             {catData &&
-              catData.slice(4, 11).map((e, i) => (
+              catData.slice(4, 10).map((e, i) => (
                 <div className="flex flex-col" key={i}>
                   <div className="flex leading-[27px] mb-[7px]">{i + 5}位</div>
                   <SmallCatCard
