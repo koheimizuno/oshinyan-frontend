@@ -143,59 +143,61 @@ const Guide = () => {
             alt="how_to_have_good_time"
           />
         </div>
-        <div className="mt-[48px]">
+        <div className="mt-[48px] px-10">
           {/* 1 */}
-          <div className="flex">
+          <div className="flex items-start">
             <div className="w-[424px] me-auto">
               <button
                 className={`text-[28px] h-[56px] border-solid rounded-[15px] px-[14px] py-[8px] translate-x-0.51 bg-[#FBA1B7] text-white`}
               >
                 その１ニャン!
               </button>
-              <div className="text-[40px] text-[#515151] mt-[22px] leading-[53px]">
+              <div className="text-[40px] text-[#515151] mt-[10px] leading-[68px]">
                 全国のかわいい看板猫たちをサイト内で探してみるニャン！
               </div>
             </div>
             <div className="text-center">
-              <div className="w-[470px] h-[295px] rounded-[50%] bg-[#EAEAEA]"></div>
+              <img src="assets/imgs/Guide-1.png" alt="Guide-1" />
             </div>
           </div>
           {/* 2 */}
-          <div className="flex mt-[72px]">
+          <div className="flex items-end mt-[30px]">
             <div className="text-center me-auto">
-              <div className="w-[470px] h-[295px] rounded-[50%] bg-[#EAEAEA]"></div>
+              <img src="assets/imgs/Guide-2.png" alt="Guide-2" />
             </div>
-            <div className="w-[424px]">
+            <div className="w-[424px] pb-[27px]">
               <button
                 className={`text-[28px] h-[56px] border-solid rounded-[15px] px-[14px] py-[8px] translate-x-0.51 bg-[#FBA1B7] text-white`}
               >
                 その2ニャン!
               </button>
-              <div className="text-[40px] text-[#515151] mt-[22px] leading-[53px]">
+              <div className="text-[40px] text-[#515151] mt-[22px] leading-[68px] ">
                 サイトの中の看板猫で、自分の「推し」を見つけるニャン！
               </div>
             </div>
           </div>
           {/* 3 */}
-          <div className="flex mt-[72px]">
+          <div className="flex items-start mt-[78px]">
             <div className="w-[424px] me-auto">
               <button
                 className={`text-[28px] h-[56px] border-solid rounded-[15px] px-[14px] py-[8px] translate-x-0.51 bg-[#FBA1B7] text-white`}
               >
                 その3ニャン!
               </button>
-              <div className="text-[40px] text-[#515151] mt-[22px] leading-[53px]">
+              <div className="text-[40px] text-[#515151] mt-[22px] leading-[68px]">
                 「推し」の看板猫さんに会いに行くニャン！
               </div>
             </div>
             <div className="text-center">
-              <div className="w-[470px] h-[295px] rounded-[50%] bg-[#EAEAEA]"></div>
+              {/* <div className="w-[470px] h-[295px] rounded-[50%] bg-[#EAEAEA]"></div> */}
+              <img src="assets/imgs/Guide-3.png" alt="Guide-3" />
             </div>
           </div>
           {/* 4 */}
-          <div className="flex mt-[72px]">
+          <div className="flex items-start mt-[86px]">
             <div className="text-center me-auto">
-              <div className="w-[470px] h-[295px] rounded-[50%] bg-[#EAEAEA]"></div>
+              {/* <div className="w-[470px] h-[295px] rounded-[50%] bg-[#EAEAEA]"></div> */}
+              <img src="assets/imgs/Guide-4.png" alt="Guide-4" />
             </div>
             <div className="w-[424px]">
               <button
@@ -203,9 +205,8 @@ const Guide = () => {
               >
                 その4ニャン!
               </button>
-              <div className="text-[40px] text-[#515151] mt-[22px] leading-[53px]">
+              <div className="text-[40px] text-[#515151] mt-[10px] leading-[68px]">
                 推しニャンSNS は、全国の猫さんがたくさん載っているニャー
-                ＃推しニャンを楽しんで
               </div>
             </div>
           </div>
@@ -234,19 +235,31 @@ const Guide = () => {
         </div>
         <div className="mt-[32px] flex justify-between">
           <div className="w-[300px]">
-            <div className="w-[300px] h-[300px] rounded-[50%] bg-[#EAEAEA]"></div>
+            <div className="flex justify-center items-center w-[300px] h-[300px] rounded-[50%] bg-white">
+              <div>
+                <img src="assets/imgs/Guide-icon-1.png" alt="Guide-icon-1" />
+              </div>
+            </div>
             <div className="mt-[22px] text-center text-[20px] px-[14px]">
               マイページで、自分の推し猫にいつも会える！
             </div>
           </div>
           <div className="w-[300px]">
-            <div className="w-[300px] h-[300px] rounded-[50%] bg-[#EAEAEA]"></div>
+            <div className="flex justify-center items-center w-[300px] h-[300px] rounded-[50%] bg-white">
+              <div>
+                <img src="assets/imgs/Guide-icon-2.png" alt="Guide-icon-2" />
+              </div>
+            </div>
             <div className="mt-[22px] text-center text-[20px] px-[14px]">
               推し猫の写真やコメントに投稿できる！
             </div>
           </div>
           <div className="w-[300px]">
-            <div className="w-[300px] h-[300px] rounded-[50%] bg-[#EAEAEA]"></div>
+            <div className="flex justify-center items-center w-[300px] h-[300px] rounded-[50%] bg-white">
+              <div>
+                <img src="assets/imgs/Guide-icon-3.png" alt="Guide-icon-3" />
+              </div>
+            </div>
             <div className="mt-[22px] text-center text-[20px] px-[14px]">
               その他、これから機能が追加されます。お楽しみに。
             </div>

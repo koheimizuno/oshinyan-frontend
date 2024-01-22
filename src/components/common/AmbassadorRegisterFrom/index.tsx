@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FormControlLabel, Checkbox, Modal, Box } from "@mui/material";
 import { Close } from "@mui/icons-material";
+import PrivacyComponent from "../PrivacyComponent";
 
 const modalBoxSytle = {
   position: "absolute",
@@ -161,26 +162,13 @@ const AmbassadorRegisterFrom = () => {
           ></textarea>
         </div>
         <div className="border-b border-[#CCCCCC] mt-[32px]"></div>
-        {/* row 7 */}
-        <div className="pt-[32px] flex justify-between items-center flex-wrap">
-          <div className="w-full flex justify-center">
-            <label className="text-[16px]" htmlFor="privacy">
-              個人情報の取扱い方針
-              <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
-                *
-              </span>
-            </label>
-          </div>
-          <div className="w-full flex justify-center mt-[19px]">
-            <textarea
-              name="privacy"
-              id="privacy"
-              className="h-[160px] w-[536px] border border-[#CCCCCC]"
-            ></textarea>
-          </div>
-          <div className="w-full flex justify-center mt-[27px]">
-            <FormControlLabel control={<Checkbox />} label="同意するニャン" />
-          </div>
+        <PrivacyComponent />
+        <div className="text-center mt-[27px] pb-[27px] border-b border-[#CCCCCC]">
+          <FormControlLabel
+            control={<Checkbox />}
+            label="同意するニャン"
+            required
+          />
         </div>
       </div>
       <div className="border-b border-[#CCCCCC] mt-[27px]"></div>

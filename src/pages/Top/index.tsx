@@ -84,7 +84,7 @@ const Top = () => {
     null
   );
   const [catData, setCatData] = useState<CatObjectType[]>([]);
-  const { isLoading } = useSelector((state: any) => state.user);
+  const { authLoading } = useSelector((state: any) => state.user);
   const { catLoading } = useSelector((state: any) => state.cat);
   const { isAuthenticated } = useSelector((state: any) => state.user);
 
@@ -98,7 +98,7 @@ const Top = () => {
       }
     };
     fetchData();
-  }, [isLoading, catLoading, isAuthenticated]);
+  }, [isAuthenticated, catLoading, authLoading]);
 
   console.log(catData);
 

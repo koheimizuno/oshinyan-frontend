@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { PREFECTURE } from "../../../constant";
 import { Checkbox, FormControlLabel } from "@mui/material";
 import { RegistrationAction } from "../../../slices/auth";
+import PrivacyComponent from "../PrivacyComponent";
 
 const SignupForm = () => {
   const dispatch = useDispatch();
@@ -127,7 +128,10 @@ const SignupForm = () => {
             </div>
             {/* row2 */}
             <div className="flex justify-between h-[80px] border-b border-[#CCCCCC] items-center mt-[4px]">
-              <label htmlFor="email" className="w-[134px]">
+              <label
+                htmlFor="email"
+                className="w-[134px] mr-5 whitespace-nowrap"
+              >
                 メールアドレス
               </label>
               <input
@@ -140,7 +144,10 @@ const SignupForm = () => {
               />
             </div>
             <div className="flex justify-between h-[80px] border-b border-[#CCCCCC] items-center mt-[4px]">
-              <label htmlFor="password" className="w-[134px]">
+              <label
+                htmlFor="password"
+                className="w-[134px] mr-5 whitespace-nowrap"
+              >
                 パスワード
               </label>
               <input
@@ -154,46 +161,24 @@ const SignupForm = () => {
             </div>
           </div>
         </div>
-        <div className="text-center mt-[24px]">
-          <div className="text-center">
-            <label htmlFor="privacy" className="w-[134px]">
-              個人情報の取扱い方針
-            </label>
-          </div>
-          <textarea
-            className="p-1 text-[12px] mt-3 text-left bg-[#F7F7F7] border border-[#CCCCCC] me-auto h-[160px] w-[528px] overflow-y-auto"
-            name="privacy"
-            id="privacy"
+        <PrivacyComponent />
+        <div className="text-center mt-[27px] pb-[27px] border-b border-[#CCCCCC]">
+          <FormControlLabel
+            control={<Checkbox checked={checked} onChange={handleChange1} />}
+            label="同意するニャン"
+            ref={checkRef}
+            required
+          />
+        </div>
+        <div className="mt-[47px] text-center">
+          <button
+            type="submit"
+            className={`text-[24px] ${
+              checked ? "bg-[#FBA1B7]" : "bg-[#f8c6d2]"
+            }  h-[48px] border-solid rounded-full py-2 ps-[42px] pe-[40px] leading-[32px] text-center text-white`}
           >
-            個人情報の取扱い方針個人情報の取扱い方針個人情報の取扱い方針個人情報の取扱い方針個人情報の取扱い方針
-            個人情報の取扱い方針個人情報の取扱い方針個人情報の取扱い方針個人情報の取扱い方針個人情報の取扱い方針
-            個人情報の取扱い方針個人情報の取扱い方針個人情報の取扱い方針個人情報の取扱い方針個人情報の取扱い方針
-            個人情報の取扱い方針個人情報の取扱い方針個人情報の取扱い方針個人情報の取扱い方針個人情報の取扱い方針
-            個人情報の取扱い方針個人情報の取扱い方針個人情報の取扱い方針個人情報の取扱い方針個人情報の取扱い方針
-            個人情報の取扱い方針個人情報の取扱い方針個人情報の取扱い方針個人情報の取扱い方針個人情報の取扱い方針
-            個人情報の取扱い方針個人情報の取扱い方針個人情報の取扱い方針個人情報の取扱い方針個人情報の取扱い方針
-            個人情報の取扱い方針個人情報の取扱い方針個人情報の取扱い方針個人情報の取扱い方針個人情報の取扱い方針
-            個人情報の取扱い方針個人情報の取扱い方針個人情報の取扱い方針個人情報の取扱い方針個人情報の取扱い方針
-            個人情報の取扱い方針個人情報の取扱い方針個人情報の取扱い方針個人情報の取扱い方針個人情報の取扱い方針
-          </textarea>
-          <div className="text-center mt-[27px] pb-[27px] border-b border-[#CCCCCC]">
-            <FormControlLabel
-              control={<Checkbox checked={checked} onChange={handleChange1} />}
-              label="同意するニャン"
-              ref={checkRef}
-              required
-            />
-          </div>
-          <div className="mt-[47px] text-center">
-            <button
-              type="submit"
-              className={`text-[24px] ${
-                checked ? "bg-[#FBA1B7]" : "bg-[#f8c6d2]"
-              }  h-[48px] border-solid rounded-full py-2 ps-[42px] pe-[40px] leading-[32px] text-center text-white`}
-            >
-              確認ニャ！
-            </button>
-          </div>
+            確認ニャ！
+          </button>
         </div>
       </form>
     </div>

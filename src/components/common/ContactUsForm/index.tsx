@@ -1,4 +1,6 @@
+import { Checkbox, FormControlLabel } from "@mui/material";
 import FileUpload from "../../basic/icons/FileUpload";
+import PrivacyComponent from "../PrivacyComponent";
 
 const ContactUsForm = () => {
   return (
@@ -164,32 +166,15 @@ const ContactUsForm = () => {
           </span>
         </div>
         <div className="border-b border-[#CCCCCC] mt-[32px]"></div>
-        {/* row 9 */}
-        <div className="pt-[32px] flex justify-between items-center flex-wrap">
-          <div className="w-full flex justify-center">
-            <label className="text-[16px]" htmlFor="privacy">
-              個人情報の取扱い方針
-              <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
-                *
-              </span>
-            </label>
-          </div>
-          <div className="w-full flex justify-center mt-[19px]">
-            <textarea
-              name="privacy"
-              id="privacy"
-              className="h-[160px] w-[536px] border border-[#CCCCCC]"
-            ></textarea>
-          </div>
-          <div className="w-full flex justify-center mt-[27px]">
-            <input type="checkbox" name="agree" id="agree" />
-            <label htmlFor="agree" className="text-[16px] ms-2">
-              同意するニャン
-            </label>
-          </div>
+        <PrivacyComponent />
+        <div className="text-center mt-[27px] pb-[27px] border-b border-[#CCCCCC]">
+          <FormControlLabel
+            control={<Checkbox />}
+            label="同意するニャン"
+            required
+          />
         </div>
       </div>
-      <div className="border-b border-[#CCCCCC] mt-[27px]"></div>
       <div className="mt-[47px] text-center">
         <button
           className={

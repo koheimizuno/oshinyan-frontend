@@ -12,6 +12,7 @@ import {
 import { PREFECTURE } from "../../../constant";
 import axios from "axios";
 import { Store } from "react-notifications-component";
+import PrivacyComponent from "../PrivacyComponent";
 
 const ShopRegisterForm = () => {
   const hiddenFileInput = useRef<HTMLInputElement>(null);
@@ -308,34 +309,17 @@ const ShopRegisterForm = () => {
           </button>
         </div>
         <div className="border-b border-[#CCCCCC] mt-[32px]"></div>
-        {/* row 5 */}
-        <div className="pt-[32px] flex justify-between items-center flex-wrap">
-          <div className="w-full flex justify-center">
-            <label className="text-[16px]" htmlFor="privacy">
-              個人情報の取扱い方針
-              <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
-                *
-              </span>
-            </label>
-          </div>
-          <div className="w-full flex justify-center mt-[19px]">
-            <textarea
-              name="privacy"
-              id="privacy"
-              className="h-[160px] w-[536px] border border-[#CCCCCC]"
-            ></textarea>
-          </div>
-          <div className="w-full flex justify-center mt-[27px]">
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={checked}
-                  onChange={(e: any) => setChecked(e.target.checked)}
-                />
-              }
-              label="同意するニャン"
-            />
-          </div>
+        <PrivacyComponent />
+        <div className="w-full flex justify-center mt-[27px]">
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={checked}
+                onChange={(e: any) => setChecked(e.target.checked)}
+              />
+            }
+            label="同意するニャン"
+          />
         </div>
       </div>
       <div className="border-b border-[#CCCCCC] mt-[27px]"></div>

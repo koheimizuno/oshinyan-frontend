@@ -54,7 +54,7 @@ export const LogOutAction: any = createAsyncThunk(
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    isLoading: false,
+    authLoading: false,
     user: {},
     error: null,
     isAuthenticated: false,
@@ -64,10 +64,10 @@ const userSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(RegistrationAction.pending, (state, action) => {
-        state.isLoading = true;
+        state.authLoading = true;
       })
       .addCase(RegistrationAction.fulfilled, (state, action) => {
-        state.isLoading = false;
+        state.authLoading = false;
         const now = new Date();
         Notification("success", "アカウントが正常に作成されました。");
         const item = {
@@ -82,12 +82,12 @@ const userSlice = createSlice({
         }, 2000);
       })
       .addCase(RegistrationAction.rejected, (state, action) => {
-        state.isLoading = false;
+        state.authLoading = false;
         Notification("error", action.payload);
       });
     builder
       .addCase(LoginAction.pending, (state, action) => {
-        state.isLoading = true;
+        state.authLoading = true;
         state.error = null;
       })
       .addCase(LoginAction.fulfilled, (state, action) => {
@@ -98,7 +98,7 @@ const userSlice = createSlice({
         };
         localStorage.setItem("token", JSON.stringify(item));
         state.isAuthenticated = true;
-        state.isLoading = false;
+        state.authLoading = false;
         state.user = action.payload;
         Notification("success", "ログインに成功しました。");
         setTimeout(() => {
@@ -106,34 +106,34 @@ const userSlice = createSlice({
         }, 2000);
       })
       .addCase(LoginAction.rejected, (state, action) => {
-        state.isLoading = false;
+        state.authLoading = false;
         state.error = action.payload;
         // Notification("error", action.payload);
         // state.loginError = action.payload;
       });
     builder
       .addCase(TokenLoginAction.pending, (state, action) => {
-        state.isLoading = true;
+        state.authLoading = true;
       })
       .addCase(TokenLoginAction.fulfilled, (state, action) => {
-        state.isLoading = false;
+        state.authLoading = false;
         state.isAuthenticated = true;
         state.user = action.payload;
       })
       .addCase(TokenLoginAction.rejected, (state, action) => {
-        state.isLoading = false;
+        state.authLoading = false;
       });
     builder
       .addCase(LogOutAction.pending, (state, action) => {
-        state.isLoading = true;
+        state.authLoading = true;
       })
       .addCase(LogOutAction.fulfilled, (state, action) => {
         state.isAuthenticated = false;
-        state.isLoading = false;
+        state.authLoading = false;
         window.location.href = "/";
       })
       .addCase(LogOutAction.rejected, (state, action) => {
-        state.isLoading = false;
+        state.authLoading = false;
       });
   },
 });
