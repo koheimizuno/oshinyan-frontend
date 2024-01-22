@@ -66,7 +66,7 @@ const TotalRanking = () => {
             <div className="flex justify-between flex-wrap ">
               {catData &&
                 catData.slice(1, 4).map((e, i) => (
-                  <div className="flex flex-col">
+                  <div className="flex flex-col" key={i}>
                     <div className="flex leading-[27px] mb-[7px]">
                       {i === 0 && (
                         <div className="w-[36px] h-[26px] me-[12px]">

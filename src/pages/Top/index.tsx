@@ -88,17 +88,20 @@ const Top = () => {
   const { catLoading } = useSelector((state: any) => state.cat);
   const { isAuthenticated } = useSelector((state: any) => state.user);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { data } = await axios.get("randomcat");
-        setCatData(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
-  }, [isAuthenticated, catLoading, authLoading]);
+  useEffect(
+    () => {
+      const fetchData = async () => {
+        try {
+          const { data } = await axios.get("randomcat");
+          setCatData(data);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      fetchData();
+    },
+    isAuthenticated ? [isAuthenticated, catLoading, authLoading] : []
+  );
 
   console.log(catData);
 
