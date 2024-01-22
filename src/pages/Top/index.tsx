@@ -103,15 +103,15 @@ const Top = () => {
     isAuthenticated ? [isAuthenticated, catLoading, authLoading] : []
   );
 
-  console.log(catData);
-
   useEffect(() => {
     const fetchSearchData = async () => {
       try {
-        const { data } = await axios.get(
-          "searchprefecture?keyword=" + prefectureKeyword
-        );
-        setCatData(data);
+        if (prefectureKeyword !== null) {
+          const { data } = await axios.get(
+            "searchprefecture?keyword=" + prefectureKeyword
+          );
+          setCatData(data);
+        }
       } catch (error) {
         console.log(error);
       }
@@ -119,6 +119,7 @@ const Top = () => {
     fetchSearchData();
   }, [prefectureKeyword]);
 
+  console.log(catData);
   return (
     <MainLayout>
       <SocialLinkGroup page="top" />
