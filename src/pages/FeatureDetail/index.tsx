@@ -86,7 +86,7 @@ const FeatureDetail = () => {
         </div>
         <div className="mt-[32px] mb-[56px] flex flex-wrap justify-between">
           <div className="flex justify-between flex-wrap ">
-            {catData &&
+            {catData.length !== 0 ? (
               catData.map((e, i) => (
                 <CatCard
                   key={i}
@@ -97,12 +97,17 @@ const FeatureDetail = () => {
                   cat_images={e.cat_images}
                   character={e.character}
                   favorite_things={e.favorite_things}
-                  description={e.description}
                   attendance={e.attendance}
+                  description={e.description}
                   recommend_user={e.recommend_user}
                   last_update={e.last_update}
                 />
-              ))}
+              ))
+            ) : (
+              <p className="py-10 block w-full text-center text-xl">
+                お探しの看板猫はありません
+              </p>
+            )}
           </div>
         </div>
         <div className="flex justify-center mt-[32px] mb-[68px]">

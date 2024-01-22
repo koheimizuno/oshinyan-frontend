@@ -83,25 +83,23 @@ const Top = () => {
   const [prefectureKeyword, selectPrefectureKeyword] = useState<string | null>(
     null
   );
+  const [prefectureShow, setPrefectureShow] = useState(false);
   const [catData, setCatData] = useState<CatObjectType[]>([]);
   const { authLoading } = useSelector((state: any) => state.user);
   const { catLoading } = useSelector((state: any) => state.cat);
   const { isAuthenticated } = useSelector((state: any) => state.user);
 
-  useEffect(
-    () => {
-      const fetchData = async () => {
-        try {
-          const { data } = await axios.get("randomcat");
-          setCatData(data);
-        } catch (error) {
-          console.log(error);
-        }
-      };
-      fetchData();
-    },
-    isAuthenticated ? [isAuthenticated, catLoading, authLoading] : []
-  );
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await axios.get("randomcat");
+        setCatData(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, [isAuthenticated, catLoading, authLoading]);
 
   useEffect(() => {
     const fetchSearchData = async () => {
@@ -117,9 +115,11 @@ const Top = () => {
       }
     };
     fetchSearchData();
+    setPrefectureShow(false);
   }, [prefectureKeyword]);
 
   console.log(catData);
+
   return (
     <MainLayout>
       <SocialLinkGroup page="top" />
@@ -129,12 +129,16 @@ const Top = () => {
         spaceBetween={window.innerWidth < 640 ? 8 : 16}
         bgColor="bg-white"
       />
-      <SearchBar selectPrefectureKeyword={selectPrefectureKeyword} />
+      <SearchBar
+        selectPrefectureKeyword={selectPrefectureKeyword}
+        setPrefectureShow={setPrefectureShow}
+        prefectureShow={prefectureShow}
+      />
       <Container>
         <RankingBar />
         <div className="mt-[12px]">
           <div className="flex justify-between flex-wrap ">
-            {catData &&
+            {catData.length !== 0 ? (
               catData.map((e, i) => (
                 <CatCard
                   key={i}
@@ -150,7 +154,12 @@ const Top = () => {
                   recommend_user={e.recommend_user}
                   last_update={e.last_update}
                 />
-              ))}
+              ))
+            ) : (
+              <p className="py-10 block w-full text-center text-xl">
+                お探しの看板猫はありません
+              </p>
+            )}
           </div>
         </div>
         <div className="bg-white text-center py-[65px] mb-[16px]">
@@ -158,7 +167,7 @@ const Top = () => {
         </div>
         <div>
           <div className="flex justify-between flex-wrap ">
-            {catData &&
+            {catData.length !== 0 ? (
               catData.map((e, i) => (
                 <CatCard
                   key={i}
@@ -174,7 +183,12 @@ const Top = () => {
                   recommend_user={e.recommend_user}
                   last_update={e.last_update}
                 />
-              ))}
+              ))
+            ) : (
+              <p className="py-10 block w-full text-center text-xl">
+                お探しの看板猫はありません
+              </p>
+            )}
           </div>
         </div>
         <div className="pt-[15px] pb-[35px] text-center border-b border-b-solid border-[#CCC]">

@@ -358,7 +358,7 @@ const CatDetail = () => {
       </div>
       <div className="w-full border-b border-[#CBB279] mt-4"></div>
       <div className="mt-6 flex flex-wrap justify-between">
-        {catData &&
+        {catData.length !== 0 ? (
           catData.map((e, i) => (
             <CatCard
               key={i}
@@ -369,12 +369,17 @@ const CatDetail = () => {
               cat_images={e.cat_images}
               character={e.character}
               favorite_things={e.favorite_things}
-              description={e.description}
               attendance={e.attendance}
+              description={e.description}
               recommend_user={e.recommend_user}
               last_update={e.last_update}
             />
-          ))}
+          ))
+        ) : (
+          <p className="py-10 block w-full text-center text-xl">
+            お探しの看板猫はありません
+          </p>
+        )}
       </div>
       <ImageGallery show={showImageGallery} setShow={setShowImageGallery} />
       <ImageDetail show={showImageDetail} setShow={setShowImageDetail} />

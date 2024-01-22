@@ -6,9 +6,14 @@ import Container from "../../basic/Container";
 
 interface SearchProps {
   selectPrefectureKeyword: (val: string) => void;
+  setPrefectureShow: (val: boolean) => void;
+  prefectureShow: boolean;
 }
-const SearchBar = ({ selectPrefectureKeyword }: SearchProps) => {
-  const [prefectureShow, setPrefectureShow] = useState(false);
+const SearchBar = ({
+  selectPrefectureKeyword,
+  setPrefectureShow,
+  prefectureShow,
+}: SearchProps) => {
   const [characterShow, setCharacterShow] = useState(false);
 
   return (

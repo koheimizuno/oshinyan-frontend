@@ -14,11 +14,13 @@ import axios from "axios";
 import { CatObjectType } from "../../constant/type";
 import { useSelector } from "react-redux";
 
-const isNew = false;
-
 const TotalRanking = () => {
-  const [keyword, selectPrefectureKeyword] = useState<string>("");
+  const [prefectureKeyword, selectPrefectureKeyword] = useState<string | null>(
+    null
+  );
+  const [prefectureShow, setPrefectureShow] = useState(false);
   const [catData, setCatData] = useState<CatObjectType[]>([]);
+  const { authLoading } = useSelector((state: any) => state.user);
   const { catLoading } = useSelector((state: any) => state.cat);
   const { isAuthenticated } = useSelector((state: any) => state.user);
 
@@ -32,20 +34,49 @@ const TotalRanking = () => {
       }
     };
     fetchData();
-  }, [isAuthenticated, catLoading]);
+  }, [isAuthenticated, catLoading, authLoading]);
+
+  useEffect(() => {
+    const fetchSearchData = async () => {
+      try {
+        if (prefectureKeyword !== null) {
+          const { data } = await axios.get(
+            "searchprefecture?keyword=" + prefectureKeyword
+          );
+          setCatData(data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchSearchData();
+    setPrefectureShow(false);
+  }, [prefectureKeyword]);
 
   return (
     <MainLayout>
       <SocialLinkGroup />
-      <SearchBar selectPrefectureKeyword={selectPrefectureKeyword} />
+      <SearchBar
+        selectPrefectureKeyword={selectPrefectureKeyword}
+        setPrefectureShow={setPrefectureShow}
+        prefectureShow={prefectureShow}
+      />
       <div className="bg-[#F5F4EC]">
         <div className="  w-[960px] m-auto ">
           <RankingBar />
           <div className="ranking-1 mt-[24px] mb-[24px]">
-            <div className="ranking-1-tle flex gap-[8px]">
-              <img src="/assets/imgs/ranking-1-cap.svg" alt="cat" />{" "}
-              <span className="text-[24px] font-bold leading-[32px]">1位</span>
-            </div>
+            {catData.length !== 0 ? (
+              <div className="ranking-1-tle flex gap-[8px]">
+                <img src="/assets/imgs/ranking-1-cap.svg" alt="cat" />{" "}
+                <span className="text-[24px] font-bold leading-[32px]">
+                  1位
+                </span>
+              </div>
+            ) : (
+              <p className="py-10 block w-full text-center text-xl">
+                お探しの看板猫はありません
+              </p>
+            )}
           </div>
           {catData[0] && (
             <LargeCatCard
@@ -98,7 +129,11 @@ const TotalRanking = () => {
                 ))}
             </div>
           </div>
-          <div className="flex-wrap mt-[16px] grid grid-cols-2 gap-x-[24px] gap-y-[16px] pb-[65px] border-b border-[#CBB279]">
+          <div
+            className={`flex-wrap mt-[16px] grid grid-cols-2 gap-x-[24px] gap-y-[16px] border-b border-[#CBB279] ${
+              catData.length !== 0 && "pb-[65px]"
+            }`}
+          >
             {catData &&
               catData.slice(4, 11).map((e, i) => (
                 <div className="flex flex-col" key={i}>

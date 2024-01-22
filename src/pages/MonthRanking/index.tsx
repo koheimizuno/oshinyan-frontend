@@ -24,13 +24,17 @@ interface dateType {
 const dateObj = new Date();
 
 const MonthRanking = () => {
-  const [keyword, selectPrefectureKeyword] = useState<string>();
+  const [prefectureKeyword, selectPrefectureKeyword] = useState<string | null>(
+    null
+  );
+  const [prefectureShow, setPrefectureShow] = useState(false);
   const [catData, setCatData] = useState<CatObjectType[]>([]);
   const [dates, setDates] = useState<dateType>({
     year: dateObj.getFullYear(),
     month: dateObj.getMonth() + 1,
     date: dateObj.getDate() + 1,
   });
+  const { authLoading } = useSelector((state: any) => state.user);
   const { catLoading } = useSelector((state: any) => state.cat);
   const { isAuthenticated } = useSelector((state: any) => state.user);
 
@@ -46,7 +50,24 @@ const MonthRanking = () => {
       }
     };
     fetchData();
-  }, [isAuthenticated, catLoading]);
+  }, [isAuthenticated, catLoading, authLoading]);
+
+  useEffect(() => {
+    const fetchSearchData = async () => {
+      try {
+        if (prefectureKeyword !== null) {
+          const { data } = await axios.get(
+            "searchprefecture?keyword=" + prefectureKeyword
+          );
+          setCatData(data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchSearchData();
+    setPrefectureShow(false);
+  }, [prefectureKeyword]);
 
   const previousMonthFetch = async () => {
     try {
@@ -92,6 +113,7 @@ const MonthRanking = () => {
           `monthrankingcat?date=${year}-${month}-${dates.date}`
         );
         setCatData(res.data);
+        setPrefectureShow(false);
       } catch (error) {
         console.log(error);
       }
@@ -103,7 +125,11 @@ const MonthRanking = () => {
   return (
     <MainLayout>
       <SocialLinkGroup />
-      <SearchBar selectPrefectureKeyword={selectPrefectureKeyword} />
+      <SearchBar
+        selectPrefectureKeyword={selectPrefectureKeyword}
+        setPrefectureShow={setPrefectureShow}
+        prefectureShow={prefectureShow}
+      />
       <div className="bg-[#F5F4EC]">
         <div className="  w-[960px] m-auto ">
           <RankingBar />
@@ -113,10 +139,18 @@ const MonthRanking = () => {
             </span>
           </div>
           <div className="ranking-1 mt-[24px] mb-[24px]">
-            <div className="ranking-1-tle flex gap-[8px]">
-              <img src="/assets/imgs/ranking-1-cap.svg" alt="cat" />{" "}
-              <span className="text-[24px] font-bold leading-[32px]">1位</span>
-            </div>
+            {catData.length !== 0 ? (
+              <div className="ranking-1-tle flex gap-[8px]">
+                <img src="/assets/imgs/ranking-1-cap.svg" alt="cat" />{" "}
+                <span className="text-[24px] font-bold leading-[32px]">
+                  1位
+                </span>
+              </div>
+            ) : (
+              <p className="py-10 block w-full text-center text-xl">
+                お探しの看板猫はありません
+              </p>
+            )}
           </div>
           {catData[0] && (
             <LargeCatCard
@@ -169,7 +203,11 @@ const MonthRanking = () => {
                 ))}
             </div>
           </div>
-          <div className="flex-wrap mt-[16px] grid grid-cols-2 gap-x-[24px] gap-y-[16px]">
+          <div
+            className={`flex-wrap mt-[16px] grid grid-cols-2 gap-x-[24px] gap-y-[16px] border-b border-[#CBB279] ${
+              catData.length !== 0 && "pb-[65px]"
+            }`}
+          >
             {catData &&
               catData.slice(4, 11).map((e, i) => (
                 <div className="flex flex-col" key={i}>
