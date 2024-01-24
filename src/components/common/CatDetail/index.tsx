@@ -108,8 +108,8 @@ const CatDetail = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("cat");
-        setCatData(res.data.serializer);
+        const { data } = await axios.get("randomcat");
+        setCatData(data);
       } catch (error) {
         console.log(error);
       }
