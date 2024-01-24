@@ -38,7 +38,7 @@ const LoginForm = () => {
           <input
             className="bg-[#F7F7F7] border border-[#CCCCCC] rounded-[5px] me-auto h-[40px] w-full p-2 focus:outline-none"
             type="text"
-            name="username"
+            name="email"
             required
             onChange={handleChange}
           />
