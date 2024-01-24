@@ -25,7 +25,7 @@ import axios from "axios";
 import { LogOutAction, TokenLoginAction } from "./slices/auth";
 import "./App.css";
 
-axios.defaults.baseURL = "http://162.43.50.92:8000/api/";
+axios.defaults.baseURL = "http://192.168.145.200:8000/api/";
 
 function App() {
   const dispatch = useDispatch();
