@@ -1,9 +1,9 @@
-import MainLayout from "../../layouts/MainLayout";
-import Container from "../../components/basic/Container";
-import SocialLinkGroup from "../../components/common/SocialLinkGroup";
-import PageBar from "../../components/common/PageBar";
-import Title from "../../components/common/Typography/Title";
-import LoginForm from "../../components/common/LoginForm";
+import MainLayout from "../../../layouts/MainLayout";
+import Container from "../../../components/basic/Container";
+import SocialLinkGroup from "../../../components/common/SocialLinkGroup";
+import PageBar from "../../../components/common/PageBar";
+import Title from "../../../components/common/Typography/Title";
+import LoginForm from "../../../components/common/LoginForm";
 
 function Login() {
   return (

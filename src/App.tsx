@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import Top from "./pages/Top";
 import MonthRanking from "./pages/MonthRanking";
 import Guide from "./pages/Guide";
-import Registration from "./pages/Registration";
+import Registration from "./pages/Auth/Registration";
 import Feature from "./pages/Feature";
 import FeatureDetail from "./pages/FeatureDetail";
 import MyPage from "./pages/MyPage";
@@ -18,12 +18,13 @@ import NyanplaceDetail from "./pages/NyanplaceDetail";
 import Comment from "./pages/Comment";
 import Column from "./pages/Column";
 import Oshiresister from "./pages/Oshiresister";
-import Login from "./pages/Login";
+import Login from "./pages/Auth/Login";
 import TotalRanking from "./pages/TotalRanking";
 
 import axios from "axios";
 import { LogOutAction, TokenLoginAction } from "./slices/auth";
 import "./App.css";
+import ActivateAccount from "./pages/Auth/ActivateAccount";
 
 axios.defaults.baseURL = "http://162.43.50.92:8000/api/";
 
@@ -62,6 +63,7 @@ function App() {
           <Route path="/ranking" element={<TotalRanking />} />
           //2 <Route path="/guide" element={<Guide />} />
           //3 <Route path="/registration" element={<Registration />} />
+          <Route path="/activate/:uid/:token" element={<ActivateAccount />} />
           //4 <Route path="/feature" element={<Feature />} />
           <Route path="/feature/:id" element={<FeatureDetail />} />
           //5 <Route path="/mypage" element={<MyPage />} />

@@ -1,9 +1,9 @@
-import MainLayout from "../../layouts/MainLayout";
-import Container from "../../components/basic/Container";
-import PageBar from "../../components/common/PageBar";
-import SignupForm from "../../components/common/SignupForm";
-import SocialLinkGroup from "../../components/common/SocialLinkGroup";
-import Title from "../../components/common/Typography/Title";
+import MainLayout from "../../../layouts/MainLayout";
+import Container from "../../../components/basic/Container";
+import PageBar from "../../../components/common/PageBar";
+import SignupForm from "../../../components/common/SignupForm";
+import SocialLinkGroup from "../../../components/common/SocialLinkGroup";
+import Title from "../../../components/common/Typography/Title";
 
 const Registration = () => {
   return (
