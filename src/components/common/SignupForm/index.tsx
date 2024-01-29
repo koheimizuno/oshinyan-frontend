@@ -37,6 +37,7 @@ const SignupForm = () => {
     formData.append("prefecture", values.prefecture);
     formData.append("email", values.email);
     formData.append("password", values.password);
+    formData.append("re_password", values.password);
     selectedFile != null && formData.append("avatar", selectedFile[0]);
     if (checked) {
       dispatch(RegistrationAction(formData));

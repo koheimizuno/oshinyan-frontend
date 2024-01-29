@@ -1,12 +1,13 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { LoginAction } from "../../../slices/auth";
+import axios from "axios";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
   const [submitData, setSubmitData] = useState({});
   const [loginError, setLoginError] = useState("");
-  const { error } = useSelector((state: any) => state.user);
+  const { user, error } = useSelector((state: any) => state.user);
 
   useEffect(() => {
     setLoginError(error);
@@ -19,6 +20,12 @@ const LoginForm = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(LoginAction(submitData));
+  };
+
+  const handleResetPassword = () => {
+    axios.post("password_reset", {
+      email: user.email,
+    });
   };
 
   return (
@@ -61,9 +68,13 @@ const LoginForm = () => {
           </div>
         </label>
         <div className="ml-[20%] mb-12">
-          <a href="#" className="border-b border-[#707070]">
+          <button
+            type="button"
+            className="border-b border-[#707070]"
+            onClick={handleResetPassword}
+          >
             パスワードをお忘れですか？
-          </a>
+          </button>
         </div>
       </div>
       <div className="text-center pt-12">

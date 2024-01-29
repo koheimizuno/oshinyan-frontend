@@ -3,7 +3,7 @@ import axios from "axios";
 import { Notification } from "../constant/notification";
 
 export const RegistrationAction: any = createAsyncThunk(
-  "auth/registration",
+  "auth/registration/",
   async (payload, thunkApi) => {
     try {
       const { data } = await axios.post("register", payload);
@@ -101,9 +101,9 @@ const userSlice = createSlice({
         state.authLoading = false;
         state.user = action.payload;
         Notification("success", "ログインに成功しました。");
-        setTimeout(() => {
-          window.location.href = "/";
-        }, 2000);
+        // setTimeout(() => {
+        //   window.location.href = "/";
+        // }, 2000);
       })
       .addCase(LoginAction.rejected, (state, action) => {
         state.authLoading = false;
