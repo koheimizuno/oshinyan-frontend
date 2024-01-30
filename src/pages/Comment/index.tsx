@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import Title from "../../components/common/Typography/Title";
 import PrivacyComponent from "../../components/common/PrivacyComponent";
+import Button from "../../components/basic/Button";
 
 function Comment() {
   return (
@@ -79,15 +80,7 @@ function Comment() {
               />
             </div>
           </div>
-          <div className="mt-[47px] text-center">
-            <button
-              className={
-                "text-[24px] bg-[#FBA1B7] h-[48px] border-solid rounded-full py-2 ps-[42px] pe-[40px] leading-[32px] text-center text-white"
-              }
-            >
-              確認ニャ！
-            </button>
-          </div>
+          <Button />
         </div>
       </Container>
     </MainLayout>

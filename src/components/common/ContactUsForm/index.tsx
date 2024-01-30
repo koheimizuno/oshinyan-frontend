@@ -1,6 +1,7 @@
 import { Checkbox, FormControlLabel } from "@mui/material";
 import FileUpload from "../../basic/icons/FileUpload";
 import PrivacyComponent from "../PrivacyComponent";
+import Button from "../../basic/Button";
 
 const ContactUsForm = () => {
   return (
@@ -175,15 +176,7 @@ const ContactUsForm = () => {
           />
         </div>
       </div>
-      <div className="mt-[47px] text-center">
-        <button
-          className={
-            "text-[24px] bg-[#FBA1B7] h-[48px] border-solid rounded-full py-2 ps-[42px] pe-[40px] leading-[32px] text-center text-white"
-          }
-        >
-          確認ニャ！
-        </button>
-      </div>
+      <Button />
     </div>
   );
 };

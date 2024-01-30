@@ -77,14 +77,14 @@ const CatImgs = [
 ];
 
 const actions = [
-  "cat_avatar_1.png",
-  "cat_avatar_2.png",
-  "cat_avatar_3.png",
-  "cat_avatar_4.png",
-  "cat_avatar_5.png",
-  "cat_avatar_6.png",
-  "cat_avatar_7.png",
-  "cat_avatar_8.png",
+  "avatar_1.svg",
+  "avatar_2.svg",
+  "avatar_3.svg",
+  "avatar_4.svg",
+  "avatar_5.svg",
+  "avatar_6.svg",
+  "avatar_7.svg",
+  "avatar_8.svg",
 ];
 
 const IMAGES: string[] = [

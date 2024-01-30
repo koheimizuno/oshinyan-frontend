@@ -13,6 +13,7 @@ import { PREFECTURE } from "../../../constant";
 import axios from "axios";
 import { Store } from "react-notifications-component";
 import PrivacyComponent from "../PrivacyComponent";
+import Button from "../../basic/Button";
 
 const ShopRegisterForm = () => {
   const hiddenFileInput = useRef<HTMLInputElement>(null);
@@ -36,7 +37,7 @@ const ShopRegisterForm = () => {
     setRegisterCatValues({ ...registerCatValues, [name]: value });
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     let formData = new FormData();
     formData.append("shop_name", registerCatValues.shop_name);
@@ -323,16 +324,7 @@ const ShopRegisterForm = () => {
         </div>
       </div>
       <div className="border-b border-[#CCCCCC] mt-[27px]"></div>
-      <div className="mt-[47px] text-center">
-        <button
-          type="submit"
-          className={`${
-            checked ? "bg-[#FBA1B7]" : "bg-[#f8c6d2]"
-          } text-[24px] bg-[#FBA1B7] h-[48px] border-solid rounded-full py-2 ps-[42px] pe-[40px] leading-[32px] text-center text-white`}
-        >
-          確認ニャ！
-        </button>
-      </div>
+      <Button />
     </form>
   );
 };

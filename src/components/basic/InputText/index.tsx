@@ -1,29 +1,19 @@
 import React, { useState } from "react";
 
 type PropsType = {
-  labelTitle: string;
-  labelStyle: string;
-  type: string;
-  containerStyle: string;
-  defaultValue: string;
-  placeholder: string;
+  type: string | null;
+  containerStyle: string | null;
   updateFormValue: any;
   updateType: string;
-  autoFocus: boolean;
 };
 
 function InputText({
-  labelTitle,
-  labelStyle,
   type,
   containerStyle,
-  defaultValue,
-  placeholder,
   updateFormValue,
   updateType,
-  autoFocus,
 }: PropsType) {
-  const [value, setValue] = useState(defaultValue);
+  const [value, setValue] = useState("");
 
   const updateInputValue = (e: any) => {
     setValue(e.target.value);
@@ -31,16 +21,9 @@ function InputText({
   };
 
   return (
-    <div className={`form-control w-full ${containerStyle}`}>
-      <label className="">
-        <span className={"label-text text-base-content " + labelStyle}>
-          {labelTitle}
-        </span>
-      </label>
+    <div className={`w-full ${containerStyle}`}>
       <input
-        autoFocus={autoFocus}
         type={type || "text"}
-        placeholder={placeholder || ""}
         onChange={updateInputValue}
         className="h-[50px] rounded-lg px-[20px] w-full dark:bg-[#303841] bg-[#e6ebf5] outline-none "
       />

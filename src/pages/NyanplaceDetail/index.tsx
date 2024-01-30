@@ -89,9 +89,6 @@ const LOCATIONS = [
   },
 ];
 
-const isChu = true;
-const isNew = false;
-
 function NyanplaceDetail() {
   const [regions, setRegions] = useState<string[]>([]);
   const [catData, setCatData] = useState<CatObjectType[]>([]);
@@ -99,8 +96,8 @@ function NyanplaceDetail() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("cat");
-        setCatData(res.data.serializer);
+        const { data } = await axios.get("randomcat");
+        setCatData(data);
       } catch (error) {
         console.log(error);
       }
@@ -203,9 +200,10 @@ function NyanplaceDetail() {
           </h3>
           <div className="mt-[40px] flex flex-wrap justify-between gap-y-4">
             {LOCATIONS &&
-              LOCATIONS.map((e) => {
+              LOCATIONS.map((e, key) => {
                 return (
                   <SignboardCard
+                    key={key}
                     imgUrl={e.imgUrl}
                     cafe={e.cafe}
                     prefecture={e.prefecture}

@@ -20,13 +20,14 @@ import Column from "./pages/Column";
 import Oshiresister from "./pages/Oshiresister";
 import Login from "./pages/Auth/Login";
 import TotalRanking from "./pages/TotalRanking";
+import PasswordReset from "./pages/Auth/PasswordReset";
 
 import axios from "axios";
 import { LogOutAction, TokenLoginAction } from "./slices/auth";
 import "./App.css";
-import ActivateAccount from "./pages/Auth/ActivateAccount";
+import PasswordResetConfirmation from "./pages/Auth/PasswordResetConfirmation";
 
-axios.defaults.baseURL = "http://162.43.50.92:8000/api/";
+axios.defaults.baseURL = "http://192.168.145.200:8000/api/";
 
 function App() {
   const dispatch = useDispatch();
@@ -59,26 +60,30 @@ function App() {
       <Routes>
         <Route path="/">
           //1 <Route index element={<Top />} />
-          <Route path="/ranking/gekkan" element={<MonthRanking />} />
-          <Route path="/ranking" element={<TotalRanking />} />
-          //2 <Route path="/guide" element={<Guide />} />
-          //3 <Route path="/registration" element={<Registration />} />
-          <Route path="/activate/:uid/:token" element={<ActivateAccount />} />
-          //4 <Route path="/feature" element={<Feature />} />
-          <Route path="/feature/:id" element={<FeatureDetail />} />
-          //5 <Route path="/mypage" element={<MyPage />} />
-          //6 <Route path="/nyanplace" element={<Nyanplace />} />
-          //7 <Route path="/shopresister" element={<RegisterOther />} />
-          <Route path="/ambassador" element={<RegisterOther />} />
-          //8 <Route path="/privacy" element={<Privacy />} />
-          //9 <Route path="/company" element={<Company />} />
-          //10 <Route path="/oshiresister" element={<Oshiresister />} />
-          //*11 <Route path="/nyanplace/:id" element={<NyanplaceDetail />} />
-          //12 <Route path="/oshinyan/:id" element={<OshinyanDetail />} />
-          //15 <Route path="/comment" element={<Comment />} />
-          //16 <Route path="/column" element={<Column />} />
-          //17 <Route path="/inquiry" element={<Inquiry />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="ranking/gekkan" element={<MonthRanking />} />
+          <Route path="ranking" element={<TotalRanking />} />
+          //2 <Route path="guide" element={<Guide />} />
+          //3 <Route path="registration" element={<Registration />} />
+          <Route path="login" element={<Login />} />
+          <Route path="password_reset" element={<PasswordReset />} />
+          <Route
+            path="password_reset/:uid/:token/"
+            element={<PasswordResetConfirmation />}
+          />
+          //4 <Route path="feature" element={<Feature />} />
+          <Route path="feature/:id" element={<FeatureDetail />} />
+          //5 <Route path="mypage" element={<MyPage />} />
+          //6 <Route path="nyanplace" element={<Nyanplace />} />
+          //7 <Route path="shopresister" element={<RegisterOther />} />
+          <Route path="ambassador" element={<RegisterOther />} />
+          //8 <Route path="privacy" element={<Privacy />} />
+          //9 <Route path="company" element={<Company />} />
+          //10 <Route path="oshiresister" element={<Oshiresister />} />
+          //*11 <Route path="nyanplace/:id" element={<NyanplaceDetail />} />
+          //12 <Route path="oshinyan/:id" element={<OshinyanDetail />} />
+          //15 <Route path="comment" element={<Comment />} />
+          //16 <Route path="column" element={<Column />} />
+          //17 <Route path="inquiry" element={<Inquiry />} />
         </Route>
       </Routes>
     </BrowserRouter>

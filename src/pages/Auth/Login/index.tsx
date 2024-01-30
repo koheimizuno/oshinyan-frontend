@@ -1,11 +1,19 @@
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import MainLayout from "../../../layouts/MainLayout";
 import Container from "../../../components/basic/Container";
 import SocialLinkGroup from "../../../components/common/SocialLinkGroup";
 import PageBar from "../../../components/common/PageBar";
 import Title from "../../../components/common/Typography/Title";
 import LoginForm from "../../../components/common/LoginForm";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const { isAuthenticated } = useSelector((state: any) => state.user);
+  const navigate = useNavigate();
+  useEffect(() => {
+    isAuthenticated && navigate("/");
+  }, [isAuthenticated]);
   return (
     <MainLayout>
       <SocialLinkGroup />

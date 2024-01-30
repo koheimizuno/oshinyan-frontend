@@ -2,12 +2,15 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { LoginAction } from "../../../slices/auth";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import Button from "../../basic/Button";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [submitData, setSubmitData] = useState({});
   const [loginError, setLoginError] = useState("");
-  const { user, error } = useSelector((state: any) => state.user);
+  const { error } = useSelector((state: any) => state.user);
 
   useEffect(() => {
     setLoginError(error);
@@ -23,9 +26,7 @@ const LoginForm = () => {
   };
 
   const handleResetPassword = () => {
-    axios.post("password_reset", {
-      email: user.email,
-    });
+    navigate("/password_reset");
   };
 
   return (
@@ -44,7 +45,7 @@ const LoginForm = () => {
         <div className="w-[80%]">
           <input
             className="bg-[#F7F7F7] border border-[#CCCCCC] rounded-[5px] me-auto h-[40px] w-full p-2 focus:outline-none"
-            type="text"
+            type="email"
             name="email"
             required
             onChange={handleChange}
@@ -77,14 +78,7 @@ const LoginForm = () => {
           </button>
         </div>
       </div>
-      <div className="text-center pt-12">
-        <button
-          type="submit"
-          className="text-[24px] bg-[#FBA1B7] h-[48px] border-solid rounded-full py-2 ps-[42px] pe-[40px] leading-[32px] text-center text-white"
-        >
-          確認ニャ！
-        </button>
-      </div>
+      <Button />
     </form>
   );
 };
