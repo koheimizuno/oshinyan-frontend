@@ -21,8 +21,9 @@ export const LoginAction: any = createAsyncThunk(
       const { data } = await axios.post("login", payload);
       return data;
     } catch (error: any) {
-      // return thunkApi.rejectWithValue("無効なユーザー名またはパスワード。");
-      return thunkApi.rejectWithValue(error.message);
+      return thunkApi.rejectWithValue(
+        "間違ったメールアドレスまたはパスワード。"
+      );
     }
   }
 );
@@ -68,18 +69,10 @@ const userSlice = createSlice({
       })
       .addCase(RegistrationAction.fulfilled, (state, action) => {
         state.authLoading = false;
-        // const now = new Date();
-        // Notification("success", "アカウントが正常に作成されました。");
-        // const item = {
-        //   value: action.payload.token,
-        //   expiry: now.getTime() + 3600000,
-        // };
-        // localStorage.setItem("token", JSON.stringify(item));
-        // state.isAuthenticated = true;
-        // state.user = action.payload;
-        // setTimeout(() => {
-        //   window.location.href = "/login";
-        // }, 2000);
+        Notification("success", "アカウントが正常に作成されました。");
+        setTimeout(() => {
+          window.location.href = "/login";
+        }, 2000);
       })
       .addCase(RegistrationAction.rejected, (state, action) => {
         state.authLoading = false;

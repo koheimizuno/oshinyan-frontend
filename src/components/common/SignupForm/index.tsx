@@ -1,22 +1,45 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { PREFECTURE } from "../../../constant";
-import { Checkbox, FormControlLabel } from "@mui/material";
+import { Box, Checkbox, FormControlLabel, Modal } from "@mui/material";
 import { RegistrationAction } from "../../../slices/auth";
 import PrivacyComponent from "../PrivacyComponent";
+import { Close } from "@mui/icons-material";
+import axios from "axios";
+
+const modalBoxSytle = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "912px",
+  margin: "auto",
+  bgcolor: "#fff",
+  boxShadow: 50,
+  overflow: "visible",
+  outline: 0,
+  borderRadius: "8px",
+};
+
+interface avatarType {
+  id: number;
+  avatar: string;
+}
 
 const SignupForm = () => {
   const dispatch = useDispatch();
-  const fileRef = useRef<HTMLInputElement>(null);
   const checkRef = useRef<HTMLInputElement>(null);
   const [checked, setChecked] = useState(false);
+  const [avatarModal, setAvatarModal] = useState(false);
+  const [avatars, setAvatars] = useState<avatarType[]>([]);
+  const [selectedAvatar, setSelectedAvatar] = useState("");
   const [values, setValues] = useState({
     username: "",
     prefecture: "北海道",
     email: "",
     password: "",
+    avatar: 0,
   });
-  const [selectedFile, setSelectedFile] = useState<FileList | null>(null);
 
   useEffect(() => {
     if (checked) {
@@ -26,21 +49,24 @@ const SignupForm = () => {
     }
   }, [checked]);
 
-  const handleChange1 = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangePrivacyCheck = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setChecked(event.target.checked);
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    let formData = new FormData();
-    formData.append("username", values.username);
-    formData.append("prefecture", values.prefecture);
-    formData.append("email", values.email);
-    formData.append("password", values.password);
-    formData.append("re_password", values.password);
-    selectedFile != null && formData.append("avatar", selectedFile[0]);
     if (checked) {
-      dispatch(RegistrationAction(formData));
+      dispatch(
+        RegistrationAction({
+          username: values.username,
+          prefecture: values.prefecture,
+          email: values.email,
+          password: values.password,
+          avatar: values.avatar,
+        })
+      );
     } else {
       const checkboxElement = checkRef.current as HTMLInputElement;
       checkboxElement !== null && checkboxElement.classList.add("bg-red-300");
@@ -53,8 +79,19 @@ const SignupForm = () => {
     setValues((values) => ({ ...values, [name]: value }));
   };
 
-  const selectFile = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedFile(event.target.files);
+  const handleAvatar = () => {
+    setAvatarModal(true);
+    const fetchAvatar = async () => {
+      const { data } = await axios.get("avatar");
+      setAvatars(data);
+    };
+    fetchAvatar();
+  };
+
+  const selectAvatar = (id: number, url: string) => {
+    setValues((values) => ({ ...values, avatar: id }));
+    setAvatarModal(false);
+    setSelectedAvatar(url);
   };
 
   return (
@@ -63,26 +100,46 @@ const SignupForm = () => {
         <div className="flex">
           <div className="flex">
             <div
-              className="w-[72px] h-[72px] me-[38px] text-sm bg-[#ccc] rounded-full flex justify-center items-center text-center"
-              onClick={() => {
-                fileRef?.current?.click();
-              }}
+              className="w-[72px] h-[72px] me-[38px] text-sm bg-[#ccc] rounded-full flex justify-center items-center text-center cursor-pointer"
+              onClick={handleAvatar}
             >
-              {selectedFile ? (
-                selectedFile[0].name
+              {selectedAvatar ? (
+                <img src={selectedAvatar} alt={selectedAvatar} width={40} />
               ) : (
                 <img src="/assets/imgs/icon_add.png" alt="icon_add" />
               )}
             </div>
-            <input
-              type="file"
-              name="icon"
-              className="hidden"
-              ref={fileRef}
-              accept="image/*"
-              onChange={selectFile}
-            />
           </div>
+          <Modal
+            open={avatarModal}
+            onClose={() => setAvatarModal(false)}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={modalBoxSytle}>
+              <div className="p-6 pb-[34px]">
+                <Close
+                  className="absolute top-2 right-2 bg-[#474747] rounded-full text-white p-1 cursor-pointer"
+                  onClick={() => setAvatarModal(false)}
+                />
+                <h3 className="text-[24px]">
+                  使用する猫アイコンを選択するニャン！
+                </h3>
+                <div className="mt-10 flex flex-wrap gap-10">
+                  {avatars.length &&
+                    avatars.map((item, index) => (
+                      <label
+                        key={index}
+                        className="cursor-pointer"
+                        onClick={() => selectAvatar(item.id, item.avatar)}
+                      >
+                        <img src={item.avatar} alt={item.avatar} />
+                      </label>
+                    ))}
+                </div>
+              </div>
+            </Box>
+          </Modal>
           <div className="grow">
             <div className="flex justify-between h-[80px] border-b border-[#CCCCCC] items-center">
               <div className="flex items-center">
@@ -165,7 +222,9 @@ const SignupForm = () => {
         <PrivacyComponent />
         <div className="text-center mt-[27px] pb-[27px] border-b border-[#CCCCCC]">
           <FormControlLabel
-            control={<Checkbox checked={checked} onChange={handleChange1} />}
+            control={
+              <Checkbox checked={checked} onChange={handleChangePrivacyCheck} />
+            }
             label="同意するニャン"
             ref={checkRef}
             required
