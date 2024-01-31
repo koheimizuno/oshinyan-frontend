@@ -40,16 +40,16 @@ const BlogColumnBox = ({
             <img src={imgUrl} className="cover" alt="" />
             {isChu ? (
               <span className="absolute top-[8px] right-[8px]">
-                <img src="/assets/imgs/mark_chu.png" alt="" />
+                <img src="/assets/imgs/icons/recommend.svg" alt="" />
               </span>
             ) : (
               <span className="absolute top-[8px] right-[8px]">
-                <img src="/assets/imgs/btn-foot.svg" alt="" />
+                <img src="/assets/imgs/icons/btn-foot.svg" alt="" />
               </span>
             )}
             {isNew && (
               <span className="absolute top-0 left-0">
-                <img src="/assets/imgs/parts-new.svg" alt="" />
+                <img src="/assets/imgs/icons/parts-new.svg" alt="" />
               </span>
             )}
           </div>

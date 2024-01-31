@@ -21,6 +21,7 @@ import ImageGallery from "./components/ImageGallery";
 import ImageDetail from "./components/ImageDetail";
 import axios from "axios";
 import { CatObjectType } from "../../../constant/type";
+import { useParams } from "react-router-dom";
 
 const Cats = [
   {
@@ -97,13 +98,24 @@ const imgUrl: object[] = [
   { imgUrl: ["/assets/imgs/cats/cat1.png", "/assets/imgs/cats/cat1-2.png"] },
 ];
 
-const isChu = true;
-const isNew = false;
-
 const CatDetail = () => {
+  const { id } = useParams();
   const [showImageGallery, setShowImageGallery] = useState(false);
   const [showImageDetail, setShowImageDetail] = useState(false);
   const [catData, setCatData] = useState<CatObjectType[]>([]);
+  const [retrieveCat, setRetrieveCat] = useState<CatObjectType>({
+    id: 0,
+    cat_name: "",
+    shop_name: "",
+    prefecture: "",
+    cat_images: [],
+    character: [],
+    favorite_things: [],
+    attendance: "",
+    description: "",
+    recommend_user: [],
+    last_update: "",
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -114,7 +126,13 @@ const CatDetail = () => {
         console.log(error);
       }
     };
+    const RetrieveCat = async () => {
+      const { data } = await axios.get(`cat/${id}`);
+      console.log("💚💚💚", data);
+      setRetrieveCat(data);
+    };
     fetchData();
+    RetrieveCat();
   }, []);
 
   return (
@@ -124,7 +142,7 @@ const CatDetail = () => {
         <div className="flex justify-between">
           <div className="flex items-center font-bold">
             <img src="/assets/imgs/icons/face_empty.png" alt="cat icon" />
-            <span className="text-2xl ms-4">なまむぎなまごめ</span>
+            <span className="text-2xl ms-4">{retrieveCat.cat_name}</span>
           </div>
           <div className="flex gap-[6px] items-center">
             <img src="/assets/imgs/icons/comment_chu.png" alt="" />
@@ -140,9 +158,7 @@ const CatDetail = () => {
             }}
           />
         </div>
-        <div className="mt-4 break-all">
-          □□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
-        </div>
+        <div className="mt-4 break-all">{retrieveCat.description}</div>
         <div className="mt-2">
           <a
             href="/nyanplace/1"
@@ -150,7 +166,7 @@ const CatDetail = () => {
           >
             にゃんにゃんカフェ
           </a>
-          <PrefectureBtn value={"東京都"}></PrefectureBtn>
+          <PrefectureBtn value={retrieveCat.prefecture} />
         </div>
         <div className="flex gap-[14px] mt-6">
           <div>
@@ -166,15 +182,17 @@ const CatDetail = () => {
             <CalendarMonthSharp fontSize="large" style={{ fill: "#FAD2B5" }} />
             <div className="ms-2">出勤頻度</div>
             <div className="ms-4">
-              <PrefectureBtn value={"毎日"} />
+              <PrefectureBtn value={retrieveCat.attendance} />
             </div>
           </div>
           <div className="flex gap-2">
             <HeartCircle />
             <div className="ms-2">性格</div>
             <div className="ms-4 flex gap-2">
-              <PrefectureBtn value={"やさしい"} />
-              <PrefectureBtn value={"気分屋さん"} />
+              {retrieveCat.character &&
+                retrieveCat.character.map((item, key) => (
+                  <PrefectureBtn key={key} value={item} />
+                ))}
             </div>
           </div>
         </div>
@@ -185,14 +203,26 @@ const CatDetail = () => {
           />
           <div className="w-[150px]">好きなモノ・コト</div>
           <div className="">
-            お昼寝、猫じゃらし、頭をやさしくナデナデ、座布団
+            {retrieveCat.favorite_things &&
+              retrieveCat.favorite_things.map((item, key, arr) => (
+                <span>
+                  {item}
+                  {key !== arr.length - 1 && "、"}
+                </span>
+              ))}
           </div>
         </div>
         <div className="w-full flex mt-6 items-center h-10">
           <div className="flex items-center">
-            <img className="w-6" src="/assets/imgs/mark_chu.png" alt="" />
+            <img
+              className="w-6"
+              src="/assets/imgs/icons/recommend.svg"
+              alt=""
+            />
           </div>
-          <div className="text-2xl font-medium ms-2">000ニャン</div>
+          <div className="text-2xl font-medium ms-2">
+            {retrieveCat.recommend_user.length}ニャン
+          </div>
         </div>
         <div className="w-full border-b border-black mt-4"></div>
         <div className="flex flex-wrap mt-4">
@@ -258,7 +288,7 @@ const CatDetail = () => {
             <div className="w-10 h-10">
               <img
                 className="w-full"
-                src="/assets/imgs/info_cat.png"
+                src="/assets/imgs/icons/info_cat.png"
                 alt="cat"
               />
             </div>

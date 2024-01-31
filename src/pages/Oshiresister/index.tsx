@@ -11,7 +11,7 @@ const Oshiresister = () => {
           <PageBar page="推しニャン申請" />
         </div>
         <div className="text-[32px] leading-[40px] mt-[24px] pb-[14px] border-b border-[#CBB279]">
-          未登録看板猫情報
+          推しニャン申請
         </div>
         <div className="mt-[16px] text-[16px] leading-[21px]">
           以下のフォームに必要な項目を入力のうえ、確認をクリックしてくださいニャ

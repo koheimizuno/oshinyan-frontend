@@ -31,7 +31,7 @@ function Carousel(props: any) {
         spaceBetween={props.spaceBetween}
         slidesPerView={props.visibleSlides}
         navigation={{ nextEl: ".arrow-left", prevEl: ".arrow-right" }}
-        className="h-[240px] cursor-pointer"
+        className="h-[240px] cursor-pointer py-2"
       >
         {props.data &&
           props.data.map((item: any, key: any) => (

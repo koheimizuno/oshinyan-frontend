@@ -129,11 +129,7 @@ const Top = () => {
         spaceBetween={window.innerWidth < 640 ? 8 : 16}
         bgColor="bg-white"
       />
-      <SearchBar
-        selectPrefectureKeyword={selectPrefectureKeyword}
-        setPrefectureShow={setPrefectureShow}
-        prefectureShow={prefectureShow}
-      />
+      <div className="h-[60px]"></div>
       <Container>
         <RankingBar />
         <div className="mt-[12px]">

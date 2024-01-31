@@ -1,7 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { PREFECTURE } from "../../../constant";
-import { Box, Checkbox, FormControlLabel, Modal } from "@mui/material";
+import {
+  Box,
+  Checkbox,
+  FormControlLabel,
+  MenuItem,
+  Modal,
+  Select,
+} from "@mui/material";
 import { RegistrationAction } from "../../../slices/auth";
 import PrivacyComponent from "../PrivacyComponent";
 import { Close } from "@mui/icons-material";
@@ -28,7 +35,6 @@ interface avatarType {
 
 const SignupForm = () => {
   const dispatch = useDispatch();
-  const checkRef = useRef<HTMLInputElement>(null);
   const [checked, setChecked] = useState(false);
   const [avatarModal, setAvatarModal] = useState(false);
   const [avatars, setAvatars] = useState<avatarType[]>([]);
@@ -40,36 +46,29 @@ const SignupForm = () => {
     password: "",
     avatar: 0,
   });
-
-  useEffect(() => {
-    if (checked) {
-      const checkboxElement = checkRef.current as HTMLInputElement;
-      checkboxElement !== null &&
-        checkboxElement.classList.remove("bg-red-300");
-    }
-  }, [checked]);
-
-  const handleChangePrivacyCheck = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setChecked(event.target.checked);
-  };
+  const [errorMsg, setErrorMsg] = useState({
+    avatar: "",
+  });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (checked) {
-      dispatch(
-        RegistrationAction({
-          username: values.username,
-          prefecture: values.prefecture,
-          email: values.email,
-          password: values.password,
-          avatar: values.avatar,
-        })
-      );
-    } else {
-      const checkboxElement = checkRef.current as HTMLInputElement;
-      checkboxElement !== null && checkboxElement.classList.add("bg-red-300");
+      if (values.avatar) {
+        dispatch(
+          RegistrationAction({
+            username: values.username,
+            prefecture: values.prefecture,
+            email: values.email,
+            password: values.password,
+            avatar: values.avatar,
+          })
+        );
+      } else {
+        setErrorMsg({
+          ...errorMsg,
+          avatar: "猫のアイコンを選択してください。",
+        });
+      }
     }
   };
 
@@ -99,16 +98,19 @@ const SignupForm = () => {
       <form className="" onSubmit={handleSubmit}>
         <div className="flex">
           <div className="flex">
-            <div
-              className="w-[72px] h-[72px] me-[38px] text-sm bg-[#ccc] rounded-full flex justify-center items-center text-center cursor-pointer"
+            <button
+              type="button"
+              className={`w-[72px] h-[72px] me-[38px] text-sm bg-[#ccc] rounded-full flex justify-center items-center text-center cursor-pointer ${
+                errorMsg.avatar && "border-2 border-red-400"
+              }`}
               onClick={handleAvatar}
             >
               {selectedAvatar ? (
                 <img src={selectedAvatar} alt={selectedAvatar} width={40} />
               ) : (
-                <img src="/assets/imgs/icon_add.png" alt="icon_add" />
+                <img src="/assets/imgs/icons/icon_add.png" alt="icon_add" />
               )}
-            </div>
+            </button>
           </div>
           <Modal
             open={avatarModal}
@@ -161,26 +163,21 @@ const SignupForm = () => {
                   居住エリア
                 </label>
                 <div className="relative my-auto h-[40px]">
-                  <select
-                    id="prefecture"
+                  <Select
+                    aria-label="prefecture"
                     name="prefecture"
+                    value={values.prefecture}
                     onChange={handleChange}
-                    className="appearance-none pr-8 bg-right bg-no-repeat rounded-full text-center text-[16px] w-[144px] bg-gradient-to-b from-[#EAEAEA] to-[#D3D3D3] border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-gradient-to-b from-[#EAEAEA] to-[#D3D3D3] h-10 text-center text-[16px] w-[144px]"
+                    sx={{ borderRadius: "20px" }}
                   >
                     {PREFECTURE &&
-                      PREFECTURE.map((e, key) => (
-                        <option value={e} key={key}>
-                          {e[0]}
-                        </option>
+                      PREFECTURE.map((item, key) => (
+                        <MenuItem value={item[0]} key={key}>
+                          {item[0]}
+                        </MenuItem>
                       ))}
-                  </select>
-                  <div
-                    className="w-[12px] h-[8px] absolute top-[18px] right-2"
-                    style={{
-                      backgroundImage:
-                        "url('/assets/imgs/select_triangle.png')",
-                    }}
-                  ></div>
+                  </Select>
                 </div>
               </div>
             </div>
@@ -223,10 +220,14 @@ const SignupForm = () => {
         <div className="text-center mt-[27px] pb-[27px] border-b border-[#CCCCCC]">
           <FormControlLabel
             control={
-              <Checkbox checked={checked} onChange={handleChangePrivacyCheck} />
+              <Checkbox
+                checked={checked}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setChecked(e.target.checked)
+                }
+              />
             }
             label="同意するニャン"
-            ref={checkRef}
             required
           />
         </div>

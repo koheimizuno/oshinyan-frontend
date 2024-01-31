@@ -163,7 +163,7 @@ const LargeCatCard = ({
           <hr className="border border-[#CCC]" />
           <div className="flex justify-content-start items-center pt-[10px] pb-[16px] ">
             <div>
-              <img src="/assets/imgs/hear-yellow.svg" alt="" />
+              <img src="/assets/imgs/icons/hear-yellow.svg" alt="" />
             </div>
             <div className="pl-[8px]">
               <p>性格</p>
@@ -193,7 +193,7 @@ const LargeCatCard = ({
           <div className="flex justify-content-start items-center mt-[15px] mb-[8px]">
             <span className=" flex d-inline-block align-items-center w-[24px] h-[24px]  mr-[9px]">
               <img
-                src="/assets/imgs/recommend.svg"
+                src="/assets/imgs/icons/recommend.svg"
                 className=" align-items-center "
                 alt=""
               />
@@ -211,9 +211,15 @@ const LargeCatCard = ({
               onClick={handleRecommend}
             >
               {recommend_user.find((e) => e.user == user.user_id) ? (
-                <img src="/assets/imgs/recommend-on.png" alt="recommend-on" />
+                <img
+                  src="/assets/imgs/icons/recommend-on.png"
+                  alt="recommend-on"
+                />
               ) : (
-                <img src="/assets/imgs/recommend-off.png" alt="recommend-off" />
+                <img
+                  src="/assets/imgs/icons/recommend-off.png"
+                  alt="recommend-off"
+                />
               )}
             </span>
             {recommendLoginShow && (
@@ -228,7 +234,7 @@ const LargeCatCard = ({
           </div>
           {isNew && (
             <span className="absolute top-0 left-0 z-10">
-              <img src="/assets/imgs/parts-new.svg" alt="" />
+              <img src="/assets/imgs/icons/parts-new.svg" alt="" />
             </span>
           )}
         </div>

@@ -7,12 +7,18 @@ import Container from "../../basic/Container";
 interface SearchProps {
   selectPrefectureKeyword: (val: string) => void;
   setPrefectureShow: (val: boolean) => void;
+  setSearchWord: (val: string) => void;
   prefectureShow: boolean;
+  searchWord: string;
+  handleFreeSearch: () => void;
 }
 const SearchBar = ({
   selectPrefectureKeyword,
   setPrefectureShow,
   prefectureShow,
+  setSearchWord,
+  searchWord,
+  handleFreeSearch,
 }: SearchProps) => {
   const [characterShow, setCharacterShow] = useState(false);
 
@@ -30,11 +36,19 @@ const SearchBar = ({
                   type="search"
                   name="search"
                   id="search"
-                  className="h-[32px] w-full bg-[#F3F3F3] rounded-l-sm shadow-inner focus-visible:border focus-visible:border-[#707070] focus-visible:border-solid focus-visible:outline-none"
+                  value={searchWord}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    setSearchWord(e.target.value)
+                  }
+                  className="h-[32px] w-full bg-[#F3F3F3] rounded-l-sm shadow-inner focus-visible:border focus-visible:border-[#707070] focus-visible:border-solid focus-visible:outline-none p-2"
                 />
-                <div>
-                  <img src="/assets/imgs/search.svg" alt="search" />
-                </div>
+                <button onClick={handleFreeSearch}>
+                  <img
+                    src="/assets/imgs/icons/search.svg"
+                    alt="search"
+                    width="32px"
+                  />
+                </button>
               </div>
             </div>
             <div className="flex justify-end items-center">

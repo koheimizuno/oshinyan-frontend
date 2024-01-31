@@ -311,7 +311,7 @@ const ShopRegisterForm = () => {
         </div>
         <div className="border-b border-[#CCCCCC] mt-[32px]"></div>
         <PrivacyComponent />
-        <div className="w-full flex justify-center mt-[27px]">
+        <div className="w-full flex justify-center">
           <FormControlLabel
             control={
               <Checkbox
@@ -324,7 +324,16 @@ const ShopRegisterForm = () => {
         </div>
       </div>
       <div className="border-b border-[#CCCCCC] mt-[27px]"></div>
-      <Button />
+      <div className="mt-[47px] text-center">
+        <button
+          type="submit"
+          className={`text-[24px] ${
+            checked ? "bg-[#FBA1B7]" : "bg-[#f8c6d2]"
+          }  h-[48px] border-solid rounded-full py-2 ps-[42px] pe-[40px] leading-[32px] text-center text-white`}
+        >
+          確認ニャ！
+        </button>
+      </div>
     </form>
   );
 };

@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Twitter from "../../basic/icons/Twitter";
+import Instagram from "../../basic/icons/Instagram";
 
 function SocialLinkGroup(props: any) {
   return (
@@ -12,10 +14,10 @@ function SocialLinkGroup(props: any) {
         <img src="/assets/imgs/icons/fancier-pink.png" alt="" />
       </Link>
       <Link to={""} className="p-4 inline-block">
-        <img src="/assets/imgs/icons/facebook.png" alt="" />
+        <Twitter />
       </Link>
       <Link to={""} className="p-4 inline-block">
-        <img src="/assets/imgs/icons/instagram.png" alt="" />
+        <Instagram />
       </Link>
     </div>
   );

@@ -29,7 +29,7 @@ const Guess = (props: Item) => {
           <hr className="border border-[#CCC] mt-[16px]" />
           <div className="flex justify-between items-center pt-[16px] text-[16px]">
             <div className="flex items-center">
-              <img src="/assets/imgs/circle-pen.svg" alt="" />
+              <img src="/assets/imgs/icons/circle-pen.svg" alt="" />
               <p className="pl-[8px] underline">猫太郎</p>
             </div>
             <div>

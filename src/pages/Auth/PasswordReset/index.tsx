@@ -11,8 +11,10 @@ function PasswordReset() {
     e.preventDefault();
     const submitResetPassword = async () => {
       try {
-        const { data } = await axios.post("password_reset", { email: email });
-        setSuccessMsg(data);
+        await axios.post("password_reset", { email: email });
+        setSuccessMsg(
+          "パスワード再設定メールが送信されました。受信箱を確認してください。"
+        );
       } catch (error: any) {
         if (error.response.status === 400) {
           setErrorMsg("メールアドレスを正確に入力してください。");

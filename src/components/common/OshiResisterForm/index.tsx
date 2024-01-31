@@ -1,4 +1,10 @@
-import { Checkbox, FormControlLabel } from "@mui/material";
+import {
+  Checkbox,
+  FormControl,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
+} from "@mui/material";
 import FileUpload from "../../basic/icons/FileUpload";
 import PrivacyComponent from "../PrivacyComponent";
 import Button from "../../basic/Button";
@@ -13,25 +19,25 @@ const OshiResisterForm = () => {
             個人／法人のお客さま
           </label>
           <div className="w-[456px] h-[40px] rounded-[4px] flex items-center">
-            <input
-              type="radio"
-              name="type"
-              id="individual"
-              value="individual"
-            />
-            <label className="ms-2" htmlFor="individual">
-              個人のお客様
-            </label>
-            <input
-              className="ms-[42px]"
-              type="radio"
-              name="type"
-              id="corp"
-              value="corp"
-            />
-            <label className="ms-2" htmlFor="corp">
-              個人のお客様
-            </label>
+            <FormControl>
+              <RadioGroup
+                aria-labelledby="demo-radio-buttons-group-label"
+                name="shop_permission"
+              >
+                <div className="flex gap-10">
+                  <FormControlLabel
+                    value={true}
+                    control={<Radio />}
+                    label="個人のお客様"
+                  />
+                  <FormControlLabel
+                    value={false}
+                    control={<Radio />}
+                    label="法人のお客様"
+                  />
+                </div>
+              </RadioGroup>
+            </FormControl>
           </div>
         </div>
         <div className="border-b border-[#CCCCCC] mt-[27px]"></div>
@@ -120,7 +126,8 @@ const OshiResisterForm = () => {
             <div
               className="w-[12px] h-[8px] absolute top-[18px] left-[120px]"
               style={{
-                backgroundImage: "url('/assets/imgs/select_triangle.png')",
+                backgroundImage:
+                  "url('/assets/imgs/icons/select_triangle.png')",
               }}
             ></div>
           </div>

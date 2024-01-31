@@ -84,7 +84,7 @@ const CatCard = ({
             {cat_images &&
               cat_images.map((item: any, key: any) => (
                 <SwiperSlide key={key}>
-                  <a href={`/oshinyan/${key}`}>
+                  <a href={`/oshinyan/${id}`}>
                     <img
                       src={item.imgs}
                       alt={item.imgs}
@@ -151,9 +151,9 @@ const CatCard = ({
               onClick={handleRecommend}
             >
               {recommend_user.find((e) => e.user == user.user_id) ? (
-                <img src="/assets/imgs/recommend-on.png" alt="" />
+                <img src="/assets/imgs/icons/recommend-on.png" alt="" />
               ) : (
-                <img src="/assets/imgs/recommend-off.png" alt="" />
+                <img src="/assets/imgs/icons/recommend-off.png" alt="" />
               )}
             </span>
             {recommendLoginShow && (
@@ -168,7 +168,7 @@ const CatCard = ({
           </div>
           {isNew && (
             <span className="absolute top-0 left-0 z-10">
-              <img src="/assets/imgs/parts-new.svg" alt="" />
+              <img src="/assets/imgs/icons/parts-new.svg" alt="" />
             </span>
           )}
         </div>
@@ -194,7 +194,7 @@ const CatCard = ({
           <div className="flex justify-content-start items-center mt-[15px] mb-[8px]">
             <span className=" flex d-inline-block align-items-center w-[24px] h-[24px]  mr-[9px]">
               <img
-                src="/assets/imgs/recommend.svg"
+                src="/assets/imgs/icons/recommend.svg"
                 className=" align-items-center "
                 alt=""
               />
@@ -206,7 +206,7 @@ const CatCard = ({
           <hr className="border border-[#CCC]" />
           <div className="flex justify-content-start items-center pt-[10px] pb-[19px] ">
             <div>
-              <img src="/assets/imgs/hear-yellow.svg" alt="" />
+              <img src="/assets/imgs/icons/hear-yellow.svg" alt="" />
             </div>
             <div className="pl-[8px]">
               <p>性格</p>

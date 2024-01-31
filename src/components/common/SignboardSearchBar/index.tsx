@@ -38,7 +38,7 @@ const SignboardSearchBar = ({ list, setList }: Props) => {
               className=" w-[320px] h-[32px] bg-[#F3F3F3] rounded-l-md shadow-inner focus-visible:border focus-visible:border-[#707070] focus-visible:border-solid focus-visible:outline-none"
             />
             <div>
-              <img src="/assets/imgs/search.svg" alt="search" />
+              <img src="/assets/imgs/icons/search.svg" alt="search" />
             </div>
           </div>
           <div className="flex items-center">

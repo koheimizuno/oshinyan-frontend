@@ -6,10 +6,10 @@ const RankingCat = () => {
       <div className="relative w-[312px] h-[234px]">
         <img src="/assets/cat-2020-1.png" className="cover" alt="" />
         <span className="absolute top-[8px] right-[8px]">
-          <img src="/assets/btn-foot.svg" alt="" />
+          <img src="/assets/icons/btn-foot.svg" alt="" />
         </span>
         <span className="absolute top-0 left-0">
-          <img src="/assets/parts-new.svg" alt="" />
+          <img src="/assets/icons/parts-new.svg" alt="" />
         </span>
       </div>
       <div className=" px-[16px]  bg-white h-[278px]">
@@ -31,7 +31,7 @@ const RankingCat = () => {
         <div className="flex justify-content-start items-center mt-[15px] mb-[8px]">
           <span className=" flex d-inline-block align-items-center w-[24px] h-[24px]  mr-[9px]">
             <img
-              src="/assets/recommend.svg"
+              src="/assets/icons/recommend.svg"
               className=" align-items-center "
               alt=""
             />

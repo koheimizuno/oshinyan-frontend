@@ -1,12 +1,66 @@
-import { Checkbox, FormControlLabel } from "@mui/material";
-import FileUpload from "../../basic/icons/FileUpload";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  Checkbox,
+  FormControl,
+  FormControlLabel,
+  MenuItem,
+  Radio,
+  RadioGroup,
+  Select,
+} from "@mui/material";
 import PrivacyComponent from "../PrivacyComponent";
-import Button from "../../basic/Button";
+import axios from "axios";
+import { Notification } from "../../../constant/notification";
 
 const ContactUsForm = () => {
+  const navigate = useNavigate();
+  const [checked, setChecked] = useState(false);
+  const [submitValue, setSubmitValue] = useState({
+    type: "質問・相談",
+    is_corporate: false,
+    company_name: "",
+    kanji_name: "",
+    furi_name: "",
+    phone: "",
+    email: "",
+    detail: "",
+  });
+
+  const handleChange = (e: any) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setSubmitValue((values) => ({ ...values, [name]: value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const submitInquiry = async () => {
+      try {
+        await axios.post("inquiry/", {
+          type: submitValue.type,
+          is_corporate: submitValue.is_corporate,
+          company_name: submitValue.company_name,
+          kanji_name: submitValue.kanji_name,
+          furi_name: submitValue.furi_name,
+          phone: submitValue.phone,
+          email: submitValue.email,
+          detail: submitValue.detail,
+        });
+        Notification("success", "お問い合わせフォームが正常に送信されました。");
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
+      } catch (error) {
+        Notification("success", "サーバーエラー");
+      }
+    };
+    submitInquiry();
+  };
+
   return (
     <div className="bg-white px-[24px] pb-[48px]">
-      <div className="w-[640px] m-auto">
+      <form className="w-[640px] m-auto" onSubmit={handleSubmit}>
         {/* row 1 */}
         <div className="pt-[48px] flex justify-between items-center">
           <label className="text-[14px]" htmlFor="contact_type">
@@ -16,19 +70,16 @@ const ContactUsForm = () => {
             </span>
           </label>
           <div className="w-[456px] h-[40px] rounded-[4px] flex items-center relative">
-            <select
-              id="contact_type"
-              onChange={(e) => {}}
-              className="appearance-none pr-8 bg-right bg-no-repeat rounded-full text-center text-[16px] w-[144px] bg-gradient-to-b from-[#EAEAEA] to-[#D3D3D3] border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            <Select
+              aria-label="prefecture"
+              name="type"
+              value={submitValue.type}
+              onChange={handleChange}
+              className="bg-gradient-to-b from-[#EAEAEA] to-[#D3D3D3] h-10 text-center text-[16px] w-[144px]"
+              sx={{ borderRadius: "20px" }}
             >
-              <option value="質問・相談">質問・相談</option>
-            </select>
-            <div
-              className="w-[12px] h-[8px] absolute top-[18px] left-[120px]"
-              style={{
-                backgroundImage: "url('/assets/imgs/select_triangle.png')",
-              }}
-            ></div>
+              <MenuItem value="質問・相談">質問・相談</MenuItem>
+            </Select>
           </div>
         </div>
         <div className="border-b border-[#CCCCCC] mt-[27px]"></div>
@@ -41,25 +92,27 @@ const ContactUsForm = () => {
             </span>
           </label>
           <div className="w-[456px] h-[40px] rounded-[4px] flex items-center">
-            <input
-              type="radio"
-              name="type"
-              id="individual"
-              value="individual"
-            />
-            <label className="ms-2" htmlFor="individual">
-              個人のお客様
-            </label>
-            <input
-              className="ms-[42px]"
-              type="radio"
-              name="type"
-              id="corp"
-              value="corp"
-            />
-            <label className="ms-2" htmlFor="corp">
-              個人のお客様
-            </label>
+            <FormControl>
+              <RadioGroup
+                aria-labelledby="demo-radio-buttons-group-label"
+                name="is_corporate"
+                value={submitValue.is_corporate}
+                onChange={handleChange}
+              >
+                <div className="flex gap-10">
+                  <FormControlLabel
+                    value={false}
+                    control={<Radio />}
+                    label="個人のお客様"
+                  />
+                  <FormControlLabel
+                    value={true}
+                    control={<Radio />}
+                    label="法人のお客様"
+                  />
+                </div>
+              </RadioGroup>
+            </FormControl>
           </div>
         </div>
         <div className="border-b border-[#CCCCCC] mt-[27px]"></div>
@@ -73,13 +126,16 @@ const ContactUsForm = () => {
           </label>
           <input
             type="text"
-            className="w-[456px] h-[40px] rounded-[4px] border border-[#CCCCCC]"
+            name="company_name"
+            onChange={handleChange}
+            required
+            className="w-[456px] h-[40px] rounded-[4px] border border-[#CCCCCC] focus:outline-none p-2"
           />
         </div>
         <div className="border-b border-[#CCCCCC] mt-[32px]"></div>
         {/* row 5 */}
         <div className="pt-[27px] flex justify-between items-center">
-          <label className="text-[14px]" htmlFor="">
+          <label className="text-[14px]">
             氏名（漢字）
             <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
               *
@@ -87,11 +143,14 @@ const ContactUsForm = () => {
           </label>
           <input
             type="text"
-            className="w-[456px] h-[40px] rounded-[4px] border border-[#CCCCCC]"
+            name="kanji_name"
+            onChange={handleChange}
+            required
+            className="w-[456px] h-[40px] rounded-[4px] border border-[#CCCCCC] focus:outline-none p-2"
           />
         </div>
         <div className="pt-[48px] flex justify-between items-center">
-          <label className="text-[14px]" htmlFor="">
+          <label className="text-[14px]">
             氏名（ふりがな）
             <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
               *
@@ -99,84 +158,102 @@ const ContactUsForm = () => {
           </label>
           <input
             type="text"
-            className="w-[456px] h-[40px] rounded-[4px] border border-[#CCCCCC]"
+            name="furi_name"
+            onChange={handleChange}
+            required
+            className="w-[456px] h-[40px] rounded-[4px] border border-[#CCCCCC] focus:outline-none p-2"
+          />
+        </div>
+        <div className="border-b border-[#CCCCCC] mt-[32px]"></div>
+        <div className="pt-[32px] flex justify-between items-center">
+          <label className="text-[14px]">
+            電話番号
+            <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
+              *
+            </span>
+          </label>
+          <input
+            type="tel"
+            name="phone"
+            onChange={handleChange}
+            className="w-[456px] h-[40px] rounded-[4px] border border-[#CCCCCC] focus:outline-none p-2"
           />
         </div>
         <div className="border-b border-[#CCCCCC] mt-[32px]"></div>
         {/* row 6 */}
         <div className="pt-[32px] flex justify-between items-center">
-          <label className="text-[14px]" htmlFor="">
+          <label className="text-[14px]">
             メールアドレス
             <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
               *
             </span>
           </label>
           <input
-            type="text"
-            className="w-[456px] h-[40px] rounded-[4px] border border-[#CCCCCC]"
+            type="email"
+            name="email"
+            onChange={handleChange}
+            required
+            className="w-[456px] h-[40px] rounded-[4px] border border-[#CCCCCC] focus:outline-none p-2"
           />
         </div>
         <div className="pt-[48px] flex justify-between items-center">
-          <label className="text-[14px]" htmlFor="">
+          <label className="text-[14px]">
             (▼確認のため再入力）
             <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
               *
             </span>
           </label>
           <input
-            type="text"
-            className="w-[456px] h-[40px] rounded-[4px] border border-[#CCCCCC]"
+            type="email"
+            name="re-email"
+            onChange={handleChange}
+            required
+            className="w-[456px] h-[40px] rounded-[4px] border border-[#CCCCCC] focus:outline-none p-2"
           />
         </div>
         <div className="border-b border-[#CCCCCC] mt-[32px]"></div>
-        {/* row 7 */}
-        <div className="pt-[32px] flex justify-between items-center">
-          <label className="text-[14px]" htmlFor="place">
-            場所種別
-            <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
-              *
-            </span>
-          </label>
-          <select
-            id="place"
-            onChange={(e) => {}}
-            className="appearance-none pr-8 bg-right bg-no-repeat rounded-full text-center text-[16px] w-[144px] bg-gradient-to-b from-[#EAEAEA] to-[#D3D3D3] border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          >
-            <option value="カフェ">カフェ</option>
-          </select>
-        </div>
-        <div className="border-b border-[#CCCCCC] mt-[27px]"></div>
         {/* row 8 */}
-        <div className="pt-[32px] flex justify-between items-center">
-          <label className="text-[14px]" htmlFor="place">
-            看板猫情報
+        <div className="pt-[32px] flex justify-between items-start">
+          <label className="text-[14px]">
+            お問合わせ内容
             <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
               *
             </span>
           </label>
           <textarea
-            name="place"
-            id="place"
-            className="h-[192px] w-[456px] border border-[#CCCCCC]"
+            name="detail"
+            onChange={handleChange}
+            required
+            className="h-[192px] w-[456px] border border-[#CCCCCC] focus:outline-none p-2"
           ></textarea>
-        </div>
-        <div className="w-full mt-[24px] h-[48px] flex justify-center bg-[#F3F3F3] py-3">
-          <FileUpload />{" "}
-          <span className="test-[14px] leading-[19px] ms-[10px]">
-            画像をドラック＆ドロップまたはファイル名選択
-          </span>
         </div>
         <div className="border-b border-[#CCCCCC] mt-[32px]"></div>
         <PrivacyComponent />
         <div className="text-center mt-[27px] pb-[27px] border-b border-[#CCCCCC]">
           <FormControlLabel
-            control={<Checkbox />}
+            control={
+              <Checkbox
+                checked={checked}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setChecked(e.target.checked)
+                }
+              />
+            }
             label="同意するニャン"
             required
           />
         </div>
-      </div>
-      <Button />
+        <div className="mt-[47px] text-center">
+          <button
+            type="submit"
+            className={`text-[24px] ${
+              checked ? "bg-[#FBA1B7]" : "bg-[#f8c6d2]"
+            }  h-[48px] border-solid rounded-full py-2 ps-[42px] pe-[40px] leading-[32px] text-center text-white`}
+          >
+            確認ニャ！
+          </button>
+        </div>
+      </form>
     </div>
   );
 };

@@ -37,6 +37,7 @@ const MonthRanking = () => {
   const { authLoading } = useSelector((state: any) => state.user);
   const { catLoading } = useSelector((state: any) => state.cat);
   const { isAuthenticated } = useSelector((state: any) => state.user);
+  const [searchWord, setSearchWord] = useState<string>("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -120,6 +121,10 @@ const MonthRanking = () => {
     }
   };
 
+  const handleFreeSearch = () => {
+    
+  }
+
   console.log(catData);
 
   return (
@@ -129,6 +134,9 @@ const MonthRanking = () => {
         selectPrefectureKeyword={selectPrefectureKeyword}
         setPrefectureShow={setPrefectureShow}
         prefectureShow={prefectureShow}
+        setSearchWord={setSearchWord}
+        searchWord={searchWord}
+        handleFreeSearch={handleFreeSearch}
       />
       <div className="bg-[#F5F4EC]">
         <div className="  w-[960px] m-auto ">
@@ -141,7 +149,7 @@ const MonthRanking = () => {
           <div className="ranking-1 mt-[24px] mb-[24px]">
             {catData.length !== 0 ? (
               <div className="ranking-1-tle flex gap-[8px]">
-                <img src="/assets/imgs/ranking-1-cap.svg" alt="cat" />{" "}
+                <img src="/assets/imgs/icons/ranking-1-cap.svg" alt="cat" />{" "}
                 <span className="text-[24px] font-bold leading-[32px]">
                   1位
                 </span>

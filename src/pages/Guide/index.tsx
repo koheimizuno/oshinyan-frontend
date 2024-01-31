@@ -237,7 +237,10 @@ const Guide = () => {
           <div className="w-[300px]">
             <div className="flex justify-center items-center w-[300px] h-[300px] rounded-[50%] bg-white">
               <div>
-                <img src="assets/imgs/Guide-icon-1.png" alt="Guide-icon-1" />
+                <img
+                  src="assets/imgs/icons/Guide-icon-1.png"
+                  alt="Guide-icon-1"
+                />
               </div>
             </div>
             <div className="mt-[22px] text-center text-[20px] px-[14px]">
@@ -247,7 +250,10 @@ const Guide = () => {
           <div className="w-[300px]">
             <div className="flex justify-center items-center w-[300px] h-[300px] rounded-[50%] bg-white">
               <div>
-                <img src="assets/imgs/Guide-icon-2.png" alt="Guide-icon-2" />
+                <img
+                  src="assets/imgs/icons/Guide-icon-2.png"
+                  alt="Guide-icon-2"
+                />
               </div>
             </div>
             <div className="mt-[22px] text-center text-[20px] px-[14px]">
@@ -257,7 +263,10 @@ const Guide = () => {
           <div className="w-[300px]">
             <div className="flex justify-center items-center w-[300px] h-[300px] rounded-[50%] bg-white">
               <div>
-                <img src="assets/imgs/Guide-icon-3.png" alt="Guide-icon-3" />
+                <img
+                  src="assets/imgs/icons/Guide-icon-3.png"
+                  alt="Guide-icon-3"
+                />
               </div>
             </div>
             <div className="mt-[22px] text-center text-[20px] px-[14px]">

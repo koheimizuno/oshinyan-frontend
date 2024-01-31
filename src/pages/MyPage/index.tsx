@@ -9,6 +9,8 @@ import Title from "../../components/common/Typography/Title";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { CatObjectType } from "../../constant/type";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Cats = [
   {
@@ -43,23 +45,43 @@ const imgUrl: object[] = [
   },
 ];
 
-const isChu = true;
-const isNew = false;
-
 const MyPage = () => {
+  const navigate = useNavigate();
   const [catData, setCatData] = useState<CatObjectType[]>([]);
+  const [currentUser, setCurrentUser] = useState({
+    username: "",
+    email: "",
+    avatar: "",
+    avatar_url: "",
+  });
+  const { user } = useSelector((state: any) => state.user);
+  const { isAuthenticated } = useSelector((state: any) => state.user);
 
   useEffect(() => {
-    const fetchData = async () => {
+    !isAuthenticated && navigate("/login");
+  }, [isAuthenticated]);
+
+  useEffect(() => {
+    const fetchCatData = async () => {
       try {
-        const res = await axios.get("cat");
-        setCatData(res.data.serializer);
+        const { data } = await axios.get("randomcat");
+        setCatData(data);
       } catch (error) {
         console.log(error);
       }
     };
-    fetchData();
-  }, []);
+    const fetchUser = async () => {
+      if (user.user_id) {
+        const { data } = await axios.get(`user/${user.user_id}/`);
+        setCurrentUser(data);
+      }
+    };
+    fetchCatData();
+    fetchUser();
+  }, [user]);
+
+  console.log("✅✅✅", currentUser);
+
   return (
     <>
       <MainLayout>
@@ -72,13 +94,13 @@ const MyPage = () => {
               <div className="w-[72px] h-[72px] me-[40px]">
                 <img
                   className="w-full"
-                  src="/assets/imgs/info_cat.png"
+                  src={currentUser.avatar_url}
                   alt="cat"
                 />
               </div>
               <div className="grow flex justify-between items-center me-[32px]">
                 <div className="text-[24px] font-bold leading-[32px]">
-                  猫好きさん
+                  {currentUser.username}
                 </div>
                 <div>
                   <EditButton onClick={() => {}} />
@@ -93,7 +115,7 @@ const MyPage = () => {
                 登録メールアドレス
               </div>
               <div className="me-auto text-[16px] leading-[21px] font-bold">
-                tetsuro.yoneda@xxxxx.co.jp
+                {currentUser.email}
               </div>
               <div>
                 <EditButton onClick={() => {}} />
@@ -134,15 +156,14 @@ const MyPage = () => {
           </div>
           <div className="mt-[40px] mb-[64px] flex flex-wrap justify-between gap-4">
             {Cats &&
-              Cats.map((e) => {
-                return (
-                  <FavoriteCard
-                    imgUrl={e.imgUrl}
-                    date="2023.01.01"
-                    vote="000"
-                  />
-                );
-              })}
+              Cats.map((e, key) => (
+                <FavoriteCard
+                  key={key}
+                  imgUrl={e.imgUrl}
+                  date="2023.01.01"
+                  vote="000"
+                />
+              ))}
           </div>
         </Container>
       </MainLayout>
