@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Carousel from "../../components/common/Carousel";
 import MainLayout from "../../layouts/MainLayout";
-import SearchBar from "../../components/common/SearchBar";
 import RankingBar from "../../components/common/RankingBar";
 import Store from "../../components/common/Store";
 import Notices from "../../components/common/Notices";
@@ -80,10 +79,6 @@ const CAROUSELIMAGES: object[] = [
 ];
 
 const Top = () => {
-  const [prefectureKeyword, selectPrefectureKeyword] = useState<string | null>(
-    null
-  );
-  const [prefectureShow, setPrefectureShow] = useState(false);
   const [catData, setCatData] = useState<CatObjectType[]>([]);
   const { authLoading } = useSelector((state: any) => state.user);
   const { catLoading } = useSelector((state: any) => state.cat);
@@ -100,25 +95,6 @@ const Top = () => {
     };
     fetchData();
   }, [isAuthenticated, catLoading, authLoading]);
-
-  useEffect(() => {
-    const fetchSearchData = async () => {
-      try {
-        if (prefectureKeyword !== null) {
-          const { data } = await axios.get(
-            "searchprefecture?keyword=" + prefectureKeyword
-          );
-          setCatData(data);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchSearchData();
-    setPrefectureShow(false);
-  }, [prefectureKeyword]);
-
-  console.log(catData);
 
   return (
     <MainLayout>
