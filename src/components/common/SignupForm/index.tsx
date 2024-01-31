@@ -1,8 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { lazy, useState } from "react";
 import { useDispatch } from "react-redux";
 import { PREFECTURE } from "../../../constant";
 import {
-  Box,
   Checkbox,
   FormControlLabel,
   MenuItem,
@@ -13,6 +12,7 @@ import { RegistrationAction } from "../../../slices/auth";
 import PrivacyComponent from "../PrivacyComponent";
 import { Close } from "@mui/icons-material";
 import axios from "axios";
+const Box = lazy(() => import("@mui/material/Box"));
 
 const modalBoxSytle = {
   position: "absolute",

@@ -1,7 +1,7 @@
 import { CircularProgress } from "@mui/material";
 function SuspenseContent() {
   return (
-    <div className="w-full h-screen text-[#7e7e7e] p-7">
+    <div className="w-screen h-screen flex justify-center items-center">
       <CircularProgress />
     </div>
   );
