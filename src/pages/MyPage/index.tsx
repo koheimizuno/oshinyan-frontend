@@ -39,12 +39,6 @@ const Cats = [
   },
 ];
 
-const imgUrl: object[] = [
-  {
-    imgUrl: ["/assets/imgs/cats/cat1.png", "/assets/imgs/cats/cat1-2.png"],
-  },
-];
-
 const MyPage = () => {
   const navigate = useNavigate();
   const [catData, setCatData] = useState<CatObjectType[]>([]);

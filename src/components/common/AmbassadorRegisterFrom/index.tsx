@@ -11,6 +11,8 @@ import { Close } from "@mui/icons-material";
 import PrivacyComponent from "../PrivacyComponent";
 import { PREFECTURE } from "../../../constant";
 import axios from "axios";
+import { Notification } from "../../../constant/notification";
+import { useNavigate } from "react-router-dom";
 
 const modalBoxSytle = {
   position: "absolute",
@@ -26,6 +28,7 @@ const modalBoxSytle = {
 };
 
 const AmbassadorRegisterFrom = () => {
+  const navigate = useNavigate();
   const [openModal, setOpenModal] = useState(false);
   const [checked, setChecked] = useState(false);
   const [submitValue, setSubmitValue] = useState({
@@ -40,8 +43,16 @@ const AmbassadorRegisterFrom = () => {
     e.preventDefault();
     const createAmbassador = async () => {
       if (checked) {
-        const { data } = await axios.post("ambassador", submitValue);
-        console.log(data);
+        try {
+          await axios.post("ambassador", submitValue);
+          Notification("success", "アンバサダー登録に成功しました。");
+          setTimeout(() => {
+            navigate("/");
+          }, 2000);
+        } catch (error: any) {
+          error.response.status === 400 &&
+            Notification("error", "メールアドレスが既に存在します。");
+        }
       }
     };
     createAmbassador();

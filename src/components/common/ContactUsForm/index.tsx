@@ -18,7 +18,7 @@ const ContactUsForm = () => {
   const [checked, setChecked] = useState(false);
   const [submitValue, setSubmitValue] = useState({
     type: "質問・相談",
-    is_corporate: false,
+    client_type: "個人",
     company_name: "",
     kanji_name: "",
     furi_name: "",
@@ -37,9 +37,9 @@ const ContactUsForm = () => {
     e.preventDefault();
     const submitInquiry = async () => {
       try {
-        await axios.post("inquiry/", {
+        await axios.post("inquiry", {
           type: submitValue.type,
-          is_corporate: submitValue.is_corporate,
+          client_type: submitValue.client_type,
           company_name: submitValue.company_name,
           kanji_name: submitValue.kanji_name,
           furi_name: submitValue.furi_name,
@@ -52,7 +52,7 @@ const ContactUsForm = () => {
           navigate("/");
         }, 2000);
       } catch (error) {
-        Notification("success", "サーバーエラー");
+        Notification("error", "メールアドレスは既に存在します。");
       }
     };
     submitInquiry();
@@ -95,18 +95,18 @@ const ContactUsForm = () => {
             <FormControl>
               <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
-                name="is_corporate"
-                value={submitValue.is_corporate}
+                name="client_type"
+                value={submitValue.client_type}
                 onChange={handleChange}
               >
                 <div className="flex gap-10">
                   <FormControlLabel
-                    value={false}
+                    value="個人"
                     control={<Radio />}
                     label="個人のお客様"
                   />
                   <FormControlLabel
-                    value={true}
+                    value="法人"
                     control={<Radio />}
                     label="法人のお客様"
                   />

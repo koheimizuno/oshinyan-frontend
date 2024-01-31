@@ -26,8 +26,6 @@ function PasswordReset() {
     submitResetPassword();
   };
 
-  console.log(email);
-
   return (
     <Container>
       <div className="h-screen flex flex-col justify-center items-center">
