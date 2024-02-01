@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import MainLayout from "../../layouts/MainLayout";
 import Container from "../../components/basic/Container";
 import PageBar from "../../components/common/PageBar";
@@ -6,7 +7,6 @@ import EditButton from "../../components/basic/EditButton";
 import FavoriteCard from "../../components/basic/FavoriteCard";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import Title from "../../components/common/Typography/Title";
-import { useEffect, useState } from "react";
 import axios from "axios";
 import { CatObjectType } from "../../constant/type";
 import { useSelector } from "react-redux";
@@ -48,12 +48,15 @@ const MyPage = () => {
     avatar: "",
     avatar_url: "",
   });
+  const [isFetchUserName, setIsFetchUserName] = useState(false);
+  const [newUsername, setNewUserName] = useState("");
+  const [isFetchEmail, setIsFetchEmail] = useState(false);
+  const [newEmail, setNewEmail] = useState("");
   const { user } = useSelector((state: any) => state.user);
-  const { isAuthenticated } = useSelector((state: any) => state.user);
 
   useEffect(() => {
-    !isAuthenticated && navigate("/login");
-  }, [isAuthenticated]);
+    !localStorage.getItem("token") && navigate("/login");
+  }, []);
 
   useEffect(() => {
     const fetchCatData = async () => {
@@ -74,7 +77,45 @@ const MyPage = () => {
     fetchUser();
   }, [user]);
 
-  console.log("✅✅✅", currentUser);
+  const editUserName = async () => {
+    if (!isFetchUserName) {
+      if (user.user_id) {
+        const { data } = await axios.get(`user/${user.user_id}/`);
+        setNewUserName(data.username);
+      }
+      setIsFetchUserName(true);
+    } else {
+      try {
+        const { data } = await axios.put(`user/${user.user_id}/`, {
+          username: newUsername,
+        });
+        setCurrentUser(data);
+      } catch (error: any) {
+        console.log(error.message);
+      }
+      setIsFetchUserName(false);
+    }
+  };
+
+  const editEmail = async () => {
+    if (!isFetchEmail) {
+      if (user.user_id) {
+        const { data } = await axios.get(`user/${user.user_id}/`);
+        setNewEmail(data.email);
+      }
+      setIsFetchEmail(true);
+    } else {
+      try {
+        const { data } = await axios.put(`user/${user.user_id}/`, {
+          email: newEmail,
+        });
+        setCurrentUser(data);
+      } catch (error: any) {
+        console.log(error.message);
+      }
+      setIsFetchEmail(false);
+    }
+  };
 
   return (
     <>
@@ -93,11 +134,24 @@ const MyPage = () => {
                 />
               </div>
               <div className="grow flex justify-between items-center me-[32px]">
-                <div className="text-[24px] font-bold leading-[32px]">
-                  {currentUser.username}
+                <div>
+                  {!isFetchUserName ? (
+                    <p className="text-[24px] font-bold leading-[32px]">
+                      {currentUser.username}
+                    </p>
+                  ) : (
+                    <input
+                      type="text"
+                      value={newUsername}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                        setNewUserName(e.target.value)
+                      }
+                      className="bg-[#F7F7F7] border border-[#CCCCCC] rounded-[5px] me-auto h-[40px] w-[304px] p-2 focus:outline-none"
+                    />
+                  )}
                 </div>
                 <div>
-                  <EditButton onClick={() => {}} />
+                  <EditButton onClick={editUserName} />
                 </div>
               </div>
               <div className="text-[24px] leading-[32px] ps-[32px] border-s border-[#CCCCCC]">
@@ -108,11 +162,24 @@ const MyPage = () => {
               <div className="w-[152px] me-[24px] text-[16px] leading-[21px]">
                 登録メールアドレス
               </div>
-              <div className="me-auto text-[16px] leading-[21px] font-bold">
-                {currentUser.email}
-              </div>
-              <div>
-                <EditButton onClick={() => {}} />
+              <div className="w-full flex justify-between items-center">
+                {!isFetchEmail ? (
+                  <p className="me-auto text-[16px] leading-[21px] font-bold">
+                    {currentUser.email}
+                  </p>
+                ) : (
+                  <input
+                    type="email"
+                    value={newEmail}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setNewEmail(e.target.value)
+                    }
+                    className="bg-[#F7F7F7] border border-[#CCCCCC] rounded-[5px] me-auto h-[40px] w-[304px] p-2 focus:outline-none"
+                  />
+                )}
+                <div>
+                  <EditButton onClick={editEmail} />
+                </div>
               </div>
             </div>
           </div>
@@ -120,7 +187,7 @@ const MyPage = () => {
             マイページには自分の推しニャン（サイト内で推しボタンを押した猫）が一覧で出てくるニャー
           </div>
           <div className="mt-[32px] mb-[48px] flex flex-wrap justify-between">
-            <div className="flex justify-between flex-wrap ">
+            <div className="flex justify-between flex-wrap">
               {catData.length !== 0 ? (
                 catData.map((e, i) => (
                   <CatCard
