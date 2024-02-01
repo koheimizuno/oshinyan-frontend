@@ -52,8 +52,8 @@ axios.defaults.baseURL = "http://162.43.50.92:8000/api/";
 
 function App() {
   const dispatch = useDispatch();
+  let token: string | null = localStorage.getItem("token");
   useEffect(() => {
-    let token: string | null = localStorage.getItem("token");
     if (token) {
       let data;
       const now = new Date();
@@ -73,6 +73,15 @@ function App() {
       delete axios.defaults.headers.common["Authorization"];
     }
   }, []);
+
+  const PRIVATE_ROUTES = ["mypage"];
+  const isPrivatePage = PRIVATE_ROUTES.some((r) =>
+    window.location.href.includes(r)
+  );
+  if (!token && isPrivatePage) {
+    delete axios.defaults.headers.common["Authorization"];
+    window.location.href = "/login";
+  }
 
   return (
     <BrowserRouter>

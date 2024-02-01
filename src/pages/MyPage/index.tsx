@@ -55,10 +55,6 @@ const MyPage = () => {
   const { user } = useSelector((state: any) => state.user);
 
   useEffect(() => {
-    !localStorage.getItem("token") && navigate("/login");
-  }, []);
-
-  useEffect(() => {
     const fetchCatData = async () => {
       try {
         const { data } = await axios.get("randomcat");
