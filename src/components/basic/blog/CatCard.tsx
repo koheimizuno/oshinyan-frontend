@@ -5,7 +5,6 @@ import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import { CatObjectType } from "../../../constant/type";
 import { useDispatch, useSelector } from "react-redux";
 import { RecommendAction } from "../../../slices/cat";
-import { Notification } from "../../../constant/notification";
 import { useNavigate } from "react-router-dom";
 import { isNewUtil } from "../../../utils";
 

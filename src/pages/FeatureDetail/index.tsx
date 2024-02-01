@@ -57,16 +57,13 @@ const Cats = [
   },
 ];
 
-const isChu = true;
-const isNew = false;
-
 const FeatureDetail = () => {
   const [catData, setCatData] = useState<CatObjectType[]>([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("cat");
-        setCatData(res.data.serializer);
+        const { data } = await axios.get("randomcat");
+        setCatData(data);
       } catch (error) {
         console.log(error);
       }
