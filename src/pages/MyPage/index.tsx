@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { lazy, useEffect, useState } from "react";
 import MainLayout from "../../layouts/MainLayout";
 import Container from "../../components/basic/Container";
 import PageBar from "../../components/common/PageBar";
@@ -10,7 +10,9 @@ import Title from "../../components/common/Typography/Title";
 import axios from "axios";
 import { CatObjectType } from "../../constant/type";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Modal } from "@mui/material";
+import { Close } from "@mui/icons-material";
+const Box = lazy(() => import("@mui/material/Box"));
 
 const Cats = [
   {
@@ -39,10 +41,29 @@ const Cats = [
   },
 ];
 
+interface avatarType {
+  id: number;
+  avatar: string;
+}
+
+const modalBoxSytle = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "912px",
+  margin: "auto",
+  bgcolor: "#fff",
+  boxShadow: 50,
+  overflow: "visible",
+  outline: 0,
+  borderRadius: "8px",
+};
+
 const MyPage = () => {
-  const navigate = useNavigate();
   const [catData, setCatData] = useState<CatObjectType[]>([]);
   const [currentUser, setCurrentUser] = useState({
+    id: 0,
     username: "",
     email: "",
     avatar: "",
@@ -52,7 +73,12 @@ const MyPage = () => {
   const [newUsername, setNewUserName] = useState("");
   const [isFetchEmail, setIsFetchEmail] = useState(false);
   const [newEmail, setNewEmail] = useState("");
-  const { user } = useSelector((state: any) => state.user);
+  const [avatars, setAvatars] = useState<avatarType[]>([]);
+  const [avatarModal, setAvatarModal] = useState(false);
+  const { catLoading } = useSelector((state: any) => state.cat);
+  const { user, authLoading, isAuthenticated } = useSelector(
+    (state: any) => state.user
+  );
 
   useEffect(() => {
     const fetchCatData = async () => {
@@ -69,7 +95,7 @@ const MyPage = () => {
     };
     fetchCatData();
     fetchUser();
-  }, [user]);
+  }, [isAuthenticated, catLoading, authLoading]);
 
   const editUserName = async () => {
     if (!isFetchUserName) {
@@ -101,7 +127,20 @@ const MyPage = () => {
     }
   };
 
-  console.log("💚💚💚", currentUser);
+  const handleAvatar = () => {
+    setAvatarModal(true);
+    const fetchAvatar = async () => {
+      const { data } = await axios.get("avatar/");
+      setAvatars(data);
+    };
+    fetchAvatar();
+  };
+
+  const selectAvatar = async (id: number) => {
+    const { data } = await axios.put(`user/${currentUser.id}/`, { id: id });
+    setCurrentUser({ ...currentUser, avatar_url: data.avatar_url });
+    setAvatarModal(false);
+  };
 
   return (
     <>
@@ -112,13 +151,46 @@ const MyPage = () => {
           <Title title="マイページ" />
           <div className="p-[24px] pb-[16px] bg-white">
             <div className="flex pb-[24px] border-b border-[#CCCCCC]">
-              <div className="w-[72px] h-[72px] me-[40px]">
+              <button
+                className="w-[72px] h-[72px] me-[40px]"
+                onClick={handleAvatar}
+              >
                 <img
                   className="w-full"
                   src={currentUser.avatar_url}
                   alt="cat"
                 />
-              </div>
+              </button>
+              <Modal
+                open={avatarModal}
+                onClose={() => setAvatarModal(false)}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+              >
+                <Box sx={modalBoxSytle}>
+                  <div className="p-6 pb-[34px]">
+                    <Close
+                      className="absolute top-2 right-2 bg-[#474747] rounded-full text-white p-1 cursor-pointer"
+                      onClick={() => setAvatarModal(false)}
+                    />
+                    <h3 className="text-[24px]">
+                      使用する猫アイコンを選択するニャン！
+                    </h3>
+                    <div className="mt-10 flex flex-wrap gap-10">
+                      {avatars.length &&
+                        avatars.map((item, index) => (
+                          <label
+                            key={index}
+                            className="cursor-pointer"
+                            onClick={() => selectAvatar(item.id)}
+                          >
+                            <img src={item.avatar} alt={item.avatar} />
+                          </label>
+                        ))}
+                    </div>
+                  </div>
+                </Box>
+              </Modal>
               <div className="grow flex justify-between items-center me-[32px]">
                 <div>
                   {!isFetchUserName ? (

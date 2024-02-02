@@ -81,7 +81,7 @@ const SignupForm = () => {
   const handleAvatar = () => {
     setAvatarModal(true);
     const fetchAvatar = async () => {
-      const { data } = await axios.get("avatar");
+      const { data } = await axios.get("avatar/");
       setAvatars(data);
     };
     fetchAvatar();

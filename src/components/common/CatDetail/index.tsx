@@ -159,8 +159,6 @@ const CatDetail = () => {
     }
   };
 
-  console.log("💚💚💚", recommendedUser);
-
   return (
     <div className="w-full relative">
       <CatDetailCarousel />
