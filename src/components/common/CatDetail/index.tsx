@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "pure-react-carousel/dist/react-carousel.es.css";
@@ -20,7 +21,8 @@ import CatCard from "../../basic/blog/CatCard";
 import ImageGallery from "./components/ImageGallery";
 import ImageDetail from "./components/ImageDetail";
 import axios from "axios";
-import { CatObjectType } from "../../../constant/type";
+import { CatObjectType, UserType } from "../../../constant/type";
+import { RecommendAction } from "../../../slices/cat";
 
 const Cats = [
   {
@@ -89,9 +91,15 @@ const actions = [
 
 const CatDetail = () => {
   const { id } = useParams();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const recommendLoginElement = useRef<HTMLDivElement>(null);
+  const [recommendLoginShow, setRecommendLoginShow] = useState(false);
   const [showImageGallery, setShowImageGallery] = useState(false);
   const [showImageDetail, setShowImageDetail] = useState(false);
   const [catData, setCatData] = useState<CatObjectType[]>([]);
+  const [recommendTooltip, setRecommendTooltip] = useState(false);
+  const [recommendedUser, setRecommendedUser] = useState<UserType[]>([]);
   const [retrieveCat, setRetrieveCat] = useState<CatObjectType>({
     id: 0,
     cat_name: "",
@@ -102,9 +110,13 @@ const CatDetail = () => {
     favorite_things: [],
     attendance: "",
     description: "",
-    recommend_user: [],
+    recommend: [],
     last_update: "",
   });
+  const { user, authLoading, isAuthenticated } = useSelector(
+    (state: any) => state.user
+  );
+  const { catLoading } = useSelector((state: any) => state.cat);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -119,7 +131,35 @@ const CatDetail = () => {
     };
     fetchData();
     RetrieveCat();
-  }, []);
+  }, [isAuthenticated, catLoading, authLoading]);
+
+  useEffect(() => {
+    const ListRecommendUser = async () => {
+      if (retrieveCat.recommend[0]) {
+        const { data } = await axios.get(
+          `recommend?cat_id=${retrieveCat.recommend[0].cat}`
+        );
+        setRecommendedUser(data);
+      }
+    };
+    ListRecommendUser();
+  }, [retrieveCat.recommend[0]]);
+
+  const handleRecommend = async () => {
+    if (isAuthenticated) {
+      if (!retrieveCat.recommend.find((e) => e.user == user.user_id)) {
+        const submitData = {
+          cat_id: id,
+          user_id: user.user_id,
+        };
+        const res = await dispatch(RecommendAction(submitData));
+      }
+    } else {
+      setRecommendLoginShow(true);
+    }
+  };
+
+  console.log("💚💚💚", recommendedUser);
 
   return (
     <div className="w-full relative">
@@ -130,9 +170,42 @@ const CatDetail = () => {
             <img src="/assets/imgs/icons/face_empty.png" alt="cat icon" />
             <span className="text-2xl ms-4">{retrieveCat.cat_name}</span>
           </div>
-          <div className="flex gap-[6px] items-center">
-            <img src="/assets/imgs/icons/comment_chu.png" alt="" />
-            <img src="/assets/imgs/icons/foot_solid.png" alt="" />
+          <div
+            className="flex gap-[6px] items-center"
+            ref={recommendLoginElement}
+          >
+            <img
+              src="/assets/imgs/icons/comment_chu.png"
+              alt="comment_chu.png"
+              className={`${recommendTooltip ? "block" : "hidden"}`}
+            />
+            <span
+              className="cursor-pointer rounded-full"
+              onClick={handleRecommend}
+              onMouseOver={() => setRecommendTooltip(true)}
+              onMouseLeave={() => setRecommendTooltip(false)}
+            >
+              {retrieveCat.recommend.find((e) => e.user == user.user_id) ? (
+                <img
+                  src="/assets/imgs/icons/recommend-on.png"
+                  alt="recommend-on"
+                />
+              ) : (
+                <img
+                  src="/assets/imgs/icons/recommend-off-black.png"
+                  alt="recommend-off-black"
+                />
+              )}
+            </span>
+            {recommendLoginShow && (
+              <span
+                className="absolute -left-5 -bottom-[75px] w-[250px] bg-white px-4 py-2 shadow-md rounded-xl cursor-pointer"
+                onClick={() => navigate("/login")}
+              >
+                会員ログイン後にボタンを押すことが可能です
+                <span className="w-2 h-4 absolute left-10 -top-4 z-20 border-8 border-transparent border-b-white"></span>
+              </span>
+            )}
           </div>
         </div>
         <div className="mt-2">
@@ -150,7 +223,7 @@ const CatDetail = () => {
             to="/nyanplace/1"
             className="underline text-base w-[180px] inline-block"
           >
-            にゃんにゃんカフェ
+            {retrieveCat.shop_name}
           </Link>
           <PrefectureBtn value={retrieveCat.prefecture} />
         </div>
@@ -207,24 +280,24 @@ const CatDetail = () => {
             />
           </div>
           <div className="text-2xl font-medium ms-2">
-            {retrieveCat.recommend_user.length}ニャン
+            {retrieveCat.recommend.length}ニャン
           </div>
         </div>
         <div className="w-full border-b border-black mt-4"></div>
         <div className="flex flex-wrap mt-4">
           <div className="flex flex-wrap gap-x-20 gap-y-4">
-            {retrieveCat.recommend_user[0] &&
-              retrieveCat.recommend_user
+            {recommendedUser &&
+              recommendedUser
                 .sort(() => Math.random() - 0.5)
                 .slice(0, 12)
                 .map((item, key) => (
                   <div className="flex items-center" key={key}>
                     <img
                       className="w-7 h-7"
-                      src={item.user.avatar_url}
-                      alt={item.user.avatar_url}
+                      src={item.avatar_url}
+                      alt={item.avatar_url}
                     />
-                    <div className="ms-3">{item.user.username}</div>
+                    <div className="ms-3">{item.username}</div>
                     <img
                       className="ms-5"
                       src="/assets/imgs/icons/comment_abbr.png"
@@ -407,7 +480,7 @@ const CatDetail = () => {
               favorite_things={e.favorite_things}
               attendance={e.attendance}
               description={e.description}
-              recommend_user={e.recommend_user}
+              recommend={e.recommend}
               last_update={e.last_update}
             />
           ))

@@ -73,10 +73,7 @@ const MyPage = () => {
 
   const editUserName = async () => {
     if (!isFetchUserName) {
-      if (user.user_id) {
-        const { data } = await axios.get(`user/${user.user_id}/`);
-        setNewUserName(data.username);
-      }
+      setNewUserName(user.username);
       setIsFetchUserName(true);
     } else {
       try {
@@ -91,10 +88,7 @@ const MyPage = () => {
 
   const editEmail = async () => {
     if (!isFetchEmail) {
-      if (user.user_id) {
-        const { data } = await axios.get(`user/${user.user_id}/`);
-        setNewEmail(data.email);
-      }
+      setNewEmail(user.email);
       setIsFetchEmail(true);
     } else {
       try {
@@ -106,6 +100,8 @@ const MyPage = () => {
       setIsFetchEmail(false);
     }
   };
+
+  console.log("💚💚💚", currentUser);
 
   return (
     <>
@@ -191,7 +187,7 @@ const MyPage = () => {
                     favorite_things={e.favorite_things}
                     attendance={e.attendance}
                     description={e.description}
-                    recommend_user={e.recommend_user}
+                    recommend={e.recommend}
                     last_update={e.last_update}
                   />
                 ))

@@ -17,7 +17,7 @@ const SmallCatCard = ({
   favorite_things,
   description,
   attendance,
-  recommend_user,
+  recommend,
   last_update,
 }: CatObjectType) => {
   const dispatch = useDispatch();
@@ -47,7 +47,7 @@ const SmallCatCard = ({
 
   const handleRecommend = async () => {
     if (isAuthenticated) {
-      if (!recommend_user.find((e) => e.user.id == user.user_id)) {
+      if (!recommend.find((e) => e.user == user.user_id)) {
         const submitData = {
           cat_id: id,
           user_id: user.user_id,
@@ -144,7 +144,7 @@ const SmallCatCard = ({
                 className="cursor-pointer rounded-full"
                 onClick={handleRecommend}
               >
-                {recommend_user.find((e) => e.user.id == user.user_id) ? (
+                {recommend.find((e) => e.user == user.user_id) ? (
                   <img
                     src="/assets/imgs/icons/recommend-on.png"
                     alt="recommend-on"
@@ -180,7 +180,7 @@ const SmallCatCard = ({
                 {cat_name}
               </h3>
               <Link
-                to="javascript:;"
+                to="#"
                 className=" w-[145px] leading-[21px] underline text-[16px] text-ellipsis overflow-hidden tracking-tighter whitespace-nowrap "
               >
                 {shop_name}
@@ -195,7 +195,7 @@ const SmallCatCard = ({
                 />
               </span>
               <h2 className="text-[24px] d-inline-block">
-                {recommend_user.length}ニャン
+                {recommend.length}ニャン
               </h2>
             </div>
           </div>

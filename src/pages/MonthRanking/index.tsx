@@ -160,7 +160,7 @@ const MonthRanking = () => {
               favorite_things={catData[0].favorite_things}
               attendance={catData[0].attendance}
               description={catData[0].description}
-              recommend_user={catData[0].recommend_user}
+              recommend={catData[0].recommend}
               last_update={catData[0].last_update}
             />
           )}
@@ -193,7 +193,7 @@ const MonthRanking = () => {
                       favorite_things={e.favorite_things}
                       attendance={e.attendance}
                       description={e.description}
-                      recommend_user={e.recommend_user}
+                      recommend={e.recommend}
                       last_update={e.last_update}
                     />
                   </div>
@@ -219,7 +219,7 @@ const MonthRanking = () => {
                     favorite_things={e.favorite_things}
                     attendance={e.attendance}
                     description={e.description}
-                    recommend_user={e.recommend_user}
+                    recommend={e.recommend}
                     last_update={e.last_update}
                   />
                 </div>

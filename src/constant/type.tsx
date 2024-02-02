@@ -1,11 +1,6 @@
-interface recommentUserType {
-  id: number;
-  username: string;
-  avatar_url: string;
-}
-
 interface recommendType {
-  user: recommentUserType;
+  user: number;
+  cat: number;
 }
 
 interface CatImageType {
@@ -21,6 +16,14 @@ export interface CatObjectType {
   favorite_things: string[];
   attendance: string;
   description: string;
-  recommend_user: recommendType[];
+  recommend: recommendType[];
   last_update: string;
+}
+
+export interface UserType {
+  id: number;
+  username: string;
+  email: string;
+  prefecture: string;
+  avatar_url: string;
 }

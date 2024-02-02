@@ -172,7 +172,7 @@ function NyanplaceDetail() {
                     favorite_things={e.favorite_things}
                     attendance={e.attendance}
                     description={e.description}
-                    recommend_user={e.recommend_user}
+                    recommend={e.recommend}
                     last_update={e.last_update}
                   />
                 ))

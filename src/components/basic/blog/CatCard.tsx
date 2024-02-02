@@ -21,7 +21,7 @@ const CatCard = ({
   favorite_things,
   attendance,
   description,
-  recommend_user,
+  recommend,
   last_update,
 }: PropsType) => {
   const dispatch = useDispatch();
@@ -29,8 +29,7 @@ const CatCard = ({
   const recommendLoginElement = useRef<HTMLDivElement>(null);
   const [isNew, setIsNew] = useState<boolean | undefined>(false);
   const [recommendLoginShow, setRecommendLoginShow] = useState(false);
-  const { user } = useSelector((state: any) => state.user);
-  const { isAuthenticated } = useSelector((state: any) => state.user);
+  const { user, isAuthenticated } = useSelector((state: any) => state.user);
 
   useEffect(() => {
     setIsNew(isNewUtil(last_update));
@@ -50,7 +49,7 @@ const CatCard = ({
 
   const handleRecommend = async () => {
     if (isAuthenticated) {
-      if (!recommend_user.find((e) => e.user.id == user.user_id)) {
+      if (!recommend.find((e) => e.user == user.user_id)) {
         const submitData = {
           cat_id: id,
           user_id: user.user_id,
@@ -149,7 +148,7 @@ const CatCard = ({
               className="cursor-pointer rounded-full"
               onClick={handleRecommend}
             >
-              {recommend_user.find((e) => e.user.id == user.user_id) ? (
+              {recommend.find((e) => e.user == user.user_id) ? (
                 <img
                   src="/assets/imgs/icons/recommend-on.png"
                   alt="recommend-on"
@@ -205,7 +204,7 @@ const CatCard = ({
               />
             </span>
             <h2 className="text-[24px] d-inline-block">
-              {recommend_user.length}ニャン
+              {recommend.length}ニャン
             </h2>
           </div>
           <hr className="border border-[#CCC]" />

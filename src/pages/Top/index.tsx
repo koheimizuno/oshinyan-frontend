@@ -81,9 +81,10 @@ const CAROUSELIMAGES: object[] = [
 
 const Top = () => {
   const [catData, setCatData] = useState<CatObjectType[]>([]);
-  const { authLoading } = useSelector((state: any) => state.user);
   const { catLoading } = useSelector((state: any) => state.cat);
-  const { isAuthenticated } = useSelector((state: any) => state.user);
+  const { authLoading, isAuthenticated } = useSelector(
+    (state: any) => state.user
+  );
 
   useEffect(() => {
     const fetchData = async () => {
@@ -122,7 +123,7 @@ const Top = () => {
                   favorite_things={e.favorite_things}
                   attendance={e.attendance}
                   description={e.description}
-                  recommend_user={e.recommend_user}
+                  recommend={e.recommend}
                   last_update={e.last_update}
                 />
               ))
@@ -151,7 +152,7 @@ const Top = () => {
                   favorite_things={e.favorite_things}
                   attendance={e.attendance}
                   description={e.description}
-                  recommend_user={e.recommend_user}
+                  recommend={e.recommend}
                   last_update={e.last_update}
                 />
               ))
