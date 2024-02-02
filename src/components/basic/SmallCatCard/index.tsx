@@ -1,10 +1,10 @@
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { CatObjectType } from "../../../constant/type";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
-import { useEffect, useRef, useState } from "react";
 import { RecommendAction } from "../../../slices/cat";
-import { useNavigate } from "react-router-dom";
 import { isNewUtil } from "../../../utils";
 
 const SmallCatCard = ({
@@ -80,13 +80,13 @@ const SmallCatCard = ({
               {cat_images &&
                 cat_images.map((item: any, key: any) => (
                   <SwiperSlide key={key}>
-                    <a href={`/oshinyan/${id}`}>
+                    <Link to={`/oshinyan/${id}`}>
                       <img
                         src={item.imgs}
                         alt={item.imgs}
                         className="m-auto cursor-pointer w-full"
                       />
-                    </a>
+                    </Link>
                   </SwiperSlide>
                 ))}
               <div className="swiper-pagination custom-pagination-bullets"></div>
@@ -179,12 +179,12 @@ const SmallCatCard = ({
               <h3 className="text-[24px] leading-[24px] vertical-bottom font-bold text-left text-ellipsis overflow-hidden whitespace-nowrap">
                 {cat_name}
               </h3>
-              <a
-                href="javascript:;"
+              <Link
+                to="javascript:;"
                 className=" w-[145px] leading-[21px] underline text-[16px] text-ellipsis overflow-hidden tracking-tighter whitespace-nowrap "
               >
                 {shop_name}
-              </a>
+              </Link>
             </div>
             <div className="flex justify-content-start items-center mt-[auto] mb-[8px]">
               <span className=" flex d-inline-block align-items-center w-[24px] h-[24px]  mr-[9px]">

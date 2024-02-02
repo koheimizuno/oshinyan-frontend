@@ -1,7 +1,7 @@
-import axios from "axios";
-import React, { useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 import { LogOutAction } from "../../slices/auth";
 
 const Header = () => {
@@ -26,9 +26,9 @@ const Header = () => {
   return (
     <div className="flex justify-between items-center py-[13px] h-[96px]">
       <div className="hover:opacity-70">
-        <a href="/">
+        <Link to="/">
           <img src="/assets/imgs/logo.svg" alt="logo" />
-        </a>
+        </Link>
         <h1 className="text-[12px] font-medium tracking-tighter ">
           お気に入りの看板猫が探せる！推せるサイト
         </h1>
@@ -68,8 +68,8 @@ const Header = () => {
           </li>
           <li className="hover:opacity-70 sm:py-3 sm:pb-6 md:pb-3">
             {isAuthenticated ? (
-              <a
-                href="/mypage"
+              <Link
+                to="/mypage"
                 className="bg-[#FBA1B7] w-[120px] rounded sm:m-auto px-[8px] pb-[5px] pt-[3px] flex justify-start items-center"
               >
                 <div className="pr-[8px]">
@@ -78,10 +78,10 @@ const Header = () => {
                 <p className="text-white text-[16px] tracking-[-.15em] font-medium">
                   マイページ
                 </p>
-              </a>
+              </Link>
             ) : (
-              <a
-                href="/login"
+              <Link
+                to="/login"
                 className="bg-[#edc97a] w-[120px] rounded sm:m-auto px-[8px] pb-[5px] pt-[3px] flex justify-center items-center gap-1"
               >
                 <div className="pr-[8px]">
@@ -95,7 +95,7 @@ const Header = () => {
                 <p className="text-white text-[16px] tracking-[-.15em] font-medium">
                   ログイン
                 </p>
-              </a>
+              </Link>
             )}
           </li>
           {isAuthenticated && (

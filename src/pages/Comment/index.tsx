@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import MainLayout from "../../layouts/MainLayout";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import Container from "../../components/basic/Container";
@@ -25,9 +26,9 @@ function Comment() {
         <section className="flex items-center py-9">
           <div className="flex items-center gap-4 mr-10">
             <img src="/assets/imgs/icons/cat_avatar_3.png" alt="cat_avatar_3" />
-            <a href="#" className="border-b border-[#6d6d6d]">
+            <Link to="#" className="border-b border-[#6d6d6d]">
               猫好きさん
-            </a>
+            </Link>
           </div>
           <div className="mr-5">
             <img src="/assets/imgs/icons/pink-arrow.png" alt="pink-arrow" />

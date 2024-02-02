@@ -1,11 +1,13 @@
+import { Link } from "react-router-dom";
+
 const PageBar = ({ page }: { page: string }) => {
   return (
     <div className="flex gap-2 py-4">
-      <a href="/" className="">
+      <Link to="/" className="">
         TOP
-      </a>
+      </Link>
       <span>&gt;&nbsp;</span>
-      <a href="#">{page}</a>
+      <Link to="#">{page}</Link>
     </div>
   );
 };

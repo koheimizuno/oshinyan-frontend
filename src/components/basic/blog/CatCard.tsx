@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import CustomButton from "../CustomButton";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import { CatObjectType } from "../../../constant/type";
 import { useDispatch, useSelector } from "react-redux";
 import { RecommendAction } from "../../../slices/cat";
-import { useNavigate } from "react-router-dom";
 import { isNewUtil } from "../../../utils";
 
 interface PropsType extends CatObjectType {
@@ -83,13 +83,13 @@ const CatCard = ({
             {cat_images &&
               cat_images.map((item: any, key: any) => (
                 <SwiperSlide key={key}>
-                  <a href={`/oshinyan/${id}`}>
+                  <Link to={`/oshinyan/${id}`}>
                     <img
                       src={item.imgs}
                       alt={item.imgs}
                       className="h-full m-auto cursor-pointer"
                     />
-                  </a>
+                  </Link>
                 </SwiperSlide>
               ))}
             <div className="swiper-pagination custom-pagination-bullets"></div>
@@ -185,12 +185,12 @@ const CatCard = ({
           </div>
           <div className="flex justify-between">
             <div>
-              <a
-                href="javascript:;"
+              <Link
+                to="#"
                 className=" w-[145px] underline text-[16px] text-ellipsis overflow-hidden tracking-tighter whitespace-nowrap "
               >
                 {shop_name}
-              </a>
+              </Link>
             </div>
             <div>
               <CustomButton value={prefecture} />

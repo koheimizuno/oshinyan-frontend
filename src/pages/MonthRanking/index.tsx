@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import MainLayout from "../../layouts/MainLayout";
 import SearchBar from "../../components/common/SearchBar";
 import RankingBar from "../../components/common/RankingBar";
@@ -12,7 +14,6 @@ import SmallCatCard from "../../components/basic/SmallCatCard";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import axios from "axios";
 import { CatObjectType } from "../../constant/type";
-import { useSelector } from "react-redux";
 
 const isNew = false;
 interface dateType {
@@ -46,9 +47,7 @@ const MonthRanking = () => {
           `monthrankingcat?date=${dates.year}-${dates.month}-${dates.date}`
         );
         setCatData(res.data);
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     };
     fetchData();
   }, [isAuthenticated, catLoading, authLoading]);
@@ -62,9 +61,7 @@ const MonthRanking = () => {
           );
           setCatData(data);
         }
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     };
     fetchSearchData();
     setPrefectureShow(false);
@@ -89,9 +86,7 @@ const MonthRanking = () => {
         `monthrankingcat?date=${year}-${month}-${dates.date}`
       );
       setCatData(res.data);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   const nextMonthFetch = async () => {
@@ -115,17 +110,11 @@ const MonthRanking = () => {
         );
         setCatData(res.data);
         setPrefectureShow(false);
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     }
   };
 
-  const handleFreeSearch = () => {
-    
-  }
-
-  console.log(catData);
+  const handleFreeSearch = () => {};
 
   return (
     <MainLayout>
@@ -292,17 +281,17 @@ const MonthRanking = () => {
           <div>
             <div className="pt-[48px] pb-[80px]">
               <div className="mb-[24px] hover:opacity-70">
-                <a href="/nyanplace" className="relative">
+                <Link to="/nyanplace" className="relative">
                   <img src="/assets/imgs/signboard.png" alt="signboard" />
                   <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[32px] text-white font-bold tracking-widest">
                     『看板猫に会える場所』一覧
                   </p>
-                </a>
+                </Link>
               </div>
               <div className="hover:opacity-70">
-                <a href="/shopresister">
+                <Link to="/shopresister">
                   <img src="/assets/imgs/member.png" alt="" />
-                </a>
+                </Link>
               </div>
             </div>
           </div>

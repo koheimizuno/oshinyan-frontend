@@ -20,8 +20,8 @@ const FeaturePage = () => {
         <Title title="特集（仮）一覧" />
         <div className="mt-[32px] mb-[56px] flex flex-wrap justify-between">
           {features &&
-            features.map((e) => {
-              return <FeatureCard imgUrl={e.imgUrl} text={e.text} />;
+            features.map((e, key) => {
+              return <FeatureCard imgUrl={e.imgUrl} text={e.text} key={key} />;
             })}
         </div>
         <div className="flex justify-center mt-[48px] mb-[52px]">

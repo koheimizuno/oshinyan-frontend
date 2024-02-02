@@ -64,9 +64,7 @@ const FeatureDetail = () => {
       try {
         const { data } = await axios.get("randomcat");
         setCatData(data);
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     };
     fetchData();
   }, []);

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "pure-react-carousel/dist/react-carousel.es.css";
@@ -20,7 +21,6 @@ import ImageGallery from "./components/ImageGallery";
 import ImageDetail from "./components/ImageDetail";
 import axios from "axios";
 import { CatObjectType } from "../../../constant/type";
-import { useParams } from "react-router-dom";
 
 const Cats = [
   {
@@ -111,9 +111,7 @@ const CatDetail = () => {
       try {
         const { data } = await axios.get("randomcat");
         setCatData(data);
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     };
     const RetrieveCat = async () => {
       const { data } = await axios.get(`cat/${id}`);
@@ -148,12 +146,12 @@ const CatDetail = () => {
         </div>
         <div className="mt-4 break-all">{retrieveCat.description}</div>
         <div className="mt-2">
-          <a
-            href="/nyanplace/1"
+          <Link
+            to="/nyanplace/1"
             className="underline text-base w-[180px] inline-block"
           >
             にゃんにゃんカフェ
-          </a>
+          </Link>
           <PrefectureBtn value={retrieveCat.prefecture} />
         </div>
         <div className="flex gap-[14px] mt-6">
@@ -268,7 +266,7 @@ const CatDetail = () => {
             </div>
             <div className="flex justify-between ">
               <div>
-                <a href="/comment" className="flex items-center h-full">
+                <Link to="/comment" className="flex items-center h-full">
                   <span className="text-[28px] tracking-[-3px] text-white font-bold">
                     コメントするニャン！
                   </span>
@@ -278,7 +276,7 @@ const CatDetail = () => {
                       alt="arr-right-white"
                     />
                   </span>
-                </a>
+                </Link>
               </div>
               <div className="">
                 <div className="bg-red-400 relative w-[150px]">

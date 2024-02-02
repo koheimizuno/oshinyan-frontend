@@ -1,6 +1,5 @@
 import React from "react";
-import PrefectureBtn from "../CustomButton";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export interface Props {
   imgUrl: string;
@@ -60,9 +59,9 @@ const BlogColumnBox = ({
             <div className="flex justify-between py-4">
               <div className="flex gap-2">
                 <img src="/assets/imgs/icons/pen.png" alt="pen" />
-                <a href="#" className="border-b border-black">
+                <Link to="#" className="border-b border-black">
                   猫太郎
-                </a>
+                </Link>
               </div>
               <p>2024.00.00</p>
             </div>

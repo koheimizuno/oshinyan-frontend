@@ -59,9 +59,7 @@ const MyPage = () => {
       try {
         const { data } = await axios.get("randomcat");
         setCatData(data);
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     };
     const fetchUser = async () => {
       if (user.user_id) {
@@ -86,9 +84,7 @@ const MyPage = () => {
           username: newUsername,
         });
         setCurrentUser(data);
-      } catch (error: any) {
-        console.log(error.message);
-      }
+      } catch (error: any) {}
       setIsFetchUserName(false);
     }
   };
@@ -106,9 +102,7 @@ const MyPage = () => {
           email: newEmail,
         });
         setCurrentUser(data);
-      } catch (error: any) {
-        console.log(error.message);
-      }
+      } catch (error: any) {}
       setIsFetchEmail(false);
     }
   };

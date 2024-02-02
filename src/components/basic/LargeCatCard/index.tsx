@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Calendar from "../icons/Calendar";
 import CustomButton from "../CustomButton";
@@ -84,13 +84,13 @@ const LargeCatCard = ({
             {cat_images &&
               cat_images.map((item: any, key: any) => (
                 <SwiperSlide key={key}>
-                  <a href={`/oshinyan/${id}`}>
+                  <Link to={`/oshinyan/${id}`}>
                     <img
                       src={item.imgs}
                       alt={item.imgs}
                       className="m-auto cursor-pointer w-full"
                     />
-                  </a>
+                  </Link>
                 </SwiperSlide>
               ))}
             <div className="swiper-pagination custom-pagination-bullets"></div>
@@ -149,12 +149,12 @@ const LargeCatCard = ({
           </div>
           <div className="flex justify-between pb-[24px]">
             <div>
-              <a
-                href="javascript:;"
+              <Link
+                to="#"
                 className=" w-[145px] underline text-[16px] text-ellipsis overflow-hidden tracking-tighter whitespace-nowrap "
               >
                 {shop_name}
-              </a>
+              </Link>
             </div>
             <div>
               <CustomButton value={prefecture}></CustomButton>

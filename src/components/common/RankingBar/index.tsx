@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 const RankingBar = () => {
   return (
     <>
@@ -13,29 +14,29 @@ const RankingBar = () => {
         </div>
         <div className="w-[264px] flex justify-between items-center xs:m-auto sm:ml-[55px]">
           <div>
-            <a
+            <Link
               className={`${
                 window.location.pathname === "/ranking/gekkan"
                   ? "text-[#E695A9]"
                   : "hover:text-[#E695A9]"
               } underline-0" `}
-              href="/ranking/gekkan"
+              to="/ranking/gekkan"
             >
               月間TOP10
-            </a>
+            </Link>
           </div>
           <div className="w-0 h-[16px] border border-solid border-[#CBB279] mt-[2px]"></div>
           <div>
-            <a
+            <Link
               className={`${
                 window.location.pathname === "/ranking"
                   ? "text-[#E695A9]"
                   : "hover:text-[#E695A9]"
               } underline-0`}
-              href="/ranking"
+              to="/ranking"
             >
               総合TOP10
-            </a>
+            </Link>
           </div>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Carousel from "../../components/common/Carousel";
 import MainLayout from "../../layouts/MainLayout";
@@ -89,9 +90,7 @@ const Top = () => {
       try {
         const { data } = await axios.get("randomcat");
         setCatData(data);
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     };
     fetchData();
   }, [isAuthenticated, catLoading, authLoading]);
@@ -175,17 +174,17 @@ const Top = () => {
         <div>
           <div className="pt-[48px] pb-[80px]">
             <div className="mb-[24px] hover:opacity-70">
-              <a href="/nyanplace" className="relative">
+              <Link to="/nyanplace" className="relative">
                 <img src="/assets/imgs/signboard.png" alt="signboard" />
                 <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[32px] text-white font-bold tracking-widest">
                   『看板猫に会える場所』一覧
                 </p>
-              </a>
+              </Link>
             </div>
             <div className="hover:opacity-70">
-              <a href="/shopresister">
+              <Link to="/shopresister">
                 <img src="/assets/imgs/member.png" alt="" />
-              </a>
+              </Link>
             </div>
           </div>
         </div>

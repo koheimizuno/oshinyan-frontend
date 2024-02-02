@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import MainLayout from "../../layouts/MainLayout";
 import PageBar from "../../components/common/PageBar";
 import Container from "../../components/basic/Container";
@@ -98,9 +99,7 @@ function NyanplaceDetail() {
       try {
         const { data } = await axios.get("randomcat");
         setCatData(data);
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     };
     fetchData();
   }, []);
@@ -134,9 +133,9 @@ function NyanplaceDetail() {
                 <img src="/assets/imgs/icons/address.png" alt="address" />
               </div>
               <span className="w-[65px]">住所</span>
-              <a href="#" className="ml-2 border-b border-gray-400">
+              <Link to="#" className="ml-2 border-b border-gray-400">
                 □□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
-              </a>
+              </Link>
             </div>
             {CONTACTINFO &&
               CONTACTINFO.map((item, key) => (
@@ -152,9 +151,9 @@ function NyanplaceDetail() {
 
           <div className="flex gap-4 pb-8 border-b border-[#CCCCCC]">
             <span>店舗ホームページ</span>
-            <a href="#" className="border-b border-gray-400">
+            <Link to="#" className="border-b border-gray-400">
               xxxxxxxxxxxxxxx.xx.xx
-            </a>
+            </Link>
           </div>
 
           <div>

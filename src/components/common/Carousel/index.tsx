@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import ArrowLeft from "../../basic/icons/ArrowLeft";
 import ArrowRight from "../../basic/icons/ArrowRight";
 
@@ -36,9 +37,9 @@ function Carousel(props: any) {
         {props.data &&
           props.data.map((item: any, key: any) => (
             <SwiperSlide key={key}>
-              <a href="/feature/1">
+              <Link to="/feature/1">
                 <img src={item.src} alt={item.alt} className="h-full m-auto" />
-              </a>
+              </Link>
             </SwiperSlide>
           ))}
         {props.nextBtnShow !== "none" && (
