@@ -18,11 +18,6 @@ const RegisterOther = () => {
     window.location.pathname === "/ambassador" && setTabValue(2);
   }, []);
 
-  useEffect(() => {
-    tabValue === 1 && navigate("/shopresister");
-    tabValue === 2 && navigate("/ambassador");
-  }, [tabValue]);
-
   return (
     <MainLayout>
       <SocialLinkGroup />

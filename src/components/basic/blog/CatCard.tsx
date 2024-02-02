@@ -50,7 +50,7 @@ const CatCard = ({
 
   const handleRecommend = async () => {
     if (isAuthenticated) {
-      if (!recommend_user.find((e) => e.user == user.user_id)) {
+      if (!recommend_user.find((e) => e.user.id == user.user_id)) {
         const submitData = {
           cat_id: id,
           user_id: user.user_id,
@@ -149,10 +149,16 @@ const CatCard = ({
               className="cursor-pointer rounded-full"
               onClick={handleRecommend}
             >
-              {recommend_user.find((e) => e.user == user.user_id) ? (
-                <img src="/assets/imgs/icons/recommend-on.png" alt="" />
+              {recommend_user.find((e) => e.user.id == user.user_id) ? (
+                <img
+                  src="/assets/imgs/icons/recommend-on.png"
+                  alt="recommend-on"
+                />
               ) : (
-                <img src="/assets/imgs/icons/recommend-off.png" alt="" />
+                <img
+                  src="/assets/imgs/icons/recommend-off.png"
+                  alt="recommend-off"
+                />
               )}
             </span>
             {recommendLoginShow && (

@@ -52,7 +52,7 @@ const LargeCatCard = ({
 
   const handleRecommend = async () => {
     if (isAuthenticated) {
-      if (!recommend_user.find((e) => e.user == user.user_id)) {
+      if (!recommend_user.find((e) => e.user.id == user.user_id)) {
         const submitData = {
           cat_id: id,
           user_id: user.user_id,
@@ -84,7 +84,7 @@ const LargeCatCard = ({
             {cat_images &&
               cat_images.map((item: any, key: any) => (
                 <SwiperSlide key={key}>
-                  <a href={`/oshinyan/${1}`}>
+                  <a href={`/oshinyan/${id}`}>
                     <img
                       src={item.imgs}
                       alt={item.imgs}
@@ -210,7 +210,7 @@ const LargeCatCard = ({
               className="cursor-pointer rounded-full"
               onClick={handleRecommend}
             >
-              {recommend_user.find((e) => e.user == user.user_id) ? (
+              {recommend_user.find((e) => e.user.id == user.user_id) ? (
                 <img
                   src="/assets/imgs/icons/recommend-on.png"
                   alt="recommend-on"

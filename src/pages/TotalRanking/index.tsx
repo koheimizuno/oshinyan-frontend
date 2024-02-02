@@ -25,8 +25,6 @@ const TotalRanking = () => {
   const { isAuthenticated } = useSelector((state: any) => state.user);
   const [searchWord, setSearchWord] = useState<string>("");
 
-  console.log("💚💚💚", searchWord);
-
   useEffect(() => {
     const fetchData = async () => {
       try {

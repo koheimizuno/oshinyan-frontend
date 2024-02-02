@@ -13,7 +13,6 @@ import { PREFECTURE } from "../../../constant";
 import axios from "axios";
 import { Store } from "react-notifications-component";
 import PrivacyComponent from "../PrivacyComponent";
-import Button from "../../basic/Button";
 
 const ShopRegisterForm = () => {
   const hiddenFileInput = useRef<HTMLInputElement>(null);
@@ -24,11 +23,11 @@ const ShopRegisterForm = () => {
     prefecture: "東京都",
     city: "",
     street: "",
-    room_no: "",
+    detail_address: "",
     email: "",
     phone: "",
     shop_permission: true,
-    description: "",
+    cat_info: "",
   });
 
   const handleChange = (e: any) => {
@@ -44,14 +43,14 @@ const ShopRegisterForm = () => {
     formData.append("prefecture", registerCatValues.prefecture);
     formData.append("city", registerCatValues.city);
     formData.append("street", registerCatValues.street);
-    formData.append("room_no", registerCatValues.room_no);
+    formData.append("detail_address", registerCatValues.detail_address);
     formData.append("email", registerCatValues.email);
     formData.append("phone", registerCatValues.phone);
     formData.append(
       "shop_permission",
       registerCatValues.shop_permission.toString()
     );
-    formData.append("description", registerCatValues.description);
+    formData.append("cat_info", registerCatValues.cat_info);
 
     if (selectedFiles != null) {
       const files = Array.from(selectedFiles);
@@ -61,8 +60,8 @@ const ShopRegisterForm = () => {
       try {
         const res = await axios.post("shop", formData);
         Store.addNotification({
-          title: "Success!",
-          message: "Successfully created!",
+          title: "成功！",
+          message: "未登録店舗の登録が成功しました。",
           type: "success",
           container: "top-right",
           dismiss: {
@@ -73,8 +72,8 @@ const ShopRegisterForm = () => {
       } catch (error: any) {
         if (error.response.status === 400)
           Store.addNotification({
-            title: "Warning!",
-            message: "Already exist!",
+            title: "失敗!",
+            message: "店舗は既に存在します。",
             type: "warning",
             container: "top-right",
             dismiss: {
@@ -198,13 +197,13 @@ const ShopRegisterForm = () => {
           <div className="flex justify-between py-4">
             <div></div>
             <div className="flex w-[456px] justify-between items-center">
-              <label htmlFor="room_no" className="text-[14px]">
+              <label htmlFor="detail_address" className="text-[14px]">
                 建物名・部屋番号
               </label>
               <input
                 type="text"
-                id="room_no"
-                name="room_no"
+                id="detail_address"
+                name="detail_address"
                 onChange={handleChange}
                 className="w-[329px] h-[40px] rounded-[4px] border border-[#CCCCCC] p-2 focus:outline-none"
               />
@@ -270,15 +269,15 @@ const ShopRegisterForm = () => {
           </div>
         </div>
         <div className="pt-[32px] flex justify-between">
-          <label className="text-[14px]" htmlFor="description">
+          <label className="text-[14px]" htmlFor="cat_info">
             看板猫情報
             <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
               *
             </span>
           </label>
           <textarea
-            name="description"
-            id="description"
+            name="cat_info"
+            id="cat_info"
             onChange={handleChange}
             className="h-[192px] w-[456px] border border-[#CCCCCC] p-2 focus:outline-none"
           ></textarea>

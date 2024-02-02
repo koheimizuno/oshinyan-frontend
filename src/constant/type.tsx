@@ -1,5 +1,11 @@
+interface recommentUserType {
+  id: number;
+  username: string;
+  avatar_url: string;
+}
+
 interface recommendType {
-  user: number;
+  user: recommentUserType;
 }
 
 interface CatImageType {

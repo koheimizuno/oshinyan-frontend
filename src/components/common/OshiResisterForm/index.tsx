@@ -23,6 +23,8 @@ const OshiResisterForm = () => {
               <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
                 name="shop_permission"
+                // value={true}
+                // onChange={handleChange}
               >
                 <div className="flex gap-10">
                   <FormControlLabel

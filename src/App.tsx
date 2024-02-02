@@ -75,8 +75,8 @@ function App() {
   }, []);
 
   const PRIVATE_ROUTES = ["mypage"];
-  const isPrivatePage = PRIVATE_ROUTES.some((r) =>
-    window.location.href.includes(r)
+  const isPrivatePage = PRIVATE_ROUTES.some((path) =>
+    window.location.href.includes(path)
   );
   if (!token && isPrivatePage) {
     delete axios.defaults.headers.common["Authorization"];

@@ -10,7 +10,6 @@ import Border from "./components/Border";
 import HeartCircle from "../../basic/icons/HeartCircle";
 import { CalendarMonthSharp } from "@mui/icons-material";
 import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
-import Fanciers from "./components/Fanciers";
 import CatDetailCarousel from "./components/CatDetailCarousel";
 import CatFavorite from "./components/CatFavorite";
 import BtnAdd from "./components/BtnAdd";
@@ -88,16 +87,6 @@ const actions = [
   "avatar_8.svg",
 ];
 
-const IMAGES: string[] = [
-  "/assets/imgs/cats/cat_detail_carousel.png",
-  "/assets/imgs/cats/cat_detail_carousel.png",
-  "/assets/imgs/cats/cat_detail_carousel.png",
-];
-
-const imgUrl: object[] = [
-  { imgUrl: ["/assets/imgs/cats/cat1.png", "/assets/imgs/cats/cat1-2.png"] },
-];
-
 const CatDetail = () => {
   const { id } = useParams();
   const [showImageGallery, setShowImageGallery] = useState(false);
@@ -128,7 +117,6 @@ const CatDetail = () => {
     };
     const RetrieveCat = async () => {
       const { data } = await axios.get(`cat/${id}`);
-      console.log("💚💚💚", data);
       setRetrieveCat(data);
     };
     fetchData();
@@ -205,7 +193,7 @@ const CatDetail = () => {
           <div className="">
             {retrieveCat.favorite_things &&
               retrieveCat.favorite_things.map((item, key, arr) => (
-                <span>
+                <span key={key}>
                   {item}
                   {key !== arr.length - 1 && "、"}
                 </span>
@@ -226,7 +214,27 @@ const CatDetail = () => {
         </div>
         <div className="w-full border-b border-black mt-4"></div>
         <div className="flex flex-wrap mt-4">
-          <Fanciers />
+          <div className="flex flex-wrap gap-x-20 gap-y-4">
+            {retrieveCat.recommend_user[0] &&
+              retrieveCat.recommend_user
+                .sort(() => Math.random() - 0.5)
+                .slice(0, 12)
+                .map((item, key) => (
+                  <div className="flex items-center" key={key}>
+                    <img
+                      className="w-7 h-7"
+                      src={item.user.avatar_url}
+                      alt={item.user.avatar_url}
+                    />
+                    <div className="ms-3">{item.user.username}</div>
+                    <img
+                      className="ms-5"
+                      src="/assets/imgs/icons/comment_abbr.png"
+                      alt=""
+                    />
+                  </div>
+                ))}
+          </div>
         </div>
         <div className="mt-9">推しニャンコメント</div>
         <div className={`w-full border-b border-black mt-5`}></div>

@@ -26,7 +26,7 @@ const CatDetailCarousel = () => {
       <Slider>
         {IMAGES &&
           IMAGES.map((item: any, key: any) => (
-            <Slide index={key}>
+            <Slide index={key} key={key}>
               <img src={item} alt="1" className="w-full h-full" />
             </Slide>
           ))}
