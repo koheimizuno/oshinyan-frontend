@@ -44,7 +44,7 @@ const AmbassadorRegisterFrom = () => {
     const createAmbassador = async () => {
       if (checked) {
         try {
-          await axios.post("ambassador", submitValue);
+          await axios.post("ambassador/", submitValue);
           Notification("success", "アンバサダー登録に成功しました。");
           setTimeout(() => {
             navigate("/");

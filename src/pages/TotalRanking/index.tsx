@@ -92,8 +92,7 @@ const TotalRanking = () => {
             <LargeCatCard
               id={catData[0].id}
               cat_name={catData[0].cat_name}
-              shop_name={catData[0].shop_name}
-              prefecture={catData[0].prefecture}
+              shop={catData[0].shop}
               cat_images={catData[0].cat_images}
               character={catData[0].character}
               favorite_things={catData[0].favorite_things}
@@ -125,8 +124,7 @@ const TotalRanking = () => {
                       key={i}
                       id={e.id}
                       cat_name={e.cat_name}
-                      shop_name={e.shop_name}
-                      prefecture={e.prefecture}
+                      shop={e.shop}
                       cat_images={e.cat_images}
                       character={e.character}
                       favorite_things={e.favorite_things}
@@ -151,8 +149,7 @@ const TotalRanking = () => {
                   <SmallCatCard
                     id={e.id}
                     cat_name={e.cat_name}
-                    shop_name={e.shop_name}
-                    prefecture={e.prefecture}
+                    shop={e.shop}
                     cat_images={e.cat_images}
                     character={e.character}
                     favorite_things={e.favorite_things}

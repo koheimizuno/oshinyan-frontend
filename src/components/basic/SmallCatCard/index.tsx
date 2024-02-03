@@ -10,8 +10,7 @@ import { isNewUtil } from "../../../utils";
 const SmallCatCard = ({
   id,
   cat_name,
-  shop_name,
-  prefecture,
+  shop,
   cat_images,
   character,
   favorite_things,
@@ -183,7 +182,7 @@ const SmallCatCard = ({
                 to="#"
                 className=" w-[145px] leading-[21px] underline text-[16px] text-ellipsis overflow-hidden tracking-tighter whitespace-nowrap "
               >
-                {shop_name}
+                {shop.shop_name}
               </Link>
             </div>
             <div className="flex justify-content-start items-center mt-[auto] mb-[8px]">

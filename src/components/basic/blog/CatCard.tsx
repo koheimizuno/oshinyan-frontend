@@ -14,8 +14,7 @@ interface PropsType extends CatObjectType {
 const CatCard = ({
   id,
   cat_name,
-  shop_name,
-  prefecture,
+  shop,
   cat_images,
   character,
   favorite_things,
@@ -188,11 +187,11 @@ const CatCard = ({
                 to="#"
                 className=" w-[145px] underline text-[16px] text-ellipsis overflow-hidden tracking-tighter whitespace-nowrap "
               >
-                {shop_name}
+                {shop.shop_name}
               </Link>
             </div>
             <div>
-              <CustomButton value={prefecture} />
+              <CustomButton value={shop.prefecture} />
             </div>
           </div>
           <div className="flex justify-content-start items-center mt-[15px] mb-[8px]">
@@ -208,18 +207,18 @@ const CatCard = ({
             </h2>
           </div>
           <hr className="border border-[#CCC]" />
-          <div className="flex justify-content-start items-center pt-[10px] pb-[19px] ">
+          <div className="flex justify-content-start items-center gap-1 pt-[10px] pb-[19px] ">
             <div>
               <img src="/assets/imgs/icons/hear-yellow.svg" alt="" />
             </div>
-            <div className="pl-[8px]">
+            <div className="pl-[8px] whitespace-nowrap">
               <p>性格</p>
             </div>
-            <div className="flex">
+            <div className="flex flex-wrap justify-start">
               {character &&
                 character.map((item, key) => (
                   <div className="pl-[8px]" key={key}>
-                    <CustomButton value={item} />
+                    <CustomButton value={item.character} />
                   </div>
                 ))}
             </div>

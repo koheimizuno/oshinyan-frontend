@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Checkbox,
@@ -15,7 +15,9 @@ import { Notification } from "../../../constant/notification";
 
 const ContactUsForm = () => {
   const navigate = useNavigate();
+  const reEmailRef = useRef<HTMLInputElement>(null);
   const [checked, setChecked] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
   const [submitValue, setSubmitValue] = useState({
     type: "質問・相談",
     client_type: "個人",
@@ -24,6 +26,7 @@ const ContactUsForm = () => {
     furi_name: "",
     phone: "",
     email: "",
+    re_email: "",
     detail: "",
   });
 
@@ -37,20 +40,29 @@ const ContactUsForm = () => {
     e.preventDefault();
     const submitInquiry = async () => {
       try {
-        await axios.post("inquiry", {
-          type: submitValue.type,
-          client_type: submitValue.client_type,
-          company_name: submitValue.company_name,
-          kanji_name: submitValue.kanji_name,
-          furi_name: submitValue.furi_name,
-          phone: submitValue.phone,
-          email: submitValue.email,
-          detail: submitValue.detail,
-        });
-        Notification("success", "お問い合わせフォームが正常に送信されました。");
-        setTimeout(() => {
-          navigate("/");
-        }, 2000);
+        if (submitValue.email === submitValue.re_email) {
+          await axios.post("inquiry/", {
+            type: submitValue.type,
+            client_type: submitValue.client_type,
+            company_name: submitValue.company_name,
+            kanji_name: submitValue.kanji_name,
+            furi_name: submitValue.furi_name,
+            phone: submitValue.phone,
+            email: submitValue.email,
+            detail: submitValue.detail,
+          });
+          Notification(
+            "success",
+            "お問い合わせフォームが正常に送信されました。"
+          );
+          setTimeout(() => {
+            navigate("/");
+          }, 2000);
+        } else {
+          setErrorMsg("メールアドレスが一致しません。");
+          setSubmitValue({ ...submitValue, re_email: "" });
+          reEmailRef.current && reEmailRef.current.focus();
+        }
       } catch (error) {
         Notification("error", "メールアドレスは既に存在します。");
       }
@@ -71,7 +83,7 @@ const ContactUsForm = () => {
           </label>
           <div className="w-[456px] h-[40px] rounded-[4px] flex items-center relative">
             <Select
-              aria-label="prefecture"
+              aria-label="type"
               name="type"
               value={submitValue.type}
               onChange={handleChange}
@@ -203,13 +215,18 @@ const ContactUsForm = () => {
               *
             </span>
           </label>
-          <input
-            type="email"
-            name="re-email"
-            onChange={handleChange}
-            required
-            className="w-[456px] h-[40px] rounded-[4px] border border-[#CCCCCC] focus:outline-none p-2"
-          />
+          <label>
+            <input
+              type="email"
+              name="re_email"
+              value={submitValue.re_email}
+              onChange={handleChange}
+              required
+              ref={reEmailRef}
+              className="w-[456px] h-[40px] rounded-[4px] border border-[#CCCCCC] focus:outline-none p-2"
+            />
+            <p className="absolute text-red-500">{errorMsg}</p>
+          </label>
         </div>
         <div className="border-b border-[#CCCCCC] mt-[32px]"></div>
         {/* row 8 */}

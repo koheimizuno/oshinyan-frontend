@@ -13,12 +13,13 @@ import { PREFECTURE } from "../../../constant";
 import axios from "axios";
 import { Store } from "react-notifications-component";
 import PrivacyComponent from "../PrivacyComponent";
+import { Notification } from "../../../constant/notification";
 
 const ShopRegisterForm = () => {
   const hiddenFileInput = useRef<HTMLInputElement>(null);
   const [checked, setChecked] = useState(false);
   const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
-  const [registerCatValues, setRegisterCatValues] = useState({
+  const [registerShopValues, setRegisterShopValues] = useState({
     shop_name: "",
     prefecture: "東京都",
     city: "",
@@ -33,24 +34,24 @@ const ShopRegisterForm = () => {
   const handleChange = (e: any) => {
     const name = e.target.name;
     const value = e.target.value;
-    setRegisterCatValues({ ...registerCatValues, [name]: value });
+    setRegisterShopValues({ ...registerShopValues, [name]: value });
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     let formData = new FormData();
-    formData.append("shop_name", registerCatValues.shop_name);
-    formData.append("prefecture", registerCatValues.prefecture);
-    formData.append("city", registerCatValues.city);
-    formData.append("street", registerCatValues.street);
-    formData.append("detail_address", registerCatValues.detail_address);
-    formData.append("email", registerCatValues.email);
-    formData.append("phone", registerCatValues.phone);
+    formData.append("shop_name", registerShopValues.shop_name);
+    formData.append("prefecture", registerShopValues.prefecture);
+    formData.append("city", registerShopValues.city);
+    formData.append("street", registerShopValues.street);
+    formData.append("detail_address", registerShopValues.detail_address);
+    formData.append("email", registerShopValues.email);
+    formData.append("phone", registerShopValues.phone);
     formData.append(
       "shop_permission",
-      registerCatValues.shop_permission.toString()
+      registerShopValues.shop_permission.toString()
     );
-    formData.append("cat_info", registerCatValues.cat_info);
+    formData.append("cat_info", registerShopValues.cat_info);
 
     if (selectedFiles != null) {
       const files = Array.from(selectedFiles);
@@ -58,40 +59,12 @@ const ShopRegisterForm = () => {
     }
     if (checked) {
       try {
-        const res = await axios.post("shop", formData);
-        Store.addNotification({
-          title: "成功！",
-          message: "未登録店舗の登録が成功しました。",
-          type: "success",
-          container: "top-right",
-          dismiss: {
-            duration: 2000,
-            onScreen: true,
-          },
-        });
+        const res = await axios.post("shop/", formData);
+        Notification("success", "未登録店舗の登録が成功しました。");
       } catch (error: any) {
         if (error.response.status === 400)
-          Store.addNotification({
-            title: "失敗!",
-            message: "店舗は既に存在します。",
-            type: "warning",
-            container: "top-right",
-            dismiss: {
-              duration: 2000,
-              onScreen: true,
-            },
-          });
-        else
-          Store.addNotification({
-            title: "Error!",
-            message: "Server Error!",
-            type: "danger",
-            container: "top-right",
-            dismiss: {
-              duration: 2000,
-              onScreen: true,
-            },
-          });
+          Notification("error", "店舗は既に存在します。");
+        else Notification("error", "Server Error!");
       }
     }
   };
@@ -149,7 +122,7 @@ const ShopRegisterForm = () => {
                 <Select
                   aria-label="prefecture"
                   name="prefecture"
-                  value={registerCatValues.prefecture}
+                  value={registerShopValues.prefecture}
                   onChange={handleChange}
                   className="bg-gradient-to-b from-[#EAEAEA] to-[#D3D3D3] h-10 text-center text-[16px] w-[144px]"
                   sx={{ borderRadius: "20px" }}
@@ -249,7 +222,7 @@ const ShopRegisterForm = () => {
               <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
                 name="shop_permission"
-                value={registerCatValues.shop_permission}
+                value={registerShopValues.shop_permission}
                 onChange={handleChange}
               >
                 <div className="flex">

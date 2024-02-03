@@ -103,8 +103,10 @@ const CatDetail = () => {
   const [retrieveCat, setRetrieveCat] = useState<CatObjectType>({
     id: 0,
     cat_name: "",
-    shop_name: "",
-    prefecture: "",
+    shop: {
+      shop_name: "",
+      prefecture: "",
+    },
     cat_images: [],
     character: [],
     favorite_things: [],
@@ -221,9 +223,9 @@ const CatDetail = () => {
             to="/nyanplace/1"
             className="underline text-base w-[180px] inline-block"
           >
-            {retrieveCat.shop_name}
+            {retrieveCat.shop.shop_name}
           </Link>
-          <PrefectureBtn value={retrieveCat.prefecture} />
+          <PrefectureBtn value={retrieveCat.shop.prefecture} />
         </div>
         <div className="flex gap-[14px] mt-6">
           <div>
@@ -248,7 +250,7 @@ const CatDetail = () => {
             <div className="ms-4 flex gap-2">
               {retrieveCat.character &&
                 retrieveCat.character.map((item, key) => (
-                  <PrefectureBtn key={key} value={item} />
+                  <PrefectureBtn key={key} value={item.character} />
                 ))}
             </div>
           </div>
@@ -263,7 +265,7 @@ const CatDetail = () => {
             {retrieveCat.favorite_things &&
               retrieveCat.favorite_things.map((item, key, arr) => (
                 <span key={key}>
-                  {item}
+                  {item.favorite_things}
                   {key !== arr.length - 1 && "、"}
                 </span>
               ))}
@@ -471,8 +473,7 @@ const CatDetail = () => {
               key={i}
               id={e.id}
               cat_name={e.cat_name}
-              shop_name={e.shop_name}
-              prefecture={e.prefecture}
+              shop={e.shop}
               cat_images={e.cat_images}
               character={e.character}
               favorite_things={e.favorite_things}

@@ -116,8 +116,7 @@ const Top = () => {
                   key={i}
                   id={e.id}
                   cat_name={e.cat_name}
-                  shop_name={e.shop_name}
-                  prefecture={e.prefecture}
+                  shop={e.shop}
                   cat_images={e.cat_images}
                   character={e.character}
                   favorite_things={e.favorite_things}
@@ -145,8 +144,7 @@ const Top = () => {
                   key={i}
                   id={e.id}
                   cat_name={e.cat_name}
-                  shop_name={e.shop_name}
-                  prefecture={e.prefecture}
+                  shop={e.shop}
                   cat_images={e.cat_images}
                   character={e.character}
                   favorite_things={e.favorite_things}

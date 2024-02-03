@@ -116,6 +116,8 @@ const MonthRanking = () => {
 
   const handleFreeSearch = () => {};
 
+  console.log(catData);
+
   return (
     <MainLayout>
       <SocialLinkGroup />
@@ -153,8 +155,7 @@ const MonthRanking = () => {
             <LargeCatCard
               id={catData[0].id}
               cat_name={catData[0].cat_name}
-              shop_name={catData[0].shop_name}
-              prefecture={catData[0].prefecture}
+              shop={catData[0].shop}
               cat_images={catData[0].cat_images}
               character={catData[0].character}
               favorite_things={catData[0].favorite_things}
@@ -186,8 +187,7 @@ const MonthRanking = () => {
                       key={i}
                       id={e.id}
                       cat_name={e.cat_name}
-                      shop_name={e.shop_name}
-                      prefecture={e.prefecture}
+                      shop={e.shop}
                       cat_images={e.cat_images}
                       character={e.character}
                       favorite_things={e.favorite_things}
@@ -212,8 +212,7 @@ const MonthRanking = () => {
                   <SmallCatCard
                     id={e.id}
                     cat_name={e.cat_name}
-                    shop_name={e.shop_name}
-                    prefecture={e.prefecture}
+                    shop={e.shop}
                     cat_images={e.cat_images}
                     character={e.character}
                     favorite_things={e.favorite_things}
@@ -225,59 +224,61 @@ const MonthRanking = () => {
                 </div>
               ))}
           </div>
-          <div className="flex justify-between pb-[8px] border-b border-[#CBB279] mb-[24px]">
-            <button
-              className="flex mt-[32px] items-center"
-              onClick={previousMonthFetch}
-            >
-              <svg
-                style={{ marginRight: "4px" }}
-                xmlns="http://www.w3.org/2000/svg"
-                width="12.728"
-                height="12.728"
-                viewBox="0 0 12.728 12.728"
+          {catData.length !== 0 && (
+            <div className="flex justify-between pb-[8px] border-b border-[#CBB279] mb-[24px]">
+              <button
+                className="flex mt-[32px] items-center"
+                onClick={previousMonthFetch}
               >
-                <path
-                  id="arr_left"
-                  d="M499-1749v8h-8"
-                  transform="translate(-877.52 -1577.555) rotate(135)"
-                  fill="none"
-                  stroke="#000"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="1"
-                  opacity="0.75"
-                />
-              </svg>
-              次月
-            </button>
-            <button
-              className={`flex mt-[32px] items-center ${
-                dates.month === dateObj.getMonth() + 1 && "hidden"
-              }`}
-              onClick={nextMonthFetch}
-            >
-              前月
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="12.728"
-                height="12.728"
-                viewBox="0 0 12.728 12.728"
+                <svg
+                  style={{ marginRight: "4px" }}
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="12.728"
+                  height="12.728"
+                  viewBox="0 0 12.728 12.728"
+                >
+                  <path
+                    id="arr_left"
+                    d="M499-1749v8h-8"
+                    transform="translate(-877.52 -1577.555) rotate(135)"
+                    fill="none"
+                    stroke="#000"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1"
+                    opacity="0.75"
+                  />
+                </svg>
+                次月
+              </button>
+              <button
+                className={`flex mt-[32px] items-center ${
+                  dates.month === dateObj.getMonth() + 1 && "hidden"
+                }`}
+                onClick={nextMonthFetch}
               >
-                <path
-                  id="arr_right"
-                  d="M499-1749v8h-8"
-                  transform="translate(890.247 1590.283) rotate(-45)"
-                  fill="none"
-                  stroke="#000"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="1"
-                  opacity="0.75"
-                />
-              </svg>
-            </button>
-          </div>
+                前月
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="12.728"
+                  height="12.728"
+                  viewBox="0 0 12.728 12.728"
+                >
+                  <path
+                    id="arr_right"
+                    d="M499-1749v8h-8"
+                    transform="translate(890.247 1590.283) rotate(-45)"
+                    fill="none"
+                    stroke="#000"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1"
+                    opacity="0.75"
+                  />
+                </svg>
+              </button>
+            </div>
+          )}
           <div>
             <div className="pt-[48px] pb-[80px]">
               <div className="mb-[24px] hover:opacity-70">

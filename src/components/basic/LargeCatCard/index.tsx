@@ -13,8 +13,7 @@ import { isNewUtil } from "../../../utils";
 const LargeCatCard = ({
   id,
   cat_name,
-  shop_name,
-  prefecture,
+  shop,
   cat_images,
   character,
   favorite_things,
@@ -153,11 +152,11 @@ const LargeCatCard = ({
                 to="#"
                 className=" w-[145px] underline text-[16px] text-ellipsis overflow-hidden tracking-tighter whitespace-nowrap "
               >
-                {shop_name}
+                {shop.shop_name}
               </Link>
             </div>
             <div>
-              <CustomButton value={prefecture}></CustomButton>
+              <CustomButton value={shop.prefecture}></CustomButton>
             </div>
           </div>
           <hr className="border border-[#CCC]" />
@@ -165,14 +164,14 @@ const LargeCatCard = ({
             <div>
               <img src="/assets/imgs/icons/hear-yellow.svg" alt="" />
             </div>
-            <div className="pl-[8px]">
+            <div className="pl-[8px] whitespace-nowrap">
               <p>性格</p>
             </div>
-            <div className="flex">
+            <div className="flex flex-wrap">
               {character &&
                 character.map((item, key) => (
                   <div className="pl-[8px]" key={key}>
-                    <CustomButton value={item} />
+                    <CustomButton value={item.character} />
                   </div>
                 ))}
             </div>
