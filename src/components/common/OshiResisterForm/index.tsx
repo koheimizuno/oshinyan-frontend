@@ -72,8 +72,6 @@ const OshiResisterForm = () => {
     }
   };
 
-  console.log(registerCatValues);
-
   return (
     <div className="bg-white px-[24px] pb-[48px]">
       <form className="w-[640px] m-auto" onSubmit={handleSubmit}>

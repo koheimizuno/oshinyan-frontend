@@ -116,8 +116,6 @@ const MonthRanking = () => {
 
   const handleFreeSearch = () => {};
 
-  console.log(catData);
-
   return (
     <MainLayout>
       <SocialLinkGroup />
@@ -157,6 +155,7 @@ const MonthRanking = () => {
               cat_name={catData[0].cat_name}
               shop={catData[0].shop}
               cat_images={catData[0].cat_images}
+              cat_admin_images={catData[0].cat_admin_images}
               character={catData[0].character}
               favorite_things={catData[0].favorite_things}
               attendance={catData[0].attendance}
@@ -189,6 +188,7 @@ const MonthRanking = () => {
                       cat_name={e.cat_name}
                       shop={e.shop}
                       cat_images={e.cat_images}
+                      cat_admin_images={e.cat_admin_images}
                       character={e.character}
                       favorite_things={e.favorite_things}
                       attendance={e.attendance}
@@ -214,6 +214,7 @@ const MonthRanking = () => {
                     cat_name={e.cat_name}
                     shop={e.shop}
                     cat_images={e.cat_images}
+                    cat_admin_images={e.cat_admin_images}
                     character={e.character}
                     favorite_things={e.favorite_things}
                     attendance={e.attendance}

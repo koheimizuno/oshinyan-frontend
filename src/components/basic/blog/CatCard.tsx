@@ -16,6 +16,7 @@ const CatCard = ({
   cat_name,
   shop,
   cat_images,
+  cat_admin_images,
   character,
   favorite_things,
   attendance,

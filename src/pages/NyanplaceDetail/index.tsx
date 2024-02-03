@@ -167,6 +167,7 @@ function NyanplaceDetail() {
                     cat_name={e.cat_name}
                     shop={e.shop}
                     cat_images={e.cat_images}
+                    cat_admin_images={e.cat_admin_images}
                     character={e.character}
                     favorite_things={e.favorite_things}
                     attendance={e.attendance}

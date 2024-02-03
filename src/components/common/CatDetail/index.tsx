@@ -1,18 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import "pure-react-carousel/dist/react-carousel.es.css";
 import BtnPurple from "./components/BtnPurple";
 import PrefectureBtn from "../../basic/CustomButton";
 import Twitter from "../../basic/icons/Twitter";
 import Instagram from "../../basic/icons/Instagram";
 import Border from "./components/Border";
 import HeartCircle from "../../basic/icons/HeartCircle";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import { CalendarMonthSharp } from "@mui/icons-material";
 import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
-import CatDetailCarousel from "./components/CatDetailCarousel";
 import CatFavorite from "./components/CatFavorite";
 import BtnAdd from "./components/BtnAdd";
 import BtnSolid from "./components/BtnSolid";
@@ -23,6 +21,8 @@ import ImageDetail from "./components/ImageDetail";
 import axios from "axios";
 import { CatObjectType, UserType } from "../../../constant/type";
 import { RecommendAction } from "../../../slices/cat";
+import ArrowLeft from "../../basic/icons/ArrowLeft";
+import ArrowRight from "../../basic/icons/ArrowRight";
 
 const Cats = [
   {
@@ -108,6 +108,7 @@ const CatDetail = () => {
       prefecture: "",
     },
     cat_images: [],
+    cat_admin_images: [],
     character: [],
     favorite_things: [],
     attendance: "",
@@ -163,7 +164,44 @@ const CatDetail = () => {
 
   return (
     <div className="w-full relative">
-      <CatDetailCarousel />
+      {/* <CatDetailCarousel /> */}
+      <Swiper
+        modules={[Navigation, Pagination, Scrollbar, A11y]}
+        speed={800}
+        pagination={{
+          el: ".swiper-pagination",
+          type: "bullets",
+          clickable: true,
+        }}
+        loop={true}
+        centeredSlides
+        slidesPerView={1}
+        navigation={{ nextEl: ".arrow-left", prevEl: ".arrow-right" }}
+      >
+        {retrieveCat.cat_admin_images &&
+          retrieveCat.cat_admin_images.map((item: any, key: any) => (
+            <SwiperSlide key={key}>
+              <img
+                src={item.imgs}
+                alt={item.imgs}
+                width={960}
+                height={576}
+                className="h-full m-auto cursor-pointer"
+              />
+            </SwiperSlide>
+          ))}
+        <div className="swiper-pagination custom-pagination-bullets"></div>
+        <button className="arrow-left xs:hidden md:block">
+          <div className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
+            <ArrowLeft />
+          </div>
+        </button>
+        <button className="arrow-left xs:hidden md:block">
+          <div className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
+            <ArrowRight />
+          </div>
+        </button>
+      </Swiper>
       <div className="w-full bg-white p-[28px] pt-[0px]">
         <div className="flex justify-between">
           <div className="flex items-center font-bold">
@@ -475,6 +513,7 @@ const CatDetail = () => {
               cat_name={e.cat_name}
               shop={e.shop}
               cat_images={e.cat_images}
+              cat_admin_images={e.cat_admin_images}
               character={e.character}
               favorite_things={e.favorite_things}
               attendance={e.attendance}

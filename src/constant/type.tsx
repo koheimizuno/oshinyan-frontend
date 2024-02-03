@@ -12,6 +12,11 @@ interface CatImageType {
   imgs: string;
 }
 
+export interface CatImageByAdminType {
+  id: number;
+  imgs: string;
+}
+
 interface characterType {
   id: number;
   character: string;
@@ -24,10 +29,9 @@ interface favoritethingType {
 export interface CatObjectType {
   id: number;
   cat_name: string;
-  // shop_name: string;
-  // prefecture: string;
   shop: shopType;
   cat_images: CatImageType[];
+  cat_admin_images: CatImageByAdminType[];
   character: characterType[];
   favorite_things: favoritethingType[];
   attendance: string;

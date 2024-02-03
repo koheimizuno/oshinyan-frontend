@@ -83,7 +83,7 @@ const MyPage = () => {
   useEffect(() => {
     const fetchCatData = async () => {
       try {
-        const { data } = await axios.get("randomcat");
+        const { data } = await axios.get("cat/");
         setCatData(data);
       } catch (error) {}
     };
@@ -254,6 +254,7 @@ const MyPage = () => {
                     cat_name={e.cat_name}
                     shop={e.shop}
                     cat_images={e.cat_images}
+                    cat_admin_images={e.cat_admin_images}
                     character={e.character}
                     favorite_things={e.favorite_things}
                     attendance={e.attendance}
