@@ -12,6 +12,7 @@ import { CatObjectType } from "../../constant/type";
 import { useSelector } from "react-redux";
 import { Modal } from "@mui/material";
 import { Close } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 const Box = lazy(() => import("@mui/material/Box"));
 
 const Cats = [
@@ -61,7 +62,8 @@ const modalBoxSytle = {
 };
 
 const MyPage = () => {
-  const [catData, setCatData] = useState<CatObjectType[]>([]);
+  const navigate = useNavigate();
+  const [userCatData, setUserCatData] = useState<CatObjectType[]>([]);
   const [currentUser, setCurrentUser] = useState({
     id: 0,
     username: "",
@@ -81,10 +83,14 @@ const MyPage = () => {
   );
 
   useEffect(() => {
-    const fetchCatData = async () => {
+    !isAuthenticated && navigate("/login");
+  }, []);
+
+  useEffect(() => {
+    const fetchuserCatData = async () => {
       try {
-        const { data } = await axios.get("cat/");
-        setCatData(data);
+        const { data } = await axios.get("usercat");
+        setUserCatData(data);
       } catch (error) {}
     };
     const fetchUser = async () => {
@@ -93,7 +99,7 @@ const MyPage = () => {
         setCurrentUser(data);
       }
     };
-    fetchCatData();
+    fetchuserCatData();
     fetchUser();
   }, [isAuthenticated, catLoading, authLoading]);
 
@@ -246,8 +252,8 @@ const MyPage = () => {
           </div>
           <div className="mt-[32px] mb-[48px] flex flex-wrap justify-between">
             <div className="flex justify-between flex-wrap">
-              {catData.length !== 0 ? (
-                catData.map((e, i) => (
+              {userCatData.length !== 0 ? (
+                userCatData.map((e, i) => (
                   <CatCard
                     key={i}
                     id={e.id}

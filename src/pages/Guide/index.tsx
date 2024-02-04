@@ -1,9 +1,10 @@
-import Carousel from "../../components/common/Carousel";
+import BannerCarousel from "../../components/common/BannerCarousel";
 import MainLayout from "../../layouts/MainLayout";
 import Container from "../../components/basic/Container";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import PageBar from "../../components/common/PageBar";
 import Title from "../../components/common/Typography/Title";
+import GuideCarousel from "../../components/common/GuideCarousel";
 
 const CAROUSELIMAGES: object[] = [
   {
@@ -113,13 +114,7 @@ const Guide = () => {
         <Title title="推しニャンとは？" />
       </Container>
       <div className="pt-[30px] pb-[40px]">
-        <Carousel
-          data={CAROUSELIMAGES}
-          visibleSlides={window.innerWidth / 240}
-          spaceBetween={0}
-          bgColor="bg-[#F5F4EC]"
-          nextBtnShow="none"
-        />
+        <GuideCarousel />
       </div>
       <Container>
         <div>

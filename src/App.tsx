@@ -4,51 +4,32 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import axios from "axios";
 import { LogOutAction, TokenLoginAction } from "./slices/auth";
 import "./App.css";
-import PasswordResetConfirmation from "./pages/Auth/PasswordResetConfirmation";
 import SuspenseContent from "./components/basic/SuspenseContent";
-// const Top = lazy(() => import("./pages/Top"));
-// const MonthRanking = lazy(() => import("./pages/MonthRanking"));
-// const Guide = lazy(() => import("./pages/Guide"));
-// const Registration = lazy(() => import("./pages/Auth/Registration"));
-// const Feature = lazy(() => import("./pages/Feature"));
-// const FeatureDetail = lazy(() => import("./pages/FeatureDetail"));
-// const MyPage = lazy(() => import("./pages/MyPage"));
-// const Nyanplace = lazy(() => import("./pages/Nyanplace"));
-// const RegisterOther = lazy(() => import("./pages/RegisterOther"));
-// const Privacy = lazy(() => import("./pages/Privacy"));
-// const Company = lazy(() => import("./pages/Company"));
-// const Inquiry = lazy(() => import("./pages/Inquiry"));
-// const OshinyanDetail = lazy(() => import("./pages/OshinyanDetail"));
-// const NyanplaceDetail = lazy(() => import("./pages/NyanplaceDetail"));
-// const Comment = lazy(() => import("./pages/Comment"));
-// const Column = lazy(() => import("./pages/Column"));
-// const Oshiresister = lazy(() => import("./pages/Oshiresister"));
-// const Login = lazy(() => import("./pages/Auth/Login"));
-// const TotalRanking = lazy(() => import("./pages/TotalRanking"));
-// const PasswordReset = lazy(() => import("./pages/Auth/PasswordReset"));
+const Top = lazy(() => import("./pages/Top"));
+const MonthRanking = lazy(() => import("./pages/MonthRanking"));
+const Guide = lazy(() => import("./pages/Guide"));
+const Registration = lazy(() => import("./pages/Auth/Registration"));
+const Feature = lazy(() => import("./pages/Feature"));
+const FeatureDetail = lazy(() => import("./pages/FeatureDetail"));
+const MyPage = lazy(() => import("./pages/MyPage"));
+const Nyanplace = lazy(() => import("./pages/Nyanplace"));
+const RegisterOther = lazy(() => import("./pages/RegisterOther"));
+const Privacy = lazy(() => import("./pages/Privacy"));
+const Company = lazy(() => import("./pages/Company"));
+const Inquiry = lazy(() => import("./pages/Inquiry"));
+const OshinyanDetail = lazy(() => import("./pages/OshinyanDetail"));
+const NyanplaceDetail = lazy(() => import("./pages/NyanplaceDetail"));
+const Comment = lazy(() => import("./pages/Comment"));
+const Column = lazy(() => import("./pages/Column"));
+const Oshiresister = lazy(() => import("./pages/Oshiresister"));
+const Login = lazy(() => import("./pages/Auth/Login"));
+const TotalRanking = lazy(() => import("./pages/TotalRanking"));
+const PasswordReset = lazy(() => import("./pages/Auth/PasswordReset"));
+const PasswordResetConfirmation = lazy(
+  () => import("./pages/Auth/PasswordResetConfirmation")
+);
 
-import Top from "./pages/Top";
-import MonthRanking from "./pages/MonthRanking";
-import Guide from "./pages/Guide";
-import Registration from "./pages/Auth/Registration";
-import Feature from "./pages/Feature";
-import FeatureDetail from "./pages/FeatureDetail";
-import MyPage from "./pages/MyPage";
-import Nyanplace from "./pages/Nyanplace";
-import RegisterOther from "./pages/RegisterOther";
-import Privacy from "./pages/Privacy";
-import Company from "./pages/Company";
-import Inquiry from "./pages/Inquiry";
-import OshinyanDetail from "./pages/OshinyanDetail";
-import NyanplaceDetail from "./pages/NyanplaceDetail";
-import Comment from "./pages/Comment";
-import Column from "./pages/Column";
-import Oshiresister from "./pages/Oshiresister";
-import Login from "./pages/Auth/Login";
-import TotalRanking from "./pages/TotalRanking";
-import PasswordReset from "./pages/Auth/PasswordReset";
-
-axios.defaults.baseURL = "http://162.43.50.92:8000/api/";
+axios.defaults.baseURL = "http://192.168.145.200:8000/api/";
 
 function App() {
   const dispatch = useDispatch();
@@ -74,14 +55,15 @@ function App() {
     }
   }, []);
 
-  const PRIVATE_ROUTES = ["mypage"];
-  const isPrivatePage = PRIVATE_ROUTES.some((path) =>
-    window.location.href.includes(path)
-  );
-  if (!token && isPrivatePage) {
-    delete axios.defaults.headers.common["Authorization"];
-    window.location.href = "/login";
-  }
+  // const PRIVATE_ROUTES = ["mypage"];
+  // const isPrivatePage = PRIVATE_ROUTES.some((path) =>
+  //   window.location.href.includes(path)
+  // );
+
+  // if (!token && isPrivatePage) {
+  //   delete axios.defaults.headers.common["Authorization"];
+  //   window.location.href = "/login";
+  // }
 
   return (
     <BrowserRouter>

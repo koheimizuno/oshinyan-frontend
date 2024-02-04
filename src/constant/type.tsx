@@ -47,3 +47,8 @@ export interface UserType {
   prefecture: string;
   avatar_url: string;
 }
+
+export interface bannerType {
+  image: string;
+  url: string;
+}

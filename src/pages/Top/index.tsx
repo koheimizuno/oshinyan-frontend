@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import Carousel from "../../components/common/Carousel";
+import BannerCarousel from "../../components/common/BannerCarousel";
 import MainLayout from "../../layouts/MainLayout";
 import RankingBar from "../../components/common/RankingBar";
 import Store from "../../components/common/Store";
@@ -10,7 +10,8 @@ import Container from "../../components/basic/Container";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import CatCard from "../../components/basic/blog/CatCard";
 import axios from "axios";
-import { CatObjectType } from "../../constant/type";
+import { CatObjectType, bannerType } from "../../constant/type";
+import { Notification } from "../../constant/notification";
 
 const CAROUSELIMAGES: object[] = [
   {
@@ -81,6 +82,7 @@ const CAROUSELIMAGES: object[] = [
 
 const Top = () => {
   const [catData, setCatData] = useState<CatObjectType[]>([]);
+  const [bannerData, setBannerData] = useState<bannerType[]>([]);
   const { catLoading } = useSelector((state: any) => state.cat);
   const { authLoading, isAuthenticated } = useSelector(
     (state: any) => state.user
@@ -91,15 +93,26 @@ const Top = () => {
       try {
         const { data } = await axios.get("randomcat");
         setCatData(data);
-      } catch (error) {}
+      } catch (error) {
+        Notification("error", "サーバーエラー");
+      }
+    };
+    const fetchBanner = async () => {
+      try {
+        const { data } = await axios.get("banner/");
+        setBannerData(data);
+      } catch (error) {
+        Notification("error", "サーバーエラー");
+      }
     };
     fetchData();
+    fetchBanner();
   }, [isAuthenticated, catLoading, authLoading]);
 
   return (
     <MainLayout>
       <SocialLinkGroup page="top" />
-      <Carousel
+      <BannerCarousel
         data={CAROUSELIMAGES}
         visibleSlides={window.innerWidth / 344}
         spaceBetween={window.innerWidth < 640 ? 8 : 16}

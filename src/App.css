@@ -1,4 +1,8 @@
 @import "react-notifications-component/dist/theme.css";
+@import "swiper/css";
+@import "swiper/css/navigation";
+@import "swiper/css/pagination";
+@import "swiper/css/scrollbar";
 
 .App {
   text-align: center;

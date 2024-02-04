@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ArrowLeft from "../../basic/icons/ArrowLeft";
 import ArrowRight from "../../basic/icons/ArrowRight";
+import { bannerType } from "../../../constant/type";
+import { Notification } from "../../../constant/notification";
+import axios from "axios";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import {
@@ -12,15 +15,22 @@ import {
   Autoplay,
 } from "swiper/modules";
 
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
+function BannerCarousel(props: any) {
+  const [bannerData, setBannerData] = useState<bannerType[]>([]);
+  useEffect(() => {
+    const fetchBanner = async () => {
+      try {
+        const { data } = await axios.get("banner/");
+        setBannerData(data);
+      } catch (error) {
+        Notification("error", "サーバーエラー");
+      }
+    };
+    fetchBanner();
+  }, []);
 
-function Carousel(props: any) {
   return (
-    <div className={`${props.bgColor}`}>
+    <div className="bg-white">
       <Swiper
         modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
         loop={true}
@@ -29,16 +39,20 @@ function Carousel(props: any) {
           delay: 2500,
           disableOnInteraction: false,
         }}
-        spaceBetween={props.spaceBetween}
-        slidesPerView={props.visibleSlides}
+        spaceBetween={window.innerWidth < 640 ? 8 : 16}
+        slidesPerView={window.innerWidth / 344}
         navigation={{ nextEl: ".arrow-left", prevEl: ".arrow-right" }}
         className="h-[240px] cursor-pointer py-2"
       >
-        {props.data &&
-          props.data.map((item: any, key: any) => (
+        {bannerData &&
+          bannerData.map((item: any, key: any) => (
             <SwiperSlide key={key}>
               <Link to="/feature/1">
-                <img src={item.src} alt={item.alt} className="h-full m-auto" />
+                <img
+                  src={item.image}
+                  alt={item.image}
+                  className="h-full m-auto"
+                />
               </Link>
             </SwiperSlide>
           ))}
@@ -65,4 +79,4 @@ function Carousel(props: any) {
   );
 }
 
-export default Carousel;
+export default BannerCarousel;

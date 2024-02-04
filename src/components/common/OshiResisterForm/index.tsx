@@ -60,16 +60,16 @@ const OshiResisterForm = () => {
       files.forEach((file) => formData.append("imgs", file));
     }
 
-    if (checked) {
-      try {
-        const res = await axios.post("cat/", formData);
-        Notification("success", "未登録店舗の登録が成功しました。");
-      } catch (error: any) {
-        if (error.response.status === 400)
-          Notification("error", "店舗は既に存在します。");
-        else Notification("error", "Server Error!");
-      }
-    }
+    // if (checked) {
+    //   try {
+    //     const res = await axios.post("cat/", formData);
+    //     Notification("success", "未登録店舗の登録が成功しました。");
+    //   } catch (error: any) {
+    //     if (error.response.status === 400)
+    //       Notification("error", "店舗は既に存在します。");
+    //     else Notification("error", "Server Error!");
+    //   }
+    // }
   };
 
   return (

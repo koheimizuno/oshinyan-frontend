@@ -122,6 +122,10 @@ const CatDetail = () => {
   const { catLoading } = useSelector((state: any) => state.cat);
 
   useEffect(() => {
+    !isAuthenticated && navigate("/login");
+  }, []);
+
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const { data } = await axios.get("randomcat");
