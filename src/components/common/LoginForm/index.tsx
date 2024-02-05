@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { LoginAction } from "../../../slices/auth";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Button from "../../basic/Button";
 

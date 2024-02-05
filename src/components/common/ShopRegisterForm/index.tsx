@@ -59,7 +59,7 @@ const ShopRegisterForm = () => {
     }
     if (checked) {
       try {
-        const res = await axios.post("shop/", formData);
+        const res = await axios.post("unregistered/shop/", formData);
         Notification("success", "未登録店舗の登録が成功しました。");
       } catch (error: any) {
         if (error.response.status === 400)

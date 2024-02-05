@@ -41,7 +41,7 @@ const ContactUsForm = () => {
     const submitInquiry = async () => {
       try {
         if (submitValue.email === submitValue.re_email) {
-          await axios.post("inquiry/", {
+          await axios.post("other/inquiry/", {
             type: submitValue.type,
             client_type: submitValue.client_type,
             company_name: submitValue.company_name,

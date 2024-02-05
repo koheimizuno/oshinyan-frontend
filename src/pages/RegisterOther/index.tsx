@@ -13,10 +13,22 @@ const RegisterOther = () => {
 
   const [tabValue, setTabValue] = useState(1);
 
-  useEffect(() => {
-    window.location.pathname === "/shopresister" && setTabValue(1);
-    window.location.pathname === "/ambassador" && setTabValue(2);
-  }, []);
+  // useEffect(() => {
+  //   window.location.pathname === "/shopresister" && setTabValue(1);
+  //   window.location.pathname === "/ambassador" && setTabValue(2);
+  // }, []);
+
+  const redirectShopRegister = () => {
+    setTabValue(1);
+    navigate("/shopresister");
+  };
+
+  const redirectAmbassadorRegister = () => {
+    setTabValue(2);
+    navigate("/ambassador");
+  };
+
+  console.log(tabValue);
 
   return (
     <MainLayout>
@@ -36,7 +48,7 @@ const RegisterOther = () => {
             >
               <button
                 className="w-[370px] text-2xl py-2"
-                onClick={() => setTabValue(1)}
+                onClick={redirectShopRegister}
               >
                 看板猫登録
               </button>
@@ -50,7 +62,7 @@ const RegisterOther = () => {
             >
               <button
                 className="w-[370px] text-2xl py-2"
-                onClick={() => setTabValue(2)}
+                onClick={redirectAmbassadorRegister}
               >
                 推しニャンアンバサダー募集
               </button>

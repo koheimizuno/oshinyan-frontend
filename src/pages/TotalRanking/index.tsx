@@ -29,7 +29,7 @@ const TotalRanking = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("totalrankingcat");
+        const res = await axios.get("cat/totalrankingcat");
         setCatData(res.data);
       } catch (error) {}
     };
@@ -41,7 +41,7 @@ const TotalRanking = () => {
       try {
         if (prefectureKeyword !== null) {
           const { data } = await axios.get(
-            "searchprefecture?keyword=" + prefectureKeyword
+            "cat/searchprefecture?keyword=" + prefectureKeyword
           );
           setCatData(data);
         }
@@ -54,7 +54,9 @@ const TotalRanking = () => {
   const handleFreeSearch = async () => {
     try {
       if (searchWord !== null) {
-        const { data } = await axios.get("searchword?keyword=" + searchWord);
+        const { data } = await axios.get(
+          "cat/searchword?keyword=" + searchWord
+        );
         setCatData(data);
       }
     } catch (error) {}

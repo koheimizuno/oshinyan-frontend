@@ -89,13 +89,13 @@ const MyPage = () => {
   useEffect(() => {
     const fetchuserCatData = async () => {
       try {
-        const { data } = await axios.get("usercat");
+        const { data } = await axios.get("cat/usercat");
         setUserCatData(data);
       } catch (error) {}
     };
     const fetchUser = async () => {
       if (user.user_id) {
-        const { data } = await axios.get(`user/${user.user_id}/`);
+        const { data } = await axios.get(`account/user/${user.user_id}/`);
         setCurrentUser(data);
       }
     };
@@ -109,7 +109,7 @@ const MyPage = () => {
       setIsFetchUserName(true);
     } else {
       try {
-        const { data } = await axios.put(`user/${user.user_id}/`, {
+        const { data } = await axios.put(`account/user/${user.user_id}/`, {
           username: newUsername,
         });
         setCurrentUser(data);
@@ -124,7 +124,7 @@ const MyPage = () => {
       setIsFetchEmail(true);
     } else {
       try {
-        const { data } = await axios.put(`user/${user.user_id}/`, {
+        const { data } = await axios.put(`account/user/${user.user_id}/`, {
           email: newEmail,
         });
         setCurrentUser(data);
@@ -136,14 +136,16 @@ const MyPage = () => {
   const handleAvatar = () => {
     setAvatarModal(true);
     const fetchAvatar = async () => {
-      const { data } = await axios.get("avatar/");
+      const { data } = await axios.get("account/avatar/");
       setAvatars(data);
     };
     fetchAvatar();
   };
 
   const selectAvatar = async (id: number) => {
-    const { data } = await axios.put(`user/${currentUser.id}/`, { id: id });
+    const { data } = await axios.put(`account/user/${currentUser.id}/`, {
+      id: id,
+    });
     setCurrentUser({ ...currentUser, avatar_url: data.avatar_url });
     setAvatarModal(false);
   };

@@ -6,7 +6,7 @@ export const RegistrationAction: any = createAsyncThunk(
   "auth/registration/",
   async (payload, thunkApi) => {
     try {
-      const { data } = await axios.post("register", payload);
+      const { data } = await axios.post("account/register", payload);
       return data;
     } catch (error: any) {
       return thunkApi.rejectWithValue("アカウント作成に失敗しました。");
@@ -18,7 +18,7 @@ export const LoginAction: any = createAsyncThunk(
   "auth/login",
   async (payload, thunkApi) => {
     try {
-      const { data } = await axios.post("login", payload);
+      const { data } = await axios.post("account/login", payload);
       return data;
     } catch (error: any) {
       return thunkApi.rejectWithValue(
@@ -32,7 +32,7 @@ export const TokenLoginAction: any = createAsyncThunk(
   "auth/tokenlogin",
   async (_, thunkApi) => {
     try {
-      const { data } = await axios.get("tokenlogin");
+      const { data } = await axios.get("account/tokenlogin");
       return data;
     } catch (error: any) {
       return thunkApi.rejectWithValue(error.message);
@@ -44,7 +44,7 @@ export const LogOutAction: any = createAsyncThunk(
   "auth/logout",
   async (payload, thunkApi) => {
     try {
-      const { data } = await axios.post("logout", payload);
+      const { data } = await axios.post("account/logout", payload);
       return data;
     } catch (error: any) {
       return thunkApi.rejectWithValue(error.message);
@@ -101,8 +101,8 @@ const userSlice = createSlice({
       .addCase(LoginAction.rejected, (state, action) => {
         state.authLoading = false;
         state.error = action.payload;
-        // Notification("error", action.payload);
-        // state.loginError = action.payload;
+        Notification("error", action.payload);
+        state.loginError = action.payload;
       });
     builder
       .addCase(TokenLoginAction.pending, (state, action) => {

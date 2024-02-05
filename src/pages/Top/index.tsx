@@ -91,7 +91,7 @@ const Top = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get("randomcat");
+        const { data } = await axios.get("cat/randomcat");
         setCatData(data);
       } catch (error) {
         Notification("error", "サーバーエラー");
@@ -99,7 +99,7 @@ const Top = () => {
     };
     const fetchBanner = async () => {
       try {
-        const { data } = await axios.get("banner/");
+        const { data } = await axios.get("other/banner/");
         setBannerData(data);
       } catch (error) {
         Notification("error", "サーバーエラー");

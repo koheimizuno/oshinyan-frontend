@@ -29,7 +29,8 @@ const PasswordResetConfirmation = lazy(
   () => import("./pages/Auth/PasswordResetConfirmation")
 );
 
-axios.defaults.baseURL = "http://192.168.145.200:8000/api/";
+axios.defaults.baseURL = "http://162.43.50.92:8000/api/";
+axios.defaults.baseURL = "http://162.43.50.92:8000/";
 
 function App() {
   const dispatch = useDispatch();
@@ -55,7 +56,7 @@ function App() {
     }
   }, []);
 
-  // const PRIVATE_ROUTES = ["mypage"];
+  // const PRIVATE_ROUTES = ["mypage", "oshinyan"];
   // const isPrivatePage = PRIVATE_ROUTES.some((path) =>
   //   window.location.href.includes(path)
   // );

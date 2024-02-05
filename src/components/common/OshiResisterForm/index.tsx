@@ -55,21 +55,17 @@ const OshiResisterForm = () => {
     formData.append("email", registerCatValues.email);
     formData.append("shop_type", registerCatValues.shop_type);
     formData.append("cat_info", registerCatValues.cat_info);
-    if (selectedFiles != null) {
-      const files = Array.from(selectedFiles);
-      files.forEach((file) => formData.append("imgs", file));
-    }
 
-    // if (checked) {
-    //   try {
-    //     const res = await axios.post("cat/", formData);
-    //     Notification("success", "未登録店舗の登録が成功しました。");
-    //   } catch (error: any) {
-    //     if (error.response.status === 400)
-    //       Notification("error", "店舗は既に存在します。");
-    //     else Notification("error", "Server Error!");
-    //   }
-    // }
+    if (checked) {
+      try {
+        const res = await axios.post("unregistered/oshiresister/", formData);
+        Notification("success", "未登録店舗の登録が成功しました。");
+      } catch (error: any) {
+        if (error.response.status === 400)
+          Notification("error", "店舗は既に存在します。");
+        else Notification("error", "Server Error!");
+      }
+    }
   };
 
   return (
@@ -228,7 +224,7 @@ const OshiResisterForm = () => {
             className="h-[192px] w-[456px] border border-[#CCCCCC] focus:outline-none p-2"
           ></textarea>
         </div>
-        <div>
+        {/* <div>
           <button
             type="button"
             className="w-full mt-[24px] h-[48px] flex justify-center bg-[#F3F3F3] py-3"
@@ -253,7 +249,7 @@ const OshiResisterForm = () => {
               onChange={selectFiles}
             />
           </button>
-        </div>
+        </div> */}
         <div className="border-b border-[#CCCCCC] mt-[32px]"></div>
         <PrivacyComponent />
         <div className="text-center mt-[27px] pb-[27px] border-b border-[#CCCCCC]">

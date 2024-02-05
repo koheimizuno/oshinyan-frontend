@@ -15,7 +15,7 @@ function PasswordResetConfirmation() {
     if (password === repassword) {
       const ResestPasswordConfirm = async () => {
         const { data } = await axios.post(
-          `password_reset/confirm/${uid}/${token}/`,
+          `account/password_reset/confirm/${uid}/${token}/`,
           {
             new_password: password,
           }

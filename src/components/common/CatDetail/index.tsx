@@ -128,12 +128,12 @@ const CatDetail = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get("randomcat");
+        const { data } = await axios.get("cat/randomcat");
         setCatData(data);
       } catch (error) {}
     };
     const RetrieveCat = async () => {
-      const { data } = await axios.get(`cat/${id}`);
+      const { data } = await axios.get(`cat/cats/${id}/`);
       setRetrieveCat(data);
     };
     fetchData();
@@ -144,7 +144,7 @@ const CatDetail = () => {
     const ListRecommendUser = async () => {
       if (retrieveCat.recommend[0]) {
         const { data } = await axios.get(
-          `recommend?cat_id=${retrieveCat.recommend[0].cat}`
+          `cat/recommend?cat_id=${retrieveCat.recommend[0].cat}`
         );
         setRecommendedUser(data);
       }

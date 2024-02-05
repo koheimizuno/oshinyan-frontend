@@ -11,7 +11,7 @@ function PasswordReset() {
     e.preventDefault();
     const submitResetPassword = async () => {
       try {
-        await axios.post("password_reset", { email: email });
+        await axios.post("account/password_reset", { email: email });
         setSuccessMsg(
           "パスワード再設定メールが送信されました。受信箱を確認してください。"
         );

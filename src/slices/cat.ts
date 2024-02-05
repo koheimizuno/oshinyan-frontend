@@ -5,7 +5,7 @@ export const RecommendAction: any = createAsyncThunk(
   "catRecommend",
   async (payload, thunkApi) => {
     try {
-      const { data } = await axios.post("recommend", payload);
+      const { data } = await axios.post("cat/recommend", payload);
       return data;
     } catch (error: any) {
       return thunkApi.rejectWithValue(error.message);
