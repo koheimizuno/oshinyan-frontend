@@ -68,7 +68,6 @@ const MyPage = () => {
     id: 0,
     username: "",
     email: "",
-    avatar: "",
     avatar_url: "",
   });
   const [isFetchUserName, setIsFetchUserName] = useState(false);
@@ -83,7 +82,7 @@ const MyPage = () => {
   );
 
   useEffect(() => {
-    !isAuthenticated && navigate("/login");
+    // !isAuthenticated && navigate("/login");
   }, []);
 
   useEffect(() => {
@@ -147,12 +146,15 @@ const MyPage = () => {
   };
 
   const selectAvatar = async (id: number) => {
-    const { data } = await axios.put(`account/user/${currentUser.id}/`, {
+    const { data } = await axios.put(`account/user/${user.user_id}/`, {
       avatar: id,
     });
+    console.log(data);
     setCurrentUser({ ...currentUser, avatar_url: data.avatar_url });
     setAvatarModal(false);
   };
+
+  console.log(currentUser);
 
   return (
     <>
@@ -167,11 +169,13 @@ const MyPage = () => {
                 className="w-[72px] h-[72px] me-[40px]"
                 onClick={handleAvatar}
               >
-                <img
-                  className="w-full"
-                  src={currentUser.avatar_url}
-                  alt="cat"
-                />
+                {currentUser.avatar_url && (
+                  <img
+                    className="w-full"
+                    src={currentUser.avatar_url}
+                    alt="cat"
+                  />
+                )}
               </button>
               <Modal
                 open={avatarModal}
@@ -229,7 +233,7 @@ const MyPage = () => {
               </div>
             </div>
             <div className="flex mt-[16px]">
-              <div className="w-[152px] me-[24px] text-[16px] leading-[21px]">
+              <div className="w-[152px] me-[24px] text-[16px] leading-[21px] whitespace-nowrap">
                 登録メールアドレス
               </div>
               <div className="w-full flex justify-between items-center">

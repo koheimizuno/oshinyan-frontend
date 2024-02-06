@@ -17,24 +17,9 @@ import CatCard from "../../basic/blog/CatCard";
 import ImageGallery from "./components/ImageGallery";
 import ImageDetail from "./components/ImageDetail";
 import axios from "axios";
-import { CatObjectType, UserType } from "../../../constant/type";
+import { CatObjectType, UserType, commentType } from "../../../constant/type";
 import { RecommendAction } from "../../../slices/cat";
 import CatDetailCarousel from "./components/Carousel";
-
-const Cats = [
-  {
-    imgUrl: "/assets/imgs/cats/favorite_cat.png",
-    isChu: false,
-  },
-  {
-    imgUrl: "/assets/imgs/cats/favorite_cat.png",
-    isChu: false,
-  },
-  {
-    imgUrl: "/assets/imgs/cats/favorite_cat.png",
-    isChu: false,
-  },
-];
 
 const CatImgs = [
   {
@@ -97,6 +82,7 @@ const CatDetail = () => {
   const [catData, setCatData] = useState<CatObjectType[]>([]);
   const [recommendTooltip, setRecommendTooltip] = useState(false);
   const [recommendedUser, setRecommendedUser] = useState<UserType[]>([]);
+  const [commentData, setCommentData] = useState<commentType[]>([]);
   const [retrieveCat, setRetrieveCat] = useState<CatObjectType>({
     id: 0,
     cat_name: "",
@@ -119,7 +105,13 @@ const CatDetail = () => {
   const { catLoading } = useSelector((state: any) => state.cat);
 
   useEffect(() => {
-    !isAuthenticated && navigate("/login");
+    // !isAuthenticated && navigate("/login");
+    const commentFetch = async () => {
+      const { data } = await axios.get(`cat/comment?cat_id=${id}`);
+      setCommentData(data);
+      // console.log(data);
+    };
+    commentFetch();
   }, []);
 
   useEffect(() => {
@@ -296,8 +288,8 @@ const CatDetail = () => {
                   <div className="flex items-center" key={key}>
                     <img
                       className="w-7 h-7"
-                      src={item.avatar_url}
-                      alt={item.avatar_url}
+                      // src={item.avatar.avatar}
+                      // alt={item.avatar.avatar}
                     />
                     <div className="ms-3">{item.username}</div>
                     <img
@@ -367,82 +359,53 @@ const CatDetail = () => {
           </div>
         </div>
         {/* 1 */}
-        <div>
-          <div className="flex items-center">
-            <div className="w-10 h-10">
-              <img
-                className="w-full"
-                src="/assets/imgs/icons/info_cat.png"
-                alt="cat"
-              />
+        {commentData &&
+          commentData.map((item, key) => (
+            <div key={key}>
+              <div>
+                <div className="flex items-center">
+                  <div className="w-10 h-10">
+                    <img
+                      className="w-full"
+                      src="/assets/imgs/icons/info_cat.png"
+                      alt="cat"
+                    />
+                  </div>
+                  <div className="text-base underline ms-4">猫好きさん</div>
+                </div>
+                <div className="mt-2 text-xs text-[#767676]">2023.00.00</div>
+                <div className="break-all mt-4 text-base">{item.comment}</div>
+              </div>
+              <div className="mt-6 flex gap-2">
+                {item.comment_images &&
+                  item.comment_images.map((e, i) => {
+                    return (
+                      <CatFavorite
+                        imgUrl={e.imgs}
+                        vote="000"
+                        key={i}
+                        onClick={() => setShowImageDetail(true)}
+                      />
+                    );
+                  })}
+              </div>
+              <div className="mt-6">
+                <BtnAdd />
+              </div>
+              <div className="flex gap-2 mt-4">
+                {actions &&
+                  actions.map((e, i) => (
+                    <img
+                      className="w-7 h-7"
+                      src={`/assets/imgs/icons/${e}`}
+                      alt=""
+                      key={i}
+                    />
+                  ))}
+              </div>
             </div>
-            <div className="text-base underline ms-4">猫好きさん</div>
-          </div>
-          <div className="mt-2 text-xs text-[#767676]">2023.00.00</div>
-          <div className="break-all mt-4 text-base">
-            □□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□…
-          </div>
-        </div>
-        <div className="mt-6 flex gap-2">
-          {Cats &&
-            Cats.map((e, i) => {
-              return (
-                <CatFavorite
-                  imgUrl={e.imgUrl}
-                  vote="000"
-                  key={i}
-                  onClick={() => setShowImageDetail(true)}
-                />
-              );
-            })}
-        </div>
-        <div className="mt-6">
-          <BtnAdd />
-        </div>
-        <div className="flex gap-2 mt-4">
-          {actions &&
-            actions.map((e, i) => (
-              <img
-                className="w-7 h-7"
-                src={`/assets/imgs/icons/${e}`}
-                alt=""
-                key={i}
-              />
-            ))}
-        </div>
+          ))}
         {/* 2 */}
-        <Border className="mt-5 border-dashed" color="#CCCCCC" />
-        <div className="mt-6">
-          <div className="flex items-center">
-            <div className="w-10 h-10">
-              <img
-                className="w-full"
-                src="/assets/imgs/icons/cat_avatar_2.png"
-                alt="cat"
-              />
-            </div>
-            <div className="text-base underline ms-4">はなこさん</div>
-          </div>
-          <div className="mt-2 text-xs text-[#767676]">2023.00.00</div>
-          <div className="break-all mt-4 text-base">
-            □□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□…
-          </div>
-        </div>
-        <div className="mt-6">
-          <BtnAdd />
-        </div>
-        <div className="flex gap-2 mt-4">
-          {actions &&
-            actions.map((e, i) => (
-              <img
-                className="w-7 h-7"
-                src={`/assets/imgs/icons/${e}`}
-                alt=""
-                key={i}
-              />
-            ))}
-        </div>
-        {/* add button */}
         <Border className="mt-5 border-dashed" color="#CCCCCC" />
         <div className="mt-8 flex justify-center">
           <BtnSolid onClick={() => {}} />

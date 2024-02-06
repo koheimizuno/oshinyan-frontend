@@ -44,11 +44,20 @@ export interface UserType {
   id: number;
   username: string;
   email: string;
-  prefecture: string;
   avatar_url: string;
 }
 
 export interface bannerType {
   image: string;
   url: string;
+}
+
+interface CommentImageType {
+  id: number;
+  imgs: string;
+}
+
+export interface commentType {
+  comment: string;
+  comment_images: CommentImageType[];
 }
