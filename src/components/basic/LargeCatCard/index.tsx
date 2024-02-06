@@ -82,12 +82,12 @@ const LargeCatCard = ({
           >
             {cat_images &&
               cat_images.map((item: any, key: any) => (
-                <SwiperSlide key={key}>
+                <SwiperSlide key={key} className="h-[360px] overflow-x-hidden">
                   <Link to={`/oshinyan/${id}`}>
                     <img
                       src={item.imgs}
                       alt={item.imgs}
-                      className="m-auto cursor-pointer w-full"
+                      className="m-auto cursor-pointer h-full"
                     />
                   </Link>
                 </SwiperSlide>
@@ -140,7 +140,7 @@ const LargeCatCard = ({
             </button>
           </Swiper>
         </div>
-        <div className="px-[24px] h-full w-[50%] flex flex-col">
+        <div className="px-[24px] h-full w-[50%] flex flex-col justify-between">
           <div className="pt-[24px]">
             <h3 className="text-[24px] font-bold text-left text-ellipsis overflow-hidden whitespace-nowrap">
               {cat_name}
@@ -184,7 +184,7 @@ const LargeCatCard = ({
             </div>
           </div>
           <hr className="border border-[#CCC] p-0 m-0" />
-          <div className="pb-[43px] grow max-h-[200px] py-2">
+          <div className="grow max-h-[200px] py-2">
             <p className="break-words	text-[16px] text-ellipsis overflow-hidden whitespace-wrap leading-[21px]">
               {description}
             </p>

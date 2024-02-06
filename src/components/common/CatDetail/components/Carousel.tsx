@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import ArrowLeft from "../../../basic/icons/ArrowLeft";
 import ArrowRight from "../../../basic/icons/ArrowRight";
+import { Height } from "@mui/icons-material";
 
 function CatDetailCarousel(props: any) {
   return (
@@ -21,13 +22,11 @@ function CatDetailCarousel(props: any) {
     >
       {props.data.cat_admin_images &&
         props.data.cat_admin_images.map((item: any, key: any) => (
-          <SwiperSlide key={key}>
+          <SwiperSlide key={key} className="h-[576px] overflow-x-hidden">
             <img
               src={item.imgs}
               alt={item.imgs}
-              width={960}
-              height={576}
-              className="h-full m-auto cursor-pointer"
+              className="h-full m-auto cursor-grab"
             />
           </SwiperSlide>
         ))}

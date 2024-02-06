@@ -149,12 +149,9 @@ const MyPage = () => {
     const { data } = await axios.put(`account/user/${user.user_id}/`, {
       avatar: id,
     });
-    console.log(data);
     setCurrentUser({ ...currentUser, avatar_url: data.avatar_url });
     setAvatarModal(false);
   };
-
-  console.log(currentUser);
 
   return (
     <>

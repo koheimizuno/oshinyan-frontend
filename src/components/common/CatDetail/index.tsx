@@ -109,7 +109,7 @@ const CatDetail = () => {
     const commentFetch = async () => {
       const { data } = await axios.get(`cat/comment?cat_id=${id}`);
       setCommentData(data);
-      // console.log(data);
+      console.log(data);
     };
     commentFetch();
   }, []);
@@ -288,8 +288,8 @@ const CatDetail = () => {
                   <div className="flex items-center" key={key}>
                     <img
                       className="w-7 h-7"
-                      // src={item.avatar.avatar}
-                      // alt={item.avatar.avatar}
+                      src={item.avatar_url}
+                      alt={item.avatar_url}
                     />
                     <div className="ms-3">{item.username}</div>
                     <img
@@ -371,9 +371,15 @@ const CatDetail = () => {
                       alt="cat"
                     />
                   </div>
-                  <div className="text-base underline ms-4">猫好きさん</div>
+                  <div className="text-base underline ms-4">
+                    {item.user.username}
+                  </div>
                 </div>
-                <div className="mt-2 text-xs text-[#767676]">2023.00.00</div>
+                <div className="mt-2 text-xs text-[#767676]">
+                  {`${new Date(item.user.last_login).getFullYear()}.${
+                    new Date(item.user.last_login).getMonth() + 1
+                  }.${new Date(item.user.last_login).getDate()}`}
+                </div>
                 <div className="break-all mt-4 text-base">{item.comment}</div>
               </div>
               <div className="mt-6 flex gap-2">

@@ -82,7 +82,7 @@ const CatCard = ({
           >
             {cat_images &&
               cat_images.map((item: any, key: any) => (
-                <SwiperSlide key={key}>
+                <SwiperSlide key={key} className="h-[234px] overflow-x-hidden">
                   <Link to={`/oshinyan/${id}`}>
                     <img
                       src={item.imgs}

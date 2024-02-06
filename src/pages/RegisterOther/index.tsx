@@ -28,8 +28,6 @@ const RegisterOther = () => {
     navigate("/ambassador");
   };
 
-  console.log(tabValue);
-
   return (
     <MainLayout>
       <SocialLinkGroup />

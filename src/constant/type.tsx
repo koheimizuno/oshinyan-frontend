@@ -60,4 +60,5 @@ interface CommentImageType {
 export interface commentType {
   comment: string;
   comment_images: CommentImageType[];
+  user: any;
 }
