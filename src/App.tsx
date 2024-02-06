@@ -93,7 +93,7 @@ function App() {
             //10 <Route path="oshiresister" element={<Oshiresister />} />
             //*11 <Route path="nyanplace/:id" element={<NyanplaceDetail />} />
             //12 <Route path="oshinyan/:id" element={<OshinyanDetail />} />
-            //15 <Route path="comment" element={<Comment />} />
+            //15 <Route path="comment/:id" element={<Comment />} />
             //16 <Route path="column" element={<Column />} />
             //17 <Route path="inquiry" element={<Inquiry />} />
           </Route>

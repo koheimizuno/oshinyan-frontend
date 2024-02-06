@@ -105,14 +105,16 @@ const MyPage = () => {
 
   const editUserName = async () => {
     if (!isFetchUserName) {
-      setNewUserName(user.username);
+      setNewUserName(currentUser.username);
       setIsFetchUserName(true);
     } else {
       try {
-        const { data } = await axios.put(`account/user/${user.user_id}/`, {
-          username: newUsername,
-        });
-        setCurrentUser(data);
+        if (currentUser.username !== newUsername) {
+          const { data } = await axios.put(`account/user/${user.user_id}/`, {
+            username: newUsername,
+          });
+          setCurrentUser(data);
+        }
       } catch (error: any) {}
       setIsFetchUserName(false);
     }
@@ -120,14 +122,16 @@ const MyPage = () => {
 
   const editEmail = async () => {
     if (!isFetchEmail) {
-      setNewEmail(user.email);
+      setNewEmail(currentUser.email);
       setIsFetchEmail(true);
     } else {
       try {
-        const { data } = await axios.put(`account/user/${user.user_id}/`, {
-          email: newEmail,
-        });
-        setCurrentUser(data);
+        if (currentUser.email !== newEmail) {
+          const { data } = await axios.put(`account/user/${user.user_id}/`, {
+            email: newEmail,
+          });
+          setCurrentUser(data);
+        }
       } catch (error: any) {}
       setIsFetchEmail(false);
     }
@@ -144,7 +148,7 @@ const MyPage = () => {
 
   const selectAvatar = async (id: number) => {
     const { data } = await axios.put(`account/user/${currentUser.id}/`, {
-      id: id,
+      avatar: id,
     });
     setCurrentUser({ ...currentUser, avatar_url: data.avatar_url });
     setAvatarModal(false);

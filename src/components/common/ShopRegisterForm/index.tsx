@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import FileUpload from "../../basic/icons/FileUpload";
 import {
   FormControl,
@@ -11,7 +11,6 @@ import {
 } from "@mui/material";
 import { PREFECTURE } from "../../../constant";
 import axios from "axios";
-import { Store } from "react-notifications-component";
 import PrivacyComponent from "../PrivacyComponent";
 import { Notification } from "../../../constant/notification";
 

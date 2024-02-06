@@ -7,8 +7,6 @@ import Twitter from "../../basic/icons/Twitter";
 import Instagram from "../../basic/icons/Instagram";
 import Border from "./components/Border";
 import HeartCircle from "../../basic/icons/HeartCircle";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import { CalendarMonthSharp } from "@mui/icons-material";
 import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
 import CatFavorite from "./components/CatFavorite";
@@ -21,8 +19,7 @@ import ImageDetail from "./components/ImageDetail";
 import axios from "axios";
 import { CatObjectType, UserType } from "../../../constant/type";
 import { RecommendAction } from "../../../slices/cat";
-import ArrowLeft from "../../basic/icons/ArrowLeft";
-import ArrowRight from "../../basic/icons/ArrowRight";
+import CatDetailCarousel from "./components/Carousel";
 
 const Cats = [
   {
@@ -142,15 +139,15 @@ const CatDetail = () => {
 
   useEffect(() => {
     const ListRecommendUser = async () => {
-      if (retrieveCat.recommend[0]) {
+      if (retrieveCat.id) {
         const { data } = await axios.get(
-          `cat/recommend?cat_id=${retrieveCat.recommend[0].cat}`
+          `cat/recommend?cat_id=${retrieveCat.id}`
         );
         setRecommendedUser(data);
       }
     };
     ListRecommendUser();
-  }, [retrieveCat.recommend[0]]);
+  }, [retrieveCat.id]);
 
   const handleRecommend = async () => {
     if (isAuthenticated) {
@@ -168,45 +165,8 @@ const CatDetail = () => {
 
   return (
     <div className="w-full relative">
-      {/* <CatDetailCarousel /> */}
-      <Swiper
-        modules={[Navigation, Pagination, Scrollbar, A11y]}
-        speed={800}
-        pagination={{
-          el: ".swiper-pagination",
-          type: "bullets",
-          clickable: true,
-        }}
-        loop={true}
-        centeredSlides
-        slidesPerView={1}
-        navigation={{ nextEl: ".arrow-left", prevEl: ".arrow-right" }}
-      >
-        {retrieveCat.cat_admin_images &&
-          retrieveCat.cat_admin_images.map((item: any, key: any) => (
-            <SwiperSlide key={key}>
-              <img
-                src={item.imgs}
-                alt={item.imgs}
-                width={960}
-                height={576}
-                className="h-full m-auto cursor-pointer"
-              />
-            </SwiperSlide>
-          ))}
-        <div className="swiper-pagination custom-pagination-bullets"></div>
-        <button className="arrow-left xs:hidden md:block">
-          <div className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
-            <ArrowLeft />
-          </div>
-        </button>
-        <button className="arrow-left xs:hidden md:block">
-          <div className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
-            <ArrowRight />
-          </div>
-        </button>
-      </Swiper>
-      <div className="w-full bg-white p-[28px] pt-[0px]">
+      <CatDetailCarousel data={retrieveCat} />
+      <div className="w-full bg-white p-[28px]">
         <div className="flex justify-between">
           <div className="flex items-center font-bold">
             <img src="/assets/imgs/icons/face_empty.png" alt="cat icon" />
@@ -379,9 +339,12 @@ const CatDetail = () => {
                 </div>
               </div>
             </div>
-            <div className="flex justify-between ">
+            <div className="flex justify-between">
               <div>
-                <Link to="/comment" className="flex items-center h-full">
+                <Link
+                  to={`/comment/${id}`}
+                  className="flex items-center h-full"
+                >
                   <span className="text-[28px] tracking-[-3px] text-white font-bold">
                     コメントするニャン！
                   </span>
