@@ -8,7 +8,7 @@ import FavoriteCard from "../../components/basic/FavoriteCard";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import Title from "../../components/common/Typography/Title";
 import axios from "axios";
-import { CatObjectType } from "../../constant/type";
+import { CatObjectType, commentType } from "../../constant/type";
 import { useSelector } from "react-redux";
 import { Modal } from "@mui/material";
 import { Close } from "@mui/icons-material";
@@ -76,6 +76,7 @@ const MyPage = () => {
   const [newEmail, setNewEmail] = useState("");
   const [avatars, setAvatars] = useState<avatarType[]>([]);
   const [avatarModal, setAvatarModal] = useState(false);
+  const [commentImgs, setCommentImgs] = useState<string[]>([]);
   const { catLoading } = useSelector((state: any) => state.cat);
   const { user, authLoading, isAuthenticated } = useSelector(
     (state: any) => state.user
@@ -83,6 +84,18 @@ const MyPage = () => {
 
   useEffect(() => {
     // !isAuthenticated && navigate("/login");
+    const commentFetch = async () => {
+      let list: any[] = [];
+      const { data } = await axios.get(`cat/commentbyuser`);
+      console.log(data);
+      data.forEach((item: any) => {
+        item.comment_images.forEach((it: any) => {
+          list.push(it.imgs);
+        });
+      });
+      setCommentImgs(list);
+    };
+    commentFetch();
   }, []);
 
   useEffect(() => {
@@ -287,11 +300,11 @@ const MyPage = () => {
             投稿した推しニャン画像
           </div>
           <div className="mt-[40px] mb-[64px] flex flex-wrap justify-between gap-4">
-            {Cats &&
-              Cats.map((e, key) => (
+            {commentImgs &&
+              commentImgs.map((item, key) => (
                 <FavoriteCard
                   key={key}
-                  imgUrl={e.imgUrl}
+                  imgUrl={item}
                   date="2023.01.01"
                   vote="000"
                 />
