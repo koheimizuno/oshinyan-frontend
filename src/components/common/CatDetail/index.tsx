@@ -83,6 +83,13 @@ const CatDetail = () => {
   const [recommendTooltip, setRecommendTooltip] = useState(false);
   const [recommendedUser, setRecommendedUser] = useState<UserType[]>([]);
   const [commentData, setCommentData] = useState<commentType[]>([]);
+  const [displayAll, setDisplayAll] = useState(false);
+  const [commentImgs, setCommentImgs] = useState<
+    {
+      imgs: string;
+      username: string;
+    }[]
+  >([]);
   const [retrieveCat, setRetrieveCat] = useState<CatObjectType>({
     id: 0,
     cat_name: "",
@@ -107,9 +114,19 @@ const CatDetail = () => {
   useEffect(() => {
     // !isAuthenticated && navigate("/login");
     const commentFetch = async () => {
+      let list: {
+        imgs: string;
+        username: string;
+      }[] = [];
       const { data } = await axios.get(`cat/comment?cat_id=${id}`);
       setCommentData(data);
       console.log(data);
+      data.map((item: any, key: number) =>
+        item.comment_images.map((it: any, i: number) =>
+          list.push({ imgs: it.imgs, username: item.user.username })
+        )
+      );
+      setCommentImgs(list);
     };
     commentFetch();
   }, []);
@@ -388,7 +405,7 @@ const CatDetail = () => {
                     return (
                       <CatFavorite
                         imgUrl={e.imgs}
-                        vote="000"
+                        vote={retrieveCat.recommend.length}
                         key={i}
                         onClick={() => setShowImageDetail(true)}
                       />
@@ -420,18 +437,35 @@ const CatDetail = () => {
         {/* album */}
         <div className="text-base mt-14 font-medium">ニャンアルバム</div>
         <div className="w-full border-b border-black mt-4"></div>
-        <div className="flex justify-between mt-6 flex-wrap gap-y-3">
-          {CatImgs &&
-            CatImgs.map((e, i) => {
-              return (
+        <div className="grid grid-cols-3 gap-y-3">
+          {commentImgs && displayAll
+            ? commentImgs.map((item, key) => (
                 <CatImage
-                  imgUrl={e.imgUrl}
-                  personName={e.personName}
-                  vote="000"
-                  key={i}
+                  imgUrl={item.imgs}
+                  personName={item.username}
+                  vote={0}
+                  key={key}
                 />
-              );
-            })}
+              ))
+            : commentImgs
+                .slice(0, 9)
+                .map((item, key) => (
+                  <CatImage
+                    imgUrl={item.imgs}
+                    personName={item.username}
+                    vote={0}
+                    key={key}
+                  />
+                ))}
+        </div>
+        <div className="text-right mt-[57px] mb-[32px] px-2">
+          <button
+            type="button"
+            className="underline"
+            onClick={() => setDisplayAll(true)}
+          >
+            すべての写真を見るニャン
+          </button>
         </div>
       </div>
 

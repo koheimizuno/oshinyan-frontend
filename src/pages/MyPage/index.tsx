@@ -76,7 +76,7 @@ const MyPage = () => {
   const [newEmail, setNewEmail] = useState("");
   const [avatars, setAvatars] = useState<avatarType[]>([]);
   const [avatarModal, setAvatarModal] = useState(false);
-  const [commentImgs, setCommentImgs] = useState<string[]>([]);
+  const [commentImgsByUser, setCommentImgsByUser] = useState<string[]>([]);
   const { catLoading } = useSelector((state: any) => state.cat);
   const { user, authLoading, isAuthenticated } = useSelector(
     (state: any) => state.user
@@ -84,7 +84,7 @@ const MyPage = () => {
 
   useEffect(() => {
     // !isAuthenticated && navigate("/login");
-    const commentFetch = async () => {
+    const commentByUserFetch = async () => {
       let list: any[] = [];
       const { data } = await axios.get(`cat/commentbyuser`);
       console.log(data);
@@ -93,9 +93,9 @@ const MyPage = () => {
           list.push(it.imgs);
         });
       });
-      setCommentImgs(list);
+      setCommentImgsByUser(list);
     };
-    commentFetch();
+    commentByUserFetch();
   }, []);
 
   useEffect(() => {
@@ -300,8 +300,8 @@ const MyPage = () => {
             投稿した推しニャン画像
           </div>
           <div className="mt-[40px] mb-[64px] flex flex-wrap justify-between gap-4">
-            {commentImgs &&
-              commentImgs.map((item, key) => (
+            {commentImgsByUser &&
+              commentImgsByUser.map((item, key) => (
                 <FavoriteCard
                   key={key}
                   imgUrl={item}

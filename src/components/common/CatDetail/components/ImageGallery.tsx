@@ -90,7 +90,7 @@ const ImageGallery = ({
                       <CatImage
                         imgUrl={e.imgUrl}
                         personName={e.personName}
-                        vote="000"
+                        vote={1}
                         key={i}
                       />
                     );

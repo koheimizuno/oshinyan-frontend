@@ -3,13 +3,13 @@ import Heart from "../../../basic/icons/Heart";
 interface Props {
   imgUrl: string;
   personName: string;
-  vote: string;
+  vote: number;
 }
-const CatImage = ({ imgUrl, personName, vote = "0" }: Props) => {
+const CatImage = ({ imgUrl, personName, vote }: Props) => {
   return (
-    <div className="w-[288px] h-[241px]">
-      <div className="w-full h-[216px] relative">
-        <img src={imgUrl} alt="cat" />
+    <div className="h-[241px] pt-6">
+      <div className="relative overflow-x-hidden">
+        <img src={imgUrl} alt="cat" className="h-[216px] m-auto" />
         <div className="absolute flex w-[48px] h-[18px] right-[5px] bottom-[5px]">
           <div className="me-1">
             <Heart />
@@ -17,9 +17,9 @@ const CatImage = ({ imgUrl, personName, vote = "0" }: Props) => {
           <div className="text-white text-[12px] leading-4">{vote}</div>
         </div>
       </div>
-      <div className="mt-[9px] flex justify-between">
-        <span className="text-[12px] text-[#767676] leading-4 underline">{personName}</span>
-      </div>
+      <p className="mt-[9px] text-[12px] text-[#767676] leading-4 underline">
+        {personName}
+      </p>
     </div>
   );
 };

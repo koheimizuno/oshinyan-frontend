@@ -61,6 +61,7 @@ export interface commentType {
   comment: string;
   comment_images: CommentImageType[];
   user: any;
+  cat: any;
 }
 
 export interface AmbassadorType {

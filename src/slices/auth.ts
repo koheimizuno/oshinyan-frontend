@@ -9,7 +9,15 @@ export const RegistrationAction: any = createAsyncThunk(
       const { data } = await axios.post("account/register", payload);
       return data;
     } catch (error: any) {
-      return thunkApi.rejectWithValue("アカウント作成に失敗しました。");
+      if (error.response.data.password)
+        return thunkApi.rejectWithValue(
+          "パスワードは英数字6文字以上でなければなりません。"
+        );
+      else if (error.response.data.username)
+        return thunkApi.rejectWithValue("ユーザー名はすでに存在する");
+      else if (error.response.data.email)
+        return thunkApi.rejectWithValue("メールアドレスが既に存在します。");
+      else return thunkApi.rejectWithValue("アカウント作成に失敗しました。");
     }
   }
 );
