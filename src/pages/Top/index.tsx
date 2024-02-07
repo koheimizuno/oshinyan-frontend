@@ -10,86 +10,19 @@ import Container from "../../components/basic/Container";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import CatCard from "../../components/basic/blog/CatCard";
 import axios from "axios";
-import { CatObjectType, bannerType } from "../../constant/type";
+import { CatObjectType } from "../../constant/type";
 import { Notification } from "../../constant/notification";
-
-const CAROUSELIMAGES: object[] = [
-  {
-    src: "/assets/imgs/carousel-1.png",
-    alt: "carousel-1",
-  },
-  {
-    src: "/assets/imgs/carousel-2.png",
-    alt: "carousel-2",
-  },
-  {
-    src: "/assets/imgs/carousel-3.png",
-    alt: "carousel-3",
-  },
-  {
-    src: "/assets/imgs/carousel-4.png",
-    alt: "carousel-4",
-  },
-  {
-    src: "/assets/imgs/carousel-1.png",
-    alt: "carousel-1",
-  },
-  {
-    src: "/assets/imgs/carousel-2.png",
-    alt: "carousel-2",
-  },
-  {
-    src: "/assets/imgs/carousel-3.png",
-    alt: "carousel-3",
-  },
-  {
-    src: "/assets/imgs/carousel-4.png",
-    alt: "carousel-4",
-  },
-  {
-    src: "/assets/imgs/carousel-1.png",
-    alt: "carousel-1",
-  },
-  {
-    src: "/assets/imgs/carousel-2.png",
-    alt: "carousel-2",
-  },
-  {
-    src: "/assets/imgs/carousel-3.png",
-    alt: "carousel-3",
-  },
-  {
-    src: "/assets/imgs/carousel-4.png",
-    alt: "carousel-4",
-  },
-  {
-    src: "/assets/imgs/carousel-1.png",
-    alt: "carousel-1",
-  },
-  {
-    src: "/assets/imgs/carousel-2.png",
-    alt: "carousel-2",
-  },
-  {
-    src: "/assets/imgs/carousel-3.png",
-    alt: "carousel-3",
-  },
-  {
-    src: "/assets/imgs/carousel-4.png",
-    alt: "carousel-4",
-  },
-];
 
 const Top = () => {
   const [catData, setCatData] = useState<CatObjectType[]>([]);
-  const [bannerData, setBannerData] = useState<bannerType[]>([]);
+  const [advertiseData, setAdvertiseData] = useState<CatObjectType[]>([]);
   const { catLoading } = useSelector((state: any) => state.cat);
   const { authLoading, isAuthenticated } = useSelector(
     (state: any) => state.user
   );
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchCatData = async () => {
       try {
         const { data } = await axios.get("cat/randomcat");
         setCatData(data);
@@ -97,27 +30,24 @@ const Top = () => {
         Notification("error", "サーバーエラー");
       }
     };
-    const fetchBanner = async () => {
+    const fetchAdvertiseCatData = async () => {
       try {
-        const { data } = await axios.get("other/banner/");
-        setBannerData(data);
+        const { data } = await axios.get("cat/advertise/");
+        setAdvertiseData(data);
       } catch (error) {
         Notification("error", "サーバーエラー");
       }
     };
-    fetchData();
-    fetchBanner();
+    fetchCatData();
+    fetchAdvertiseCatData();
   }, [isAuthenticated, catLoading, authLoading]);
+
+  const handleMoreDisplay = () => {};
 
   return (
     <MainLayout>
       <SocialLinkGroup page="top" />
-      <BannerCarousel
-        data={CAROUSELIMAGES}
-        visibleSlides={window.innerWidth / 344}
-        spaceBetween={window.innerWidth < 640 ? 8 : 16}
-        bgColor="bg-white"
-      />
+      <BannerCarousel />
       <div className="h-[60px]"></div>
       <Container>
         <RankingBar />
@@ -152,15 +82,15 @@ const Top = () => {
         </div>
         <div>
           <div className="flex justify-between flex-wrap ">
-            {catData.length !== 0 ? (
-              catData.map((e, i) => (
+            {advertiseData.length !== 0 ? (
+              advertiseData.map((e, i) => (
                 <CatCard
                   key={i}
                   id={e.id}
+                  advertise="advertise"
                   cat_name={e.cat_name}
                   shop={e.shop}
-                  cat_images={e.cat_images}
-                  cat_admin_images={e.cat_admin_images}
+                  cat_images={e.advertise_images}
                   character={e.character}
                   favorite_things={e.favorite_things}
                   attendance={e.attendance}
@@ -177,10 +107,13 @@ const Top = () => {
           </div>
         </div>
         <div className="pt-[15px] pb-[35px] text-center border-b border-b-solid border-[#CCC]">
-          <button className="w-[161px] h-[32px] rounded text-white bg-[#CBB279] shadow-inner text-[16px] py-[5px]">
-            <p className="drop-shadow-[1px_1px_rgba(195,129,84,1)] translate-x-0.5">
+          <button
+            className="w-[161px] h-[32px] rounded text-white bg-[#CBB279] shadow-inner text-[16px] py-[5px]"
+            onClick={handleMoreDisplay}
+          >
+            <span className="drop-shadow-[1px_1px_rgba(195,129,84,1)] translate-x-0.5">
               もっとみるニャン！
-            </p>
+            </span>
           </button>
         </div>
       </Container>

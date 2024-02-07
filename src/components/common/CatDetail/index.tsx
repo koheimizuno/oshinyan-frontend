@@ -21,45 +21,6 @@ import { CatObjectType, UserType, commentType } from "../../../constant/type";
 import { RecommendAction } from "../../../slices/cat";
 import CatDetailCarousel from "./components/Carousel";
 
-const CatImgs = [
-  {
-    imgUrl: "/assets/imgs/cats/favorite_cat.png",
-    personName: "猫好きさん",
-  },
-  {
-    imgUrl: "/assets/imgs/cats/favorite_cat.png",
-    personName: "猫好きさん",
-  },
-  {
-    imgUrl: "/assets/imgs/cats/favorite_cat.png",
-    personName: "猫好きさん",
-  },
-  {
-    imgUrl: "/assets/imgs/cats/favorite_cat.png",
-    personName: "猫好きさん",
-  },
-  {
-    imgUrl: "/assets/imgs/cats/favorite_cat.png",
-    personName: "猫好きさん",
-  },
-  {
-    imgUrl: "/assets/imgs/cats/favorite_cat.png",
-    personName: "猫好きさん",
-  },
-  {
-    imgUrl: "/assets/imgs/cats/favorite_cat.png",
-    personName: "猫好きさん",
-  },
-  {
-    imgUrl: "/assets/imgs/cats/favorite_cat.png",
-    personName: "猫好きさん",
-  },
-  {
-    imgUrl: "/assets/imgs/cats/favorite_cat.png",
-    personName: "猫好きさん",
-  },
-];
-
 const actions = [
   "avatar_1.svg",
   "avatar_2.svg",
@@ -80,7 +41,6 @@ const CatDetail = () => {
   const [showImageGallery, setShowImageGallery] = useState(false);
   const [showImageDetail, setShowImageDetail] = useState(false);
   const [catData, setCatData] = useState<CatObjectType[]>([]);
-  const [recommendTooltip, setRecommendTooltip] = useState(false);
   const [recommendedUser, setRecommendedUser] = useState<UserType[]>([]);
   const [commentData, setCommentData] = useState<commentType[]>([]);
   const [displayAll, setDisplayAll] = useState(false);
@@ -188,15 +148,13 @@ const CatDetail = () => {
             <img
               src="/assets/imgs/icons/comment_chu.png"
               alt="comment_chu.png"
-              className={`${recommendTooltip ? "block" : "hidden"}`}
             />
             <span
               className="cursor-pointer rounded-full"
               onClick={handleRecommend}
-              onMouseOver={() => setRecommendTooltip(true)}
-              onMouseLeave={() => setRecommendTooltip(false)}
             >
-              {retrieveCat.recommend.find((e) => e.user == user.user_id) ? (
+              {retrieveCat.recommend &&
+              retrieveCat.recommend.find((e) => e.user == user.user_id) ? (
                 <img
                   src="/assets/imgs/icons/recommend-on.png"
                   alt="recommend-on"
@@ -291,7 +249,7 @@ const CatDetail = () => {
             />
           </div>
           <div className="text-2xl font-medium ms-2">
-            {retrieveCat.recommend.length}ニャン
+            {retrieveCat.recommend && retrieveCat.recommend.length}ニャン
           </div>
         </div>
         <div className="w-full border-b border-black mt-4"></div>

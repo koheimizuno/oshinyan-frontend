@@ -14,13 +14,11 @@ interface PropsType extends CatObjectType {
 }
 const CatCard = ({
   id,
+  advertise,
   cat_name,
   shop,
   cat_images,
-  cat_admin_images,
   character,
-  favorite_things,
-  attendance,
   description,
   recommend,
   last_update,
@@ -50,12 +48,22 @@ const CatCard = ({
 
   const handleRecommend = async () => {
     if (isAuthenticated) {
-      if (!recommend.find((e) => e.user == user.user_id)) {
-        const submitData = {
-          cat_id: id,
-          user_id: user.user_id,
-        };
-        const res = await dispatch(RecommendAction(submitData));
+      if (!advertise) {
+        if (!recommend?.find((e) => e.user == user.user_id)) {
+          const submitData = {
+            cat_id: id,
+            user_id: user.user_id,
+          };
+          const res = await dispatch(RecommendAction(submitData));
+        }
+      } else {
+        if (!recommend?.find((e) => e.user == user.user_id)) {
+          const submitData = {
+            advertise_id: id,
+            user_id: user.user_id,
+          };
+          const res = await dispatch(RecommendAction(submitData));
+        }
       }
     } else {
       setRecommendLoginShow(true);
@@ -149,7 +157,7 @@ const CatCard = ({
               className="cursor-pointer rounded-full"
               onClick={handleRecommend}
             >
-              {recommend.find((e) => e.user == user.user_id) ? (
+              {recommend && recommend.find((e) => e.user == user.user_id) ? (
                 <img
                   src="/assets/imgs/icons/recommend-on.png"
                   alt="recommend-on"
@@ -205,7 +213,7 @@ const CatCard = ({
               />
             </span>
             <h2 className="text-[24px] d-inline-block">
-              {recommend.length}ニャン
+              {recommend && recommend.length}ニャン
             </h2>
           </div>
           <hr className="border border-[#CCC]" />

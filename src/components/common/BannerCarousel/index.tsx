@@ -15,7 +15,7 @@ import {
   Autoplay,
 } from "swiper/modules";
 
-function BannerCarousel(props: any) {
+function BannerCarousel() {
   const [bannerData, setBannerData] = useState<bannerType[]>([]);
   useEffect(() => {
     const fetchBanner = async () => {
@@ -56,24 +56,22 @@ function BannerCarousel(props: any) {
               </Link>
             </SwiperSlide>
           ))}
-        {props.nextBtnShow !== "none" && (
-          <>
-            <button className="arrow-left xs:hidden md:block">
-              <div className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
-                <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                  <ArrowLeft />
-                </span>
-              </div>
-            </button>
-            <button className="arrow-left xs:hidden md:block">
-              <div className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
-                <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                  <ArrowRight />
-                </span>
-              </div>
-            </button>
-          </>
-        )}
+        <div>
+          <button className="arrow-left xs:hidden md:block">
+            <div className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
+              <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                <ArrowLeft />
+              </span>
+            </div>
+          </button>
+          <button className="arrow-left xs:hidden md:block">
+            <div className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
+              <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                <ArrowRight />
+              </span>
+            </div>
+          </button>
+        </div>
       </Swiper>
     </div>
   );
