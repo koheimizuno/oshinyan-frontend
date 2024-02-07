@@ -19,7 +19,11 @@ const TotalRanking = () => {
   const [prefectureKeyword, selectPrefectureKeyword] = useState<string | null>(
     null
   );
+  const [characterKeyword, selectCharacterKeyword] = useState<string | null>(
+    null
+  );
   const [prefectureShow, setPrefectureShow] = useState(false);
+  const [characterShow, setCharacterShow] = useState(false);
   const [catData, setCatData] = useState<CatObjectType[]>([]);
   const { authLoading } = useSelector((state: any) => state.user);
   const { catLoading } = useSelector((state: any) => state.cat);
@@ -37,7 +41,7 @@ const TotalRanking = () => {
   }, [isAuthenticated, catLoading, authLoading]);
 
   useEffect(() => {
-    const fetchSearchData = async () => {
+    const fetchPrefectureSearchData = async () => {
       try {
         if (prefectureKeyword !== null) {
           const { data } = await axios.get(
@@ -47,9 +51,20 @@ const TotalRanking = () => {
         }
       } catch (error) {}
     };
-    fetchSearchData();
+    fetchPrefectureSearchData();
+    const fetchCharacterSearchData = async () => {
+      try {
+        if (characterKeyword !== null) {
+          const { data } = await axios.get(
+            "cat/searchcharacter?keyword=" + characterKeyword
+          );
+          setCatData(data);
+        }
+      } catch (error) {}
+    };
+    fetchCharacterSearchData();
     setPrefectureShow(false);
-  }, [prefectureKeyword]);
+  }, [prefectureKeyword, characterKeyword]);
 
   const handleFreeSearch = async () => {
     try {
@@ -72,6 +87,9 @@ const TotalRanking = () => {
         setSearchWord={setSearchWord}
         searchWord={searchWord}
         handleFreeSearch={handleFreeSearch}
+        selectCharacterKeyword={selectCharacterKeyword}
+        setCharacterShow={setCharacterShow}
+        characterShow={characterShow}
       />
       <div className="bg-[#F5F4EC]">
         <div className="  w-[960px] m-auto ">

@@ -3,12 +3,16 @@ import PrefectureBtn from "../../basic/CustomButton";
 
 import { PREFECTURE } from "../../../constant";
 import Container from "../../basic/Container";
+import axios from "axios";
 
 interface SearchProps {
   selectPrefectureKeyword: (val: string) => void;
+  selectCharacterKeyword: (val: string) => void;
   setPrefectureShow: (val: boolean) => void;
+  setCharacterShow: (val: boolean) => void;
   setSearchWord: (val: string) => void;
   prefectureShow: boolean;
+  characterShow: boolean;
   searchWord: string;
   handleFreeSearch: () => void;
 }
@@ -16,12 +20,23 @@ const SearchBar = ({
   selectPrefectureKeyword,
   setPrefectureShow,
   prefectureShow,
+  selectCharacterKeyword,
+  setCharacterShow,
+  characterShow,
   setSearchWord,
   searchWord,
   handleFreeSearch,
 }: SearchProps) => {
-  const [characterShow, setCharacterShow] = useState(false);
-
+  const [characterData, setCharacterData] = useState<{ character: string }[]>(
+    []
+  );
+  useEffect(() => {
+    const fetchCharacter = async () => {
+      const { data } = await axios.get("cat/character/");
+      setCharacterData(data);
+    };
+    fetchCharacter();
+  }, []);
   return (
     <>
       <div className="relative bg-white">
@@ -74,7 +89,7 @@ const SearchBar = ({
                 <button
                   className=" w-[100%] flex justify-between items-center "
                   onClick={() => {
-                    prefectureShow
+                    characterShow
                       ? setCharacterShow(false)
                       : setCharacterShow(true);
                     setPrefectureShow(false);
@@ -131,19 +146,28 @@ const SearchBar = ({
           {characterShow && (
             <div className="absolute bg-white w-full xs:top-[168px] xs:px-5 sm:top-[70px] left-0 z-50">
               <div className="max-w-[960px] m-auto xs:px-5 lg:px-0 mt-[24px] mb-[16px]">
-                <div className="flex flex-wrap whitespace-nowrap border-b border-b-solid border-[#EAEAEA]">
-                  <div
-                    className={`mb-[16px] mr-[16px] w-[78px] hover:opacity-70`}
-                  >
-                    <PrefectureBtn value={"性格"} />
-                  </div>
+                <div className="flex flex-wrap gap-4 whitespace-nowrap ">
+                  {characterData &&
+                    characterData.map((item, index) => (
+                      <div
+                        className="flex justify-center items-center "
+                        key={index}
+                      >
+                        <div
+                          className=" hover:opacity-70"
+                          onClick={() => {
+                            selectCharacterKeyword(item.character);
+                          }}
+                        >
+                          <PrefectureBtn value={item.character} />
+                        </div>
+                      </div>
+                    ))}
                 </div>
-                <div className="pt-[16px] text-center">
+                <div className="mt-4 pt-4 text-center border-t border-t-solid border-[#EAEAEA]">
                   <button
                     className="bg-[#FBA1B7] rounded-full shadow-inner text-white hover:opacity-70"
-                    onClick={() => {
-                      setCharacterShow(false);
-                    }}
+                    onClick={() => setCharacterShow(false)}
                   >
                     <p className="py-[6px] px-[26px] drop-shadow-[1px_1px_rgba(230,149,169,1)]">
                       検索するニャン！

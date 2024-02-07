@@ -28,7 +28,11 @@ const MonthRanking = () => {
   const [prefectureKeyword, selectPrefectureKeyword] = useState<string | null>(
     null
   );
+  const [characterKeyword, selectCharacterKeyword] = useState<string | null>(
+    null
+  );
   const [prefectureShow, setPrefectureShow] = useState(false);
+  const [characterShow, setCharacterShow] = useState(false);
   const [catData, setCatData] = useState<CatObjectType[]>([]);
   const [dates, setDates] = useState<dateType>({
     year: dateObj.getFullYear(),
@@ -126,6 +130,9 @@ const MonthRanking = () => {
         setSearchWord={setSearchWord}
         searchWord={searchWord}
         handleFreeSearch={handleFreeSearch}
+        selectCharacterKeyword={selectCharacterKeyword}
+        setCharacterShow={setCharacterShow}
+        characterShow={characterShow}
       />
       <div className="bg-[#F5F4EC]">
         <div className="  w-[960px] m-auto ">
