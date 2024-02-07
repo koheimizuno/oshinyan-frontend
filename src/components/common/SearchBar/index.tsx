@@ -35,7 +35,6 @@ const SearchBar = ({
                 <input
                   type="search"
                   name="search"
-                  id="search"
                   value={searchWord}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                     setSearchWord(e.target.value)

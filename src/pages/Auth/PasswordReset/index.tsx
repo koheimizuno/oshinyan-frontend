@@ -2,16 +2,26 @@ import React, { useState } from "react";
 import Button from "../../../components/basic/Button";
 import Container from "../../../components/basic/Container";
 import axios from "axios";
+import InputText from "../../../components/basic/InputText";
 
 function PasswordReset() {
-  const [email, setEmail] = useState("");
+  const [inputValues, setInputValues] = useState({
+    email: "",
+  });
   const [errorMsg, setErrorMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
+
+  const handleChange = (newFormData: { [key: string]: string }) => {
+    setInputValues({ ...inputValues, ...newFormData });
+  };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const submitResetPassword = async () => {
       try {
-        await axios.post("account/password_reset", { email: email });
+        await axios.post("account/password_reset", {
+          email: inputValues.email,
+        });
         setSuccessMsg(
           "パスワード再設定メールが送信されました。受信箱を確認してください。"
         );
@@ -37,13 +47,13 @@ function PasswordReset() {
         ) : (
           <form onSubmit={handleSubmit} className="w-[50%]">
             <label className="block text-center">
-              <input
+              <InputText
                 type="email"
                 name="email"
+                required={true}
+                value={inputValues}
+                onChange={handleChange}
                 placeholder="メールアドレスを入力してください。"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="bg-[#F7F7F7] border border-[#CCCCCC] rounded-[5px] me-auto h-[40px] w-full p-2 focus:outline-none"
               />
             </label>
             <Button />

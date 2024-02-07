@@ -62,3 +62,8 @@ export interface commentType {
   comment_images: CommentImageType[];
   user: any;
 }
+
+export interface AmbassadorType {
+  ambassador_name: string;
+  prefecture: string;
+}

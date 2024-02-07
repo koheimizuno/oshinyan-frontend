@@ -1,34 +1,38 @@
-import React, { useState } from "react";
+import React, { ChangeEvent } from "react";
 
-type PropsType = {
-  type: string | null;
-  containerStyle: string | null;
-  updateFormValue: any;
-  updateType: string;
-};
+interface InputProps {
+  type?: string;
+  name: string;
+  value: { [key: string]: string };
+  onChange: (newValue: { [key: string]: string }) => void;
+  containerClass?: string;
+  className?: string;
+  placeholder?: string;
+  required?: boolean;
+}
 
-function InputText({
-  type,
-  containerStyle,
-  updateFormValue,
-  updateType,
-}: PropsType) {
-  const [value, setValue] = useState("");
-
-  const updateInputValue = (e: any) => {
-    setValue(e.target.value);
-    updateFormValue({ updateType, value: e.target.value });
+const InputText = (props: InputProps) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    props.onChange({
+      ...props.value,
+      [props.name]: e.target.value,
+    });
   };
 
   return (
-    <div className={`w-full ${containerStyle}`}>
+    <label className={props.containerClass}>
       <input
-        type={type || "text"}
-        onChange={updateInputValue}
-        className="h-[50px] rounded-lg px-[20px] w-full dark:bg-[#303841] bg-[#e6ebf5] outline-none "
+        type={props.type || "text"}
+        name={props.name}
+        value={props.value[props.name]}
+        onChange={handleInputChange}
+        placeholder={props.placeholder}
+        required={props.required}
+        className={`w-full h-[40px] rounded-[4px] border border-[#CCCCCC] p-2 focus:outline-none ${props.className}`}
       />
-    </div>
+    </label>
   );
-}
+};
 
 export default InputText;
+// className={`bg-[#FFF] border border-[#CCCCCC] rounded-[5px] w-full me-auto h-[40px] p-2 focus:outline-none focus:shadow-md focus:shadow-[#ffe4eb] ${props.className}`}

@@ -13,6 +13,7 @@ import Button from "../../basic/Button";
 import { useRef, useState } from "react";
 import axios from "axios";
 import { Notification } from "../../../constant/notification";
+import InputText from "../../basic/InputText";
 
 const OshiResisterForm = () => {
   const reEmailRef = useRef<HTMLInputElement>(null);
@@ -39,10 +40,8 @@ const OshiResisterForm = () => {
     setSelectedFiles(event.target.files);
   };
 
-  const handleChange = (e: any) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    setRegisterCatValues((values) => ({ ...values, [name]: value }));
+  const handleChange = (newFormData: { [key: string]: string }) => {
+    setRegisterCatValues({ ...registerCatValues, ...newFormData });
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -85,7 +84,12 @@ const OshiResisterForm = () => {
                 aria-labelledby="demo-radio-buttons-group-label"
                 name="client_type"
                 value={registerCatValues.client_type}
-                onChange={handleChange}
+                onChange={(e: any) =>
+                  setRegisterCatValues({
+                    ...registerCatValues,
+                    [e.target.name]: e.target.value,
+                  })
+                }
               >
                 <div className="flex gap-10">
                   <FormControlLabel
@@ -112,12 +116,12 @@ const OshiResisterForm = () => {
               *
             </span>
           </label>
-          <input
-            type="text"
+          <InputText
             name="company_name"
+            value={registerCatValues}
             onChange={handleChange}
-            required
-            className="w-[456px] h-[40px] rounded-[4px] border border-[#CCCCCC] focus:outline-none p-2"
+            required={true}
+            containerClass="w-[456px]"
           />
         </div>
         <div className="border-b border-[#CCCCCC] mt-[32px]"></div>
@@ -129,12 +133,12 @@ const OshiResisterForm = () => {
               *
             </span>
           </label>
-          <input
-            type="text"
+          <InputText
             name="kanji_name"
+            value={registerCatValues}
             onChange={handleChange}
-            required
-            className="w-[456px] h-[40px] rounded-[4px] border border-[#CCCCCC] focus:outline-none p-2"
+            required={true}
+            containerClass="w-[456px]"
           />
         </div>
         <div className="pt-[48px] flex justify-between items-center">
@@ -144,12 +148,12 @@ const OshiResisterForm = () => {
               *
             </span>
           </label>
-          <input
-            type="text"
+          <InputText
             name="furi_name"
+            value={registerCatValues}
             onChange={handleChange}
-            required
-            className="w-[456px] h-[40px] rounded-[4px] border border-[#CCCCCC] focus:outline-none p-2"
+            required={true}
+            containerClass="w-[456px]"
           />
         </div>
         <div className="border-b border-[#CCCCCC] mt-[32px]"></div>
@@ -161,12 +165,13 @@ const OshiResisterForm = () => {
               *
             </span>
           </label>
-          <input
+          <InputText
             type="email"
             name="email"
+            value={registerCatValues}
             onChange={handleChange}
-            required
-            className="w-[456px] h-[40px] rounded-[4px] border border-[#CCCCCC] focus:outline-none p-2"
+            required={true}
+            containerClass="w-[456px]"
           />
         </div>
         <div className="pt-[48px] flex justify-between items-center">
@@ -182,7 +187,12 @@ const OshiResisterForm = () => {
               name="re_email"
               ref={reEmailRef}
               value={registerCatValues.re_email}
-              onChange={handleChange}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setRegisterCatValues({
+                  ...registerCatValues,
+                  [e.target.name]: e.target.value,
+                })
+              }
               required
               className="w-[456px] h-[40px] rounded-[4px] border border-[#CCCCCC] focus:outline-none p-2"
             />
@@ -203,7 +213,12 @@ const OshiResisterForm = () => {
               aria-label="shop_type"
               name="shop_type"
               value={registerCatValues.shop_type}
-              onChange={handleChange}
+              onChange={(e: any) =>
+                setRegisterCatValues({
+                  ...registerCatValues,
+                  [e.target.name]: e.target.value,
+                })
+              }
               className="bg-gradient-to-b from-[#EAEAEA] to-[#D3D3D3] h-10 text-center text-[16px] w-[144px]"
               sx={{ borderRadius: "20px" }}
             >
@@ -222,7 +237,12 @@ const OshiResisterForm = () => {
           </label>
           <textarea
             name="cat_info"
-            onChange={handleChange}
+            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+              setRegisterCatValues({
+                ...registerCatValues,
+                [e.target.name]: e.target.value,
+              })
+            }
             required
             className="h-[192px] w-[456px] border border-[#CCCCCC] focus:outline-none p-2"
           ></textarea>

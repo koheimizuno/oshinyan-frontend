@@ -3,23 +3,26 @@ import { useNavigate, useParams } from "react-router-dom";
 import Container from "../../../components/basic/Container";
 import Button from "../../../components/basic/Button";
 import axios from "axios";
+import InputText from "../../../components/basic/InputText";
+import { Notification } from "../../../constant/notification";
 
 function PasswordResetConfirmation() {
   const navigate = useNavigate();
   const { uid, token } = useParams();
-  const [password, setPassword] = useState("");
-  const [repassword, setrePassword] = useState("");
+  const [inputValues, setInputValues] = useState({
+    password: "",
+    repassword: "",
+  });
   const [error, setError] = useState("");
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (password === repassword) {
+    if (inputValues.password === inputValues.repassword) {
       const ResestPasswordConfirm = async () => {
-        const { data } = await axios.post(
-          `account/password_reset/confirm/${uid}/${token}/`,
-          {
-            new_password: password,
-          }
-        );
+        await axios.post(`account/password_reset/confirm/${uid}/${token}/`, {
+          new_password: inputValues.password,
+        });
+        Notification("success", "パスワードが成果的に変更されました。");
         navigate("/login");
       };
       ResestPasswordConfirm();
@@ -27,6 +30,11 @@ function PasswordResetConfirmation() {
       setError("パスワードが一致しません。");
     }
   };
+
+  const handleChange = (newFormData: { [key: string]: string }) => {
+    setInputValues({ ...inputValues, ...newFormData });
+  };
+
   return (
     <Container>
       <div className="h-screen flex flex-col justify-center items-center">
@@ -35,25 +43,23 @@ function PasswordResetConfirmation() {
         <p className="text-left text-red-500 w-[50%]">{error}</p>
         <form onSubmit={handleSubmit} className="w-[50%]">
           <label className="block text-center py-3">
-            <input
+            <InputText
               type="password"
               name="password"
+              value={inputValues}
               placeholder="新しいパスワード"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className="bg-[#F7F7F7] border border-[#CCCCCC] rounded-[5px] me-auto h-[40px] w-full p-2 focus:outline-none"
+              required={true}
+              onChange={handleChange}
             />
           </label>
           <label className="block text-center py-3">
-            <input
+            <InputText
               type="password"
-              name="rePassword"
+              name="repassword"
+              value={inputValues}
               placeholder="パスワード確認"
-              value={repassword}
-              onChange={(e) => setrePassword(e.target.value)}
-              required
-              className="bg-[#F7F7F7] border border-[#CCCCCC] rounded-[5px] me-auto h-[40px] w-full p-2 focus:outline-none"
+              required={true}
+              onChange={handleChange}
             />
           </label>
           <Button />

@@ -1,5 +1,10 @@
 import { useRef, useState } from "react";
 import FileUpload from "../../basic/icons/FileUpload";
+import PrivacyComponent from "../PrivacyComponent";
+import InputText from "../../basic/InputText";
+import axios from "axios";
+import { PREFECTURE } from "../../../constant";
+import { Notification } from "../../../constant/notification";
 import {
   FormControl,
   Radio,
@@ -9,15 +14,12 @@ import {
   Select,
   MenuItem,
 } from "@mui/material";
-import { PREFECTURE } from "../../../constant";
-import axios from "axios";
-import PrivacyComponent from "../PrivacyComponent";
-import { Notification } from "../../../constant/notification";
 
 const ShopRegisterForm = () => {
   const hiddenFileInput = useRef<HTMLInputElement>(null);
   const [checked, setChecked] = useState(false);
   const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
+  const [shopPermission, setShopPermission] = useState<boolean>(true);
   const [registerShopValues, setRegisterShopValues] = useState({
     shop_name: "",
     prefecture: "東京都",
@@ -26,14 +28,11 @@ const ShopRegisterForm = () => {
     detail_address: "",
     email: "",
     phone: "",
-    shop_permission: true,
     cat_info: "",
   });
 
-  const handleChange = (e: any) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    setRegisterShopValues({ ...registerShopValues, [name]: value });
+  const handleChange = (newFormData: { [key: string]: string }) => {
+    setRegisterShopValues({ ...registerShopValues, ...newFormData });
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -46,10 +45,7 @@ const ShopRegisterForm = () => {
     formData.append("detail_address", registerShopValues.detail_address);
     formData.append("email", registerShopValues.email);
     formData.append("phone", registerShopValues.phone);
-    formData.append(
-      "shop_permission",
-      registerShopValues.shop_permission.toString()
-    );
+    formData.append("shop_permission", shopPermission.toString());
     formData.append("cat_info", registerShopValues.cat_info);
 
     if (selectedFiles != null) {
@@ -94,12 +90,11 @@ const ShopRegisterForm = () => {
               *
             </span>
           </label>
-          <input
-            type="text"
-            id="name_kana"
+          <InputText
             name="shop_name"
-            className="w-[456px] h-[40px] rounded-[4px] border border-[#CCCCCC] p-2 focus:outline-none"
+            value={registerShopValues}
             onChange={handleChange}
+            containerClass="w-[456px]"
           />
         </div>
         {/* row 2 */}
@@ -122,7 +117,12 @@ const ShopRegisterForm = () => {
                   aria-label="prefecture"
                   name="prefecture"
                   value={registerShopValues.prefecture}
-                  onChange={handleChange}
+                  onChange={(e: any) =>
+                    setRegisterShopValues({
+                      ...registerShopValues,
+                      [e.target.name]: e.target.value,
+                    })
+                  }
                   className="bg-gradient-to-b from-[#EAEAEA] to-[#D3D3D3] h-10 text-center text-[16px] w-[144px]"
                   sx={{ borderRadius: "20px" }}
                 >
@@ -142,12 +142,11 @@ const ShopRegisterForm = () => {
               <label htmlFor="city" className="text-[14px]">
                 市区町村
               </label>
-              <input
-                type="text"
-                id="city"
+              <InputText
                 name="city"
+                value={registerShopValues}
                 onChange={handleChange}
-                className="w-[329px] h-[40px] rounded-[4px] border border-[#CCCCCC] p-2 focus:outline-none"
+                containerClass="w-[329px]"
               />
             </div>
           </div>
@@ -157,12 +156,11 @@ const ShopRegisterForm = () => {
               <label htmlFor="street" className="text-[14px]">
                 番地
               </label>
-              <input
-                type="text"
-                id="street"
+              <InputText
                 name="street"
+                value={registerShopValues}
                 onChange={handleChange}
-                className="w-[329px] h-[40px] rounded-[4px] border border-[#CCCCCC] p-2 focus:outline-none"
+                containerClass="w-[329px]"
               />
             </div>
           </div>
@@ -172,12 +170,11 @@ const ShopRegisterForm = () => {
               <label htmlFor="detail_address" className="text-[14px]">
                 建物名・部屋番号
               </label>
-              <input
-                type="text"
-                id="detail_address"
+              <InputText
                 name="detail_address"
+                value={registerShopValues}
                 onChange={handleChange}
-                className="w-[329px] h-[40px] rounded-[4px] border border-[#CCCCCC] p-2 focus:outline-none"
+                containerClass="w-[329px]"
               />
             </div>
           </div>
@@ -190,12 +187,11 @@ const ShopRegisterForm = () => {
               *
             </span>
           </label>
-          <input
-            type="email"
-            id="email"
+          <InputText
             name="email"
+            value={registerShopValues}
             onChange={handleChange}
-            className="w-[456px] h-[40px] rounded-[4px] border border-[#CCCCCC] p-2 focus:outline-none"
+            containerClass="w-[329px]"
           />
         </div>
         {/* row 4 */}
@@ -203,12 +199,11 @@ const ShopRegisterForm = () => {
           <label htmlFor="phone" className="text-[14px] tracking-tighter">
             電話番号（登録者）
           </label>
-          <input
-            type="number"
-            id="phone"
+          <InputText
             name="phone"
+            value={registerShopValues}
             onChange={handleChange}
-            className="w-[456px] h-[40px] rounded-[4px] border border-[#CCCCCC] p-2 focus:outline-none"
+            containerClass="w-[329px]"
           />
         </div>
         {/* row 5 */}
@@ -221,8 +216,8 @@ const ShopRegisterForm = () => {
               <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
                 name="shop_permission"
-                value={registerShopValues.shop_permission}
-                onChange={handleChange}
+                value={shopPermission}
+                onChange={(e: any) => setShopPermission(e.target.value)}
               >
                 <div className="flex">
                   <FormControlLabel
@@ -250,7 +245,12 @@ const ShopRegisterForm = () => {
           <textarea
             name="cat_info"
             id="cat_info"
-            onChange={handleChange}
+            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+              setRegisterShopValues({
+                ...registerShopValues,
+                [e.target.name]: e.target.value,
+              })
+            }
             className="h-[192px] w-[456px] border border-[#CCCCCC] p-2 focus:outline-none"
           ></textarea>
         </div>

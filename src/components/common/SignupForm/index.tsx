@@ -1,6 +1,10 @@
 import React, { lazy, useState } from "react";
 import { useDispatch } from "react-redux";
+import axios from "axios";
 import { PREFECTURE } from "../../../constant";
+import PrivacyComponent from "../PrivacyComponent";
+import InputText from "../../basic/InputText";
+import { RegistrationAction } from "../../../slices/auth";
 import {
   Checkbox,
   FormControlLabel,
@@ -8,10 +12,7 @@ import {
   Modal,
   Select,
 } from "@mui/material";
-import { RegistrationAction } from "../../../slices/auth";
-import PrivacyComponent from "../PrivacyComponent";
 import { Close } from "@mui/icons-material";
-import axios from "axios";
 const Box = lazy(() => import("@mui/material/Box"));
 
 const modalBoxSytle = {
@@ -39,12 +40,12 @@ const SignupForm = () => {
   const [avatarModal, setAvatarModal] = useState(false);
   const [avatars, setAvatars] = useState<avatarType[]>([]);
   const [selectedAvatar, setSelectedAvatar] = useState("");
+  const [avatar, setAvatar] = useState(0);
   const [values, setValues] = useState({
     username: "",
     prefecture: "北海道",
     email: "",
     password: "",
-    avatar: 0,
   });
   const [errorMsg, setErrorMsg] = useState({
     avatar: "",
@@ -53,14 +54,14 @@ const SignupForm = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (checked) {
-      if (values.avatar) {
+      if (avatar) {
         dispatch(
           RegistrationAction({
             username: values.username,
             prefecture: values.prefecture,
             email: values.email,
             password: values.password,
-            avatar: values.avatar,
+            avatar: avatar,
           })
         );
       } else {
@@ -72,10 +73,8 @@ const SignupForm = () => {
     }
   };
 
-  const handleChange = (e: any) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    setValues((values) => ({ ...values, [name]: value }));
+  const handleChange = (newFormData: { [key: string]: string }) => {
+    setValues({ ...values, ...newFormData });
   };
 
   const handleAvatar = () => {
@@ -88,7 +87,7 @@ const SignupForm = () => {
   };
 
   const selectAvatar = (id: number, url: string) => {
-    setValues((values) => ({ ...values, avatar: id }));
+    setAvatar(id);
     setAvatarModal(false);
     setSelectedAvatar(url);
   };
@@ -148,13 +147,12 @@ const SignupForm = () => {
                 <label htmlFor="username" className="w-[134px]">
                   ニックネーム
                 </label>
-                <input
-                  className="bg-[#F7F7F7] border border-[#CCCCCC] rounded-[5px] me-auto h-[40px] w-[304px] p-2 focus:outline-none"
-                  type="text"
+                <InputText
                   name="username"
-                  id="username"
-                  required
+                  value={values}
                   onChange={handleChange}
+                  required={true}
+                  containerClass="w-[304px]"
                 />
               </div>
 
@@ -167,7 +165,9 @@ const SignupForm = () => {
                     aria-label="prefecture"
                     name="prefecture"
                     value={values.prefecture}
-                    onChange={handleChange}
+                    onChange={(e: any) =>
+                      setValues({ ...values, [e.target.name]: e.target.value })
+                    }
                     className="bg-gradient-to-b from-[#EAEAEA] to-[#D3D3D3] h-10 text-center text-[16px] w-[144px]"
                     sx={{ borderRadius: "20px" }}
                   >
@@ -189,13 +189,13 @@ const SignupForm = () => {
               >
                 メールアドレス
               </label>
-              <input
-                className="bg-[#F7F7F7] border border-[#CCCCCC] rounded-[5px] me-auto h-[40px] w-full p-2 focus:outline-none"
+              <InputText
                 type="email"
                 name="email"
-                id="email"
+                value={values}
                 onChange={handleChange}
-                required
+                required={true}
+                containerClass="w-full"
               />
             </div>
             <div className="flex justify-between h-[80px] border-b border-[#CCCCCC] items-center mt-[4px]">
@@ -205,13 +205,13 @@ const SignupForm = () => {
               >
                 パスワード
               </label>
-              <input
-                className="bg-[#F7F7F7] border border-[#CCCCCC] rounded-[5px] me-auto h-[40px] w-full p-2 focus:outline-none"
+              <InputText
                 type="password"
                 name="password"
-                id="password"
+                value={values}
                 onChange={handleChange}
-                required
+                required={true}
+                containerClass="w-full"
               />
             </div>
           </div>

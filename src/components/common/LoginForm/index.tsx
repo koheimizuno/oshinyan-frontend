@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { LoginAction } from "../../../slices/auth";
 import { useNavigate } from "react-router-dom";
 import Button from "../../basic/Button";
+import InputText from "../../basic/InputText";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -15,8 +16,8 @@ const LoginForm = () => {
     setLoginError(error);
   }, [error]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSubmitData({ ...submitData, [e.target.name]: e.target.value });
+  const handleChange = (newFormData: { [key: string]: string }) => {
+    setSubmitData({ ...submitData, ...newFormData });
     setLoginError("");
   };
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -42,12 +43,12 @@ const LoginForm = () => {
       >
         <p className="">メールアドレス</p>
         <div className="w-[80%]">
-          <input
-            className="bg-[#F7F7F7] border border-[#CCCCCC] rounded-[5px] me-auto h-[40px] w-full p-2 focus:outline-none"
+          <InputText
             type="email"
             name="email"
-            required
+            value={submitData}
             onChange={handleChange}
+            required={true}
           />
         </div>
       </label>
@@ -58,12 +59,12 @@ const LoginForm = () => {
         >
           <p className="">パスワード</p>
           <div className="w-[80%]">
-            <input
-              className="bg-[#F7F7F7] border border-[#CCCCCC] rounded-[5px] me-auto w-full h-[40px] p-2 focus:outline-none"
+            <InputText
               type="password"
               name="password"
-              required
+              value={submitData}
               onChange={handleChange}
+              required={true}
             />
           </div>
         </label>
@@ -83,5 +84,3 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
-
-// bg-[#FBA1B7]

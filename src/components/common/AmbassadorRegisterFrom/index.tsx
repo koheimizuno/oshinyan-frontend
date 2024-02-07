@@ -13,6 +13,7 @@ import { PREFECTURE } from "../../../constant";
 import axios from "axios";
 import { Notification } from "../../../constant/notification";
 import { useNavigate } from "react-router-dom";
+import InputText from "../../basic/InputText";
 
 const modalBoxSytle = {
   position: "absolute",
@@ -32,11 +33,22 @@ const AmbassadorRegisterFrom = () => {
   const [openModal, setOpenModal] = useState(false);
   const [checked, setChecked] = useState(false);
   const [submitValue, setSubmitValue] = useState({
+    ambassador_name: "",
+    full_name: "",
     prefecture: "東京都",
+    city: "",
+    street: "",
+    other_address: "",
+    email: "",
+    phone: "",
+    preferred: "",
   });
 
-  const handleChange = (e: any) => {
-    setSubmitValue({ ...submitValue, [e.target.name]: e.target.value });
+  const handlechange = (newFormData: { [key: string]: string }) => {
+    setSubmitValue({
+      ...submitValue,
+      ...newFormData,
+    });
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -79,12 +91,12 @@ const AmbassadorRegisterFrom = () => {
                 *
               </span>
             </label>
-            <input
-              type="text"
+            <InputText
               name="ambassador_name"
-              required
-              className="w-[456px] h-[40px] rounded-[4px] border border-[#CCCCCC] p-2 focus:outline-none"
-              onChange={handleChange}
+              value={submitValue}
+              onChange={handlechange}
+              containerClass="w-[456px]"
+              required={true}
             />
           </div>
           {/* row 2 */}
@@ -92,11 +104,11 @@ const AmbassadorRegisterFrom = () => {
             <label className="text-[14px]" htmlFor="name_kana">
               <span className="tracking-tighter">氏名</span>
             </label>
-            <input
-              type="text"
+            <InputText
               name="full_name"
-              onChange={handleChange}
-              className="w-[456px] h-[40px] rounded-[4px] border border-[#CCCCCC] p-2 focus:outline-none"
+              value={submitValue}
+              onChange={handlechange}
+              containerClass="w-[456px]"
             />
           </div>
           {/* row 3 */}
@@ -119,7 +131,12 @@ const AmbassadorRegisterFrom = () => {
                     aria-label="prefecture"
                     name="prefecture"
                     value={submitValue.prefecture}
-                    onChange={handleChange}
+                    onChange={(e: any) =>
+                      setSubmitValue({
+                        ...submitValue,
+                        [e.target.name]: e.target.value,
+                      })
+                    }
                     className="bg-gradient-to-b from-[#EAEAEA] to-[#D3D3D3] h-10 text-center text-[16px] w-[144px]"
                     sx={{ borderRadius: "20px" }}
                   >
@@ -139,11 +156,11 @@ const AmbassadorRegisterFrom = () => {
                 <div className="flex items-center">
                   <p className="text-[14px]">市区町村</p>
                 </div>
-                <input
-                  type="text"
+                <InputText
                   name="city"
-                  onChange={handleChange}
-                  className="w-[329px] h-[40px] rounded-[4px] border border-[#CCCCCC] p-2 focus:outline-none"
+                  value={submitValue}
+                  onChange={handlechange}
+                  containerClass="w-[329px]"
                 />
               </div>
             </div>
@@ -153,11 +170,11 @@ const AmbassadorRegisterFrom = () => {
                 <div className="flex">
                   <p className="text-[14px]">番地</p>
                 </div>
-                <input
-                  type="text"
+                <InputText
                   name="street"
-                  onChange={handleChange}
-                  className="w-[329px] h-[40px] rounded-[4px] border border-[#CCCCCC] p-2 focus:outline-none"
+                  value={submitValue}
+                  onChange={handlechange}
+                  containerClass="w-[329px]"
                 />
               </div>
             </div>
@@ -167,11 +184,11 @@ const AmbassadorRegisterFrom = () => {
                 <div className="flex items-center">
                   <p className="text-[14px]">建物名・部屋番号</p>
                 </div>
-                <input
-                  type="text"
+                <InputText
                   name="other_address"
-                  onChange={handleChange}
-                  className="w-[329px] h-[40px] rounded-[4px] border border-[#CCCCCC] p-2 focus:outline-none"
+                  value={submitValue}
+                  onChange={handlechange}
+                  containerClass="w-[329px]"
                 />
               </div>
             </div>
@@ -184,12 +201,13 @@ const AmbassadorRegisterFrom = () => {
                 *
               </span>
             </div>
-            <input
+            <InputText
               type="email"
-              required
               name="email"
-              onChange={handleChange}
-              className="w-[456px] h-[40px] rounded-[4px] border border-[#CCCCCC] p-2 focus:outline-none"
+              value={submitValue}
+              required={true}
+              onChange={handlechange}
+              containerClass="w-[329px]"
             />
           </div>
           {/* row 5 */}
@@ -197,11 +215,12 @@ const AmbassadorRegisterFrom = () => {
             <div className="flex items-center">
               <p className="text-[14px] tracking-tighter">電話番号</p>
             </div>
-            <input
+            <InputText
               type="tel"
               name="phone"
-              onChange={handleChange}
-              className="w-[456px] h-[40px] rounded-[4px] border border-[#CCCCCC] p-2 focus:outline-none"
+              value={submitValue}
+              onChange={handlechange}
+              containerClass="w-[329px]"
             />
           </div>
           {/* row 6 */}
@@ -216,7 +235,12 @@ const AmbassadorRegisterFrom = () => {
               name="preferred"
               className="h-[192px] w-[456px] border border-[#CCCCCC] p-2"
               placeholder="推しニャンアンバサダーとして、どんな活動をしたいかをご記入ください。（店舗取材、看板猫の写真撮影など）"
-              onChange={handleChange}
+              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                setSubmitValue({
+                  ...submitValue,
+                  [e.target.name]: e.target.value,
+                })
+              }
               required
             ></textarea>
           </div>

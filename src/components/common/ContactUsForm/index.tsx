@@ -12,6 +12,7 @@ import {
 import PrivacyComponent from "../PrivacyComponent";
 import axios from "axios";
 import { Notification } from "../../../constant/notification";
+import InputText from "../../basic/InputText";
 
 const ContactUsForm = () => {
   const navigate = useNavigate();
@@ -30,10 +31,8 @@ const ContactUsForm = () => {
     detail: "",
   });
 
-  const handleChange = (e: any) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    setSubmitValue((values) => ({ ...values, [name]: value }));
+  const handleChange = (newFormData: { [key: string]: string }) => {
+    setSubmitValue({ ...submitValue, ...newFormData });
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -86,7 +85,12 @@ const ContactUsForm = () => {
               aria-label="type"
               name="type"
               value={submitValue.type}
-              onChange={handleChange}
+              onChange={(e: any) =>
+                setSubmitValue({
+                  ...submitValue,
+                  [e.target.name]: e.target.value,
+                })
+              }
               className="bg-gradient-to-b from-[#EAEAEA] to-[#D3D3D3] h-10 text-center text-[16px] w-[144px]"
               sx={{ borderRadius: "20px" }}
             >
@@ -109,7 +113,12 @@ const ContactUsForm = () => {
                 aria-labelledby="demo-radio-buttons-group-label"
                 name="client_type"
                 value={submitValue.client_type}
-                onChange={handleChange}
+                onChange={(e: any) =>
+                  setSubmitValue({
+                    ...submitValue,
+                    [e.target.name]: e.target.value,
+                  })
+                }
               >
                 <div className="flex gap-10">
                   <FormControlLabel
@@ -136,12 +145,11 @@ const ContactUsForm = () => {
               *
             </span>
           </label>
-          <input
-            type="text"
+          <InputText
             name="company_name"
+            value={submitValue}
             onChange={handleChange}
-            required
-            className="w-[456px] h-[40px] rounded-[4px] border border-[#CCCCCC] focus:outline-none p-2"
+            required={true}
           />
         </div>
         <div className="border-b border-[#CCCCCC] mt-[32px]"></div>
@@ -153,12 +161,11 @@ const ContactUsForm = () => {
               *
             </span>
           </label>
-          <input
-            type="text"
+          <InputText
             name="kanji_name"
+            value={submitValue}
             onChange={handleChange}
-            required
-            className="w-[456px] h-[40px] rounded-[4px] border border-[#CCCCCC] focus:outline-none p-2"
+            required={true}
           />
         </div>
         <div className="pt-[48px] flex justify-between items-center">
@@ -168,12 +175,11 @@ const ContactUsForm = () => {
               *
             </span>
           </label>
-          <input
-            type="text"
+          <InputText
             name="furi_name"
+            value={submitValue}
             onChange={handleChange}
-            required
-            className="w-[456px] h-[40px] rounded-[4px] border border-[#CCCCCC] focus:outline-none p-2"
+            required={true}
           />
         </div>
         <div className="border-b border-[#CCCCCC] mt-[32px]"></div>
@@ -184,11 +190,12 @@ const ContactUsForm = () => {
               *
             </span>
           </label>
-          <input
+          <InputText
             type="tel"
             name="phone"
+            value={submitValue}
             onChange={handleChange}
-            className="w-[456px] h-[40px] rounded-[4px] border border-[#CCCCCC] focus:outline-none p-2"
+            required={true}
           />
         </div>
         <div className="border-b border-[#CCCCCC] mt-[32px]"></div>
@@ -200,12 +207,12 @@ const ContactUsForm = () => {
               *
             </span>
           </label>
-          <input
+          <InputText
             type="email"
             name="email"
+            value={submitValue}
             onChange={handleChange}
-            required
-            className="w-[456px] h-[40px] rounded-[4px] border border-[#CCCCCC] focus:outline-none p-2"
+            required={true}
           />
         </div>
         <div className="pt-[48px] flex justify-between items-center">
@@ -216,14 +223,12 @@ const ContactUsForm = () => {
             </span>
           </label>
           <label>
-            <input
+            <InputText
               type="email"
               name="re_email"
-              value={submitValue.re_email}
+              value={submitValue}
               onChange={handleChange}
-              required
-              ref={reEmailRef}
-              className="w-[456px] h-[40px] rounded-[4px] border border-[#CCCCCC] focus:outline-none p-2"
+              required={true}
             />
             <p className="absolute text-red-500">{errorMsg}</p>
           </label>
@@ -239,9 +244,14 @@ const ContactUsForm = () => {
           </label>
           <textarea
             name="detail"
-            onChange={handleChange}
+            className="h-[192px] w-[456px] border border-[#CCCCCC] p-2 focus:outline-none rounded-md"
+            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+              setSubmitValue({
+                ...submitValue,
+                [e.target.name]: e.target.value,
+              })
+            }
             required
-            className="h-[192px] w-[456px] border border-[#CCCCCC] focus:outline-none p-2"
           ></textarea>
         </div>
         <div className="border-b border-[#CCCCCC] mt-[32px]"></div>
