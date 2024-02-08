@@ -26,18 +26,13 @@ interface favoritethingType {
   favorite_things: string;
 }
 
-interface AdvertiseImageType {
-  imgs: string;
-}
-
 export interface CatObjectType {
   advertise?: string;
   id: number;
   cat_name: string;
   shop: shopType;
-  cat_images?: CatImageType[];
-  advertise_images?: AdvertiseImageType[];
-  cat_admin_images?: CatImageByAdminType[];
+  images?: CatImageType[];
+  admin_images?: CatImageByAdminType[];
   character?: characterType[];
   favorite_things?: favoritethingType[];
   attendance: string;

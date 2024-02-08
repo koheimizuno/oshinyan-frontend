@@ -17,7 +17,7 @@ const CatCard = ({
   advertise,
   cat_name,
   shop,
-  cat_images,
+  images,
   character,
   description,
   recommend,
@@ -95,10 +95,16 @@ const CatCard = ({
             navigation={{ nextEl: ".arrow-left", prevEl: ".arrow-right" }}
             className="cursor-pointer"
           >
-            {cat_images &&
-              cat_images.map((item: any, key: any) => (
+            {images &&
+              images.map((item: any, key: any) => (
                 <SwiperSlide key={key} className="h-[234px] overflow-x-hidden">
-                  <Link to={`/oshinyan/${id}`}>
+                  <Link
+                    to={
+                      !advertise
+                        ? `/oshinyan/${id}`
+                        : `/oshinyan/${id}?advertise=${"advertise"}`
+                    }
+                  >
                     <img
                       src={item.imgs}
                       alt={item.imgs}
@@ -238,9 +244,9 @@ const CatCard = ({
             <div className="px-[8px] whitespace-nowrap">
               <p>性格</p>
             </div>
-            <div className="flex flex-wrap justify-start gap-1">
+            <div className="flex flex-wrap justify-start gap-1 h-14 overflow-hidden">
               {character &&
-                character.slice(0, 4).map((item, key, arr) => (
+                character.slice(0, 3).map((item, key, arr) => (
                   <div className="" key={key}>
                     <CustomButton
                       value={item.character}
@@ -250,11 +256,11 @@ const CatCard = ({
                     />
                   </div>
                 ))}
-              {character && character.length > 4 && <span>...</span>}
+              {character && character.length > 3 && <span>...</span>}
             </div>
           </div>
           <div className=" pb-[43px]">
-            <p className="break-words	text-[16px] text-ellipsis overflow-hidden whitespace-wrap ">
+            <p className="break-words	text-[16px] text-ellipsis overflow-hidden whitespace-wrap h-12">
               {description}
             </p>
           </div>

@@ -14,7 +14,7 @@ const LargeCatCard = ({
   id,
   cat_name,
   shop,
-  cat_images,
+  images,
   character,
   favorite_things,
   description,
@@ -80,8 +80,8 @@ const LargeCatCard = ({
             navigation={{ nextEl: ".arrow-left", prevEl: ".arrow-right" }}
             className="cursor-pointer hover:opacity-70"
           >
-            {cat_images &&
-              cat_images.map((item: any, key: any) => (
+            {images &&
+              images.map((item: any, key: any) => (
                 <SwiperSlide key={key} className="h-[360px] overflow-x-hidden">
                   <Link to={`/oshinyan/${id}`}>
                     <img

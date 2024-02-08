@@ -32,7 +32,7 @@ const Top = () => {
     };
     const fetchAdvertiseCatData = async () => {
       try {
-        const { data } = await axios.get("api/advertise/");
+        const { data } = await axios.get("api/randomadvertise");
         setAdvertiseData(data);
       } catch (error) {
         Notification("error", "サーバーエラー");
@@ -60,8 +60,8 @@ const Top = () => {
                   id={e.id}
                   cat_name={e.cat_name}
                   shop={e.shop}
-                  cat_images={e.cat_images}
-                  cat_admin_images={e.cat_admin_images}
+                  images={e.images}
+                  admin_images={e.admin_images}
                   character={e.character}
                   favorite_things={e.favorite_things}
                   attendance={e.attendance}
@@ -90,7 +90,7 @@ const Top = () => {
                   advertise="advertise"
                   cat_name={e.cat_name}
                   shop={e.shop}
-                  cat_images={e.advertise_images}
+                  images={e.images}
                   character={e.character}
                   favorite_things={e.favorite_things}
                   attendance={e.attendance}

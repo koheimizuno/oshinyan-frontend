@@ -20,8 +20,8 @@ function CatDetailCarousel(props: any) {
       slidesPerView={1}
       navigation={{ nextEl: ".arrow-left", prevEl: ".arrow-right" }}
     >
-      {props.data.cat_admin_images &&
-        props.data.cat_admin_images.map((item: any, key: any) => (
+      {props.data.admin_images &&
+        props.data.admin_images.map((item: any, key: any) => (
           <SwiperSlide key={key} className="h-[576px] overflow-x-hidden">
             <img
               src={item.imgs}

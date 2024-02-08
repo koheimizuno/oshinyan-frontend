@@ -9,34 +9,7 @@ import { ColumnType } from "../../constant/type";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-const CatsInSamePlace = [
-  {
-    imgUrl: "/assets/imgs/cats/col_cat1.png",
-    isChu: false,
-  },
-  {
-    imgUrl: "/assets/imgs/cats/col_cat2.png",
-    isChu: false,
-  },
-  {
-    imgUrl: "/assets/imgs/cats/col_cat3.png",
-    isChu: false,
-  },
-  {
-    imgUrl: "/assets/imgs/cats/col_cat4.png",
-    isChu: false,
-  },
-  {
-    imgUrl: "/assets/imgs/cats/col_cat5.png",
-    isChu: false,
-  },
-  {
-    imgUrl: "/assets/imgs/cats/col_cat6.png",
-    isChu: false,
-  },
-];
-
-function Column() {
+function ColumnDetail() {
   const { id } = useParams();
   const [columnData, setColumnData] = useState<ColumnType[]>([]);
   const [AcolumnData, setAcolumnData] = useState<ColumnType>({
@@ -69,12 +42,18 @@ function Column() {
         </p>
         <div className="pt-10">
           <p className="text-xl pb-4 text-[#808080]">
-            {AcolumnData.created_date}
+            {`${new Date(AcolumnData.created_date).getFullYear()}.${
+              new Date(AcolumnData.created_date).getMonth() + 1
+            }.${new Date(AcolumnData.created_date).getDate()}`}
           </p>
           <h2 className="text-[32px] text-[#515151]">{AcolumnData.title}</h2>
         </div>
-        <div className="py-12">
-          <img src={AcolumnData.detail_image} alt={AcolumnData.detail_image} />
+        <div className="my-12 h-[576px]">
+          <img
+            src={AcolumnData.detail_image}
+            alt={AcolumnData.detail_image}
+            className="h-full m-auto"
+          />
         </div>
         <p className="text-2xl mb-[70px] text-[#515151]">
           {AcolumnData.subtitle}
@@ -116,4 +95,4 @@ function Column() {
   );
 }
 
-export default Column;
+export default ColumnDetail;

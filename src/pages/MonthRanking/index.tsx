@@ -161,8 +161,8 @@ const MonthRanking = () => {
               id={catData[0].id}
               cat_name={catData[0].cat_name}
               shop={catData[0].shop}
-              cat_images={catData[0].cat_images}
-              cat_admin_images={catData[0].cat_admin_images}
+              images={catData[0].images}
+              admin_images={catData[0].admin_images}
               character={catData[0].character}
               favorite_things={catData[0].favorite_things}
               attendance={catData[0].attendance}
@@ -194,8 +194,8 @@ const MonthRanking = () => {
                       id={e.id}
                       cat_name={e.cat_name}
                       shop={e.shop}
-                      cat_images={e.cat_images}
-                      cat_admin_images={e.cat_admin_images}
+                      images={e.images}
+                      admin_images={e.admin_images}
                       character={e.character}
                       favorite_things={e.favorite_things}
                       attendance={e.attendance}
@@ -220,8 +220,8 @@ const MonthRanking = () => {
                     id={e.id}
                     cat_name={e.cat_name}
                     shop={e.shop}
-                    cat_images={e.cat_images}
-                    cat_admin_images={e.cat_admin_images}
+                    images={e.images}
+                    admin_images={e.admin_images}
                     character={e.character}
                     favorite_things={e.favorite_things}
                     attendance={e.attendance}

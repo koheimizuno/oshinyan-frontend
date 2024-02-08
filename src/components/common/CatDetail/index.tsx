@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import BtnPurple from "./components/BtnPurple";
 import PrefectureBtn from "../../basic/CustomButton";
@@ -34,6 +34,9 @@ const actions = [
 
 const CatDetail = () => {
   const { id } = useParams();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const advertise = searchParams.get("advertise");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const recommendLoginElement = useRef<HTMLDivElement>(null);
@@ -50,6 +53,7 @@ const CatDetail = () => {
       username: string;
     }[]
   >([]);
+
   const [retrieveCat, setRetrieveCat] = useState<CatObjectType>({
     id: 0,
     cat_name: "",
@@ -57,8 +61,8 @@ const CatDetail = () => {
       shop_name: "",
       prefecture: "",
     },
-    cat_images: [],
-    cat_admin_images: [],
+    images: [],
+    admin_images: [],
     character: [],
     favorite_things: [],
     attendance: "",
@@ -80,7 +84,6 @@ const CatDetail = () => {
       }[] = [];
       const { data } = await axios.get(`api/comment?cat_id=${id}`);
       setCommentData(data);
-      console.log(data);
       data.map((item: any, key: number) =>
         item.comment_images.map((it: any, i: number) =>
           list.push({ imgs: it.imgs, username: item.user.username })
@@ -98,12 +101,20 @@ const CatDetail = () => {
         setCatData(data);
       } catch (error) {}
     };
-    const RetrieveCat = async () => {
-      const { data } = await axios.get(`api/cats/${id}/`);
-      setRetrieveCat(data);
-    };
+    if (!advertise) {
+      const RetrieveCat = async () => {
+        const { data } = await axios.get(`api/cats/${id}/`);
+        setRetrieveCat(data);
+      };
+      RetrieveCat();
+    } else {
+      const RetrieveCat = async () => {
+        const { data } = await axios.get(`api/advertise/${id}/`);
+        setRetrieveCat(data);
+      };
+      RetrieveCat();
+    }
     fetchData();
-    RetrieveCat();
   }, [isAuthenticated, catLoading, authLoading]);
 
   useEffect(() => {
@@ -120,17 +131,29 @@ const CatDetail = () => {
 
   const handleRecommend = async () => {
     if (isAuthenticated) {
-      if (!retrieveCat.recommend.find((e) => e.user == user.user_id)) {
-        const submitData = {
-          cat_id: id,
-          user_id: user.user_id,
-        };
-        const res = await dispatch(RecommendAction(submitData));
+      if (!advertise) {
+        if (!retrieveCat.recommend.find((e) => e.user == user.user_id)) {
+          const submitData = {
+            cat_id: id,
+            user_id: user.user_id,
+          };
+          const res = await dispatch(RecommendAction(submitData));
+        }
+      } else {
+        if (!retrieveCat.recommend.find((e) => e.user == user.user_id)) {
+          const submitData = {
+            advertise_id: id,
+            user_id: user.user_id,
+          };
+          const res = await dispatch(RecommendAction(submitData));
+        }
       }
     } else {
       setRecommendLoginShow(true);
     }
   };
+
+  console.log(recommendLoginShow);
 
   return (
     <div className="w-full relative">
@@ -142,13 +165,9 @@ const CatDetail = () => {
             <span className="text-2xl ms-4">{retrieveCat.cat_name}</span>
           </div>
           <div
-            className="flex gap-[6px] items-center"
+            className="relative flex gap-[6px] items-center"
             ref={recommendLoginElement}
           >
-            <img
-              src="/assets/imgs/icons/comment_chu.png"
-              alt="comment_chu.png"
-            />
             <span
               className="cursor-pointer rounded-full"
               onClick={handleRecommend}
@@ -205,18 +224,18 @@ const CatDetail = () => {
           </div>
         </div>
         <Border className="mt-6" color="#CCCCCC" />
-        <div className="w-full flex gap-8 mt-6">
+        <div className="w-full flex items-start gap-8 mt-6">
           <div className="flex gap-2">
             <CalendarMonthSharp fontSize="large" style={{ fill: "#FAD2B5" }} />
-            <div className="ms-2">出勤頻度</div>
+            <div className="ms-2 whitespace-nowrap">出勤頻度</div>
             <div className="ms-4">
               <PrefectureBtn value={retrieveCat.attendance} />
             </div>
           </div>
           <div className="flex gap-2">
             <HeartCircle />
-            <div className="ms-2">性格</div>
-            <div className="ms-4 flex gap-2">
+            <div className="ms-2 whitespace-nowrap">性格</div>
+            <div className="ms-4 flex gap-2 flex-wrap">
               {retrieveCat.character &&
                 retrieveCat.character.map((item, key) => (
                   <PrefectureBtn key={key} value={item.character} />
@@ -440,8 +459,8 @@ const CatDetail = () => {
               id={e.id}
               cat_name={e.cat_name}
               shop={e.shop}
-              cat_images={e.cat_images}
-              cat_admin_images={e.cat_admin_images}
+              images={e.images}
+              admin_images={e.admin_images}
               character={e.character}
               favorite_things={e.favorite_things}
               attendance={e.attendance}

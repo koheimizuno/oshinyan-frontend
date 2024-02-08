@@ -17,7 +17,7 @@ const BlogColumnBox = (props: ColumnType) => {
       <div
         className="h-[234px] cursor-pointer border-b"
         onClick={() => {
-          goColumnDetail(1);
+          props.id && goColumnDetail(props.id);
         }}
       >
         <img src={props.hero_image} className="h-full m-auto" alt="" />

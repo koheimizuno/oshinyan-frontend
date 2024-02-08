@@ -20,7 +20,7 @@ const Inquiry = lazy(() => import("./pages/Inquiry"));
 const OshinyanDetail = lazy(() => import("./pages/OshinyanDetail"));
 const NyanplaceDetail = lazy(() => import("./pages/NyanplaceDetail"));
 const Comment = lazy(() => import("./pages/Comment"));
-const Column = lazy(() => import("./pages/Column"));
+const ColumnDetail = lazy(() => import("./pages/ColumnDetail"));
 const Oshiresister = lazy(() => import("./pages/Oshiresister"));
 const Login = lazy(() => import("./pages/Auth/Login"));
 const TotalRanking = lazy(() => import("./pages/TotalRanking"));
@@ -94,7 +94,7 @@ function App() {
             //*11 <Route path="nyanplace/:id" element={<NyanplaceDetail />} />
             //12 <Route path="oshinyan/:id" element={<OshinyanDetail />} />
             //15 <Route path="comment/:id" element={<Comment />} />
-            //16 <Route path="column/:id" element={<Column />} />
+            //16 <Route path="column/:id" element={<ColumnDetail />} />
             //17 <Route path="inquiry" element={<Inquiry />} />
           </Route>
         </Routes>
