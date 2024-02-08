@@ -1,107 +1,40 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import MainLayout from "../../layouts/MainLayout";
 import PageBar from "../../components/common/PageBar";
 import Container from "../../components/basic/Container";
 import PrefectureBtn from "../../components/basic/CustomButton";
 import CatCard from "../../components/basic/blog/CatCard";
-import SignboardCard from "../../components/basic/SignboardCard";
+import NyanPlaceCard from "../../components/basic/NyanPlaceCard";
 import SignboardSearchBar from "../../components/common/SignboardSearchBar";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import Title from "../../components/common/Typography/Title";
 import axios from "axios";
-import { CatObjectType } from "../../constant/type";
-
-const CONTACTINFO = [
-  {
-    title: "最寄り駅",
-    icon: "/assets/imgs/icons/neareststation.png",
-    alt: "neareststation",
-    content: "□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□",
-  },
-  {
-    title: "電話番号",
-    icon: "/assets/imgs/icons/phone.png",
-    alt: "phone",
-    content: "□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□",
-  },
-  {
-    title: "営業時間",
-    icon: "/assets/imgs/icons/clock.png",
-    alt: "clock",
-    content: "□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□",
-  },
-  {
-    title: "定休日",
-    icon: "/assets/imgs/icons/closingday.png",
-    alt: "closingday",
-    content: "□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□",
-  },
-];
-
-const Cats = [
-  {
-    imgUrl: ["/assets/imgs/cats/cat1.png", "/assets/imgs/cats/cat1-2.png"],
-    isNew: false,
-    isChu: false,
-  },
-  {
-    imgUrl: ["/assets/imgs/cats/cat2.png", "/assets/imgs/cats/cat2-2.png"],
-    isNew: false,
-    isChu: true,
-  },
-  {
-    imgUrl: ["/assets/imgs/cats/cat3.png", "/assets/imgs/cats/cat3-2.png"],
-    isNew: false,
-    isChu: false,
-  },
-];
-
-const LOCATIONS = [
-  {
-    imgUrl: "/assets/imgs/cats/signboard_cat.png",
-    cafe: "カフェ",
-    prefecture: "東京都",
-  },
-  {
-    imgUrl: "/assets/imgs/cats/signboard_cat.png",
-    cafe: "カフェ",
-    prefecture: "東京都",
-  },
-  {
-    imgUrl: "/assets/imgs/cats/signboard_cat.png",
-    cafe: "カフェ",
-    prefecture: "東京都",
-  },
-  {
-    imgUrl: "/assets/imgs/cats/signboard_cat.png",
-    cafe: "カフェ",
-    prefecture: "東京都",
-  },
-  {
-    imgUrl: "/assets/imgs/cats/signboard_cat.png",
-    cafe: "カフェ",
-    prefecture: "東京都",
-  },
-  {
-    imgUrl: "/assets/imgs/cats/signboard_cat.png",
-    cafe: "カフェ",
-    prefecture: "東京都",
-  },
-];
+import { CatObjectType, shopType } from "../../constant/type";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 
 function NyanplaceDetail() {
+  const { id } = useParams();
   const [regions, setRegions] = useState<string[]>([]);
-  const [catData, setCatData] = useState<CatObjectType[]>([]);
-
+  const [shopData, setShopData] = useState<CatObjectType[]>([]);
+  const [AshopData, setAShopData] = useState<shopType>({
+    shop_name: "",
+    prefecture: "",
+    address: "",
+  });
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { data } = await axios.get("api/randomcat");
-        setCatData(data);
-      } catch (error) {}
+    const fetchAShopData = async () => {
+      const { data } = await axios.get(`api/shop/${id}/`);
+      setAShopData(data);
+      console.log(data);
     };
-    fetchData();
+    const fetchShopData = async () => {
+      const { data } = await axios.get("api/shop/");
+      setShopData(data);
+    };
+    fetchAShopData();
+    fetchShopData();
   }, []);
 
   return (
@@ -110,57 +43,157 @@ function NyanplaceDetail() {
       <section className="bg-[#F7F7F7] border-b-4 border-[#FAD2B5]">
         <Container>
           <PageBar page="場所詳細" />
-          <Title title="店名店名店名店名店名店名店名店名店名店名店名店名" />
+          <Title title={AshopData.shop_name} />
           <div className="flex gap-4">
             <div className="mt-[33px] mb-[25px] hover:opacity-70">
-              <PrefectureBtn value="東京都" />
-            </div>
-            <div className="mt-[33px] mb-[25px] hover:opacity-70">
-              <PrefectureBtn value="XXX" />
-            </div>
-            <div className="mt-[33px] mb-[25px] hover:opacity-70">
-              <PrefectureBtn value="XXX" />
+              <PrefectureBtn value={AshopData.prefecture} />
             </div>
           </div>
-
-          <div>
-            <img src="/assets/imgs/location1.png" alt="location1" />
-          </div>
+          <Swiper
+            modules={[Navigation, Pagination, Scrollbar, A11y]}
+            speed={800}
+            pagination={{
+              el: ".swiper-pagination",
+              type: "bullets",
+              clickable: true,
+            }}
+            loop={true}
+            centeredSlides
+            slidesPerView={1}
+            navigation={{ nextEl: ".arrow-left", prevEl: ".arrow-right" }}
+          >
+            {AshopData.shop_images &&
+              AshopData.shop_images.map((item: any, key: any) => (
+                <SwiperSlide key={key} className="h-[540px] overflow-x-hidden">
+                  <img
+                    src={item.imgs}
+                    alt={item.imgs}
+                    className="h-full m-auto"
+                  />
+                </SwiperSlide>
+              ))}
+            <div className="swiper-pagination custom-pagination-bullets"></div>
+            <button className="arrow-left xs:hidden md:block">
+              <div className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
+                {/* <ArrowLeft /> */}
+                <svg
+                  style={{ marginRight: "4px" }}
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="12.728"
+                  height="12.728"
+                  viewBox="0 0 12.728 12.728"
+                >
+                  <path
+                    id="arr_left"
+                    d="M499-1749v8h-8"
+                    transform="translate(-877.52 -1577.555) rotate(135)"
+                    fill="none"
+                    stroke="#fff"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1"
+                    opacity="0.75"
+                  />
+                </svg>
+              </div>
+            </button>
+            <button className="arrow-left xs:hidden md:block">
+              <div className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
+                {/* <ArrowRight /> */}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="12.728"
+                  height="12.728"
+                  viewBox="0 0 12.728 12.728"
+                >
+                  <path
+                    id="arr_right"
+                    d="M499-1749v8h-8"
+                    transform="translate(890.247 1590.283) rotate(-45)"
+                    fill="none"
+                    stroke="#fff"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1"
+                    opacity="0.75"
+                  />
+                </svg>
+              </div>
+            </button>
+          </Swiper>
 
           <div className="py-8 flex flex-col gap-[18px]">
-            <div className="flex gap-2">
-              <div>
-                <img src="/assets/imgs/icons/address.png" alt="address" />
-              </div>
-              <span className="w-[65px]">住所</span>
-              <Link to="#" className="ml-2 border-b border-gray-400">
-                □□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
-              </Link>
-            </div>
-            {CONTACTINFO &&
-              CONTACTINFO.map((item, key) => (
-                <div className="flex gap-2" key={key}>
-                  <div>
-                    <img src={item.icon} alt={item.alt} />
-                  </div>
-                  <span className="w-[65px]">{item.title}</span>
-                  <span className="ml-2 text-black">{item.content}</span>
+            <div className="flex gap-5">
+              <div className="flex items-center gap-2">
+                <div>
+                  <img src="/assets/imgs/icons/address.png" alt="address" />
                 </div>
-              ))}
+                <span className="w-[65px]">住所</span>
+              </div>
+              {AshopData.address && (
+                <Link
+                  to={""}
+                  className="ml-2 border-b border-white hover:border-gray-400"
+                >
+                  {AshopData.address}
+                </Link>
+              )}
+            </div>
+            <div className="flex gap-5">
+              <div className="flex items-center gap-2">
+                <div>
+                  <img
+                    src="/assets/imgs/icons/neareststation.png"
+                    alt="neareststation"
+                  />
+                </div>
+                <span className="w-[65px]">最寄り駅</span>
+              </div>
+              <p className="ml-2">{AshopData.nearest_station}</p>
+            </div>
+            <div className="flex gap-5">
+              <div className="flex items-center gap-2">
+                <div>
+                  <img src="/assets/imgs/icons/phone.png" alt="phone" />
+                </div>
+                <span className="w-[65px]">電話番号</span>
+              </div>
+              <p className="ml-2">{AshopData.phone}</p>
+            </div>
+            <div className="flex gap-5">
+              <div className="flex items-center gap-2">
+                <div>
+                  <img src="/assets/imgs/icons/clock.png" alt="clock" />
+                </div>
+                <span className="w-[65px]">営業時間</span>
+              </div>
+              <p className="ml-2">{AshopData.business_time}</p>
+            </div>
+            <div className="flex gap-5">
+              <div className="flex items-center gap-2">
+                <div>
+                  <img src="/assets/imgs/icons/restday.png" alt="restday" />
+                </div>
+                <span className="w-[65px]">定休日</span>
+              </div>
+              <p className="ml-2">{AshopData.rest_day}</p>
+            </div>
           </div>
 
           <div className="flex gap-4 pb-8 border-b border-[#CCCCCC]">
             <span>店舗ホームページ</span>
-            <Link to="#" className="border-b border-gray-400">
-              xxxxxxxxxxxxxxx.xx.xx
-            </Link>
+            {AshopData.url && (
+              <Link to={AshopData.url} className="border-b border-gray-400">
+                {AshopData.url}
+              </Link>
+            )}
           </div>
 
           <div>
             <p className="text-2xl pt-6 pb-4">ここで会える「看板猫」</p>
             <div className="flex justify-between flex-wrap ">
-              {catData.length !== 0 ? (
-                catData.map((e, i) => (
+              {AshopData.cat ? (
+                AshopData.cat.map((e: any, i: number) => (
                   <CatCard
                     key={i}
                     id={e.id}
@@ -197,20 +230,22 @@ function NyanplaceDetail() {
           <h3 className="text-2xl mt-[76px] mb-[40px] pb-3 border-b border-[#CBB279]">
             近くの「看板猫」がいる場所
           </h3>
-          <div className="mt-[40px] flex flex-wrap justify-between gap-y-4">
-            {LOCATIONS &&
-              LOCATIONS.map((e, key) => {
+          <div className="mt-[40px] mb-[20px] flex flex-wrap justify-between gap-y-4">
+            {shopData &&
+              shopData.map((e: any, key: number) => {
                 return (
-                  <SignboardCard
+                  <NyanPlaceCard
                     key={key}
-                    imgUrl={e.imgUrl}
-                    cafe={e.cafe}
+                    id={e.id}
+                    shop_name={e.shop_name}
                     prefecture={e.prefecture}
+                    shop_images={e.shop_images}
+                    category={e.category}
                   />
                 );
               })}
           </div>
-          <div className="bg-white mt-[20px] mb-[64px]">
+          <div className="bg-white mb-[64px]">
             <SignboardSearchBar list={regions} setList={setRegions} />
           </div>
         </Container>

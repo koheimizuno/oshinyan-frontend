@@ -1,47 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MainLayout from "../../layouts/MainLayout";
 import Container from "../../components/basic/Container";
 import PageBar from "../../components/common/PageBar";
 import SignboardSearchBar from "../../components/common/SignboardSearchBar";
-import SignboardCard from "../../components/basic/SignboardCard";
+import NyanPlaceCard from "../../components/basic/NyanPlaceCard";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import Title from "../../components/common/Typography/Title";
-
-const Cats = [
-  {
-    imgUrl: "/assets/imgs/cats/signboard_cat.png",
-    cafe: "カフェ",
-    prefecture: "東京都",
-  },
-  {
-    imgUrl: "/assets/imgs/cats/signboard_cat.png",
-    cafe: "カフェ",
-    prefecture: "東京都",
-  },
-  {
-    imgUrl: "/assets/imgs/cats/signboard_cat.png",
-    cafe: "カフェ",
-    prefecture: "東京都",
-  },
-  {
-    imgUrl: "/assets/imgs/cats/signboard_cat.png",
-    cafe: "カフェ",
-    prefecture: "東京都",
-  },
-  {
-    imgUrl: "/assets/imgs/cats/signboard_cat.png",
-    cafe: "カフェ",
-    prefecture: "東京都",
-  },
-  {
-    imgUrl: "/assets/imgs/cats/signboard_cat.png",
-    cafe: "カフェ",
-    prefecture: "東京都",
-  },
-];
+import axios from "axios";
+import { shopType } from "../../constant/type";
 
 const Nyanplace = () => {
   const [regions, setRegions] = useState<string[]>([]);
+  const [shopData, setShopData] = useState<shopType[]>([]);
+  useEffect(() => {
+    const fetchShopData = async () => {
+      const { data } = await axios.get("api/shop/");
+      setShopData(data);
+    };
+    fetchShopData();
+  }, []);
 
   return (
     <>
@@ -54,13 +31,15 @@ const Nyanplace = () => {
             <SignboardSearchBar list={regions} setList={setRegions} />
           </div>
           <div className="mt-[40px] mb-[64px] flex flex-wrap justify-between gap-y-4">
-            {Cats &&
-              Cats.map((e) => {
+            {shopData &&
+              shopData.map((e) => {
                 return (
-                  <SignboardCard
-                    imgUrl={e.imgUrl}
-                    cafe={e.cafe}
+                  <NyanPlaceCard
+                    id={e.id}
+                    shop_name={e.shop_name}
                     prefecture={e.prefecture}
+                    shop_images={e.shop_images}
+                    category={e.category}
                   />
                 );
               })}

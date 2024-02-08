@@ -208,7 +208,7 @@ const CatDetail = () => {
         <div className="mt-4 break-all">{retrieveCat.description}</div>
         <div className="mt-2">
           <Link
-            to="/nyanplace/1"
+            to={`/nyanplace/${id}`}
             className="underline text-base w-[180px] inline-block"
           >
             {retrieveCat.shop.shop_name}

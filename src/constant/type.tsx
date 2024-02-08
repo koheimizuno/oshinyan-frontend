@@ -3,10 +3,31 @@ interface recommendType {
   cat: number;
 }
 
-interface shopType {
+export interface shopType {
+  id?: number;
+  category?: string;
   shop_name: string;
   prefecture: string;
+  address?: string;
+  nearest_station?: string;
+  phone?: string;
+  business_time?: string;
+  rest_day?: string;
+  url?: string;
+  last_update?: string;
+  shop_images?: { imgs: string }[];
+  cat?: any[];
 }
+
+// shop_name = models.CharField(max_length=100, verbose_name='店舗名')
+//     prefecture = models.CharField(max_length=100, choices=PREFECTURE_CHOICES, default='北海道', verbose_name='都道府県')
+//     address = models.CharField(blank=True, verbose_name='住所')
+//     nearest_station = models.CharField(blank=True, verbose_name='最寄り駅')
+//     phone = models.CharField(max_length=20, blank=True, verbose_name='電話番号（登録者）')
+//     business_time = models.CharField(blank=True, verbose_name='営業時間')
+//     rest_day = models.CharField(blank=True, verbose_name='定休日')
+//     url = models.URLField(verbose_name='店舗ホームページ')
+//     last_update = models.DateTimeField(auto_now_add=True)
 
 interface CatImageType {
   imgs: string;
