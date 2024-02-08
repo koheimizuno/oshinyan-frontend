@@ -39,10 +39,7 @@ const Header = () => {
                       md:static md:max-h-full md:border-0 md:flex md:justify-between md:items-center ${hidden}`}
         >
           <li className="hover:text-[#C38154] sm:pt-3 md:pt-0">
-            <Link
-              to="/guide"
-              className="px-[15px] font-medium block sm:py-3 hover:bg-zinc-100"
-            >
+            <Link to="/guide" className="px-[15px] font-medium block sm:py-3">
               推しニャンとは？
             </Link>
           </li>
@@ -51,7 +48,7 @@ const Header = () => {
             <li className="hover:text-[rgb(195,129,84)]">
               <Link
                 to="/registration"
-                className="px-[15px] font-medium block sm:py-3 sm:hover:bg-zinc-100"
+                className="px-[15px] font-medium block sm:py-3"
               >
                 会員登録ニャ！
               </Link>
@@ -59,10 +56,7 @@ const Header = () => {
           )}
           <li className="w-[1px] h-[16px] bg-black sm:hidden md:block"></li>
           <li className="hover:text-[#C38154]">
-            <Link
-              to="/feature"
-              className="px-[15px] font-medium block sm:py-3 sm:hover:bg-zinc-100"
-            >
+            <Link to="/feature" className="px-[15px] font-medium block sm:py-3">
               特集見るニャ！
             </Link>
           </li>

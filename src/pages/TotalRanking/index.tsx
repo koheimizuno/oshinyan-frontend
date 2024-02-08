@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import MainLayout from "../../layouts/MainLayout";
 import SearchBar from "../../components/common/SearchBar";
 import RankingBar from "../../components/common/RankingBar";
-import Store from "../../components/common/Store";
+import Store from "../../components/common/ColumnSection";
 import Notices from "../../components/common/Notices";
 import LargeCatCard from "../../components/basic/LargeCatCard";
 import CatCard from "../../components/basic/blog/CatCard";
@@ -33,7 +33,7 @@ const TotalRanking = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("cat/totalrankingcat");
+        const res = await axios.get("api/totalrankingcat");
         setCatData(res.data);
       } catch (error) {}
     };
@@ -45,7 +45,7 @@ const TotalRanking = () => {
       try {
         if (prefectureKeyword !== null) {
           const { data } = await axios.get(
-            "cat/searchprefecture?keyword=" + prefectureKeyword
+            "api/searchprefecture?keyword=" + prefectureKeyword
           );
           setCatData(data);
         }
@@ -56,7 +56,7 @@ const TotalRanking = () => {
       try {
         if (characterKeyword !== null) {
           const { data } = await axios.get(
-            "cat/searchcharacter?keyword=" + characterKeyword
+            "api/searchcharacter?keyword=" + characterKeyword
           );
           setCatData(data);
         }
@@ -70,7 +70,7 @@ const TotalRanking = () => {
     try {
       if (searchWord !== null) {
         const { data } = await axios.get(
-          "cat/searchword?keyword=" + searchWord
+          "api/searchword?keyword=" + searchWord
         );
         setCatData(data);
       }

@@ -1,6 +1,8 @@
-import React from "react";
-import Guess from "../basic/blog/Guess";
+import React, { useEffect, useState } from "react";
 import MoreButton from "../basic/BasicMoreButton";
+import BlogColumnBox from "../basic/blog/BlogColumnBox";
+import axios from "axios";
+import { ColumnType } from "../../constant/type";
 
 const items = [
   {
@@ -23,7 +25,16 @@ const items = [
   },
 ];
 
-const Store = () => {
+const ColumnSection = () => {
+  const [columnData, setColumnData] = useState<ColumnType[]>([]);
+  useEffect(() => {
+    const fetchColumnData = async () => {
+      const { data } = await axios.get("api/column/");
+      setColumnData(data);
+    };
+    fetchColumnData();
+  }, []);
+
   return (
     <div className="bg-white">
       <div className="max-w-[960px] xs:px-5 lg:px-0 m-auto py-[48px]">
@@ -34,7 +45,17 @@ const Store = () => {
         </div>
         <div className="m-auto">
           <div className="flex justify-between flex-wrap">
-            {items && items.map((e, i) => <Guess key={i} imgUrl={e.imgUrl} />)}
+            {columnData &&
+              columnData.map((e, i) => (
+                <BlogColumnBox
+                  key={i}
+                  id={e.id}
+                  hero_image={e.hero_image}
+                  title={e.title}
+                  cat_name={e.cat_name}
+                  created_date={e.created_date}
+                />
+              ))}
           </div>
         </div>
         <MoreButton />
@@ -43,4 +64,4 @@ const Store = () => {
   );
 };
 
-export default Store;
+export default ColumnSection;

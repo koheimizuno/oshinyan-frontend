@@ -16,31 +16,34 @@ const Footer = () => {
         <div className="flex justify-center items-center xs:pt-6 sm:py-[24px] m-auto">
           <div className="xs:block sm:flex sm:justify-between sm:items-center text-[16px] tracking-[-.15em]">
             <div className="pr-[15x] xs:mb-8 sm:mb-0 text-center">
-              <Link to="/guide" className="px-[15px]">
+              <Link to="/guide" className="px-[15px] hover:text-[#C38154]">
                 推しニャンとは
               </Link>
             </div>
             <div className="w-[1px] h-[16px] bg-black xs:hidden sm:block"></div>
             <div className="px-[15x] xs:mb-8 sm:mb-0 text-center">
-              <Link to="/registration" className="px-[15px]">
+              <Link
+                to="/registration"
+                className="px-[15px] hover:text-[#C38154]"
+              >
                 会員登録
               </Link>
             </div>
             <div className="w-[1px] h-[16px] bg-black xs:hidden sm:block"></div>
             <div className="px-[15x] xs:mb-8 sm:mb-0 text-center">
-              <Link to="/inquiry" className="px-[15px]">
+              <Link to="/inquiry" className="px-[15px] hover:text-[#C38154]">
                 お問合せ
               </Link>
             </div>
             <div className="w-[1px] h-[16px] bg-black xs:hidden sm:block"></div>
             <div className="px-[15x] xs:mb-8 sm:mb-0 text-center">
-              <Link to="/privacy" className="px-[15px]">
+              <Link to="/privacy" className="px-[15px] hover:text-[#C38154]">
                 プライバシーポリシー
               </Link>
             </div>
             <div className="w-[1px] h-[16px] bg-black xs:hidden sm:block"></div>
             <div className="sm:pl-[15px] xs:mb-8 sm:mb-0 text-center">
-              <Link to="/company" className="px-[15px]">
+              <Link to="/company" className="px-[15px] hover:text-[#C38154]">
                 運営会社
               </Link>
             </div>
@@ -55,7 +58,10 @@ const Footer = () => {
             </div>
             <div className="px-[20px]">
               <p className="tracking-[-.1em]">
-                <Link to="/oshiresister" className="border-b border-black">
+                <Link
+                  to="/oshiresister"
+                  className="border-b border-black hover:text-[#0000FF] hover:border-[#0000FF]"
+                >
                   推しニャン申請（店舗登録はこちらから）
                 </Link>
               </p>

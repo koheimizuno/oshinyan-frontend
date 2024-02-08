@@ -101,7 +101,7 @@ const MyPage = () => {
   useEffect(() => {
     const fetchuserCatData = async () => {
       try {
-        const { data } = await axios.get("cat/usercat");
+        const { data } = await axios.get("api/usercat");
         setUserCatData(data);
       } catch (error) {}
     };

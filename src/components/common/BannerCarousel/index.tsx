@@ -20,7 +20,7 @@ function BannerCarousel() {
   useEffect(() => {
     const fetchBanner = async () => {
       try {
-        const { data } = await axios.get("other/banner/");
+        const { data } = await axios.get("api/banner/");
         setBannerData(data);
       } catch (error) {
         Notification("error", "サーバーエラー");

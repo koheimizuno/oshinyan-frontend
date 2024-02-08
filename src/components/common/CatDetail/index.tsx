@@ -78,7 +78,7 @@ const CatDetail = () => {
         imgs: string;
         username: string;
       }[] = [];
-      const { data } = await axios.get(`cat/comment?cat_id=${id}`);
+      const { data } = await axios.get(`api/comment?cat_id=${id}`);
       setCommentData(data);
       console.log(data);
       data.map((item: any, key: number) =>
@@ -94,12 +94,12 @@ const CatDetail = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get("cat/randomcat");
+        const { data } = await axios.get("api/randomcat");
         setCatData(data);
       } catch (error) {}
     };
     const RetrieveCat = async () => {
-      const { data } = await axios.get(`cat/cats/${id}/`);
+      const { data } = await axios.get(`api/cats/${id}/`);
       setRetrieveCat(data);
     };
     fetchData();
@@ -110,7 +110,7 @@ const CatDetail = () => {
     const ListRecommendUser = async () => {
       if (retrieveCat.id) {
         const { data } = await axios.get(
-          `cat/recommend?cat_id=${retrieveCat.id}`
+          `api/recommend?cat_id=${retrieveCat.id}`
         );
         setRecommendedUser(data);
       }

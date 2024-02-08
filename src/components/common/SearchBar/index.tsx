@@ -32,7 +32,7 @@ const SearchBar = ({
   );
   useEffect(() => {
     const fetchCharacter = async () => {
-      const { data } = await axios.get("cat/character/");
+      const { data } = await axios.get("api/character/");
       setCharacterData(data);
     };
     fetchCharacter();

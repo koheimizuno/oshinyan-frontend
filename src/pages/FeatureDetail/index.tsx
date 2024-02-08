@@ -14,7 +14,7 @@ const FeatureDetail = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get("cat/randomcat");
+        const { data } = await axios.get("api/randomcat");
         setCatData(data);
       } catch (error) {}
     };

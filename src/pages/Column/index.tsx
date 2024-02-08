@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MainLayout from "../../layouts/MainLayout";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import Container from "../../components/basic/Container";
 import PageBar from "../../components/common/PageBar";
 import Title from "../../components/common/Typography/Title";
 import BlogColumnBox from "../../components/basic/blog/BlogColumnBox";
+import { ColumnType } from "../../constant/type";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const CatsInSamePlace = [
   {
@@ -34,6 +37,27 @@ const CatsInSamePlace = [
 ];
 
 function Column() {
+  const { id } = useParams();
+  const [columnData, setColumnData] = useState<ColumnType[]>([]);
+  const [AcolumnData, setAcolumnData] = useState<ColumnType>({
+    title: "",
+    cat_name: "",
+    hero_image: "",
+    created_date: "",
+  });
+  useEffect(() => {
+    const fetchColumnData = async () => {
+      const { data } = await axios.get("api/column/");
+      setColumnData(data);
+    };
+    const fetchGetColumnDataById = async () => {
+      const { data } = await axios.get(`api/column/${id}/`);
+      setAcolumnData(data);
+    };
+    fetchColumnData();
+    fetchGetColumnDataById();
+  }, []);
+
   return (
     <MainLayout>
       <SocialLinkGroup />
@@ -44,60 +68,46 @@ function Column() {
           推しニャン編集部おススメの看板猫の紹介記事です。是非、お店に会いに行ってください。
         </p>
         <div className="pt-10">
-          <p className="text-xl pb-4 text-[#808080]">2022.00.00</p>
-          <h2 className="text-[32px] text-[#515151]">
-            コラムタイトルコラムタイトルコラムタイトルコラムタイトルコラムタイトルコラムタイトルコラムタイトル
-          </h2>
+          <p className="text-xl pb-4 text-[#808080]">
+            {AcolumnData.created_date}
+          </p>
+          <h2 className="text-[32px] text-[#515151]">{AcolumnData.title}</h2>
         </div>
         <div className="py-12">
-          <img src="/assets/imgs/column-1.png" alt="column-1" />
+          <img src={AcolumnData.detail_image} alt={AcolumnData.detail_image} />
         </div>
         <p className="text-2xl mb-[70px] text-[#515151]">
-          H3小見出しH3小見出しH3小見出しH3小見出しH3小見出しH3小見出しH3小見出しH3小見出しH3小見出しH3小見出しH3小見出しH3小見出しH3小見出し
+          {AcolumnData.subtitle}
         </p>
-        <p className="text-[#515151] mb-16">
-          画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文
-        </p>
-        <div className="grid grid-cols-12 mb-[60px]">
-          <div className="col-span-5">
-            <img
-              src="/assets/imgs/cats/column-hero-cat-1.png"
-              alt="column-cat"
-            />
-            <p className="text-sm mt-4 tracking-[-.2em]">
-              画像に対するキャプションが入ります画像に対するキャプションが入ります画像に対するキャプションが入ります画像に対するキャプションが入ります
-            </p>
-          </div>
-          <p className="h-[360px] overflow-hidden col-span-7 pl-[47px]">
-            画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文
-          </p>
-        </div>
-        <div className="grid grid-cols-12 mb-[72px]">
-          <p className="h-[360px] overflow-hidden col-span-7 pr-[47px]">
-            画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文画像本文
-          </p>
-          <div className=" col-span-5">
-            <img
-              src="/assets/imgs/cats/column-hero-cat-2.png"
-              alt="column-cat"
-            />
-            <p className="text-sm mt-4 tracking-[-.2em]">
-              画像に対するキャプションが入ります画像に対するキャプションが入ります画像に対するキャプションが入ります画像に対するキャプションが入ります
-            </p>
-          </div>
-        </div>
+        <p className="text-[#515151] mb-16">{AcolumnData.description}</p>
+        {AcolumnData.blog &&
+          AcolumnData.blog.map((item, key) => (
+            <div className="grid grid-cols-12 gap-10 mb-[60px]" key={key}>
+              <div className={`col-span-5 ${key % 2 !== 0 && "order-last"}`}>
+                <img src={item.imgs} alt={item.imgs} />
+                <p className="text-sm mt-4 tracking-[-.2em]">
+                  {item.img_caption}
+                </p>
+              </div>
+              <p
+                className={`h-[360px] overflow-hidden col-span-7 ${
+                  key % 2 !== 0 && "order-first"
+                }`}
+              >
+                {item.description}
+              </p>
+            </div>
+          ))}
         <div className="mt-6 mb-10 flex flex-wrap justify-between">
-          {CatsInSamePlace &&
-            CatsInSamePlace.map((e, i) => (
+          {columnData &&
+            columnData.map((e, i) => (
               <BlogColumnBox
                 key={i}
-                imgUrl={e.imgUrl}
-                isChu={true}
-                name={"heracles"}
-                cafe={"cafe"}
-                vote={2}
-                character={["a", "a"]}
-                description={"this is description"}
+                id={e.id}
+                hero_image={e.hero_image}
+                title={e.title}
+                cat_name={e.cat_name}
+                created_date={e.created_date}
               />
             ))}
         </div>

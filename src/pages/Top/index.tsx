@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import BannerCarousel from "../../components/common/BannerCarousel";
 import MainLayout from "../../layouts/MainLayout";
 import RankingBar from "../../components/common/RankingBar";
-import Store from "../../components/common/Store";
+import ColumnSection from "../../components/common/ColumnSection";
 import Notices from "../../components/common/Notices";
 import Container from "../../components/basic/Container";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
@@ -24,7 +24,7 @@ const Top = () => {
   useEffect(() => {
     const fetchCatData = async () => {
       try {
-        const { data } = await axios.get("cat/randomcat");
+        const { data } = await axios.get("api/randomcat");
         setCatData(data);
       } catch (error) {
         Notification("error", "サーバーエラー");
@@ -32,7 +32,7 @@ const Top = () => {
     };
     const fetchAdvertiseCatData = async () => {
       try {
-        const { data } = await axios.get("cat/advertise/");
+        const { data } = await axios.get("api/advertise/");
         setAdvertiseData(data);
       } catch (error) {
         Notification("error", "サーバーエラー");
@@ -136,7 +136,7 @@ const Top = () => {
           </div>
         </div>
       </Container>
-      <Store />
+      <ColumnSection />
       <Notices />
     </MainLayout>
   );

@@ -51,7 +51,7 @@ function Comment() {
     }
     if (checked) {
       try {
-        const res = await axios.post("cat/comment/", formData);
+        const res = await axios.post("api/comment/", formData);
         Notification("success", "未登録店舗の登録が成功しました。");
       } catch (error: any) {
         if (error.response.status === 400)

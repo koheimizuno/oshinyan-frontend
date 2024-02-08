@@ -28,6 +28,7 @@ const CatCard = ({
   const recommendLoginElement = useRef<HTMLDivElement>(null);
   const [isNew, setIsNew] = useState<boolean | undefined>(false);
   const [recommendLoginShow, setRecommendLoginShow] = useState(false);
+  const [hoverAction, setHoverAction] = useState(false);
   const { user, isAuthenticated } = useSelector((state: any) => state.user);
 
   useEffect(() => {
@@ -71,7 +72,13 @@ const CatCard = ({
   };
 
   return (
-    <div className="m-auto w-[312px] h-[512px] mb-[15px]">
+    <div
+      className={`m-auto w-[312px] h-[512px] mb-[15px] ${
+        hoverAction ? "opacity-100" : "opacity-70"
+      }`}
+      onMouseOver={() => setHoverAction(true)}
+      onMouseLeave={() => setHoverAction(false)}
+    >
       <div className="w-full">
         <div className="relative w-[312px] h-[234px] bg-white">
           <Swiper
@@ -86,7 +93,7 @@ const CatCard = ({
             centeredSlides
             slidesPerView={1}
             navigation={{ nextEl: ".arrow-left", prevEl: ".arrow-right" }}
-            className="cursor-pointer hover:opacity-70"
+            className="cursor-pointer"
           >
             {cat_images &&
               cat_images.map((item: any, key: any) => (
@@ -195,13 +202,20 @@ const CatCard = ({
             <div>
               <Link
                 to="#"
-                className=" w-[145px] underline text-[16px] text-ellipsis overflow-hidden tracking-tighter whitespace-nowrap "
+                className={`w-[145px] underline text-[16px] text-ellipsis overflow-hidden tracking-tighter whitespace-nowrap ${
+                  hoverAction && "text-[#0000FF]"
+                }`}
               >
                 {shop.shop_name}
               </Link>
             </div>
             <div>
-              <CustomButton value={shop.prefecture} />
+              <CustomButton
+                value={shop.prefecture}
+                className={
+                  hoverAction && "bg-[#CBB279] text-white border-0 inline-block"
+                }
+              />
             </div>
           </div>
           <div className="flex justify-content-start items-center mt-[15px] mb-[8px]">
@@ -221,16 +235,22 @@ const CatCard = ({
             <div>
               <img src="/assets/imgs/icons/hear-yellow.svg" alt="" />
             </div>
-            <div className="pl-[8px] whitespace-nowrap">
+            <div className="px-[8px] whitespace-nowrap">
               <p>性格</p>
             </div>
-            <div className="flex flex-wrap justify-start">
+            <div className="flex flex-wrap justify-start gap-1">
               {character &&
-                character.map((item, key) => (
-                  <div className="pl-[8px]" key={key}>
-                    <CustomButton value={item.character} />
+                character.slice(0, 4).map((item, key, arr) => (
+                  <div className="" key={key}>
+                    <CustomButton
+                      value={item.character}
+                      className={
+                        hoverAction && "bg-[#CBB279] text-white border-0"
+                      }
+                    />
                   </div>
                 ))}
+              {character && character.length > 4 && <span>...</span>}
             </div>
           </div>
           <div className=" pb-[43px]">

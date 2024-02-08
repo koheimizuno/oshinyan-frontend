@@ -74,3 +74,22 @@ export interface AmbassadorType {
   ambassador_name: string;
   prefecture: string;
 }
+
+interface ColumnBlogType {
+  id: number;
+  imgs: string;
+  img_caption: string;
+  description: string;
+}
+
+export interface ColumnType {
+  id?: number;
+  title: string;
+  cat_name: string;
+  hero_image: string;
+  created_date: string;
+  detail_image?: string;
+  subtitle?: string;
+  description?: string;
+  blog?: ColumnBlogType[];
+}

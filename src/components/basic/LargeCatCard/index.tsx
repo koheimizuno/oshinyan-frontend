@@ -150,7 +150,7 @@ const LargeCatCard = ({
             <div>
               <Link
                 to="#"
-                className=" w-[145px] underline text-[16px] text-ellipsis overflow-hidden tracking-tighter whitespace-nowrap "
+                className=" w-[145px] underline text-[16px] text-ellipsis overflow-hidden tracking-tighter whitespace-nowrap hover:bg-red"
               >
                 {shop.shop_name}
               </Link>
@@ -164,13 +164,13 @@ const LargeCatCard = ({
             <div>
               <img src="/assets/imgs/icons/hear-yellow.svg" alt="" />
             </div>
-            <div className="pl-[8px] whitespace-nowrap">
+            <div className="px-[8px] whitespace-nowrap">
               <p>性格</p>
             </div>
-            <div className="flex flex-wrap">
+            <div className="flex flex-wrap gap-1">
               {character &&
                 character.map((item, key) => (
-                  <div className="pl-[8px]" key={key}>
+                  <div key={key}>
                     <CustomButton value={item.character} />
                   </div>
                 ))}
