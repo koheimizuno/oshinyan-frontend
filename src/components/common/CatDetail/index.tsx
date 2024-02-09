@@ -22,7 +22,7 @@ import AlbumGallery from "./components/AlbumGallery";
 import ImageDetail from "./components/ImageDetail";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import { formatDateTime } from "../../../utils/functions";
-import { CAT_REACT_IMG } from "../../../utils/constants";
+import { CAT_REACTION_IMG } from "../../../utils/constants";
 
 const CatDetail = () => {
   const { id } = useParams();
@@ -386,7 +386,7 @@ const CatDetail = () => {
               <div className="mt-6">
                 <BtnAdd />
               </div>
-              <Tabs className="mt-[10px] border border-[#707070] rounded-lg p-6">
+              <Tabs className="mt-[10px] border border-[#bbbbbb] rounded-lg p-6">
                 <div className="flex items-center gap-16">
                   <div className="flex items-center gap-3">
                     <img
@@ -411,10 +411,15 @@ const CatDetail = () => {
                   </TabList>
                 </div>
                 <div className="border-b pb-4 mb-4"></div>
-                <div className="h-24 overflow-y-scroll">
-                  <TabPanel className="">
-                    {CAT_REACT_IMG.map((cat_item, key) => (
-                      <img key={key} src={cat_item[0]} alt={cat_item[1]} />
+                <div className="h-24 overflow-y-auto">
+                  <TabPanel className="flex flex-wrap gap-4">
+                    {CAT_REACTION_IMG.map((cat_item, key) => (
+                      <img
+                        key={key}
+                        src={process.env.PUBLIC_URL + cat_item[0]}
+                        alt={cat_item[1]}
+                        width={40}
+                      />
                     ))}
                   </TabPanel>
                   <TabPanel className="">Panel 2</TabPanel>
