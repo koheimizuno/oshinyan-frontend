@@ -19,11 +19,7 @@ export interface shopType {
   cat?: any[];
 }
 
-interface CatImageType {
-  imgs: string;
-}
-
-export interface CatImageByAdminType {
+export interface ImageType {
   id: number;
   imgs: string;
 }
@@ -42,8 +38,8 @@ export interface CatObjectType {
   id: number;
   cat_name: string;
   shop: shopType;
-  images?: CatImageType[];
-  admin_images?: CatImageByAdminType[];
+  images?: ImageType[];
+  admin_images?: ImageType[];
   character?: characterType[];
   favorite_things?: favoritethingType[];
   attendance: string;
@@ -70,6 +66,7 @@ interface CommentImageType {
 }
 
 export interface commentType {
+  id: number;
   comment: string;
   comment_images: CommentImageType[];
   user: any;
@@ -98,4 +95,11 @@ export interface ColumnType {
   subtitle?: string;
   description?: string;
   blog?: ColumnBlogType[];
+}
+
+export interface CommentReactionIcon {
+  id: number;
+  comment: number;
+  user: number;
+  imgs: string;
 }

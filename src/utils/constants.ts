@@ -14,7 +14,7 @@ export const CAT_REACTION_IMG = [
   [`/assets/imgs/reaction/cat/13medicine.png`, "13medicine.png"],
   [`/assets/imgs/reaction/cat/14paw01.png`, "14paw01.png"],
   [`/assets/imgs/reaction/cat/15paw02.png`, "15paw02.png"],
-  [`/assets/imgs/reaction/cat/shampoo.png`, "shampoo.png"],
+  [`/assets/imgs/reaction/cat/16shampoo.png`, "16shampoo.png"],
 ];
 
 export const FOOD_REACTION_IMG = [
