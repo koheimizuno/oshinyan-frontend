@@ -7,3 +7,8 @@ export const isNewUtil = (last_update: string) => {
   let last_update_date = last_update_dateObj.getDate();
   if (current_dateObj.getTime() - last_update_stamp < 86400000) return true;
 };
+
+export const formatDateTime = (value: string) => {
+  let date = new Date(value);
+  return `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`;
+};

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ColumnType } from "../../../constant/type";
+import { formatDateTime } from "../../../utils/functions";
 
 const BlogColumnBox = (props: ColumnType) => {
   const navigate = useNavigate();
@@ -38,9 +39,7 @@ const BlogColumnBox = (props: ColumnType) => {
               {props.cat_name}
             </Link>
           </div>
-          <p>{`${new Date(props.created_date).getFullYear()}.${
-            new Date(props.created_date).getMonth() + 1
-          }.${new Date(props.created_date).getDate()}`}</p>
+          <p>{formatDateTime(props.created_date)}</p>
         </div>
       </div>
     </div>

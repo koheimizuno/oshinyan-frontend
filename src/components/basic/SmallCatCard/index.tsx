@@ -5,7 +5,7 @@ import { CatObjectType } from "../../../constant/type";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
 import { RecommendAction } from "../../../slices/cat";
-import { isNewUtil } from "../../../utils";
+import { isNewUtil } from "../../../utils/functions";
 
 const SmallCatCard = ({
   id,

@@ -36,7 +36,7 @@ const AlbumGallery = ({
       }}
     >
       <Box
-        className="w-[960px] h-screen absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 overflow-y-hidden
+        className="w-[960px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 overflow-y-hidden
       "
       >
         <span

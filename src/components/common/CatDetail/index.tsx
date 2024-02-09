@@ -20,17 +20,9 @@ import { RecommendAction } from "../../../slices/cat";
 import CatDetailCarousel from "./components/Carousel";
 import AlbumGallery from "./components/AlbumGallery";
 import ImageDetail from "./components/ImageDetail";
-
-const actions = [
-  "avatar_1.svg",
-  "avatar_2.svg",
-  "avatar_3.svg",
-  "avatar_4.svg",
-  "avatar_5.svg",
-  "avatar_6.svg",
-  "avatar_7.svg",
-  "avatar_8.svg",
-];
+import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+import { formatDateTime } from "../../../utils/functions";
+import { CAT_REACT_IMG } from "../../../utils/constants";
 
 const CatDetail = () => {
   const { id } = useParams();
@@ -374,9 +366,7 @@ const CatDetail = () => {
                   </div>
                 </div>
                 <div className="mt-2 text-xs text-[#767676]">
-                  {`${new Date(item.user.last_login).getFullYear()}.${
-                    new Date(item.user.last_login).getMonth() + 1
-                  }.${new Date(item.user.last_login).getDate()}`}
+                  {formatDateTime(item.user.last_login)}
                 </div>
                 <div className="break-all mt-4 text-base">{item.comment}</div>
               </div>
@@ -396,17 +386,44 @@ const CatDetail = () => {
               <div className="mt-6">
                 <BtnAdd />
               </div>
-              <div className="flex gap-2 mt-4">
-                {actions &&
-                  actions.map((e, i) => (
+              <Tabs className="mt-[10px] border border-[#707070] rounded-lg p-6">
+                <div className="flex items-center gap-16">
+                  <div className="flex items-center gap-3">
                     <img
-                      className="w-7 h-7"
-                      src={`/assets/imgs/icons/${e}`}
-                      alt=""
-                      key={i}
+                      src="/assets/imgs/icons/fancier-pink.png"
+                      alt="fancier-pink"
+                      width={32}
                     />
-                  ))}
-              </div>
+                    <span>ご挨拶</span>
+                  </div>
+                  <TabList className="flex items-center gap-2">
+                    <Tab className="text-base cursor-pointer">メッセージ</Tab>
+                    <span>|</span>
+                    <Tab className="text-base cursor-pointer">猫ちゃん</Tab>
+                    <span>|</span>
+                    <Tab className="text-base cursor-pointer">気持ち</Tab>
+                    <span>|</span>
+                    <Tab className="text-base cursor-pointer">季節</Tab>
+                    <span>|</span>
+                    <Tab className="text-base cursor-pointer">パーティー</Tab>
+                    <span>|</span>
+                    <Tab className="text-base cursor-pointer">フード</Tab>
+                  </TabList>
+                </div>
+                <div className="border-b pb-4 mb-4"></div>
+                <div className="h-24 overflow-y-scroll">
+                  <TabPanel className="">
+                    {CAT_REACT_IMG.map((cat_item, key) => (
+                      <img key={key} src={cat_item[0]} alt={cat_item[1]} />
+                    ))}
+                  </TabPanel>
+                  <TabPanel className="">Panel 2</TabPanel>
+                  <TabPanel className="">Panel 3</TabPanel>
+                  <TabPanel className="">Panel 4</TabPanel>
+                  <TabPanel className="">Panel 5</TabPanel>
+                  <TabPanel className="">Panel 6</TabPanel>
+                </div>
+              </Tabs>
             </div>
           ))}
         {/* 2 */}
@@ -414,7 +431,6 @@ const CatDetail = () => {
         <div className="mt-8 flex justify-center">
           <BtnSolid onClick={() => {}} />
         </div>
-
         {/* album */}
         <div className="text-base mt-14 font-medium">ニャンアルバム</div>
         <div className="w-full border-b border-black mt-4"></div>

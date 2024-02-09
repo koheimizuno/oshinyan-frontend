@@ -4,7 +4,7 @@ import CustomButton from "../CustomButton";
 import { CatObjectType } from "../../../constant/type";
 import { useDispatch, useSelector } from "react-redux";
 import { RecommendAction } from "../../../slices/cat";
-import { isNewUtil } from "../../../utils";
+import { isNewUtil } from "../../../utils/functions";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";

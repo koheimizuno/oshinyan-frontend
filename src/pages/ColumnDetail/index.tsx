@@ -8,6 +8,7 @@ import BlogColumnBox from "../../components/basic/blog/BlogColumnBox";
 import { ColumnType } from "../../constant/type";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { formatDateTime } from "../../utils/functions";
 
 function ColumnDetail() {
   const { id } = useParams();
@@ -42,9 +43,7 @@ function ColumnDetail() {
         </p>
         <div className="pt-10">
           <p className="text-xl pb-4 text-[#808080]">
-            {`${new Date(AcolumnData.created_date).getFullYear()}.${
-              new Date(AcolumnData.created_date).getMonth() + 1
-            }.${new Date(AcolumnData.created_date).getDate()}`}
+            {formatDateTime(AcolumnData.created_date)}
           </p>
           <h2 className="text-[32px] text-[#515151]">{AcolumnData.title}</h2>
         </div>
