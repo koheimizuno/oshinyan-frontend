@@ -12,10 +12,6 @@ const SmallCatCard = ({
   cat_name,
   shop,
   images,
-  character,
-  favorite_things,
-  description,
-  attendance,
   recommend,
   last_update,
 }: CatObjectType) => {
@@ -176,12 +172,12 @@ const SmallCatCard = ({
           <h3 className="text-[24px] leading-[24px] vertical-bottom font-bold text-left text-ellipsis overflow-hidden whitespace-nowrap">
             {cat_name}
           </h3>
-          <Link
-            to="#"
+          <button
             className=" w-[145px] leading-[21px] underline text-[16px] text-ellipsis overflow-hidden tracking-tighter whitespace-nowrap "
+            onClick={() => navigate(`/nyanplace/${shop.id}`)}
           >
             {shop.shop_name}
-          </Link>
+          </button>
         </div>
         <div className="flex justify-content-start items-center mt-[auto] mb-[8px]">
           <span className=" flex d-inline-block align-items-center w-[24px] h-[24px]  mr-[9px]">

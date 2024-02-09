@@ -7,33 +7,33 @@ import axios from "axios";
 
 interface SearchProps {
   selectPrefectureKeyword: (val: string) => void;
-  selectCharacterKeyword: (val: string) => void;
+  selectShopTypeKeyword: (val: string) => void;
   setPrefectureShow: (val: boolean) => void;
-  setCharacterShow: (val: boolean) => void;
+  setShopTypeShow: (val: boolean) => void;
   setSearchWord: (val: string) => void;
   prefectureShow: boolean;
-  characterShow: boolean;
+  shopTypeShow: boolean;
   searchWord: string;
   handleFreeSearch: () => void;
 }
-const SearchBar = ({
+const NyanPlaceSearchBar = ({
   selectPrefectureKeyword,
   setPrefectureShow,
   prefectureShow,
-  selectCharacterKeyword,
-  setCharacterShow,
-  characterShow,
+  selectShopTypeKeyword,
+  setShopTypeShow,
+  shopTypeShow,
   setSearchWord,
   searchWord,
   handleFreeSearch,
 }: SearchProps) => {
-  const [characterData, setCharacterData] = useState<{ character: string }[]>(
-    []
-  );
+  const [shopTypeData, setShopTypeData] = useState<
+    { id: string; shop_type: string }[]
+  >([]);
   useEffect(() => {
     const fetchCharacter = async () => {
-      const { data } = await axios.get("api/character/");
-      setCharacterData(data);
+      const { data } = await axios.get("api/shoptype/");
+      setShopTypeData(data);
     };
     fetchCharacter();
   }, []);
@@ -41,7 +41,7 @@ const SearchBar = ({
     <>
       <div className="relative bg-white">
         <Container>
-          <div className=" relative xs:block sm:grid sm:grid-cols-2 py-4">
+          <div className=" relative xs:block sm:grid sm:grid-cols-2 p-4">
             <div className="xs:block sm:flex sm:justify-between sm:items-center gap-3 xs:pb-6 sm:pb-0">
               <div className="xs:pb-6 sm:pb-0">
                 <p className="text-[16px]">看板猫を探す</p>
@@ -71,7 +71,7 @@ const SearchBar = ({
                   prefectureShow
                     ? setPrefectureShow(false)
                     : setPrefectureShow(true);
-                  setCharacterShow(false);
+                  setShopTypeShow(false);
                 }}
               >
                 <button className=" w-[100%] flex justify-between items-center ">
@@ -84,22 +84,22 @@ const SearchBar = ({
                   ></div>
                 </button>
               </div>
-              <div className="ml-[24px] w-[112px] h-[32px] bg-[#CBB279] shadow-inner rounded pl-[16px] pt-[3px] pb-[5px] pr-[10px] hover:opacity-70 active:opacity-100">
+              <div className="ml-[24px] w-[128px] h-[32px] bg-[#CBB279] shadow-inner rounded pl-[16px] pt-[3px] pb-[5px] pr-[10px] hover:opacity-70 active:opacity-100">
                 <button
                   className=" w-[100%] flex justify-between items-center "
                   onClick={() => {
-                    characterShow
-                      ? setCharacterShow(false)
-                      : setCharacterShow(true);
+                    shopTypeShow
+                      ? setShopTypeShow(false)
+                      : setShopTypeShow(true);
                     setPrefectureShow(false);
                   }}
                 >
-                  <p className=" text-white text-[16px] drop-shadow-[1px_1px_rgba(195,129,84,1)]">
-                    性 格
+                  <p className=" text-white text-[16px] drop-shadow-[1px_1px_rgba(195,129,84,1)] whitespace-nowrap">
+                    カテゴリー
                   </p>
                   <div
                     className="h-0 w-0 border-t-[8px] border-r-[6px] border-l-[6px] 
-                            border-solid border-r-transparent border-l-transparent border-t-white ml-[20px] mt-[5px]"
+                            border-solid border-r-transparent border-l-transparent border-t-white ml-[15px] mt-[5px]"
                   ></div>
                 </button>
               </div>
@@ -142,12 +142,12 @@ const SearchBar = ({
               </div>
             </div>
           )}
-          {characterShow && (
+          {shopTypeShow && (
             <div className="absolute bg-white w-full xs:top-[168px] xs:px-5 sm:top-[70px] left-0 z-50">
               <div className="max-w-[960px] m-auto xs:px-5 lg:px-0 mt-[24px] mb-[16px]">
                 <div className="flex flex-wrap gap-4 whitespace-nowrap ">
-                  {characterData &&
-                    characterData.map((item, index) => (
+                  {shopTypeData &&
+                    shopTypeData.map((item, index) => (
                       <div
                         className="flex justify-center items-center "
                         key={index}
@@ -155,10 +155,10 @@ const SearchBar = ({
                         <div
                           className=" hover:opacity-70"
                           onClick={() => {
-                            selectCharacterKeyword(item.character);
+                            selectShopTypeKeyword(item.id);
                           }}
                         >
-                          <PrefectureBtn value={item.character} />
+                          <PrefectureBtn value={item.shop_type} />
                         </div>
                       </div>
                     ))}
@@ -166,7 +166,7 @@ const SearchBar = ({
                 <div className="mt-4 pt-4 text-center border-t border-t-solid border-[#EAEAEA]">
                   <button
                     className="bg-[#FBA1B7] rounded-full shadow-inner text-white hover:opacity-70"
-                    onClick={() => setCharacterShow(false)}
+                    onClick={() => setShopTypeShow(false)}
                   >
                     <p className="py-[6px] px-[26px] drop-shadow-[1px_1px_rgba(230,149,169,1)]">
                       検索するニャン！
@@ -182,4 +182,4 @@ const SearchBar = ({
   );
 };
 
-export default SearchBar;
+export default NyanPlaceSearchBar;

@@ -14,12 +14,12 @@ import BtnAdd from "./components/BtnAdd";
 import BtnSolid from "./components/BtnSolid";
 import CatImage from "./components/CatImage";
 import CatCard from "../../basic/blog/CatCard";
-import ImageGallery from "./components/ImageGallery";
-import ImageDetail from "./components/ImageDetail";
 import axios from "axios";
 import { CatObjectType, UserType, commentType } from "../../../constant/type";
 import { RecommendAction } from "../../../slices/cat";
 import CatDetailCarousel from "./components/Carousel";
+import AlbumGallery from "./components/AlbumGallery";
+import ImageDetail from "./components/ImageDetail";
 
 const actions = [
   "avatar_1.svg",
@@ -41,16 +41,17 @@ const CatDetail = () => {
   const navigate = useNavigate();
   const recommendLoginElement = useRef<HTMLDivElement>(null);
   const [recommendLoginShow, setRecommendLoginShow] = useState(false);
-  const [showImageGallery, setShowImageGallery] = useState(false);
   const [showImageDetail, setShowImageDetail] = useState(false);
   const [catData, setCatData] = useState<CatObjectType[]>([]);
   const [recommendedUser, setRecommendedUser] = useState<UserType[]>([]);
   const [commentData, setCommentData] = useState<commentType[]>([]);
   const [displayAll, setDisplayAll] = useState(false);
+  const [showAlbumGallery, setShowAlbumGallery] = useState(false);
   const [commentImgs, setCommentImgs] = useState<
     {
       imgs: string;
       username: string;
+      comment: string;
     }[]
   >([]);
 
@@ -81,12 +82,17 @@ const CatDetail = () => {
       let list: {
         imgs: string;
         username: string;
+        comment: string;
       }[] = [];
       const { data } = await axios.get(`api/comment?cat_id=${id}`);
       setCommentData(data);
       data.map((item: any, key: number) =>
         item.comment_images.map((it: any, i: number) =>
-          list.push({ imgs: it.imgs, username: item.user.username })
+          list.push({
+            imgs: it.imgs,
+            username: item.user.username,
+            comment: item.comment,
+          })
         )
       );
       setCommentImgs(list);
@@ -153,8 +159,6 @@ const CatDetail = () => {
     }
   };
 
-  console.log(recommendLoginShow);
-
   return (
     <div className="w-full relative">
       <CatDetailCarousel data={retrieveCat} />
@@ -201,15 +205,15 @@ const CatDetail = () => {
             text="ニャンアルバム"
             isShowIcon={true}
             onClick={() => {
-              setShowImageGallery(true);
+              setShowAlbumGallery(true);
             }}
           />
         </div>
         <div className="mt-4 break-all">{retrieveCat.description}</div>
-        <div className="mt-2">
+        <div className="mt-2 flex gap-5">
           <Link
             to={`/nyanplace/${id}`}
-            className="underline text-base w-[180px] inline-block"
+            className="underline text-base inline-block"
           >
             {retrieveCat.shop.shop_name}
           </Link>
@@ -382,7 +386,7 @@ const CatDetail = () => {
                     return (
                       <CatFavorite
                         imgUrl={e.imgs}
-                        vote={retrieveCat.recommend.length}
+                        recommend={retrieveCat.recommend.length}
                         key={i}
                         onClick={() => setShowImageDetail(true)}
                       />
@@ -414,13 +418,13 @@ const CatDetail = () => {
         {/* album */}
         <div className="text-base mt-14 font-medium">ニャンアルバム</div>
         <div className="w-full border-b border-black mt-4"></div>
-        <div className="grid grid-cols-3 gap-y-3">
+        <div className="grid grid-cols-3 gap-6">
           {commentImgs && displayAll
             ? commentImgs.map((item, key) => (
                 <CatImage
                   imgUrl={item.imgs}
-                  personName={item.username}
-                  vote={0}
+                  username={item.username}
+                  recommend={0}
                   key={key}
                 />
               ))
@@ -428,10 +432,10 @@ const CatDetail = () => {
                 .slice(0, 9)
                 .map((item, key) => (
                   <CatImage
-                    imgUrl={item.imgs}
-                    personName={item.username}
-                    vote={0}
                     key={key}
+                    imgUrl={item.imgs}
+                    username={item.username}
+                    recommend={0}
                   />
                 ))}
         </div>
@@ -475,8 +479,20 @@ const CatDetail = () => {
           </p>
         )}
       </div>
-      <ImageGallery show={showImageGallery} setShow={setShowImageGallery} />
-      <ImageDetail show={showImageDetail} setShow={setShowImageDetail} />
+      <AlbumGallery
+        cat_name={retrieveCat.cat_name}
+        commentImgs={commentImgs}
+        displayAll={displayAll}
+        setDisplayAll={setDisplayAll}
+        showAlbumGallery={showAlbumGallery}
+        setShowAlbumGallery={setShowAlbumGallery}
+      />
+      {/* <ImageDetail show={showImageDetail} setShow={setShowImageDetail} /> */}
+      <ImageDetail
+        commentImgs={commentImgs}
+        showAlbumGallery={showImageDetail}
+        setShowAlbumGallery={setShowImageDetail}
+      />
     </div>
   );
 };

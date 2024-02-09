@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import MainLayout from "../../layouts/MainLayout";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import Container from "../../components/basic/Container";
@@ -17,6 +17,7 @@ import { Notification } from "../../constant/notification";
 
 function Comment() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const hiddenFileInput = useRef<HTMLInputElement>(null);
   const [checked, setChecked] = useState(false);
   const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
@@ -25,7 +26,7 @@ function Comment() {
   const { user } = useSelector((state: any) => state.user);
   useEffect(() => {
     const RetrieveCat = async () => {
-      const { data } = await axios.get(`cat/cats/${id}/`);
+      const { data } = await axios.get(`api/cats/${id}/`);
       setRetrieveCat(data);
     };
     RetrieveCat();
@@ -53,6 +54,9 @@ function Comment() {
       try {
         const res = await axios.post("api/comment/", formData);
         Notification("success", "未登録店舗の登録が成功しました。");
+        setTimeout(() => {
+          navigate(`/oshinyan/${id}`);
+        }, 2000);
       } catch (error: any) {
         if (error.response.status === 400)
           Notification("error", "店舗は既に存在します。");

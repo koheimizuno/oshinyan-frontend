@@ -15,20 +15,6 @@ import {
 import { Close } from "@mui/icons-material";
 const Box = lazy(() => import("@mui/material/Box"));
 
-const modalBoxSytle = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: "912px",
-  margin: "auto",
-  bgcolor: "#fff",
-  boxShadow: 50,
-  overflow: "visible",
-  outline: 0,
-  borderRadius: "8px",
-};
-
 interface avatarType {
   id: number;
   avatar: string;
@@ -116,8 +102,15 @@ const SignupForm = () => {
             onClose={() => setAvatarModal(false)}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
+            slotProps={{
+              backdrop: {
+                sx: {
+                  backgroundColor: "rgba(0,0,0,.85)",
+                },
+              },
+            }}
           >
-            <Box sx={modalBoxSytle}>
+            <Box className="w-[912px] bg-white rounded-lg absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
               <div className="p-6 pb-[34px]">
                 <Close
                   className="absolute top-2 right-2 bg-[#474747] rounded-full text-white p-1 cursor-pointer"

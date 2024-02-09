@@ -1,210 +1,178 @@
-import { useEffect, useMemo, useState } from "react";
-import CatImage from "./CatImage";
-import Container from "../../../basic/Container";
-import Multi from "../../../basic/icons/Close";
-import ArrowLeft from "../icons/ArrowLeft";
-import ArrowRight from "../icons/ArrowRight";
-import AliceCarousel from "react-alice-carousel";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import { Modal, Box } from "@mui/material";
 import Heart from "../../../basic/icons/Heart";
 
-import "react-alice-carousel/lib/alice-carousel.css";
-const handleDragStart = (e: any) => e.preventDefault();
-const imgs = new Array(20).fill({
-  imgUrl: "/assets/imgs/cats/cat_detail_carousel.png",
-  text: "□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□",
-  vote: "000",
-});
-
-const thumbItems = (
-  items: React.JSX.Element[],
-  [setThumbIndex, setThumbAnimation]: [
-    React.Dispatch<React.SetStateAction<number>>,
-    React.Dispatch<React.SetStateAction<boolean>>
-  ]
-) => {
-  return (
-    imgs &&
-    imgs.map((e, i) => (
-      <div
-        className="thumb w-[200px] px-1 opacity-60"
-        onClick={() => (setThumbIndex(i), setThumbAnimation(true))}
-      >
-        <img src={e.imgUrl} onDragStart={handleDragStart} role="presentation" />
-      </div>
-    ))
-  );
+type PropsType = {
+  // cat_name: string;
+  // displayAll: boolean;
+  commentImgs: {
+    imgs: string;
+    username: string;
+    comment: string;
+  }[];
+  // setDisplayAll: any;
+  showAlbumGallery: boolean;
+  setShowAlbumGallery: any;
 };
 
-const items =
-  imgs &&
-  imgs.map((e: { imgUrl: string }) => (
-    <div className="w-full">
-      <img
-        src={e.imgUrl}
-        onDragStart={handleDragStart}
-        role="presentation"
-        className="w-full"
-      />
-      <div className="flex justify-between mt-2">
-        <span className="text-base underline text-white">猫好きさん</span>
-        <div className="flex w-[48px] h-[18px] right-[5px] bottom-[5px]">
-          <div className="me-1">
-            <Heart />
-          </div>
-          <div className="text-white text-[12px] leading-4">{111}</div>
-        </div>
-      </div>
-      <div className="mt-3 text-base text-white break-all">
-        □□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
-      </div>
-    </div>
-  ));
 const ImageDetail = ({
-  onClick,
-  show,
-  setShow,
-}: {
-  onClick?: () => void;
-  setShow: (v: boolean) => void;
-  show: boolean;
-}) => {
-  useEffect(() => {
-    if (show) {
-      document.body.classList.add("no-scrollbar");
-      document.querySelector("html")?.classList.add("no-scrollbar");
-    } else {
-      document.body.classList.remove("no-scrollbar");
-      document.querySelector("html")?.classList.remove("no-scrollbar");
-    }
-  }, [show]);
-
-  const offset = useMemo(() => {
-    const fullWidth = window.innerWidth;
-    const offset = fullWidth > 960 ? (fullWidth - 960) / 2 : 0;
-    return offset;
-  }, []);
-
-  const [mainIndex, setMainIndex] = useState(0);
-  const [mainAnimation, setMainAnimation] = useState(false);
-  const [thumbIndex, setThumbIndex] = useState(0);
-  const [thumbAnimation, setThumbAnimation] = useState(false);
-  const [thumbs] = useState(
-    thumbItems(items, [setThumbIndex, setThumbAnimation])
-  );
-
-  const slideNext = () => {
-    if (!thumbAnimation && thumbIndex < thumbs.length - 1) {
-      setThumbAnimation(true);
-      setThumbIndex(thumbIndex + 1);
-    }
-  };
-
-  const slidePrev = () => {
-    if (!thumbAnimation && thumbIndex > 0) {
-      setThumbAnimation(true);
-      setThumbIndex(thumbIndex - 1);
-    }
-  };
-
-  const syncMainBeforeChange = () => {
-    setMainAnimation(true);
-  };
-
-  const syncMainAfterChange = (e: any) => {
-    setMainAnimation(false);
-
-    if (e.type === "action") {
-      setThumbIndex(e.item);
-      setThumbAnimation(false);
-    } else {
-      setMainIndex(thumbIndex);
-    }
-  };
-
-  const syncThumbs = (e: any) => {
-    setThumbIndex(e.item);
-    setThumbAnimation(false);
-
-    if (!mainAnimation) {
-      setMainIndex(e.item);
-    }
-  };
+  commentImgs,
+  showAlbumGallery,
+  setShowAlbumGallery,
+}: PropsType) => {
   return (
     <>
-      {show && (
-        <div
-          className="fixed top-0 left-0 w-full h-full z-[1000]"
-          style={{ backgroundColor: "rgba(0,0,0,0.85)" }}
-        >
-          <Container>
-            <div className="relative max-h-[94vh] m-auto top-[3vw] flex flex-col">
-              <div
-                className="absolute top-0 right-0 cursor-pointer z-[10000]"
-                onClick={() => {
-                  setShow(false);
-                }}
-              >
-                <Multi />
+      <Modal
+        open={showAlbumGallery}
+        onClose={() => setShowAlbumGallery(false)}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+        slotProps={{
+          backdrop: {
+            sx: {
+              backgroundColor: "rgba(0,0,0,.85)",
+            },
+          },
+        }}
+      >
+        <Box className="absolute w-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 outline-none">
+          <Swiper
+            modules={[Navigation, Pagination, Scrollbar, A11y]}
+            speed={800}
+            pagination={{
+              el: ".swiper-pagination",
+              type: "bullets",
+              clickable: true,
+            }}
+            loop={true}
+            centeredSlides={true}
+            slidesPerView={1}
+            navigation={{
+              nextEl: `.arrow-left`,
+              prevEl: `.arrow-right`,
+            }}
+            className="cursor-pointer w-[960px]"
+          >
+            {commentImgs.map((item, key) => (
+              <div>
+                <SwiperSlide key={key} className="inline-block">
+                  <div className="h-[500px] overflow-hidden">
+                    <img
+                      src={item.imgs}
+                      alt={item.imgs}
+                      className="h-full m-auto"
+                    />
+                  </div>
+                  <div className="px-10">
+                    <div className="flex justify-between py-3 text-white text-base">
+                      <p>{item.username}</p>
+                      <div className="flex gap-2">
+                        <span>いいニャン！</span>
+                        <span className="flex items-center gap-1">
+                          <Heart />
+                          000
+                        </span>
+                      </div>
+                    </div>
+                    <p className="text-white text-base py-4">{item.comment}</p>
+                  </div>
+                </SwiperSlide>
               </div>
-              <div className="relative w-5/6 m-auto">
-                <div className="mx-10 mt-16">
-                  <AliceCarousel
-                    activeIndex={mainIndex}
-                    animationType="fadeout"
-                    animationDuration={800}
-                    disableDotsControls
-                    disableButtonsControls
-                    items={items}
-                    mouseTracking={!thumbAnimation}
-                    onSlideChange={syncMainBeforeChange}
-                    onSlideChanged={syncMainAfterChange}
-                    touchTracking={!thumbAnimation}
+            ))}
+            <div className="swiper-pagination custom-pagination-bullets bottom-32"></div>
+            <button className={`arrow-left xs:hidden md:block`}>
+              <div className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
+                <svg
+                  style={{ marginRight: "4px" }}
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 12.728 12.728"
+                >
+                  <path
+                    id="arr_left"
+                    d="M499-1749v8h-8"
+                    transform="translate(-877.52 -1577.555) rotate(135)"
+                    fill="none"
+                    stroke="#fff"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1"
+                    opacity="0.75"
                   />
-                </div>
-                <div
-                  className="btn-prev absolute top-[50%] left-0 cursor-pointer"
-                  onClick={slidePrev}
-                >
-                  <ArrowLeft />
-                </div>
-                <div
-                  className="btn-next absolute top-[50%] right-0 cursor-pointer"
-                  onClick={slideNext}
-                >
-                  <ArrowRight />
-                </div>
+                </svg>
               </div>
-              <div
-                className="thumbs mt-8 w-[100vw] "
-                style={{ marginLeft: `-${offset}px` }}
-              >
-                <AliceCarousel
-                  activeIndex={thumbIndex}
-                  autoWidth
-                  disableDotsControls
-                  disableButtonsControls
-                  items={thumbs}
-                  mouseTracking={false}
-                  onSlideChanged={syncThumbs}
-                  touchTracking={!mainAnimation}
-                />
-                <div
-                  className="btn-prev absolute bottom-[40px] left-0 cursor-pointer"
-                  onClick={slidePrev}
+            </button>
+            <button className={`arrow-right xs:hidden md:block`}>
+              <div className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="12.728"
+                  height="12.728"
+                  viewBox="0 0 12.728 12.728"
                 >
-                  <ArrowLeft />
-                </div>
-                <div
-                  className="btn-next absolute bottom-[40px] right-0 cursor-pointer"
-                  onClick={slideNext}
-                >
-                  <ArrowRight />
-                </div>
+                  <path
+                    id="arr_right"
+                    d="M499-1749v8h-8"
+                    transform="translate(890.247 1590.283) rotate(-45)"
+                    fill="none"
+                    stroke="#fff"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1"
+                    opacity="0.75"
+                  />
+                </svg>
               </div>
-            </div>
-          </Container>
-        </div>
-      )}
+            </button>
+          </Swiper>
+          <div className="w-full mt-8">
+            <Swiper
+              modules={[Navigation, Pagination, Scrollbar, A11y]}
+              loop={true}
+              centeredSlides={true}
+              autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+              }}
+              spaceBetween="16px"
+              slidesPerView={
+                commentImgs.length > window.innerWidth / 160
+                  ? window.innerWidth / 160
+                  : commentImgs.length
+              }
+              navigation={{ nextEl: ".arrow-left", prevEl: ".arrow-right" }}
+              className="h-40 cursor-pointer "
+            >
+              {commentImgs &&
+                commentImgs.map((item: any, key: any) => (
+                  <SwiperSlide key={key}>
+                    <img
+                      src={item.imgs}
+                      alt={item.imgs}
+                      className="h-full m-auto"
+                    />
+                  </SwiperSlide>
+                ))}
+              <button className="arrow-left xs:hidden md:block">
+                <div className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
+                  <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                    {/* <ArrowLeft /> */}
+                  </span>
+                </div>
+              </button>
+              <button className="arrow-right1 xs:hidden md:block">
+                <div className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
+                  <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                    {/* <ArrowRight /> */}
+                  </span>
+                </div>
+              </button>
+            </Swiper>
+          </div>
+        </Box>
+      </Modal>
     </>
   );
 };

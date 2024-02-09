@@ -2,11 +2,11 @@ import Heart from "../../../basic/icons/Heart";
 
 interface Props {
   imgUrl: string;
-  vote: number;
+  recommend: number;
   onClick?: () => void;
 }
 
-const CatFavorite = ({ imgUrl, vote, onClick }: Props) => {
+const CatFavorite = ({ imgUrl, recommend, onClick }: Props) => {
   return (
     <div className="relative overflow-x-hidden" onClick={onClick}>
       <img src={imgUrl} alt="cat" className="m-auto h-[120px] " />
@@ -14,7 +14,7 @@ const CatFavorite = ({ imgUrl, vote, onClick }: Props) => {
         <div className="me-1">
           <Heart />
         </div>
-        <div className="text-white text-[12px] leading-4">{vote}</div>
+        <div className="text-white text-[12px] leading-4">{recommend}</div>
       </div>
     </div>
   );

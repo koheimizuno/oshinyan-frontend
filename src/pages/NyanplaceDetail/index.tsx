@@ -6,7 +6,6 @@ import Container from "../../components/basic/Container";
 import PrefectureBtn from "../../components/basic/CustomButton";
 import CatCard from "../../components/basic/blog/CatCard";
 import NyanPlaceCard from "../../components/basic/NyanPlaceCard";
-import SignboardSearchBar from "../../components/common/SignboardSearchBar";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import Title from "../../components/common/Typography/Title";
 import axios from "axios";
@@ -16,18 +15,20 @@ import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 
 function NyanplaceDetail() {
   const { id } = useParams();
-  const [regions, setRegions] = useState<string[]>([]);
   const [shopData, setShopData] = useState<CatObjectType[]>([]);
   const [AshopData, setAShopData] = useState<shopType>({
     shop_name: "",
     prefecture: "",
     address: "",
+    shop_type: {
+      id: "",
+      shop_type: "",
+    },
   });
   useEffect(() => {
     const fetchAShopData = async () => {
       const { data } = await axios.get(`api/shop/${id}/`);
       setAShopData(data);
-      console.log(data);
     };
     const fetchShopData = async () => {
       const { data } = await axios.get("api/shop/");
@@ -240,13 +241,13 @@ function NyanplaceDetail() {
                     shop_name={e.shop_name}
                     prefecture={e.prefecture}
                     shop_images={e.shop_images}
-                    category={e.category}
+                    shop_type={e.shop_type}
                   />
                 );
               })}
           </div>
           <div className="bg-white mb-[64px]">
-            <SignboardSearchBar list={regions} setList={setRegions} />
+            {/* <SignboardSearchBar list={regions} setList={setRegions} /> */}
           </div>
         </Container>
       </section>

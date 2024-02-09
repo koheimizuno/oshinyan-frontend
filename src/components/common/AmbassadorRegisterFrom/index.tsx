@@ -15,19 +15,6 @@ import { Notification } from "../../../constant/notification";
 import { useNavigate } from "react-router-dom";
 import InputText from "../../basic/InputText";
 
-const modalBoxSytle = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: "960px",
-  margin: "auto",
-  borderRadius: "32px",
-  bgcolor: "background.paper",
-  boxShadow: 50,
-  overflow: "visible",
-};
-
 const AmbassadorRegisterFrom = () => {
   const navigate = useNavigate();
   const [openModal, setOpenModal] = useState(false);
@@ -278,8 +265,15 @@ const AmbassadorRegisterFrom = () => {
         onClose={() => setOpenModal(false)}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        slotProps={{
+          backdrop: {
+            sx: {
+              backgroundColor: "rgba(0,0,0,.85)",
+            },
+          },
+        }}
       >
-        <Box sx={modalBoxSytle}>
+        <Box className="w-[960px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-[32px] bg-white shadow-md">
           <div className="p-6">
             <Close
               className="absolute top-4 right-4 bg-[#474747] rounded-full text-white p-1 cursor-pointer"

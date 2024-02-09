@@ -48,7 +48,7 @@ const MonthRanking = () => {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          `cat/monthrankingcat?date=${dates.year}-${dates.month}-${dates.date}`
+          `api/monthrankingcat?date=${dates.year}-${dates.month}-${dates.date}`
         );
         setCatData(res.data);
       } catch (error) {}
@@ -87,7 +87,7 @@ const MonthRanking = () => {
         month: month,
       }));
       const res = await axios.get(
-        `cat/monthrankingcat?date=${year}-${month}-${dates.date}`
+        `api/monthrankingcat?date=${year}-${month}-${dates.date}`
       );
       setCatData(res.data);
     } catch (error) {}
@@ -110,7 +110,7 @@ const MonthRanking = () => {
           month: month,
         }));
         const res = await axios.get(
-          `cat/monthrankingcat?date=${year}-${month}-${dates.date}`
+          `api/monthrankingcat?date=${year}-${month}-${dates.date}`
         );
         setCatData(res.data);
         setPrefectureShow(false);

@@ -8,61 +8,18 @@ import FavoriteCard from "../../components/basic/FavoriteCard";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import Title from "../../components/common/Typography/Title";
 import axios from "axios";
-import { CatObjectType, commentType } from "../../constant/type";
+import { CatObjectType } from "../../constant/type";
 import { useSelector } from "react-redux";
 import { Modal } from "@mui/material";
 import { Close } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
 const Box = lazy(() => import("@mui/material/Box"));
-
-const Cats = [
-  {
-    imgUrl: "/assets/imgs/cats/favorite_cat.png",
-    isChu: false,
-  },
-  {
-    imgUrl: "/assets/imgs/cats/favorite_cat.png",
-    isChu: false,
-  },
-  {
-    imgUrl: "/assets/imgs/cats/favorite_cat.png",
-    isChu: false,
-  },
-  {
-    imgUrl: "/assets/imgs/cats/favorite_cat.png",
-    isChu: false,
-  },
-  {
-    imgUrl: "/assets/imgs/cats/favorite_cat.png",
-    isChu: false,
-  },
-  {
-    imgUrl: "/assets/imgs/cats/favorite_cat.png",
-    isChu: false,
-  },
-];
 
 interface avatarType {
   id: number;
   avatar: string;
 }
 
-const modalBoxSytle = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: "912px",
-  margin: "auto",
-  bgcolor: "#fff",
-  boxShadow: 50,
-  overflow: "visible",
-  outline: 0,
-  borderRadius: "8px",
-};
-
 const MyPage = () => {
-  const navigate = useNavigate();
   const [userCatData, setUserCatData] = useState<CatObjectType[]>([]);
   const [currentUser, setCurrentUser] = useState({
     id: 0,
@@ -86,8 +43,7 @@ const MyPage = () => {
     // !isAuthenticated && navigate("/login");
     const commentByUserFetch = async () => {
       let list: any[] = [];
-      const { data } = await axios.get(`cat/commentbyuser`);
-      console.log(data);
+      const { data } = await axios.get(`api/commentbyuser`);
       data.forEach((item: any) => {
         item.comment_images.forEach((it: any) => {
           list.push(it.imgs);
@@ -192,8 +148,15 @@ const MyPage = () => {
                 onClose={() => setAvatarModal(false)}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
+                slotProps={{
+                  backdrop: {
+                    sx: {
+                      backgroundColor: "rgba(0,0,0,.85)",
+                    },
+                  },
+                }}
               >
-                <Box sx={modalBoxSytle}>
+                <Box className="w-[912px] bg-white rounded-lg outline-none absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                   <div className="p-6 pb-[34px]">
                     <Close
                       className="absolute top-2 right-2 bg-[#474747] rounded-full text-white p-1 cursor-pointer"
@@ -306,7 +269,7 @@ const MyPage = () => {
                   key={key}
                   imgUrl={item}
                   date="2023.01.01"
-                  vote="000"
+                  recommend="000"
                 />
               ))}
           </div>

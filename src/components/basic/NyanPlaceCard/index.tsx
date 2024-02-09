@@ -21,8 +21,8 @@ const NyanPlaceCard = (props: shopType) => {
       <div className="m-4 mt-[19px] flex-wrap flex flex-end">
         <div className="w-full">{props.shop_name}</div>
         <div className="ms-auto mt-[10px] flex gap-2">
-          {props.address && (
-            <PrefectureBtn value={props.address}></PrefectureBtn>
+          {props.shop_type && (
+            <PrefectureBtn value={props.shop_type.shop_type}></PrefectureBtn>
           )}
           <PrefectureBtn value={props.prefecture}></PrefectureBtn>
         </div>

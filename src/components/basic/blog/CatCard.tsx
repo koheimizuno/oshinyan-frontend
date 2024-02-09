@@ -92,7 +92,10 @@ const CatCard = ({
             loop={true}
             centeredSlides
             slidesPerView={1}
-            navigation={{ nextEl: ".arrow-left", prevEl: ".arrow-right" }}
+            navigation={{
+              nextEl: `.arrow-left${id}${advertise && id}`,
+              prevEl: `.arrow-right${id}${advertise && id}`,
+            }}
             className="cursor-pointer"
           >
             {images &&
@@ -114,7 +117,9 @@ const CatCard = ({
                 </SwiperSlide>
               ))}
             <div className="swiper-pagination custom-pagination-bullets"></div>
-            <button className="arrow-left xs:hidden md:block">
+            <button
+              className={`arrow-left${id}${advertise && id} xs:hidden md:block`}
+            >
               <div className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
                 {/* <ArrowLeft /> */}
                 <svg
@@ -138,7 +143,9 @@ const CatCard = ({
                 </svg>
               </div>
             </button>
-            <button className="arrow-left xs:hidden md:block">
+            <button
+              className={`arrow-left${id}${advertise && id} xs:hidden md:block`}
+            >
               <div className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
                 {/* <ArrowRight /> */}
                 <svg
@@ -206,14 +213,14 @@ const CatCard = ({
           </div>
           <div className="flex justify-between">
             <div>
-              <Link
-                to="#"
+              <button
                 className={`w-[145px] underline text-[16px] text-ellipsis overflow-hidden tracking-tighter whitespace-nowrap ${
                   hoverAction && "text-[#0000FF]"
                 }`}
+                onClick={() => navigate(`/nyanplace/${shop.id}`)}
               >
                 {shop.shop_name}
-              </Link>
+              </button>
             </div>
             <div>
               <CustomButton

@@ -26,7 +26,6 @@ const Top = () => {
       try {
         const { data } = await axios.get("api/randomcat");
         setCatData(data);
-        console.log(data);
       } catch (error) {
         Notification("error", "サーバーエラー");
       }

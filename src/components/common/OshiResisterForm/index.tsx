@@ -10,7 +10,7 @@ import {
 import FileUpload from "../../basic/icons/FileUpload";
 import PrivacyComponent from "../PrivacyComponent";
 import Button from "../../basic/Button";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { Notification } from "../../../constant/notification";
 import InputText from "../../basic/InputText";
@@ -20,6 +20,9 @@ const OshiResisterForm = () => {
   const hiddenFileInput = useRef<HTMLInputElement>(null);
   const [checked, setChecked] = useState(false);
   const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
+  const [shopCategory, setShopCategory] = useState<
+    { id: number; shop_type: string }[]
+  >([{ id: 0, shop_type: "カテゴリ1" }]);
   const [registerCatValues, setRegisterCatValues] = useState({
     client_type: "個人",
     company_name: "",
@@ -27,10 +30,18 @@ const OshiResisterForm = () => {
     furi_name: "",
     email: "",
     re_email: "",
-    shop_type: "カフェ",
+    shop_type: "1",
     cat_info: "",
   });
   const [errorMsg, setErrorMsg] = useState("");
+
+  useEffect(() => {
+    const fetchShopCategory = async () => {
+      const { data } = await axios.get("unregistered/shopcategory/");
+      setShopCategory(data);
+    };
+    fetchShopCategory();
+  }, []);
 
   const handleUpload = () => {
     hiddenFileInput.current && hiddenFileInput.current.click();
@@ -222,7 +233,12 @@ const OshiResisterForm = () => {
               className="bg-gradient-to-b from-[#EAEAEA] to-[#D3D3D3] h-10 text-center text-[16px] w-[144px]"
               sx={{ borderRadius: "20px" }}
             >
-              <MenuItem value="カフェ">カフェ</MenuItem>
+              {shopCategory &&
+                shopCategory.map((item, key) => (
+                  <MenuItem key={key} value={item.id}>
+                    {item.shop_type}
+                  </MenuItem>
+                ))}
             </Select>
           </div>
         </div>

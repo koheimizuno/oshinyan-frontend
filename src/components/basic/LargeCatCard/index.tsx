@@ -77,7 +77,10 @@ const LargeCatCard = ({
             loop={true}
             centeredSlides
             slidesPerView={1}
-            navigation={{ nextEl: ".arrow-left", prevEl: ".arrow-right" }}
+            navigation={{
+              nextEl: `.arrow-left${id}`,
+              prevEl: `.arrow-right${id}`,
+            }}
             className="cursor-pointer hover:opacity-70"
           >
             {images &&
@@ -93,7 +96,7 @@ const LargeCatCard = ({
                 </SwiperSlide>
               ))}
             <div className="swiper-pagination custom-pagination-bullets"></div>
-            <button className="arrow-left xs:hidden md:block">
+            <button className={`arrow-left${id} xs:hidden md:block`}>
               <div className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
                 <svg
                   style={{ marginRight: "4px" }}
@@ -116,7 +119,7 @@ const LargeCatCard = ({
                 </svg>
               </div>
             </button>
-            <button className="arrow-left xs:hidden md:block">
+            <button className={`arrow-left${id} xs:hidden md:block`}>
               <div className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -148,12 +151,12 @@ const LargeCatCard = ({
           </div>
           <div className="flex justify-between pb-[24px]">
             <div>
-              <Link
-                to="#"
+              <button
                 className=" w-[145px] underline text-[16px] text-ellipsis overflow-hidden tracking-tighter whitespace-nowrap hover:bg-red"
+                onClick={() => navigate(`/nyanplace/${shop.id}`)}
               >
                 {shop.shop_name}
-              </Link>
+              </button>
             </div>
             <div>
               <CustomButton value={shop.prefecture}></CustomButton>

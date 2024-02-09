@@ -45,7 +45,7 @@ const TotalRanking = () => {
       try {
         if (prefectureKeyword !== null) {
           const { data } = await axios.get(
-            "api/searchprefecture?keyword=" + prefectureKeyword
+            `api/searchprefecture?keyword=${prefectureKeyword}`
           );
           setCatData(data);
         }
@@ -56,7 +56,7 @@ const TotalRanking = () => {
       try {
         if (characterKeyword !== null) {
           const { data } = await axios.get(
-            "api/searchcharacter?keyword=" + characterKeyword
+            `api/searchcharacter?keyword=${characterKeyword}`
           );
           setCatData(data);
         }
@@ -64,13 +64,14 @@ const TotalRanking = () => {
     };
     fetchCharacterSearchData();
     setPrefectureShow(false);
+    setCharacterShow(false);
   }, [prefectureKeyword, characterKeyword]);
 
   const handleFreeSearch = async () => {
     try {
       if (searchWord !== null) {
         const { data } = await axios.get(
-          "api/searchword?keyword=" + searchWord
+          `api/searchword?keyword=${searchWord}`
         );
         setCatData(data);
       }

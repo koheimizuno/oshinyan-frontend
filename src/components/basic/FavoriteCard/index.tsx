@@ -3,10 +3,10 @@ import Heart from "../icons/Heart";
 interface Props {
   imgUrl: string;
   date: string;
-  vote: string;
+  recommend: string;
 }
 
-const FavoriteCard = ({ imgUrl, date, vote = "0" }: Props) => {
+const FavoriteCard = ({ imgUrl, date, recommend = "0" }: Props) => {
   return (
     <div className="w-[288px] h-[241px]">
       <div className="relative overflow-x-hidden flex justify-center">
@@ -16,7 +16,7 @@ const FavoriteCard = ({ imgUrl, date, vote = "0" }: Props) => {
             <div className="me-1">
               <Heart />
             </div>
-            <div className="text-white text-[12px] leading-4">{vote}</div>
+            <div className="text-white text-[12px] leading-4">{recommend}</div>
           </div>
         </div>
       </div>
