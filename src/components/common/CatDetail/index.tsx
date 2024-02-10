@@ -90,23 +90,25 @@ const CatDetail = () => {
   useEffect(() => {
     // !isAuthenticated && navigate("/login");
     const commentFetch = async () => {
-      let list: {
-        imgs: string;
-        username: string;
-        comment: string;
-      }[] = [];
-      const { data } = await axios.get(`api/comment?cat_id=${id}`);
-      setCommentData(data);
-      data.map((item: any, key: number) =>
-        item.comment_images.map((it: any, i: number) =>
-          list.push({
-            imgs: it.imgs,
-            username: item.user.username,
-            comment: item.comment,
-          })
-        )
-      );
-      setCommentImgs(list);
+      try {
+        let list: {
+          imgs: string;
+          username: string;
+          comment: string;
+        }[] = [];
+        const { data } = await axios.get(`api/comment?cat_id=${id}`);
+        setCommentData(data);
+        data.map((item: any, key: number) =>
+          item.comment_images.map((it: any, i: number) =>
+            list.push({
+              imgs: it.imgs,
+              username: item.user.username,
+              comment: item.comment,
+            })
+          )
+        );
+        setCommentImgs(list);
+      } catch (error) {}
     };
     commentFetch();
     fetchReactionWord();
@@ -121,14 +123,20 @@ const CatDetail = () => {
     };
     if (!advertise) {
       const RetrieveCat = async () => {
-        const { data } = await axios.get(`api/cats/${id}/`);
-        setRetrieveCat(data);
+        try {
+          const { data } = await axios.get(`api/cats/${id}/`);
+          setRetrieveCat(data);
+        } catch (error) {
+          console.log(error);
+        }
       };
       RetrieveCat();
     } else {
       const RetrieveCat = async () => {
-        const { data } = await axios.get(`api/advertise/${id}/`);
-        setRetrieveCat(data);
+        try {
+          const { data } = await axios.get(`api/advertise/${id}/`);
+          setRetrieveCat(data);
+        } catch (error) {}
       };
       RetrieveCat();
     }
@@ -138,10 +146,12 @@ const CatDetail = () => {
   useEffect(() => {
     const ListRecommendUser = async () => {
       if (retrieveCat.id) {
-        const { data } = await axios.get(
-          `api/recommend?cat_id=${retrieveCat.id}`
-        );
-        setRecommendedUser(data);
+        try {
+          const { data } = await axios.get(
+            `api/recommend?cat_id=${retrieveCat.id}`
+          );
+          setRecommendedUser(data);
+        } catch (error) {}
       }
     };
     ListRecommendUser();
@@ -153,8 +163,10 @@ const CatDetail = () => {
 
   useEffect(() => {
     const fetchReactionIcon = async () => {
-      const { data } = await axios.get("api/commentreactionicon/");
-      setReactionIconData(data);
+      try {
+        const { data } = await axios.get("api/commentreactionicon/");
+        setReactionIconData(data);
+      } catch (error) {}
     };
     fetchReactionIcon();
     setReactionIconCreated(false);
@@ -168,7 +180,9 @@ const CatDetail = () => {
             cat_id: id,
             user_id: user.user_id,
           };
-          const res = await dispatch(RecommendAction(submitData));
+          try {
+            const res = await dispatch(RecommendAction(submitData));
+          } catch (error) {}
         }
       } else {
         if (!retrieveCat.recommend.find((e) => e.user == user.user_id)) {
@@ -176,7 +190,9 @@ const CatDetail = () => {
             advertise_id: id,
             user_id: user.user_id,
           };
-          const res = await dispatch(RecommendAction(submitData));
+          try {
+            const res = await dispatch(RecommendAction(submitData));
+          } catch (error) {}
         }
       }
     } else {

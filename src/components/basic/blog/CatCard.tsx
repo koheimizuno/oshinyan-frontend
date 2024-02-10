@@ -226,7 +226,8 @@ const CatCard = ({
               <CustomButton
                 value={shop.prefecture}
                 className={
-                  hoverAction && "bg-[#CBB279] text-white border-0 inline-block"
+                  hoverAction &&
+                  "bg-[#CBB279] border-[#CBB279] text-white inline-block"
                 }
               />
             </div>
