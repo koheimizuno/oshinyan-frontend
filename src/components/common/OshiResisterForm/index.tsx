@@ -120,22 +120,26 @@ const OshiResisterForm = () => {
         </div>
         <div className="border-b border-[#CCCCCC] mt-[27px]"></div>
         {/* row 2 */}
-        <div className="pt-[27px] flex justify-between items-center">
-          <label className="text-[14px]" htmlFor="">
-            会社名・法人名
-            <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
-              *
-            </span>
-          </label>
-          <InputText
-            name="company_name"
-            value={registerCatValues}
-            onChange={handleChange}
-            required={true}
-            containerClass="w-[456px]"
-          />
-        </div>
-        <div className="border-b border-[#CCCCCC] mt-[32px]"></div>
+        {registerCatValues.client_type === "法人" && (
+          <div>
+            <div className="pt-[27px] flex justify-between items-center">
+              <label className="text-[14px]" htmlFor="">
+                会社名・法人名
+                <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
+                  *
+                </span>
+              </label>
+              <InputText
+                name="company_name"
+                value={registerCatValues}
+                onChange={handleChange}
+                required={true}
+                containerClass="w-[456px]"
+              />
+            </div>
+            <div className="border-b border-[#CCCCCC] mt-[32px]"></div>
+          </div>
+        )}
         {/* row 4 */}
         <div className="pt-[27px] flex justify-between items-center">
           <label className="text-[14px]" htmlFor="">
