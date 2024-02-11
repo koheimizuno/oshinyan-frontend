@@ -29,7 +29,6 @@ const PasswordResetConfirmation = lazy(
   () => import("./pages/Auth/PasswordResetConfirmation")
 );
 
-axios.defaults.baseURL = "http://162.43.50.92:8000/api/";
 axios.defaults.baseURL = "http://162.43.50.92:8000/";
 
 function App() {
