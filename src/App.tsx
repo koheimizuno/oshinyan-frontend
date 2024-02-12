@@ -55,15 +55,15 @@ function App() {
     }
   }, []);
 
-  const PRIVATE_ROUTES = ["mypage", "oshinyan"];
-  const isPrivatePage = PRIVATE_ROUTES.some((path) =>
-    window.location.href.includes(path)
-  );
+  // const PRIVATE_ROUTES = ["mypage", "oshinyan"];
+  // const isPrivatePage = PRIVATE_ROUTES.some((path) =>
+  //   window.location.href.includes(path)
+  // );
 
-  if (!token && isPrivatePage) {
-    delete axios.defaults.headers.common["Authorization"];
-    window.location.href = "/login";
-  }
+  // if (!token && isPrivatePage) {
+  //   delete axios.defaults.headers.common["Authorization"];
+  //   window.location.href = "/login";
+  // }
 
   return (
     <BrowserRouter>

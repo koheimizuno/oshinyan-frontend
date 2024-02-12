@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import ArrowLeft from "../../../basic/icons/ArrowLeft";
 import ArrowRight from "../../../basic/icons/ArrowRight";
-import { Height } from "@mui/icons-material";
 
 function CatDetailCarousel(props: any) {
   return (
@@ -20,14 +18,10 @@ function CatDetailCarousel(props: any) {
       slidesPerView={1}
       navigation={{ nextEl: ".arrow-left", prevEl: ".arrow-right" }}
     >
-      {props.data.admin_images &&
-        props.data.admin_images.map((item: any, key: any) => (
+      {props.data &&
+        props.data.map((item: any, key: any) => (
           <SwiperSlide key={key} className="h-[576px] overflow-x-hidden">
-            <img
-              src={item.imgs}
-              alt={item.imgs}
-              className="h-full m-auto cursor-grab"
-            />
+            <img src={item} alt={item} className="h-full m-auto cursor-grab" />
           </SwiperSlide>
         ))}
       <div className="swiper-pagination custom-pagination-bullets"></div>

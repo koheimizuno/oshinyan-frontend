@@ -7,13 +7,15 @@ import Twitter from "../../basic/icons/Twitter";
 import Instagram from "../../basic/icons/Instagram";
 import Border from "./components/Border";
 import HeartCircle from "../../basic/icons/HeartCircle";
-import { CalendarMonthSharp } from "@mui/icons-material";
-import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
 import CatFavorite from "./components/CatFavorite";
 import BtnAdd from "./components/BtnAdd";
 import BtnSolid from "./components/BtnSolid";
 import CatImage from "./components/CatImage";
 import CatCard from "../../basic/blog/CatCard";
+import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
+import { CalendarMonthSharp } from "@mui/icons-material";
+import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import axios from "axios";
 import {
   CatObjectType,
@@ -51,6 +53,7 @@ const CatDetail = () => {
   const [reactionParty, setReactionParty] = useState<ImageType[]>([]);
   const [reactionFood, setReactionFood] = useState<ImageType[]>([]);
   const [reactionIconCreated, setReactionIconCreated] = useState(false);
+  const [catDetailImages, setCatDetailImages] = useState<string[]>([]);
   const [reactionIconData, setReactionIconData] = useState<
     CommentReactionIcon[]
   >([]);
@@ -88,7 +91,6 @@ const CatDetail = () => {
   const { catLoading } = useSelector((state: any) => state.cat);
 
   useEffect(() => {
-    // !isAuthenticated && navigate("/login");
     const commentFetch = async () => {
       try {
         let list: {
@@ -124,8 +126,18 @@ const CatDetail = () => {
     if (!advertise) {
       const RetrieveCat = async () => {
         try {
+          let list: string[] = [];
           const { data } = await axios.get(`api/cats/${id}/`);
           setRetrieveCat(data);
+          data.images &&
+            data.images.forEach((item: ImageType) => {
+              list.push(item.imgs);
+            });
+          data.admin_images &&
+            data.admin_images.forEach((it: ImageType) => {
+              list.push(it.imgs);
+            });
+          setCatDetailImages(list);
         } catch (error) {
           console.log(error);
         }
@@ -142,6 +154,9 @@ const CatDetail = () => {
     }
     fetchData();
   }, [isAuthenticated, catLoading, authLoading]);
+
+  console.log("💚💚💚", retrieveCat);
+  console.log("💜💜💜", catDetailImages);
 
   useEffect(() => {
     const ListRecommendUser = async () => {
@@ -268,7 +283,7 @@ const CatDetail = () => {
 
   return (
     <div className="w-full relative">
-      <CatDetailCarousel data={retrieveCat} />
+      <CatDetailCarousel data={catDetailImages} />
       <div className="w-full bg-white p-[28px]">
         <div className="flex justify-between">
           <div className="flex items-center font-bold">
@@ -466,7 +481,7 @@ const CatDetail = () => {
         {/* 1 */}
         {commentData &&
           commentData.map((item, key) => (
-            <div key={key}>
+            <div key={key} className="py-3">
               <div>
                 <div className="flex items-center">
                   <div className="w-10 h-10">
@@ -499,165 +514,175 @@ const CatDetail = () => {
                   })}
               </div>
               <div className="mt-6">
-                <BtnAdd />
-                <Tabs
-                  selectedIndex={selectedTab}
-                  onSelect={handleTabSelect}
-                  className="mt-[10px] border border-[#bbbbbb] rounded-lg p-6 shadow-md"
-                >
-                  <div className="flex items-center gap-16">
-                    <div className="flex items-center gap-3">
-                      <img
-                        src={
-                          selectedReactionIcon.imgs
-                            ? selectedReactionIcon.imgs
-                            : "/assets/imgs/icons/fancier-pink.png"
-                        }
-                        alt={selectedReactionIcon.imgs}
-                        width={32}
-                        className="cursor-pointer"
-                        onClick={() => handleCommentIcon(item.id)}
-                      />
-                      <span>ご挨拶</span>
-                    </div>
-                    <TabList className="flex items-center gap-2">
-                      <Tab
-                        className={`text-base text-[#B7B7B7] ${
-                          selectedTab === 0 && "text-[#070707]"
-                        } cursor-pointer active:border-none`}
-                        onClick={fetchReactionWord}
-                      >
-                        メッセージ
-                      </Tab>
-                      <span>|</span>
-                      <Tab
-                        className={`text-base text-[#B7B7B7] ${
-                          selectedTab === 1 && "text-[#070707]"
-                        } cursor-pointer active:border-none`}
-                        onClick={fetchReactionCat}
-                      >
-                        猫ちゃん
-                      </Tab>
-                      <span>|</span>
-                      <Tab
-                        className={`text-base text-[#B7B7B7] ${
-                          selectedTab === 2 && "text-[#070707]"
-                        } cursor-pointer active:border-none`}
-                        onClick={fetchReactionHeart}
-                      >
-                        気持ち
-                      </Tab>
-                      <span>|</span>
-                      <Tab
-                        className={`text-base text-[#B7B7B7] ${
-                          selectedTab === 3 && "text-[#070707]"
-                        } cursor-pointer active:border-none`}
-                        onClick={fetchReactionSeason}
-                      >
-                        季節
-                      </Tab>
-                      <span>|</span>
-                      <Tab
-                        className={`text-base text-[#B7B7B7] ${
-                          selectedTab === 4 && "text-[#070707]"
-                        } cursor-pointer active:border-none`}
-                        onClick={fetchReactionParty}
-                      >
-                        パーティー
-                      </Tab>
-                      <span>|</span>
-                      <Tab
-                        className={`text-base text-[#B7B7B7] ${
-                          selectedTab === 5 && "text-[#070707]"
-                        } cursor-pointer active:border-none`}
-                        onClick={fetchReactionFood}
-                      >
-                        フード
-                      </Tab>
-                    </TabList>
-                  </div>
-                  <div className="border-b pb-4 mb-4"></div>
-                  <div className="h-24 overflow-y-auto">
-                    <TabPanel className="flex flex-wrap gap-4">
-                      {reactionWord &&
-                        reactionWord.map((item, key) => (
+                <Accordion>
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1-content"
+                    id="panel1-header"
+                  >
+                    <BtnAdd />
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Tabs
+                      selectedIndex={selectedTab}
+                      onSelect={handleTabSelect}
+                      className="mt-[10px] rounded-lg p-6 shadow-md"
+                    >
+                      <div className="flex items-center gap-16">
+                        <div className="flex items-center gap-3">
                           <img
-                            key={key}
-                            src={item.imgs}
-                            alt={item.imgs}
-                            width={40}
+                            src={
+                              selectedReactionIcon.imgs
+                                ? selectedReactionIcon.imgs
+                                : "/assets/imgs/icons/fancier-pink.png"
+                            }
+                            alt={selectedReactionIcon.imgs}
+                            width={32}
                             className="cursor-pointer"
-                            onClick={() => setSelectedReactionIcon(item)}
+                            onClick={() => handleCommentIcon(item.id)}
                           />
-                        ))}
-                    </TabPanel>
-                    <TabPanel className="flex flex-wrap gap-4">
-                      {reactionCat &&
-                        reactionCat.map((item, key) => (
-                          <img
-                            key={key}
-                            src={item.imgs}
-                            alt={item.imgs}
-                            width={40}
-                            className="cursor-pointer"
-                            onClick={() => setSelectedReactionIcon(item)}
-                          />
-                        ))}
-                    </TabPanel>
-                    <TabPanel className="flex flex-wrap gap-4">
-                      {reactionHeart &&
-                        reactionHeart.map((item, key) => (
-                          <img
-                            key={key}
-                            src={item.imgs}
-                            alt={item.imgs}
-                            width={40}
-                            className="cursor-pointer"
-                            onClick={() => setSelectedReactionIcon(item)}
-                          />
-                        ))}
-                    </TabPanel>
-                    <TabPanel className="flex flex-wrap gap-4">
-                      {reactionSeason &&
-                        reactionSeason.map((item, key) => (
-                          <img
-                            key={key}
-                            src={item.imgs}
-                            alt={item.imgs}
-                            width={40}
-                            className="cursor-pointer"
-                            onClick={() => setSelectedReactionIcon(item)}
-                          />
-                        ))}
-                    </TabPanel>
-                    <TabPanel className="flex flex-wrap gap-4">
-                      {reactionParty &&
-                        reactionParty.map((item, key) => (
-                          <img
-                            key={key}
-                            src={item.imgs}
-                            alt={item.imgs}
-                            width={40}
-                            className="cursor-pointer"
-                            onClick={() => setSelectedReactionIcon(item)}
-                          />
-                        ))}
-                    </TabPanel>
-                    <TabPanel className="flex flex-wrap gap-4">
-                      {reactionFood &&
-                        reactionFood.map((item, key) => (
-                          <img
-                            key={key}
-                            src={item.imgs}
-                            alt={item.imgs}
-                            width={40}
-                            className="cursor-pointer"
-                            onClick={() => setSelectedReactionIcon(item)}
-                          />
-                        ))}
-                    </TabPanel>
-                  </div>
-                </Tabs>
+                          <span>ご挨拶</span>
+                        </div>
+                        <TabList className="flex items-center gap-2">
+                          <Tab
+                            className={`text-base text-[#B7B7B7] ${
+                              selectedTab === 0 && "text-[#070707]"
+                            } cursor-pointer active:border-none`}
+                            onClick={fetchReactionWord}
+                          >
+                            メッセージ
+                          </Tab>
+                          <span>|</span>
+                          <Tab
+                            className={`text-base text-[#B7B7B7] ${
+                              selectedTab === 1 && "text-[#070707]"
+                            } cursor-pointer active:border-none`}
+                            onClick={fetchReactionCat}
+                          >
+                            猫ちゃん
+                          </Tab>
+                          <span>|</span>
+                          <Tab
+                            className={`text-base text-[#B7B7B7] ${
+                              selectedTab === 2 && "text-[#070707]"
+                            } cursor-pointer active:border-none`}
+                            onClick={fetchReactionHeart}
+                          >
+                            気持ち
+                          </Tab>
+                          <span>|</span>
+                          <Tab
+                            className={`text-base text-[#B7B7B7] ${
+                              selectedTab === 3 && "text-[#070707]"
+                            } cursor-pointer active:border-none`}
+                            onClick={fetchReactionSeason}
+                          >
+                            季節
+                          </Tab>
+                          <span>|</span>
+                          <Tab
+                            className={`text-base text-[#B7B7B7] ${
+                              selectedTab === 4 && "text-[#070707]"
+                            } cursor-pointer active:border-none`}
+                            onClick={fetchReactionParty}
+                          >
+                            パーティー
+                          </Tab>
+                          <span>|</span>
+                          <Tab
+                            className={`text-base text-[#B7B7B7] ${
+                              selectedTab === 5 && "text-[#070707]"
+                            } cursor-pointer active:border-none`}
+                            onClick={fetchReactionFood}
+                          >
+                            フード
+                          </Tab>
+                        </TabList>
+                      </div>
+                      <div className="border-b pb-4 mb-4"></div>
+                      <div className="h-24 overflow-y-auto">
+                        <TabPanel className="flex flex-wrap gap-4">
+                          {reactionWord &&
+                            reactionWord.map((item, key) => (
+                              <img
+                                key={key}
+                                src={item.imgs}
+                                alt={item.imgs}
+                                width={40}
+                                className="cursor-pointer"
+                                onClick={() => setSelectedReactionIcon(item)}
+                              />
+                            ))}
+                        </TabPanel>
+                        <TabPanel className="flex flex-wrap gap-4">
+                          {reactionCat &&
+                            reactionCat.map((item, key) => (
+                              <img
+                                key={key}
+                                src={item.imgs}
+                                alt={item.imgs}
+                                width={40}
+                                className="cursor-pointer"
+                                onClick={() => setSelectedReactionIcon(item)}
+                              />
+                            ))}
+                        </TabPanel>
+                        <TabPanel className="flex flex-wrap gap-4">
+                          {reactionHeart &&
+                            reactionHeart.map((item, key) => (
+                              <img
+                                key={key}
+                                src={item.imgs}
+                                alt={item.imgs}
+                                width={40}
+                                className="cursor-pointer"
+                                onClick={() => setSelectedReactionIcon(item)}
+                              />
+                            ))}
+                        </TabPanel>
+                        <TabPanel className="flex flex-wrap gap-4">
+                          {reactionSeason &&
+                            reactionSeason.map((item, key) => (
+                              <img
+                                key={key}
+                                src={item.imgs}
+                                alt={item.imgs}
+                                width={40}
+                                className="cursor-pointer"
+                                onClick={() => setSelectedReactionIcon(item)}
+                              />
+                            ))}
+                        </TabPanel>
+                        <TabPanel className="flex flex-wrap gap-4">
+                          {reactionParty &&
+                            reactionParty.map((item, key) => (
+                              <img
+                                key={key}
+                                src={item.imgs}
+                                alt={item.imgs}
+                                width={40}
+                                className="cursor-pointer"
+                                onClick={() => setSelectedReactionIcon(item)}
+                              />
+                            ))}
+                        </TabPanel>
+                        <TabPanel className="flex flex-wrap gap-4">
+                          {reactionFood &&
+                            reactionFood.map((item, key) => (
+                              <img
+                                key={key}
+                                src={item.imgs}
+                                alt={item.imgs}
+                                width={40}
+                                className="cursor-pointer"
+                                onClick={() => setSelectedReactionIcon(item)}
+                              />
+                            ))}
+                        </TabPanel>
+                      </div>
+                    </Tabs>
+                  </AccordionDetails>
+                </Accordion>
               </div>
               <div className="mt-6">
                 <BtnAdd />
