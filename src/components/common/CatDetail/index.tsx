@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import BtnPurple from "./components/BtnPurple";
@@ -15,7 +15,6 @@ import CatCard from "../../basic/blog/CatCard";
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import { CalendarMonthSharp } from "@mui/icons-material";
 import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import axios from "axios";
 import {
   CatObjectType,
@@ -30,11 +29,13 @@ import AlbumGallery from "./components/AlbumGallery";
 import ImageDetail from "./components/ImageDetail";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import { formatDateTime } from "../../../utils/functions";
+import { Notification } from "../../../constant/notification";
 
 const CatDetail = () => {
   const { id } = useParams();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
+  const [expanded, setExpanded] = useState(false);
   const advertise = searchParams.get("advertise");
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -57,10 +58,6 @@ const CatDetail = () => {
   const [reactionIconData, setReactionIconData] = useState<
     CommentReactionIcon[]
   >([]);
-  const [selectedReactionIcon, setSelectedReactionIcon] = useState<ImageType>({
-    id: 0,
-    imgs: "",
-  });
   const [selectedTab, setSelectedTab] = useState(0);
   const [commentImgs, setCommentImgs] = useState<
     {
@@ -154,9 +151,6 @@ const CatDetail = () => {
     }
     fetchData();
   }, [isAuthenticated, catLoading, authLoading]);
-
-  console.log("💚💚💚", retrieveCat);
-  console.log("💜💜💜", catDetailImages);
 
   useEffect(() => {
     const ListRecommendUser = async () => {
@@ -269,15 +263,27 @@ const CatDetail = () => {
     }
   };
 
-  const handleCommentIcon = async (comment_id: number) => {
-    if (selectedReactionIcon) {
-      const { data } = await axios.post("api/commentreactionicon/", {
-        comment: comment_id,
-        user: user.user_id,
-        imgs: selectedReactionIcon.imgs,
-      });
-      console.log(data);
-      setReactionIconCreated(true);
+  const handleCommentIcon = async (comment_id: number, iconData: ImageType) => {
+    const { data } = await axios.post("api/commentreactionicon/", {
+      comment: comment_id,
+      user: user.user_id,
+      imgs: iconData.imgs,
+    });
+    console.log(data);
+    setReactionIconCreated(true);
+  };
+
+  const handleChange = (expanded: boolean) => {
+    if (expanded === false) {
+      if (isAuthenticated) setExpanded(!expanded);
+      else {
+        Notification("warning", "最初にログインする必要があります。");
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
+      }
+    } else {
+      setExpanded(!expanded);
     }
   };
 
@@ -480,7 +486,7 @@ const CatDetail = () => {
         </div>
         {/* 1 */}
         {commentData &&
-          commentData.map((item, key) => (
+          commentData.map((commentitem, key) => (
             <div key={key} className="py-3">
               <div>
                 <div className="flex items-center">
@@ -492,17 +498,19 @@ const CatDetail = () => {
                     />
                   </div>
                   <div className="text-base underline ms-4">
-                    {item.user.username}
+                    {commentitem.user.username}
                   </div>
                 </div>
                 <div className="mt-2 text-xs text-[#767676]">
-                  {formatDateTime(item.user.last_login)}
+                  {formatDateTime(commentitem.user.last_login)}
                 </div>
-                <div className="break-all mt-4 text-base">{item.comment}</div>
+                <div className="break-all mt-4 text-base">
+                  {commentitem.comment}
+                </div>
               </div>
               <div className="mt-6 flex gap-2">
-                {item.comment_images &&
-                  item.comment_images.map((e, i) => {
+                {commentitem.comment_images &&
+                  commentitem.comment_images.map((e, i) => {
                     return (
                       <CatFavorite
                         imgUrl={e.imgs}
@@ -514,34 +522,41 @@ const CatDetail = () => {
                   })}
               </div>
               <div className="mt-6">
-                <Accordion>
+                <Accordion
+                  expanded={expanded}
+                  onChange={() => handleChange(expanded)}
+                >
                   <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1-content"
                     id="panel1-header"
+                    style={{ display: "inline-block" }}
                   >
-                    <BtnAdd />
+                    <button className="bg-[#F3F3F3] hover:bg-[#e4e4e4] cursor-pointer w-[104px] h-[24px] text-xs rounded-lg pt-[3px] pb-[5px] ps-[4px] text-[#767676] border border-[#707070]">
+                      <span
+                        style={{
+                          width: "12px",
+                          height: "12px",
+                        }}
+                      >
+                        +
+                      </span>
+                      <span className="ms-2">リアクション</span>
+                    </button>
                   </AccordionSummary>
                   <AccordionDetails>
                     <Tabs
                       selectedIndex={selectedTab}
                       onSelect={handleTabSelect}
-                      className="mt-[10px] rounded-lg p-6 shadow-md"
+                      className="rounded-lg p-6 shadow-md border"
                     >
                       <div className="flex items-center gap-16">
                         <div className="flex items-center gap-3">
                           <img
-                            src={
-                              selectedReactionIcon.imgs
-                                ? selectedReactionIcon.imgs
-                                : "/assets/imgs/icons/fancier-pink.png"
-                            }
-                            alt={selectedReactionIcon.imgs}
+                            src={user.avatar.avatar}
+                            alt={user.avatar.avatar}
                             width={32}
-                            className="cursor-pointer"
-                            onClick={() => handleCommentIcon(item.id)}
                           />
-                          <span>ご挨拶</span>
+                          <span>{user.username}</span>
                         </div>
                         <TabList className="flex items-center gap-2">
                           <Tab
@@ -610,7 +625,9 @@ const CatDetail = () => {
                                 alt={item.imgs}
                                 width={40}
                                 className="cursor-pointer"
-                                onClick={() => setSelectedReactionIcon(item)}
+                                onClick={() =>
+                                  handleCommentIcon(commentitem.id, item)
+                                }
                               />
                             ))}
                         </TabPanel>
@@ -623,7 +640,9 @@ const CatDetail = () => {
                                 alt={item.imgs}
                                 width={40}
                                 className="cursor-pointer"
-                                onClick={() => setSelectedReactionIcon(item)}
+                                onClick={() =>
+                                  handleCommentIcon(commentitem.id, item)
+                                }
                               />
                             ))}
                         </TabPanel>
@@ -636,7 +655,9 @@ const CatDetail = () => {
                                 alt={item.imgs}
                                 width={40}
                                 className="cursor-pointer"
-                                onClick={() => setSelectedReactionIcon(item)}
+                                onClick={() =>
+                                  handleCommentIcon(commentitem.id, item)
+                                }
                               />
                             ))}
                         </TabPanel>
@@ -649,7 +670,9 @@ const CatDetail = () => {
                                 alt={item.imgs}
                                 width={40}
                                 className="cursor-pointer"
-                                onClick={() => setSelectedReactionIcon(item)}
+                                onClick={() =>
+                                  handleCommentIcon(commentitem.id, item)
+                                }
                               />
                             ))}
                         </TabPanel>
@@ -662,7 +685,9 @@ const CatDetail = () => {
                                 alt={item.imgs}
                                 width={40}
                                 className="cursor-pointer"
-                                onClick={() => setSelectedReactionIcon(item)}
+                                onClick={() =>
+                                  handleCommentIcon(commentitem.id, item)
+                                }
                               />
                             ))}
                         </TabPanel>
@@ -675,7 +700,9 @@ const CatDetail = () => {
                                 alt={item.imgs}
                                 width={40}
                                 className="cursor-pointer"
-                                onClick={() => setSelectedReactionIcon(item)}
+                                onClick={() =>
+                                  handleCommentIcon(commentitem.id, item)
+                                }
                               />
                             ))}
                         </TabPanel>

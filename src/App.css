@@ -78,3 +78,12 @@
 .swiper-pagination-bullet-active {
   background-color: #fff;
 }
+
+.MuiButtonBase-root {
+  padding: 0px !important;
+  box-shadow: none !important;
+}
+
+.MuiPaper-elevation {
+  box-shadow: none !important;
+}
