@@ -550,14 +550,16 @@ const CatDetail = () => {
                       className="rounded-lg p-6 shadow-md border"
                     >
                       <div className="flex items-center gap-16">
-                        <div className="flex items-center gap-3">
-                          <img
-                            src={user.avatar.avatar}
-                            alt={user.avatar.avatar}
-                            width={32}
-                          />
-                          <span>{user.username}</span>
-                        </div>
+                        {isAuthenticated && (
+                          <div className="flex items-center gap-3">
+                            <img
+                              src={user.avatar.avatar}
+                              alt={user.avatar.avatar}
+                              width={32}
+                            />
+                            <span>{user.username}</span>
+                          </div>
+                        )}
                         <TabList className="flex items-center gap-2">
                           <Tab
                             className={`text-base text-[#B7B7B7] ${
