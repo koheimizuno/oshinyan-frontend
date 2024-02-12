@@ -139,13 +139,13 @@ const SmallCatCard = ({
           >
             {recommend.find((e) => e.user == user.user_id) ? (
               <img
-                src="/assets/imgs/icons/recommend-on.png"
+                src="/assets/imgs/icons/recommend-on.webp"
                 alt="recommend-on"
                 width={32}
               />
             ) : (
               <img
-                src="/assets/imgs/icons/recommend-off.png"
+                src="/assets/imgs/icons/recommend-off.webp"
                 alt="recommend-off"
                 width={32}
               />

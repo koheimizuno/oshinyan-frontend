@@ -11,7 +11,7 @@ import PrivacyComponent from "../../components/common/PrivacyComponent";
 import Button from "../../components/basic/Button";
 import CatDetailCarousel from "../../components/common/CatDetail/components/Carousel";
 import axios from "axios";
-import { CatObjectType } from "../../constant/type";
+import { CatObjectType, ImageType } from "../../constant/type";
 import { useSelector } from "react-redux";
 import { Notification } from "../../constant/notification";
 
@@ -23,11 +23,26 @@ function Comment() {
   const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
   const [retrieveCat, setRetrieveCat] = useState({ cat_name: "" });
   const [comment, setComment] = useState("");
+  const [catDetailImages, setCatDetailImages] = useState<string[]>([]);
   const { user } = useSelector((state: any) => state.user);
   useEffect(() => {
     const RetrieveCat = async () => {
-      const { data } = await axios.get(`api/cats/${id}/`);
-      setRetrieveCat(data);
+      try {
+        let list: string[] = [];
+        const { data } = await axios.get(`api/cats/${id}/`);
+        setRetrieveCat(data);
+        data.images &&
+          data.images.forEach((item: ImageType) => {
+            list.push(item.imgs);
+          });
+        data.admin_images &&
+          data.admin_images.forEach((it: ImageType) => {
+            list.push(it.imgs);
+          });
+        setCatDetailImages(list);
+      } catch (error) {
+        console.log(error);
+      }
     };
     RetrieveCat();
   }, []);
@@ -73,16 +88,19 @@ function Comment() {
         <Title title="推しコメント入力" />
         <section className="flex items-center py-9">
           <div className="flex items-center gap-4 mr-10">
-            <img src="/assets/imgs/icons/cat_avatar_3.png" alt="cat_avatar_3" />
+            <img
+              src="/assets/imgs/icons/cat_avatar_3.webp"
+              alt="cat_avatar_3"
+            />
             <Link to="#" className="border-b border-[#6d6d6d]">
               {user.username}
             </Link>
           </div>
           <div className="mr-5">
-            <img src="/assets/imgs/icons/pink-arrow.png" alt="pink-arrow" />
+            <img src="/assets/imgs/icons/pink-arrow.webp" alt="pink-arrow" />
           </div>
           <div className="flex items-center gap-4 mr-12">
-            <img src="/assets/imgs/icons/face_empty.png" alt="face_empty" />
+            <img src="/assets/imgs/icons/face_empty.webp" alt="face_empty" />
             <p className="text-xl font-medium">{retrieveCat.cat_name}</p>
           </div>
           <p>への投稿をするニャー</p>
@@ -90,7 +108,7 @@ function Comment() {
         <form className="bg-white pt-14 pb-12 mb-24" onSubmit={handleSubmit}>
           <div className="w-[640px] m-auto border-b pb-[27px] border-[#CCC]">
             {/* row 1 */}
-            <CatDetailCarousel data={retrieveCat} />
+            <CatDetailCarousel data={catDetailImages} />
             <div>
               <p className="text-xl mt-8 pb-4 border-b border-[#ccc]">
                 コメントを入力するニャー

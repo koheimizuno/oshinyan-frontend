@@ -3,7 +3,7 @@
   "name": "Create React App Sample",
   "icons": [
     {
-      "src": "/lnfo_cat.png",
+      "src": "/lnfo_cat.webp",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     }

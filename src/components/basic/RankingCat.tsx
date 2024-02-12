@@ -4,7 +4,7 @@ const RankingCat = () => {
   return (
     <div className=" w-[312px] h-[512px] mb-[15px] hover:opacity-70">
       <div className="relative w-[312px] h-[234px]">
-        <img src="/assets/cat-2020-1.png" className="cover" alt="" />
+        <img src="/assets/cat-2020-1.webp" className="cover" alt="" />
         <span className="absolute top-[8px] right-[8px]">
           <img src="/assets/icons/btn-foot.svg" alt="" />
         </span>

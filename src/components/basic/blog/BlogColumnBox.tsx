@@ -29,7 +29,7 @@ const BlogColumnBox = (props: ColumnType) => {
         </p>
         <div className="flex justify-between py-4">
           <div className="flex gap-2">
-            <img src="/assets/imgs/icons/pen.png" alt="pen" />
+            <img src="/assets/imgs/icons/pen.webp" alt="pen" />
             <Link
               to={`column/${props.id}`}
               className={`border-b border-black ${

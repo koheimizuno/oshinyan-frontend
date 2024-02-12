@@ -168,7 +168,7 @@ const CatDetail = () => {
       }
     };
     ListRecommendUser();
-  }, [retrieveCat.id]);
+  }, [retrieveCat.id, catLoading]);
 
   const handleTabSelect = (index: number) => {
     setSelectedTab(index);
@@ -297,7 +297,7 @@ const CatDetail = () => {
       <div className="w-full bg-white p-[28px]">
         <div className="flex justify-between">
           <div className="flex items-center font-bold">
-            <img src="/assets/imgs/icons/face_empty.png" alt="cat icon" />
+            <img src="/assets/imgs/icons/face_empty.webp" alt="cat icon" />
             <span className="text-2xl ms-4">{retrieveCat.cat_name}</span>
           </div>
           <div
@@ -311,12 +311,12 @@ const CatDetail = () => {
               {retrieveCat.recommend &&
               retrieveCat.recommend.find((e) => e.user == user.user_id) ? (
                 <img
-                  src="/assets/imgs/icons/recommend-on.png"
+                  src="/assets/imgs/icons/recommend-on.webp"
                   alt="recommend-on"
                 />
               ) : (
                 <img
-                  src="/assets/imgs/icons/recommend-off-black.png"
+                  src="/assets/imgs/icons/recommend-off-black.webp"
                   alt="recommend-off-black"
                 />
               )}
@@ -424,7 +424,7 @@ const CatDetail = () => {
                     <div className="ms-3">{item.username}</div>
                     <img
                       className="ms-5"
-                      src="/assets/imgs/icons/comment_abbr.png"
+                      src="/assets/imgs/icons/comment_abbr.webp"
                       alt=""
                     />
                   </div>
@@ -440,7 +440,7 @@ const CatDetail = () => {
                 <div className="relative h-full">
                   <div className="h-full w-[150px] absolute top-0 left-[-11px] ">
                     <img
-                      src="/assets/imgs/Group 864.png"
+                      src="/assets/imgs/Group 864.webp"
                       alt="Group 864"
                       className="h-full w-auto m-auto"
                     />
@@ -454,7 +454,7 @@ const CatDetail = () => {
                     <span>推しコメントを書いてね！</span>
                   </p>
                   <img
-                    src="/assets/imgs/Group 867.png"
+                    src="/assets/imgs/Group 867.webp"
                     alt="Group 867"
                     className="absolute top-0 left-0 -z-10"
                   />
@@ -472,7 +472,7 @@ const CatDetail = () => {
                   </span>
                   <span>
                     <img
-                      src="/assets/imgs/icons/arr-right-white.png"
+                      src="/assets/imgs/icons/arr-right-white.webp"
                       alt="arr-right-white"
                     />
                   </span>
@@ -481,7 +481,7 @@ const CatDetail = () => {
               <div className="">
                 <div className="bg-red-400 relative w-[150px]">
                   <div className="absolute top-0 right-[-11px]">
-                    <img src="/assets/imgs/Group 863.png" alt="Group 864" />
+                    <img src="/assets/imgs/Group 863.webp" alt="Group 864" />
                   </div>
                 </div>
               </div>
@@ -497,8 +497,8 @@ const CatDetail = () => {
                   <div className="w-10 h-10">
                     <img
                       className="w-full"
-                      src="/assets/imgs/icons/info_cat.png"
-                      alt="cat"
+                      src={commentitem.user.avatar.avatar}
+                      alt="avatar"
                     />
                   </div>
                   <div className="text-base underline ms-4">

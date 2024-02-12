@@ -13,99 +13,99 @@ import { Link } from "react-router-dom";
 
 const CAROUSELIMAGES: object[] = [
   {
-    src: "/assets/imgs/cats/guide-cat-1.png",
+    src: "/assets/imgs/cats/guide-cat-1.webp",
     alt: "guide-cat-1",
   },
   {
-    src: "/assets/imgs/cats/guide-cat-2.png",
+    src: "/assets/imgs/cats/guide-cat-2.webp",
     alt: "guide-cat-2",
   },
   {
-    src: "/assets/imgs/cats/guide-cat-3.png",
+    src: "/assets/imgs/cats/guide-cat-3.webp",
     alt: "guide-cat-3",
   },
   {
-    src: "/assets/imgs/cats/guide-cat-4.png",
+    src: "/assets/imgs/cats/guide-cat-4.webp",
     alt: "guide-cat-4",
   },
   {
-    src: "/assets/imgs/cats/guide-cat-5.png",
+    src: "/assets/imgs/cats/guide-cat-5.webp",
     alt: "guide-cat-5",
   },
   {
-    src: "/assets/imgs/cats/guide-cat-6.png",
+    src: "/assets/imgs/cats/guide-cat-6.webp",
     alt: "guide-cat-6",
   },
   {
-    src: "/assets/imgs/cats/guide-cat-1.png",
+    src: "/assets/imgs/cats/guide-cat-1.webp",
     alt: "guide-cat-1",
   },
   {
-    src: "/assets/imgs/cats/guide-cat-2.png",
+    src: "/assets/imgs/cats/guide-cat-2.webp",
     alt: "guide-cat-2",
   },
   {
-    src: "/assets/imgs/cats/guide-cat-3.png",
+    src: "/assets/imgs/cats/guide-cat-3.webp",
     alt: "guide-cat-3",
   },
   {
-    src: "/assets/imgs/cats/guide-cat-4.png",
+    src: "/assets/imgs/cats/guide-cat-4.webp",
     alt: "guide-cat-4",
   },
   {
-    src: "/assets/imgs/cats/guide-cat-5.png",
+    src: "/assets/imgs/cats/guide-cat-5.webp",
     alt: "guide-cat-5",
   },
   {
-    src: "/assets/imgs/cats/guide-cat-6.png",
+    src: "/assets/imgs/cats/guide-cat-6.webp",
     alt: "guide-cat-6",
   },
   {
-    src: "/assets/imgs/cats/guide-cat-1.png",
+    src: "/assets/imgs/cats/guide-cat-1.webp",
     alt: "guide-cat-1",
   },
   {
-    src: "/assets/imgs/cats/guide-cat-2.png",
+    src: "/assets/imgs/cats/guide-cat-2.webp",
     alt: "guide-cat-2",
   },
   {
-    src: "/assets/imgs/cats/guide-cat-3.png",
+    src: "/assets/imgs/cats/guide-cat-3.webp",
     alt: "guide-cat-3",
   },
   {
-    src: "/assets/imgs/cats/guide-cat-4.png",
+    src: "/assets/imgs/cats/guide-cat-4.webp",
     alt: "guide-cat-4",
   },
   {
-    src: "/assets/imgs/cats/guide-cat-5.png",
+    src: "/assets/imgs/cats/guide-cat-5.webp",
     alt: "guide-cat-5",
   },
   {
-    src: "/assets/imgs/cats/guide-cat-6.png",
+    src: "/assets/imgs/cats/guide-cat-6.webp",
     alt: "guide-cat-6",
   },
   {
-    src: "/assets/imgs/cats/guide-cat-1.png",
+    src: "/assets/imgs/cats/guide-cat-1.webp",
     alt: "guide-cat-1",
   },
   {
-    src: "/assets/imgs/cats/guide-cat-2.png",
+    src: "/assets/imgs/cats/guide-cat-2.webp",
     alt: "guide-cat-2",
   },
   {
-    src: "/assets/imgs/cats/guide-cat-3.png",
+    src: "/assets/imgs/cats/guide-cat-3.webp",
     alt: "guide-cat-3",
   },
   {
-    src: "/assets/imgs/cats/guide-cat-4.png",
+    src: "/assets/imgs/cats/guide-cat-4.webp",
     alt: "guide-cat-4",
   },
   {
-    src: "/assets/imgs/cats/guide-cat-5.png",
+    src: "/assets/imgs/cats/guide-cat-5.webp",
     alt: "guide-cat-5",
   },
   {
-    src: "/assets/imgs/cats/guide-cat-6.png",
+    src: "/assets/imgs/cats/guide-cat-6.webp",
     alt: "guide-cat-6",
   },
 ];

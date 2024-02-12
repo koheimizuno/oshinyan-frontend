@@ -291,7 +291,7 @@ const MonthRanking = () => {
             <div className="pt-[48px] pb-[80px]">
               <div className="mb-[24px] hover:opacity-70">
                 <Link to="/nyanplace" className="relative">
-                  <img src="/assets/imgs/signboard.png" alt="signboard" />
+                  <img src="/assets/imgs/signboard.webp" alt="signboard" />
                   <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[32px] text-white font-bold tracking-widest">
                     『看板猫に会える場所』一覧
                   </p>
@@ -299,7 +299,7 @@ const MonthRanking = () => {
               </div>
               <div className="hover:opacity-70">
                 <Link to="/shopresister">
-                  <img src="/assets/imgs/member.png" alt="" />
+                  <img src="/assets/imgs/member.webp" alt="" />
                 </Link>
               </div>
             </div>

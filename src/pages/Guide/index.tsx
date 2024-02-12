@@ -34,7 +34,7 @@ const Guide = () => {
         </div>
         <div className="text-center mt-[72px]">
           <img
-            src="/assets/imgs/how_to_have_good_time.png"
+            src="/assets/imgs/how_to_have_good_time.webp"
             alt="how_to_have_good_time"
           />
         </div>
@@ -52,13 +52,13 @@ const Guide = () => {
               </div>
             </div>
             <div className="text-center">
-              <img src="assets/imgs/Guide-1.png" alt="Guide-1" />
+              <img src="assets/imgs/Guide-1.webp" alt="Guide-1" />
             </div>
           </div>
           {/* 2 */}
           <div className="flex items-end mt-[30px]">
             <div className="text-center me-auto">
-              <img src="assets/imgs/Guide-2.png" alt="Guide-2" />
+              <img src="assets/imgs/Guide-2.webp" alt="Guide-2" />
             </div>
             <div className="w-[424px] pb-[27px]">
               <button
@@ -85,14 +85,14 @@ const Guide = () => {
             </div>
             <div className="text-center">
               {/* <div className="w-[470px] h-[295px] rounded-[50%] bg-[#EAEAEA]"></div> */}
-              <img src="assets/imgs/Guide-3.png" alt="Guide-3" />
+              <img src="assets/imgs/Guide-3.webp" alt="Guide-3" />
             </div>
           </div>
           {/* 4 */}
           <div className="flex items-start mt-[86px]">
             <div className="text-center me-auto">
               {/* <div className="w-[470px] h-[295px] rounded-[50%] bg-[#EAEAEA]"></div> */}
-              <img src="assets/imgs/Guide-4.png" alt="Guide-4" />
+              <img src="assets/imgs/Guide-4.webp" alt="Guide-4" />
             </div>
             <div className="w-[424px]">
               <button
@@ -133,7 +133,7 @@ const Guide = () => {
             <div className="flex justify-center items-center w-[300px] h-[300px] rounded-[50%] bg-white">
               <div>
                 <img
-                  src="assets/imgs/icons/Guide-icon-1.png"
+                  src="assets/imgs/icons/Guide-icon-1.webp"
                   alt="Guide-icon-1"
                 />
               </div>
@@ -146,7 +146,7 @@ const Guide = () => {
             <div className="flex justify-center items-center w-[300px] h-[300px] rounded-[50%] bg-white">
               <div>
                 <img
-                  src="assets/imgs/icons/Guide-icon-2.png"
+                  src="assets/imgs/icons/Guide-icon-2.webp"
                   alt="Guide-icon-2"
                 />
               </div>
@@ -159,7 +159,7 @@ const Guide = () => {
             <div className="flex justify-center items-center w-[300px] h-[300px] rounded-[50%] bg-white">
               <div>
                 <img
-                  src="assets/imgs/icons/Guide-icon-3.png"
+                  src="assets/imgs/icons/Guide-icon-3.webp"
                   alt="Guide-icon-3"
                 />
               </div>
@@ -171,11 +171,11 @@ const Guide = () => {
         </div>
 
         <div className="mt-[40px] hover:opacity-70">
-          <img src="/assets/imgs/member.png" alt="" />
+          <img src="/assets/imgs/member.webp" alt="" />
         </div>
 
         <div className="mt-[80px]">
-          <img src="/assets/imgs/rule_begin_fan.png" alt="" />
+          <img src="/assets/imgs/rule_begin_fan.webp" alt="" />
         </div>
 
         <div className="text-[16px] leading-[21px]">

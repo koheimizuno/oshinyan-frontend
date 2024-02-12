@@ -64,7 +64,7 @@ const AmbassadorRegisterFrom = () => {
           「推しニャン」サイトのアンバサダーとして活躍してくれる方を大募集しているニャー
         </p>
         <button onClick={() => setOpenModal(true)}>
-          <img src="/assets/imgs/icons/questionmark.png" alt="questionmark" />
+          <img src="/assets/imgs/icons/questionmark.webp" alt="questionmark" />
         </button>
       </div>
       <span className="text-red-500 mt-2 inline-block">＊＝必須</span>
@@ -330,7 +330,7 @@ const AmbassadorRegisterFrom = () => {
             </div>
           </div>
           <div>
-            <img src="/assets/imgs/modal-img.png" alt="modal-img" />
+            <img src="/assets/imgs/modal-img.webp" alt="modal-img" />
           </div>
         </Box>
       </Modal>

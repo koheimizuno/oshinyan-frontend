@@ -11,7 +11,7 @@ function SocialLinkGroup(props: any) {
       }`}
     >
       <Link to={"/mypage"} className="p-4 inline-block">
-        <img src="/assets/imgs/icons/fancier-pink.png" alt="" />
+        <img src="/assets/imgs/icons/fancier-pink.webp" alt="" />
       </Link>
       <Link to={""} className="p-4 inline-block">
         <Twitter />

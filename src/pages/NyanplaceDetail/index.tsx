@@ -127,7 +127,7 @@ function NyanplaceDetail() {
             <div className="flex gap-5">
               <div className="flex items-center gap-2">
                 <div>
-                  <img src="/assets/imgs/icons/address.png" alt="address" />
+                  <img src="/assets/imgs/icons/address.webp" alt="address" />
                 </div>
                 <span className="w-[65px]">住所</span>
               </div>
@@ -144,7 +144,7 @@ function NyanplaceDetail() {
               <div className="flex items-center gap-2">
                 <div>
                   <img
-                    src="/assets/imgs/icons/neareststation.png"
+                    src="/assets/imgs/icons/neareststation.webp"
                     alt="neareststation"
                   />
                 </div>
@@ -155,7 +155,7 @@ function NyanplaceDetail() {
             <div className="flex gap-5">
               <div className="flex items-center gap-2">
                 <div>
-                  <img src="/assets/imgs/icons/phone.png" alt="phone" />
+                  <img src="/assets/imgs/icons/phone.webp" alt="phone" />
                 </div>
                 <span className="w-[65px]">電話番号</span>
               </div>
@@ -164,7 +164,7 @@ function NyanplaceDetail() {
             <div className="flex gap-5">
               <div className="flex items-center gap-2">
                 <div>
-                  <img src="/assets/imgs/icons/clock.png" alt="clock" />
+                  <img src="/assets/imgs/icons/clock.webp" alt="clock" />
                 </div>
                 <span className="w-[65px]">営業時間</span>
               </div>
@@ -173,7 +173,7 @@ function NyanplaceDetail() {
             <div className="flex gap-5">
               <div className="flex items-center gap-2">
                 <div>
-                  <img src="/assets/imgs/icons/restday.png" alt="restday" />
+                  <img src="/assets/imgs/icons/restday.webp" alt="restday" />
                 </div>
                 <span className="w-[65px]">定休日</span>
               </div>
@@ -218,7 +218,7 @@ function NyanplaceDetail() {
             </div>
             <div className="mt-[124px]">
               <img
-                src="/assets/imgs/Group 802.png"
+                src="/assets/imgs/Group 802.webp"
                 alt="Group 802"
                 className="m-auto"
               />

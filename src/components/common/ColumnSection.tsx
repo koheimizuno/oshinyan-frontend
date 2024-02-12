@@ -6,22 +6,22 @@ import { ColumnType } from "../../constant/type";
 
 const items = [
   {
-    imgUrl: "/assets/imgs/cats/col_cat1.png",
+    imgUrl: "/assets/imgs/cats/col_cat1.webp",
   },
   {
-    imgUrl: "/assets/imgs/cats/col_cat2.png",
+    imgUrl: "/assets/imgs/cats/col_cat2.webp",
   },
   {
-    imgUrl: "/assets/imgs/cats/col_cat3.png",
+    imgUrl: "/assets/imgs/cats/col_cat3.webp",
   },
   {
-    imgUrl: "/assets/imgs/cats/col_cat4.png",
+    imgUrl: "/assets/imgs/cats/col_cat4.webp",
   },
   {
-    imgUrl: "/assets/imgs/cats/col_cat5.png",
+    imgUrl: "/assets/imgs/cats/col_cat5.webp",
   },
   {
-    imgUrl: "/assets/imgs/cats/col_cat6.png",
+    imgUrl: "/assets/imgs/cats/col_cat6.webp",
   },
 ];
 

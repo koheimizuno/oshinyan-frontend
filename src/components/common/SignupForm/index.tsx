@@ -93,7 +93,7 @@ const SignupForm = () => {
               {selectedAvatar ? (
                 <img src={selectedAvatar} alt={selectedAvatar} width={40} />
               ) : (
-                <img src="/assets/imgs/icons/icon_add.png" alt="icon_add" />
+                <img src="/assets/imgs/icons/icon_add.webp" alt="icon_add" />
               )}
             </button>
           </div>

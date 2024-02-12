@@ -67,7 +67,7 @@ const Header = () => {
                 className="bg-[#FBA1B7] w-[120px] rounded sm:m-auto px-[8px] pb-[5px] pt-[3px] flex justify-start items-center"
               >
                 <div className="pr-[8px]">
-                  <img src="/assets/imgs/icons/mypage.png" alt="mypage-icon" />
+                  <img src="/assets/imgs/icons/mypage.webp" alt="mypage-icon" />
                 </div>
                 <p className="text-white text-[16px] tracking-[-.15em] font-medium">
                   マイページ
@@ -111,7 +111,7 @@ const Header = () => {
         </ul>
       </div>
       <div className="md:hidden cursor-pointer" onClick={handleResponsive}>
-        <img src="/assets/imgs/icons/hamburger-btn.png" alt="hamburger-btn" />
+        <img src="/assets/imgs/icons/hamburger-btn.webp" alt="hamburger-btn" />
       </div>
     </div>
   );
