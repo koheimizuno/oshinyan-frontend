@@ -26,7 +26,7 @@ import {
 import { RecommendAction } from "../../../slices/cat";
 import CatDetailCarousel from "./components/Carousel";
 import AlbumGallery from "./components/AlbumGallery";
-import ImageDetail from "./components/ImageDetail";
+import CommentImageCarousel from "./components/CommentImageCarousel";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import { formatDateTime } from "../../../utils/functions";
 import { Notification } from "../../../constant/notification";
@@ -59,8 +59,10 @@ const CatDetail = () => {
     CommentReactionIcon[]
   >([]);
   const [selectedTab, setSelectedTab] = useState(0);
+  const [selectedDetail, setSelectedDetail] = useState(0);
   const [commentImgs, setCommentImgs] = useState<
     {
+      id: number;
       imgs: string;
       username: string;
       comment: string;
@@ -91,6 +93,7 @@ const CatDetail = () => {
     const commentFetch = async () => {
       try {
         let list: {
+          id: number;
           imgs: string;
           username: string;
           comment: string;
@@ -100,6 +103,7 @@ const CatDetail = () => {
         data.map((item: any, key: number) =>
           item.comment_images.map((it: any, i: number) =>
             list.push({
+              id: it.id,
               imgs: it.imgs,
               username: item.user.username,
               comment: item.comment,
@@ -486,8 +490,8 @@ const CatDetail = () => {
         </div>
         {/* 1 */}
         {commentData &&
-          commentData.map((commentitem, key) => (
-            <div key={key} className="py-3">
+          commentData.map((commentitem, key, arr) => (
+            <div key={"outer" + key} className="py-3">
               <div>
                 <div className="flex items-center">
                   <div className="w-10 h-10">
@@ -515,8 +519,11 @@ const CatDetail = () => {
                       <CatFavorite
                         imgUrl={e.imgs}
                         recommend={retrieveCat.recommend.length}
-                        key={i}
-                        onClick={() => setShowImageDetail(true)}
+                        key={"inner" + i}
+                        onClick={() => {
+                          setShowImageDetail(true);
+                          setSelectedDetail(key);
+                        }}
                       />
                     );
                   })}
@@ -531,17 +538,7 @@ const CatDetail = () => {
                     id="panel1-header"
                     style={{ display: "inline-block" }}
                   >
-                    <button className="bg-[#F3F3F3] hover:bg-[#e4e4e4] cursor-pointer w-[104px] h-[24px] text-xs rounded-lg pt-[3px] pb-[5px] ps-[4px] text-[#767676] border border-[#707070]">
-                      <span
-                        style={{
-                          width: "12px",
-                          height: "12px",
-                        }}
-                      >
-                        +
-                      </span>
-                      <span className="ms-2">リアクション</span>
-                    </button>
+                    <BtnAdd />
                   </AccordionSummary>
                   <AccordionDetails>
                     <Tabs
@@ -727,6 +724,15 @@ const CatDetail = () => {
                     ))}
                 </div>
               </div>
+              {showImageDetail && selectedDetail == key && (
+                <CommentImageCarousel
+                  username={commentitem.user.username}
+                  comment={commentitem.comment}
+                  commentImgs={commentitem.comment_images}
+                  showAlbumGallery={selectedDetail == key}
+                  setShowAlbumGallery={setShowImageDetail}
+                />
+              )}
             </div>
           ))}
         {/* 2 */}
@@ -805,11 +811,6 @@ const CatDetail = () => {
         setDisplayAll={setDisplayAll}
         showAlbumGallery={showAlbumGallery}
         setShowAlbumGallery={setShowAlbumGallery}
-      />
-      <ImageDetail
-        commentImgs={commentImgs}
-        showAlbumGallery={showImageDetail}
-        setShowAlbumGallery={setShowImageDetail}
       />
     </div>
   );
