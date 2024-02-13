@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
-const LargeCatCard = ({ imgUrl, text }: { imgUrl: string; text: string }) => {
+const FeatureCard = ({ imgUrl, text }: { imgUrl: string; text: string }) => {
   return (
-    <div className="w-[312px] h-[328px] bg-white">
+    <div className="max-w-[312px] h-[328px] bg-white m-auto">
       <div className="w-full h-[234px] text-center">
         <Link to="/feature/1">
           <img className="max-h-[234px]" src={imgUrl} alt="cat" />
@@ -14,4 +14,4 @@ const LargeCatCard = ({ imgUrl, text }: { imgUrl: string; text: string }) => {
     </div>
   );
 };
-export default LargeCatCard;
+export default FeatureCard;

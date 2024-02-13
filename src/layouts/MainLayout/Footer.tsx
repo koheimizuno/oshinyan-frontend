@@ -6,11 +6,19 @@ const Footer = () => {
     <div className="bg-[#F5F4EC] ">
       <div className="">
         <div className="flex xs:flex-col xs:gap-5 sm:flex-row sm:justify-between sm:items-center">
-          <Link to="/guide">
-            <img src="/assets/imgs/footer-1.webp" alt="footer-1" />
+          <Link to="/guide" className="border">
+            <img
+              src="/assets/imgs/footer-1.webp"
+              alt="footer-1"
+              className="w-full"
+            />
           </Link>
           <Link to="/shopresister">
-            <img src="/assets/imgs/footer-2.webp" alt="footer-2" />
+            <img
+              src="/assets/imgs/footer-2.webp"
+              alt="footer-2"
+              className="w-full"
+            />
           </Link>
         </div>
         <div className="flex justify-center items-center xs:pt-6 sm:py-[24px] m-auto">
@@ -51,12 +59,12 @@ const Footer = () => {
         </div>
         <div className=" border-t-2 border-dashed border-[#CCC] relative">
           <div className="flex xs:flex-col xs:gap-2 sm:flex-row sm:justify-center py-[24px] text-[16px]">
-            <div className="bg-white px-[20px] mr-[16px]">
-              <p className="tracking-[-.1em]">
+            <div className="px-[20px] mr-[16px] text-center">
+              <span className="bg-white tracking-[-.1em]">
                 看板猫を紹介したい店舗・団体専用ページ
-              </p>
+              </span>
             </div>
-            <div className="px-[20px]">
+            <div className="px-[20px] text-center">
               <p className="tracking-[-.1em]">
                 <Link
                   to="/oshiresister"

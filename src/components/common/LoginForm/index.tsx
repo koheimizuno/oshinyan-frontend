@@ -30,19 +30,17 @@ const LoginForm = () => {
   };
 
   return (
-    <form className="bg-white px-[84px] py-10" onSubmit={handleSubmit}>
-      {loginError && (
-        <p className="ml-[20%] text-red-500">
-          {/* 無効なユーザー名またはパスワード。 */}
-          {loginError}
-        </p>
-      )}
+    <form
+      className="bg-white xs:px-[20px] sm:px-[40px] md:px-[84px] py-10"
+      onSubmit={handleSubmit}
+    >
+      {loginError && <p className="ml-[20%] text-red-500">{loginError}</p>}
       <label
         htmlFor="email"
-        className=" flex justify-between h-[80px] border-b border-[#CCCCCC] items-center mt-[4px]"
+        className="sm:flex sm:justify-between gap-5 h-[80px] border-b border-[#CCCCCC] items-center mt-[4px]"
       >
-        <p className="">メールアドレス</p>
-        <div className="w-[80%]">
+        <p className="whitespace-nowrap sm:w-[112px] py-4">メールアドレス</p>
+        <div className="sm:w-[calc(100%-112px)]">
           <InputText
             type="email"
             name="email"
@@ -55,10 +53,10 @@ const LoginForm = () => {
       <div className="border-b border-[#CCCCCC]">
         <label
           htmlFor="password"
-          className="flex justify-between gap-5 h-[85px] items-center mt-[4px]"
+          className="sm:flex sm:justify-between gap-5 h-[85px] items-center mt-[4px]"
         >
-          <p className="">パスワード</p>
-          <div className="w-[80%]">
+          <p className="whitespace-nowrap sm:w-[112px] py-4">パスワード</p>
+          <div className="sm:w-[calc(100%-112px)]">
             <InputText
               type="password"
               name="password"
@@ -68,7 +66,7 @@ const LoginForm = () => {
             />
           </div>
         </label>
-        <div className="ml-[20%] mb-12">
+        <div className="sm:ml-[20%] mb-12 pt-2">
           <button
             type="button"
             className="border-b border-[#707070]"

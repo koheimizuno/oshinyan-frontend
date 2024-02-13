@@ -776,11 +776,11 @@ const CatDetail = () => {
       </div>
 
       {/* signboard cat in the same place */}
-      <div className="text-base mt-8 font-medium">
+      <div className="text-2xl mt-8 font-medium">
         同じ地域の看板猫を探すニャン！
       </div>
       <div className="w-full border-b border-[#CBB279] mt-4"></div>
-      <div className="mt-6 flex flex-wrap justify-between">
+      <div className="mt-6 mb-12 flex flex-wrap justify-between">
         {catData.length !== 0 ? (
           catData.map((e, i) => (
             <CatCard
