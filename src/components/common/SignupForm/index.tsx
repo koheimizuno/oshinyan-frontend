@@ -81,8 +81,8 @@ const SignupForm = () => {
   return (
     <div className="bg-white p-[24px] pb-[40px]">
       <form className="" onSubmit={handleSubmit}>
-        <div className="flex">
-          <div className="flex">
+        <div className="xs:block md:flex">
+          <div className="flex justify-center">
             <button
               type="button"
               className={`w-[72px] h-[72px] me-[38px] text-sm bg-[#ccc] rounded-full flex justify-center items-center text-center cursor-pointer ${
@@ -110,16 +110,16 @@ const SignupForm = () => {
               },
             }}
           >
-            <Box className="w-[912px] bg-white rounded-lg absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <Box className="w-3/4 sm:2/3 md:w-1/2 bg-white rounded-lg absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
               <div className="p-6 pb-[34px]">
                 <Close
                   className="absolute top-2 right-2 bg-[#474747] rounded-full text-white p-1 cursor-pointer"
                   onClick={() => setAvatarModal(false)}
                 />
-                <h3 className="text-[24px]">
+                <h3 className="xs:text-[18px] md:text-[24px]">
                   使用する猫アイコンを選択するニャン！
                 </h3>
-                <div className="mt-10 flex flex-wrap gap-10">
+                <div className="xs:mt-5 md:mt-10 flex flex-wrap gap-4">
                   {avatars.length &&
                     avatars.map((item, index) => (
                       <label
@@ -127,7 +127,11 @@ const SignupForm = () => {
                         className="cursor-pointer"
                         onClick={() => selectAvatar(item.id, item.avatar)}
                       >
-                        <img src={item.avatar} alt={item.avatar} />
+                        <img
+                          src={item.avatar}
+                          alt={item.avatar}
+                          className="w-[25px] sm:w-[40px] md:w-[72px]"
+                        />
                       </label>
                     ))}
                 </div>
@@ -135,9 +139,12 @@ const SignupForm = () => {
             </Box>
           </Modal>
           <div className="grow">
-            <div className="flex justify-between h-[80px] border-b border-[#CCCCCC] items-center">
-              <div className="flex items-center">
-                <label htmlFor="username" className="w-[134px]">
+            <div className="xs:flex xs:flex-col xs:py-4 md:py-0 md:flex md:flex-row md:justify-between md:items-center gap-4 md:h-[80px] border-b border-[#CCCCCC] ">
+              <div className="xs:flex xs:flex-row gap-2 py-2 xs:items-center xs:gap-4">
+                <label
+                  htmlFor="username"
+                  className="xs:w-[134px] whitespace-nowrap"
+                >
                   ニックネーム
                 </label>
                 <InputText
@@ -145,12 +152,14 @@ const SignupForm = () => {
                   value={values}
                   onChange={handleChange}
                   required={true}
-                  containerClass="w-[304px]"
+                  containerClass="xs:w-[calc(100%-134px)]"
                 />
               </div>
-
-              <div className="flex items-center">
-                <label htmlFor="residence" className="w-[96px]">
+              <div className="xs:flex xs:flex-row gap-2 py-2 xs:items-center xs:gap-2">
+                <label
+                  htmlFor="residence"
+                  className="whitespace-nowrap xs:w-[134px]"
+                >
                   居住エリア
                 </label>
                 <div className="relative my-auto h-[40px]">
@@ -175,11 +184,8 @@ const SignupForm = () => {
               </div>
             </div>
             {/* row2 */}
-            <div className="flex justify-between h-[80px] border-b border-[#CCCCCC] items-center mt-[4px]">
-              <label
-                htmlFor="email"
-                className="w-[134px] mr-5 whitespace-nowrap"
-              >
+            <div className="flex justify-between gap-4 h-[80px] border-b border-[#CCCCCC] items-center mt-[4px]">
+              <label htmlFor="email" className="xs:w-[134px] whitespace-nowrap">
                 メールアドレス
               </label>
               <InputText
@@ -188,13 +194,13 @@ const SignupForm = () => {
                 value={values}
                 onChange={handleChange}
                 required={true}
-                containerClass="w-full"
+                containerClass="xs:w-[calc(100%-134px)]"
               />
             </div>
-            <div className="flex justify-between h-[80px] border-b border-[#CCCCCC] items-center mt-[4px]">
+            <div className="flex justify-between gap-4 h-[80px] border-b border-[#CCCCCC] items-center mt-[4px]">
               <label
                 htmlFor="password"
-                className="w-[134px] mr-5 whitespace-nowrap"
+                className="xs:w-[134px] whitespace-nowrap"
               >
                 パスワード
               </label>
@@ -204,7 +210,7 @@ const SignupForm = () => {
                 value={values}
                 onChange={handleChange}
                 required={true}
-                containerClass="w-full"
+                containerClass="xs:w-[calc(100%-134px)]"
               />
             </div>
           </div>

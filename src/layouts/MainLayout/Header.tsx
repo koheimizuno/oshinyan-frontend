@@ -35,36 +35,37 @@ const Header = () => {
       </div>
       <div>
         <ul
-          className={`text-[16px] max-h-0 overflow-hidden transition-all duration-1000 ease-in-out sm:text-center sm:absolute sm:border-t sm:top-[96px] sm:left-0 sm:z-10 sm:w-full sm:bg-white 
+          className={`text-[16px] max-h-0 overflow-hidden transition-all duration-1000 ease-in-out 
+                      xs:text-center xs:absolute xs:border-t xs:top-[96px] xs:left-0 xs:z-10 xs:w-full xs:bg-white 
                       md:static md:max-h-full md:border-0 md:flex md:justify-between md:items-center ${hidden}`}
         >
-          <li className="hover:text-[#C38154] sm:pt-3 md:pt-0">
-            <Link to="/guide" className="px-[15px] font-medium block sm:py-3">
+          <li className="hover:text-[#C38154] xs:pt-3 md:pt-0">
+            <Link to="/guide" className="px-[15px] font-medium block xs:py-3">
               推しニャンとは？
             </Link>
           </li>
-          <li className="w-[1px] h-[16px] bg-black sm:hidden md:block"></li>
+          <li className="w-[1px] h-[16px] bg-black xs:hidden md:block"></li>
           {!isAuthenticated && (
             <li className="hover:text-[rgb(195,129,84)]">
               <Link
                 to="/registration"
-                className="px-[15px] font-medium block sm:py-3"
+                className="px-[15px] font-medium block xs:py-3"
               >
                 会員登録ニャ！
               </Link>
             </li>
           )}
-          <li className="w-[1px] h-[16px] bg-black sm:hidden md:block"></li>
+          <li className="w-[1px] h-[16px] bg-black xs:hidden md:block"></li>
           <li className="hover:text-[#C38154]">
-            <Link to="/feature" className="px-[15px] font-medium block sm:py-3">
+            <Link to="/feature" className="px-[15px] font-medium block xs:py-3">
               特集見るニャ！
             </Link>
           </li>
-          <li className="hover:opacity-70 sm:py-3 sm:pb-6 md:pb-3">
+          <li className="hover:opacity-70 xs:py-3 xs:pb-6 md:pb-3">
             {isAuthenticated ? (
               <Link
                 to="/mypage"
-                className="bg-[#FBA1B7] w-[120px] rounded sm:m-auto px-[8px] pb-[5px] pt-[3px] flex justify-start items-center"
+                className="bg-[#FBA1B7] w-[120px] rounded xs:m-auto px-[8px] pb-[5px] pt-[3px] flex justify-start items-center"
               >
                 <div className="pr-[8px]">
                   <img src="/assets/imgs/icons/mypage.webp" alt="mypage-icon" />
@@ -76,7 +77,7 @@ const Header = () => {
             ) : (
               <Link
                 to="/login"
-                className="bg-[#edc97a] w-[120px] rounded sm:m-auto px-[8px] pb-[5px] pt-[3px] flex justify-center items-center gap-1"
+                className="bg-[#edc97a] w-[120px] rounded xs:m-auto px-[8px] pb-[5px] pt-[3px] flex justify-center items-center gap-1"
               >
                 <div className="pr-[8px]">
                   <img

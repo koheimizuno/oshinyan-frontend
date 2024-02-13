@@ -6,8 +6,8 @@ import Instagram from "../../basic/icons/Instagram";
 function SocialLinkGroup(props: any) {
   return (
     <div
-      className={`fixed left-0 z-10 bg-white xs:hidden sm:flex sm:flex-col  ${
-        props.page === "top" ? "top-[450px]" : "top-[150px]"
+      className={`fixed left-0 z-10 bg-white xs:hidden lg:flex lg:flex-col  ${
+        props.page === "top" ? "top-[430px]" : "top-[200px]"
       }`}
     >
       <Link to={"/mypage"} className="p-4 inline-block">

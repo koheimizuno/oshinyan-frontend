@@ -11,7 +11,7 @@ const BlogColumnBox = (props: ColumnType) => {
   const [hoverAction, setHoverAction] = useState(false);
   return (
     <div
-      className=" w-[312px] mb-[15px] opacity-70 hover:opacity-100 bg-white border"
+      className=" w-[312px] mb-[15px] opacity-70 hover:opacity-100 bg-white border m-auto"
       onMouseOver={() => setHoverAction(true)}
       onMouseLeave={() => setHoverAction(false)}
     >

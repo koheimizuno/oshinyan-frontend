@@ -4,7 +4,7 @@ function PrivacyComponent() {
   return (
     <div>
       <p className="text-center my-6">個人情報の取扱い方針</p>
-      <div className="w-[528px] m-auto p-1 text-[12px] text-left bg-[#F7F7F7] border border-[#CCCCCC] overflow-y-auto">
+      <div className="max-w-[528px] m-auto p-1 text-[12px] text-left bg-[#F7F7F7] border border-[#CCCCCC] overflow-y-auto">
         個人情報取扱い方針同意書 <br />
         推しニャンサイト（以下、当Webサイト）では、お客様の個人情報に関しまして、お預かりした個人情報を適切に取扱うとともに、その安全管理に努めます。個人情報保護法に基づき、お客様の個人情報の利用について以下のように定めます。
         <br />

@@ -43,25 +43,23 @@ const ColumnSection = () => {
             推しニャン！コラム
           </h3>
         </div>
-        <div className="m-auto">
-          <div className="flex justify-between flex-wrap">
-            {columnData.length !== 0 ? (
-              columnData.map((e, i) => (
-                <BlogColumnBox
-                  key={i}
-                  id={e.id}
-                  hero_image={e.hero_image}
-                  title={e.title}
-                  cat_name={e.cat_name}
-                  created_date={e.created_date}
-                />
-              ))
-            ) : (
-              <p className="py-10 block w-full text-center text-xl">
-                表示する資料がありません。
-              </p>
-            )}
-          </div>
+        <div className="flex justify-between flex-wrap">
+          {columnData.length !== 0 ? (
+            columnData.map((e, i) => (
+              <BlogColumnBox
+                key={i}
+                id={e.id}
+                hero_image={e.hero_image}
+                title={e.title}
+                cat_name={e.cat_name}
+                created_date={e.created_date}
+              />
+            ))
+          ) : (
+            <p className="py-10 block w-full text-center text-xl">
+              表示する資料がありません。
+            </p>
+          )}
         </div>
         {columnData.length !== 0 && <MoreButton />}
       </div>

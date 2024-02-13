@@ -73,14 +73,14 @@ const CatCard = ({
 
   return (
     <div
-      className={`m-auto w-[312px] h-[512px] mb-[15px] ${
+      className={`m-auto w-full xs:max-w-[480px] xs:m-auto md:max-w-[312px] md:h-[512px] mb-[15px] ${
         hoverAction ? "opacity-100" : "opacity-70"
       }`}
       onMouseOver={() => setHoverAction(true)}
       onMouseLeave={() => setHoverAction(false)}
     >
-      <div className="w-full">
-        <div className="relative w-[312px] h-[234px] bg-white">
+      <div className="">
+        <div className="relative bg-white">
           <Swiper
             modules={[Navigation, Pagination, Scrollbar, A11y]}
             speed={800}
@@ -100,7 +100,10 @@ const CatCard = ({
           >
             {images &&
               images.map((item: any, key: any) => (
-                <SwiperSlide key={key} className="h-[234px] overflow-x-hidden">
+                <SwiperSlide
+                  key={key}
+                  className="md:h-[234px] overflow-x-hidden"
+                >
                   <Link
                     to={
                       !advertise
@@ -111,7 +114,7 @@ const CatCard = ({
                     <img
                       src={item.imgs}
                       alt={item.imgs}
-                      className="h-full m-auto cursor-pointer"
+                      className="h-full m-auto cursor-pointer w-full h-auto"
                     />
                   </Link>
                 </SwiperSlide>

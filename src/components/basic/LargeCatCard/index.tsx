@@ -7,7 +7,6 @@ import { CatObjectType } from "../../../constant/type";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
 import { RecommendAction } from "../../../slices/cat";
-import { reduceEachLeadingCommentRange } from "typescript";
 import { isNewUtil } from "../../../utils/functions";
 
 const LargeCatCard = ({
@@ -29,8 +28,6 @@ const LargeCatCard = ({
   const [isNew, setIsNew] = useState<boolean | undefined>(false);
   const { user } = useSelector((state: any) => state.user);
   const { isAuthenticated } = useSelector((state: any) => state.user);
-  const { catLoading } = useSelector((state: any) => state.cat);
-
   useEffect(() => {
     setIsNew(isNewUtil(last_update));
     const handleClickOutside = (event: any) => {
@@ -64,8 +61,8 @@ const LargeCatCard = ({
   };
   return (
     <>
-      <div className="relative w-full mb-[15px] flex bg-white">
-        <div className="h-full w-[50%]">
+      <div className="relative xs:max-w-[480px] xs:m-auto md:max-w-none w-full mb-[15px] md:grid md:grid-cols-2 bg-white">
+        <div className="h-full">
           <Swiper
             modules={[Navigation, Pagination, Scrollbar, A11y]}
             speed={800}
@@ -90,7 +87,7 @@ const LargeCatCard = ({
                     <img
                       src={item.imgs}
                       alt={item.imgs}
-                      className="m-auto cursor-pointer h-full"
+                      className="m-auto cursor-pointer max-w-full h-full"
                     />
                   </Link>
                 </SwiperSlide>
@@ -143,7 +140,7 @@ const LargeCatCard = ({
             </button>
           </Swiper>
         </div>
-        <div className="px-[24px] h-full w-[50%] flex flex-col justify-between">
+        <div className="px-[24px] h-full flex flex-col justify-between">
           <div className="pt-[24px]">
             <h3 className="text-[24px] font-bold text-left text-ellipsis overflow-hidden whitespace-nowrap">
               {cat_name}

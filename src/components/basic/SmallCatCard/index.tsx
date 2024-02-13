@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
 import { RecommendAction } from "../../../slices/cat";
 import { isNewUtil } from "../../../utils/functions";
+import CustomButton from "../CustomButton";
 
 const SmallCatCard = ({
   id,
@@ -54,8 +55,8 @@ const SmallCatCard = ({
     }
   };
   return (
-    <div className="relative w-full h-[144px] flex">
-      <div className="relative h-full w-[192px] bg-center bg-no-repeat">
+    <div className="relative m-auto xs:max-w-[300px] lg:max-w-none lg:w-full lg:h-[144px] xs:block lg:flex">
+      <div className="relative h-full xs:w-full lg:w-[192px] bg-center bg-no-repeat">
         <Swiper
           modules={[Navigation, Pagination, Scrollbar, A11y]}
           speed={800}
@@ -72,7 +73,7 @@ const SmallCatCard = ({
         >
           {images &&
             images.map((item: any, key: any) => (
-              <SwiperSlide key={key} className="h-[144px] overflow-x-hidden">
+              <SwiperSlide key={key} className="lg:h-[144px] overflow-x-hidden">
                 <Link to={`/oshinyan/${id}`}>
                   <img
                     src={item.imgs}
@@ -83,7 +84,7 @@ const SmallCatCard = ({
               </SwiperSlide>
             ))}
           <div className="swiper-pagination custom-pagination-bullets"></div>
-          <button className="arrow-left xs:hidden md:block">
+          <button className="arrow-left xs:hidden lg:block">
             <div className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
               <svg
                 style={{ marginRight: "4px" }}
@@ -106,7 +107,7 @@ const SmallCatCard = ({
               </svg>
             </div>
           </button>
-          <button className="arrow-left xs:hidden md:block">
+          <button className="arrow-left xs:hidden lg:block">
             <div className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -153,7 +154,7 @@ const SmallCatCard = ({
           </span>
           {recommendLoginShow && (
             <span
-              className="absolute -left-5 -bottom-[75px] w-[250px] bg-white px-4 py-2 shadow-md rounded-xl cursor-pointer"
+              className="absolute -left-5 -bottom-[75px] w-[250px] bg-white px-4 py-2 shadow-lg rounded-xl cursor-pointer"
               onClick={() => navigate("/login")}
             >
               会員ログイン後にボタンを押すことが可能です
@@ -167,29 +168,34 @@ const SmallCatCard = ({
           </span>
         )}
       </div>
-      <div className="px-[24px] w-[282px] bg-white h-full flex flex-col">
+      <div className="xs:px-2 md:px-[24px] max:w-[282px] bg-white h-full flex flex-col">
         <div className="pt-[16px]">
-          <h3 className="text-[24px] leading-[24px] vertical-bottom font-bold text-left text-ellipsis overflow-hidden whitespace-nowrap">
+          <h3 className="xs:text-[18px] md:text-[24px] leading-[24px] vertical-bottom font-bold text-left text-ellipsis overflow-hidden whitespace-nowrap">
             {cat_name}
           </h3>
           <button
-            className=" w-[145px] leading-[21px] underline text-[16px] text-ellipsis overflow-hidden tracking-tighter whitespace-nowrap "
+            className="py-4 w-[145px] leading-[21px] underline text-[16px] text-ellipsis overflow-hidden tracking-tighter whitespace-nowrap "
             onClick={() => navigate(`/nyanplace/${shop.id}`)}
           >
             {shop.shop_name}
           </button>
         </div>
-        <div className="flex justify-content-start items-center mt-[auto] mb-[8px]">
-          <span className=" flex d-inline-block align-items-center w-[24px] h-[24px]  mr-[9px]">
-            <img
-              src="/assets/imgs/icons/recommend.svg"
-              className=" align-items-center"
-              alt=""
-            />
-          </span>
-          <h2 className="text-[24px] d-inline-block">
-            {recommend.length}ニャン
-          </h2>
+        <div className="flex justify-between items-center mt-[auto] mb-[8px]">
+          <div className="flex items-center">
+            <span className=" flex d-inline-block align-items-center w-[24px] h-[24px]  mr-[9px]">
+              <img
+                src="/assets/imgs/icons/recommend.svg"
+                className=" align-items-center"
+                alt=""
+              />
+            </span>
+            <h2 className="text-[24px] d-inline-block">
+              {recommend.length}ニャン
+            </h2>
+          </div>
+          <div>
+            <CustomButton value={shop.prefecture}></CustomButton>
+          </div>
         </div>
       </div>
     </div>

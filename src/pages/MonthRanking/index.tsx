@@ -14,8 +14,8 @@ import SmallCatCard from "../../components/basic/SmallCatCard";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import axios from "axios";
 import { CatObjectType } from "../../constant/type";
+import Container from "../../components/basic/Container";
 
-const isNew = false;
 interface dateType {
   year: number;
   month: number;
@@ -135,14 +135,14 @@ const MonthRanking = () => {
         characterShow={characterShow}
       />
       <div className="bg-[#F5F4EC]">
-        <div className="  w-[960px] m-auto ">
+        <Container>
           <RankingBar />
-          <div className="text-[40px] leading-[53px]">
+          <div className="xs:text-center md:text-start text-[40px] py-3">
             <span>
               {dates.year}年{dates.month}月
             </span>
           </div>
-          <div className="ranking-1 mt-[24px] mb-[24px]">
+          <div className="xs:max-w-[480px] xs:w-full xs:m-auto xs:mt-[24px] xs:mb-[24px] md:ml-0 ranking-1">
             {catData.length !== 0 ? (
               <div className="ranking-1-tle flex gap-[8px]">
                 <img src="/assets/imgs/icons/ranking-1-cap.svg" alt="cat" />{" "}
@@ -171,26 +171,56 @@ const MonthRanking = () => {
               last_update={catData[0].last_update}
             />
           )}
-          <div className="mt-[24px]">
-            <div className="flex justify-between flex-wrap ">
-              {catData &&
-                catData.slice(1, 4).map((e, i) => (
-                  <div className="flex flex-col" key={i}>
+          <div className="md:flex md:justify-between md:flex-wrap ">
+            {catData &&
+              catData.slice(1, 4).map((e, i) => (
+                <div className="flex flex-col" key={i}>
+                  <div className="xs:max-w-[480px] xs:w-full xs:m-auto xs:mt-[24px] xs:mb-[15px] md:ml-0 flex leading-[27px]">
+                    {i === 0 && (
+                      <div className="w-[36px] h-[26px] me-[12px]">
+                        <CapSecond />
+                      </div>
+                    )}
+                    {i === 1 && (
+                      <div className="w-[36px] h-[26px] me-[12px]">
+                        <CapThird />
+                      </div>
+                    )}
+                    {i + 2}位
+                  </div>
+                  <CatCard
+                    key={i}
+                    id={e.id}
+                    cat_name={e.cat_name}
+                    shop={e.shop}
+                    images={e.images}
+                    admin_images={e.admin_images}
+                    character={e.character}
+                    favorite_things={e.favorite_things}
+                    attendance={e.attendance}
+                    description={e.description}
+                    recommend={e.recommend}
+                    last_update={e.last_update}
+                  />
+                </div>
+              ))}
+          </div>
+          <div
+            className={`flex-wrap m-auto mt-[16px] grid grid-cols-2 gap-x-[24px] gap-y-[16px] border-b border-[#CBB279] ${
+              catData.length !== 0 && "pb-[65px]"
+            }`}
+          >
+            {catData &&
+              catData.slice(4, 10).map((e, i) => (
+                <div
+                  className="xs:max-w-[300px] md:max-w-none flex flex-col m-auto w-full"
+                  key={i}
+                >
+                  <div className="m-auto">
                     <div className="flex leading-[27px] mb-[7px]">
-                      {i === 0 && (
-                        <div className="w-[36px] h-[26px] me-[12px]">
-                          <CapSecond />
-                        </div>
-                      )}
-                      {i === 1 && (
-                        <div className="w-[36px] h-[26px] me-[12px]">
-                          <CapThird />
-                        </div>
-                      )}
-                      {i + 2}位
+                      {i + 5}位
                     </div>
-                    <CatCard
-                      key={i}
+                    <SmallCatCard
                       id={e.id}
                       cat_name={e.cat_name}
                       shop={e.shop}
@@ -204,31 +234,6 @@ const MonthRanking = () => {
                       last_update={e.last_update}
                     />
                   </div>
-                ))}
-            </div>
-          </div>
-          <div
-            className={`flex-wrap mt-[16px] grid grid-cols-2 gap-x-[24px] gap-y-[16px] border-b border-[#CBB279] ${
-              catData.length !== 0 && "pb-[65px]"
-            }`}
-          >
-            {catData &&
-              catData.slice(4, 10).map((e, i) => (
-                <div className="flex flex-col" key={i}>
-                  <div className="flex leading-[27px] mb-[7px]">{i + 5}位</div>
-                  <SmallCatCard
-                    id={e.id}
-                    cat_name={e.cat_name}
-                    shop={e.shop}
-                    images={e.images}
-                    admin_images={e.admin_images}
-                    character={e.character}
-                    favorite_things={e.favorite_things}
-                    attendance={e.attendance}
-                    description={e.description}
-                    recommend={e.recommend}
-                    last_update={e.last_update}
-                  />
                 </div>
               ))}
           </div>
@@ -288,11 +293,11 @@ const MonthRanking = () => {
             </div>
           )}
           <div>
-            <div className="pt-[48px] pb-[80px]">
+            <div className="xs:pt-[20px] md:pt-[48px] md:pb-[80px]">
               <div className="mb-[24px] hover:opacity-70">
                 <Link to="/nyanplace" className="relative">
                   <img src="/assets/imgs/signboard.webp" alt="signboard" />
-                  <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[32px] text-white font-bold tracking-widest">
+                  <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap xs:text-[20px] sm:text-[32px] text-white font-bold tracking-widest">
                     『看板猫に会える場所』一覧
                   </p>
                 </Link>
@@ -304,7 +309,7 @@ const MonthRanking = () => {
               </div>
             </div>
           </div>
-        </div>
+        </Container>
       </div>
       <Store />
       <Notices />
