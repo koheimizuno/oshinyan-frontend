@@ -166,8 +166,8 @@ const SignupForm = () => {
                   >
                     {PREFECTURE &&
                       PREFECTURE.map((item, key) => (
-                        <MenuItem value={item[0]} key={key}>
-                          {item[0]}
+                        <MenuItem value={item[0]} key={key} className="">
+                          <span className="px-2 py-1">{item[0]}</span>
                         </MenuItem>
                       ))}
                   </Select>
