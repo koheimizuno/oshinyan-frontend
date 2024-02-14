@@ -83,7 +83,6 @@ const CatCard = ({
         <div className="relative bg-white">
           <Swiper
             modules={[Navigation, Pagination, Scrollbar, A11y]}
-            speed={800}
             pagination={{
               el: ".swiper-pagination",
               type: "bullets",

@@ -123,7 +123,7 @@ const Top = () => {
             <div className="mb-[24px] hover:opacity-70">
               <Link to="/nyanplace" className="relative">
                 <img src="/assets/imgs/signboard.webp" alt="signboard" />
-                <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[32px] text-white font-bold tracking-widest">
+                <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:text-[32px] text-white font-bold tracking-widest whitespace-nowrap">
                   『看板猫に会える場所』一覧
                 </p>
               </Link>

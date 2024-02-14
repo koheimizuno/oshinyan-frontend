@@ -65,7 +65,6 @@ const LargeCatCard = ({
         <div className="h-full">
           <Swiper
             modules={[Navigation, Pagination, Scrollbar, A11y]}
-            speed={800}
             pagination={{
               el: ".swiper-pagination",
               type: "bullets",

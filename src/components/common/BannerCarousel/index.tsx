@@ -33,6 +33,7 @@ function BannerCarousel() {
     <div className="bg-white">
       <Swiper
         modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
+        speed={800}
         loop={true}
         centeredSlides
         autoplay={{
