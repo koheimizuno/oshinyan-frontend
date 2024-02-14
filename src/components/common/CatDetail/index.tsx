@@ -28,7 +28,7 @@ import CatDetailCarousel from "./components/Carousel";
 import AlbumGallery from "./components/AlbumGallery";
 import CommentImageCarousel from "./components/CommentImageCarousel";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import { formatDateTime } from "../../../utils/functions";
+import { formatDateTime, isNewUtil } from "../../../utils/functions";
 import { Notification } from "../../../constant/notification";
 import CatDetailComment from "./components/CatDetailComment";
 
@@ -61,6 +61,7 @@ const CatDetail = () => {
   >([]);
   const [selectedTab, setSelectedTab] = useState(0);
   const [selectedDetail, setSelectedDetail] = useState(0);
+  const [isNew, setIsNew] = useState<boolean | undefined>(false);
   const [commentImgs, setCommentImgs] = useState<
     {
       id: number;
@@ -89,6 +90,21 @@ const CatDetail = () => {
     (state: any) => state.user
   );
   const { catLoading } = useSelector((state: any) => state.cat);
+
+  useEffect(() => {
+    const handleClickOutside = (event: any) => {
+      if (
+        recommendLoginElement.current &&
+        !recommendLoginElement.current.contains(event.target)
+      ) {
+        setRecommendLoginShow(false);
+      }
+    };
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   useEffect(() => {
     const commentFetch = async () => {

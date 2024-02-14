@@ -16,7 +16,7 @@ function CatDetailCarousel(props: any) {
       loop={true}
       centeredSlides
       slidesPerView={1}
-      navigation={{ nextEl: ".arrow-left", prevEl: ".arrow-right" }}
+      navigation={{ nextEl: ".arrow-right", prevEl: ".arrow-left" }}
     >
       {props.data &&
         props.data.map((item: any, key: any) => (
@@ -32,12 +32,12 @@ function CatDetailCarousel(props: any) {
           </SwiperSlide>
         ))}
       <div className="swiper-pagination custom-pagination-bullets"></div>
-      <button className="arrow-right xs:hidden md:block">
+      <button className="arrow-left xs:hidden md:block">
         <div className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
           <ArrowLeft />
         </div>
       </button>
-      <button className="arrow-left xs:hidden md:block">
+      <button className="arrow-right xs:hidden md:block">
         <div className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
           <ArrowRight />
         </div>

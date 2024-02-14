@@ -5,6 +5,7 @@ import axios from "axios";
 import { LogOutAction, TokenLoginAction } from "./slices/auth";
 import "./App.css";
 import SuspenseContent from "./components/basic/SuspenseContent";
+import NotFound from "./pages/404";
 const Top = lazy(() => import("./pages/Top"));
 const MonthRanking = lazy(() => import("./pages/MonthRanking"));
 const Guide = lazy(() => import("./pages/Guide"));
@@ -95,6 +96,7 @@ function App() {
             //15 <Route path="comment/:id" element={<Comment />} />
             //16 <Route path="column/:id" element={<ColumnDetail />} />
             //17 <Route path="inquiry" element={<Inquiry />} />
+            <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
       </Suspense>

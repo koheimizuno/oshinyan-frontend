@@ -67,8 +67,8 @@ const ImageDetail = ({
           centeredSlides={true}
           slidesPerView={1}
           navigation={{
-            nextEl: `.arrow-left`,
-            prevEl: `.arrow-right`,
+            nextEl: `.arrow-right`,
+            prevEl: `.arrow-left`,
           }}
           className="cursor-pointer w-[960px]"
         >
@@ -152,13 +152,9 @@ const ImageDetail = ({
             modules={[Navigation, Pagination, Scrollbar, A11y]}
             loop={true}
             centeredSlides={true}
-            autoplay={{
-              delay: 2500,
-              disableOnInteraction: false,
-            }}
             spaceBetween="16px"
             slidesPerView={window.innerWidth / 160}
-            navigation={{ nextEl: ".arrow-left", prevEl: ".arrow-right" }}
+            navigation={{ nextEl: ".arrow-right", prevEl: ".arrow-left" }}
             className="h-40 cursor-pointer"
           >
             {commentImgs &&

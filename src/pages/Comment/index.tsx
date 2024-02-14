@@ -23,8 +23,9 @@ function Comment() {
   const [retrieveCat, setRetrieveCat] = useState({ cat_name: "" });
   const [comment, setComment] = useState("");
   const [catDetailImages, setCatDetailImages] = useState<string[]>([]);
-  const { user } = useSelector((state: any) => state.user);
+  const { user, isAuthenticated } = useSelector((state: any) => state.user);
   useEffect(() => {
+    !isAuthenticated && navigate("/login");
     const RetrieveCat = async () => {
       try {
         let list: string[] = [];

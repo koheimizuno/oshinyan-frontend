@@ -68,7 +68,7 @@ const SmallCatCard = ({
           loop={true}
           centeredSlides
           slidesPerView={1}
-          navigation={{ nextEl: ".arrow-left", prevEl: ".arrow-right" }}
+          navigation={{ nextEl: ".arrow-right", prevEl: ".arrow-left" }}
           className="cursor-pointer hover:opacity-70"
         >
           {images &&
@@ -107,7 +107,7 @@ const SmallCatCard = ({
               </svg>
             </div>
           </button>
-          <button className="arrow-left xs:hidden lg:block">
+          <button className="arrow-right xs:hidden lg:block">
             <div className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

@@ -75,8 +75,8 @@ const LargeCatCard = ({
             centeredSlides
             slidesPerView={1}
             navigation={{
-              nextEl: `.arrow-left${id}`,
-              prevEl: `.arrow-right${id}`,
+              nextEl: `.arrow-right${id}`,
+              prevEl: `.arrow-left${id}`,
             }}
             className="cursor-pointer hover:opacity-70"
           >
@@ -116,7 +116,7 @@ const LargeCatCard = ({
                 </svg>
               </div>
             </button>
-            <button className={`arrow-left${id} xs:hidden md:block`}>
+            <button className={`arrow-right${id} xs:hidden md:block`}>
               <div className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

@@ -55,7 +55,7 @@ const CatCard = ({
             cat_id: id,
             user_id: user.user_id,
           };
-          const res = await dispatch(RecommendAction(submitData));
+          await dispatch(RecommendAction(submitData));
         }
       } else {
         if (!recommend?.find((e) => e.user == user.user_id)) {
@@ -63,7 +63,7 @@ const CatCard = ({
             advertise_id: id,
             user_id: user.user_id,
           };
-          const res = await dispatch(RecommendAction(submitData));
+          await dispatch(RecommendAction(submitData));
         }
       }
     } else {
@@ -93,8 +93,8 @@ const CatCard = ({
             centeredSlides
             slidesPerView={1}
             navigation={{
-              nextEl: `.arrow-left${id}${advertise && id}`,
-              prevEl: `.arrow-right${id}${advertise && id}`,
+              nextEl: `.arrow-right${id}${advertise && id}`,
+              prevEl: `.arrow-left${id}${advertise && id}`,
             }}
             className="cursor-pointer"
           >
@@ -147,7 +147,9 @@ const CatCard = ({
               </div>
             </button>
             <button
-              className={`arrow-left${id}${advertise && id} xs:hidden md:block`}
+              className={`arrow-right${id}${
+                advertise && id
+              } xs:hidden md:block`}
             >
               <div className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
                 {/* <ArrowRight /> */}
