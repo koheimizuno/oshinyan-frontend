@@ -69,11 +69,14 @@ const AmbassadorRegisterFrom = () => {
       </div>
       <span className="text-red-500 mt-2 inline-block">＊＝必須</span>
       <form onSubmit={handleSubmit}>
-        <div className="w-[640px] m-auto">
+        <div className="max-w-[640px] m-auto">
           {/* row 1 */}
-          <div className="pt-[16px] pb-8 border-b border-[#ccc] flex justify-between items-center">
-            <label className="text-[14px]" htmlFor="name_kana">
-              <span className="tracking-tighter">アンバサダー名</span>
+          <div className="flex flex-col xs:flex xs:flex-row gap-2 py-2 xs:items-center pt-[16px] pb-8 border-b border-[#ccc]">
+            <label
+              className="text-[14px] xs:w-[100px] sm:w-[184px]"
+              htmlFor="name_kana"
+            >
+              アンバサダー名
               <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
                 *
               </span>
@@ -82,38 +85,39 @@ const AmbassadorRegisterFrom = () => {
               name="ambassador_name"
               value={submitValue}
               onChange={handlechange}
-              containerClass="w-[456px]"
               required={true}
+              containerClass="xs:w-[calc(100%-100px)] sm:w-[calc(100%-184px)]"
             />
           </div>
           {/* row 2 */}
-          <div className="py-8 border-b border-[#ccc] flex justify-between items-center">
-            <label className="text-[14px]" htmlFor="name_kana">
-              <span className="tracking-tighter">氏名</span>
+          <div className="flex flex-col xs:flex xs:flex-row gap-2 py-2 xs:items-center pt-[16px] pb-8 border-b border-[#ccc]">
+            <label className="text-[14px] xs:w-[100px] sm:w-[184px]">
+              氏名
             </label>
             <InputText
               name="full_name"
               value={submitValue}
               onChange={handlechange}
-              containerClass="w-[456px]"
+              required={true}
+              containerClass="xs:w-[calc(100%-100px)] sm:w-[calc(100%-184px)]"
             />
           </div>
           {/* row 3 */}
           <div className="py-4 border-b border-[#ccc]">
-            <div className="flex justify-between py-4">
-              <div className="flex items-center">
-                <p className="text-[14px]">店舗住所</p>
+            <div className="flex justify-between items-start md:items-center gap-2 py-4">
+              <div className="text-[14px] whitespace-nowrap flex items-center xs:w-[100px] sm:w-[184px]">
+                店舗住所
               </div>
-              <div className="w-[456px] flex justify-between">
-                <div className="flex items-center">
-                  <p className="text-[14px]">
-                    都道府県
+              <div className="xs:w-[calc(100%-100px)] sm:w-[calc(100%-184px)] xs:flex xs:flex-col xs:justify-between sm:flex sm:flex-row sm:justify-between gap-4">
+                <div className="flex items-center w-[130px]">
+                  <p className="text-[14px] flex items-center">
+                    <span className="whitespace-nowrap">都道府県</span>
                     <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
                       *
                     </span>
                   </p>
                 </div>
-                <div className="w-[329px]">
+                <div className="max-w-[329px] sm:w-[calc(100%-130px)]">
                   <Select
                     aria-label="prefecture"
                     name="prefecture"
@@ -124,112 +128,137 @@ const AmbassadorRegisterFrom = () => {
                         [e.target.name]: e.target.value,
                       })
                     }
-                    className="bg-gradient-to-b from-[#EAEAEA] to-[#D3D3D3] h-10 text-center text-[16px] w-[144px]"
+                    className="bg-gradient-to-b from-[#EAEAEA] to-[#D3D3D3] w-[100px] h-8 sm:w-[144px] sm:h-10 text-center text-[16px]"
                     sx={{ borderRadius: "20px" }}
                   >
                     {PREFECTURE &&
                       PREFECTURE.map((item, key) => (
                         <MenuItem value={item[0]} key={key}>
-                          {item[0]}
+                          <span className="px-2 py-1 text-[12px] sm:text-base">
+                            {item[0]}
+                          </span>
                         </MenuItem>
                       ))}
                   </Select>
                 </div>
               </div>
             </div>
-            <div className="flex justify-between py-4">
-              <div></div>
-              <div className="flex w-[456px] justify-between">
-                <div className="flex items-center">
-                  <p className="text-[14px]">市区町村</p>
+            <div className="xs:flex xs:flex-row xs:items-start md:items-center gap-2 py-4">
+              <div className="text-[14px] whitespace-nowrap flex items-center xs:w-[100px] sm:w-[184px]"></div>
+              <div className="flex flex-col xs:w-[calc(100%-100px)] sm:w-[calc(100%-184px)] xs:flex xs:flex-col xs:justify-between sm:flex sm:flex-row sm:justify-between gap-4">
+                <div className="flex items-center w-[130px]">
+                  <p className="text-[14px] flex items-center">
+                    <span className="whitespace-nowrap">市区町村</span>
+                    <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
+                      *
+                    </span>
+                  </p>
                 </div>
-                <InputText
-                  name="city"
-                  value={submitValue}
-                  onChange={handlechange}
-                  containerClass="w-[329px]"
-                />
+                <div className="max-w-[329px] sm:w-[calc(100%-130px)]">
+                  <InputText
+                    name="city"
+                    value={submitValue}
+                    onChange={handlechange}
+                  />
+                </div>
               </div>
             </div>
-            <div className="flex justify-between py-4">
-              <div></div>
-              <div className="flex w-[456px] justify-between">
-                <div className="flex">
-                  <p className="text-[14px]">番地</p>
+            <div className="xs:flex xs:flex-row xs:items-start md:items-center gap-2 py-4">
+              <div className="text-[14px] whitespace-nowrap flex items-center xs:w-[100px] sm:w-[184px]"></div>
+              <div className="flex flex-col xs:w-[calc(100%-100px)] sm:w-[calc(100%-184px)] xs:flex xs:flex-col xs:justify-between sm:flex sm:flex-row sm:justify-between gap-4">
+                <div className="flex items-center w-[130px]">
+                  <p className="text-[14px] flex items-center">
+                    <span className="whitespace-nowrap">番地</span>
+                    <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
+                      *
+                    </span>
+                  </p>
                 </div>
-                <InputText
-                  name="street"
-                  value={submitValue}
-                  onChange={handlechange}
-                  containerClass="w-[329px]"
-                />
+                <div className="max-w-[329px] sm:w-[calc(100%-130px)]">
+                  <InputText
+                    name="street"
+                    value={submitValue}
+                    onChange={handlechange}
+                  />
+                </div>
               </div>
             </div>
-            <div className="flex justify-between py-4">
-              <div></div>
-              <div className="flex w-[456px] justify-between">
-                <div className="flex items-center">
-                  <p className="text-[14px]">建物名・部屋番号</p>
+            <div className="xs:flex xs:flex-row xs:items-start md:items-center gap-2 py-4">
+              <div className="text-[14px] whitespace-nowrap flex items-center xs:w-[100px] sm:w-[184px]"></div>
+              <div className="flex flex-col xs:w-[calc(100%-100px)] sm:w-[calc(100%-184px)] xs:flex xs:flex-col xs:justify-between sm:flex sm:flex-row sm:justify-between gap-4">
+                <div className="flex items-center w-[130px]">
+                  <p className="text-[14px] flex items-center">
+                    <span className="whitespace-nowrap">建物名・部屋番号</span>
+                    <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
+                      *
+                    </span>
+                  </p>
                 </div>
-                <InputText
-                  name="other_address"
-                  value={submitValue}
-                  onChange={handlechange}
-                  containerClass="w-[329px]"
-                />
+                <div className="max-w-[329px] sm:w-[calc(100%-130px)]">
+                  <InputText
+                    name="other_address"
+                    value={submitValue}
+                    onChange={handlechange}
+                  />
+                </div>
               </div>
             </div>
           </div>
           {/* row 4 */}
-          <div className="flex justify-between border-b border-[#ccc] py-8">
-            <div className="flex items-center">
-              <p className="text-[14px] tracking-tighter">メールアドレス</p>
+          <div className="flex flex-col xs:flex xs:flex-row gap-2 py-2 xs:items-center pt-[16px] pb-8 border-b border-[#ccc]">
+            <label className="text-[14px] xs:w-[100px] sm:w-[184px]">
+              <span>メールアドレス</span>
               <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
                 *
               </span>
-            </div>
+            </label>
             <InputText
               type="email"
               name="email"
               value={submitValue}
-              required={true}
               onChange={handlechange}
-              containerClass="w-[329px]"
+              required={true}
+              containerClass="xs:w-[calc(100%-100px)] sm:w-[calc(100%-184px)]"
             />
           </div>
           {/* row 5 */}
-          <div className="flex justify-between border-b border-[#ccc] py-8">
-            <div className="flex items-center">
-              <p className="text-[14px] tracking-tighter">電話番号</p>
-            </div>
+          <div className="flex flex-col xs:flex xs:flex-row gap-2 py-2 xs:items-center pt-[16px] pb-8 border-b border-[#ccc]">
+            <label className="text-[14px] xs:w-[100px] sm:w-[184px]">
+              電話番号
+            </label>
             <InputText
               type="tel"
               name="phone"
               value={submitValue}
               onChange={handlechange}
-              containerClass="w-[329px]"
+              containerClass="xs:w-[calc(100%-100px)] sm:w-[calc(100%-184px)]"
             />
           </div>
           {/* row 6 */}
-          <div className="pt-[32px] flex justify-between">
-            <label className="text-[14px]" htmlFor="infomation">
-              ご希望
+          <div className="flex flex-col xs:flex xs:flex-row gap-2 xs:items-center pt-8">
+            <label
+              className="text-[14px] xs:w-[100px] sm:w-[184px]"
+              htmlFor="name_kana"
+            >
+              <span>ご希望</span>
               <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
                 *
               </span>
             </label>
-            <textarea
-              name="preferred"
-              className="h-[192px] w-[456px] border border-[#CCCCCC] p-2"
-              placeholder="推しニャンアンバサダーとして、どんな活動をしたいかをご記入ください。（店舗取材、看板猫の写真撮影など）"
-              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-                setSubmitValue({
-                  ...submitValue,
-                  [e.target.name]: e.target.value,
-                })
-              }
-              required
-            ></textarea>
+            <div className="xs:w-[calc(100%-100px)] sm:w-[calc(100%-184px)]">
+              <textarea
+                name="cat_info"
+                id="cat_info"
+                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                  setSubmitValue({
+                    ...submitValue,
+                    [e.target.name]: e.target.value,
+                  })
+                }
+                className="w-full h-[192px] border border-[#CCCCCC] p-2 focus:outline-none"
+                required
+              ></textarea>
+            </div>
           </div>
           <div className="border-b border-[#CCCCCC] mt-[32px]"></div>
           <PrivacyComponent />

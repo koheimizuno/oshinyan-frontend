@@ -114,7 +114,7 @@ const CatCard = ({
                     <img
                       src={item.imgs}
                       alt={item.imgs}
-                      className="h-full m-auto cursor-pointer w-full h-auto"
+                      className="h-full m-auto cursor-pointer w-full"
                     />
                   </Link>
                 </SwiperSlide>

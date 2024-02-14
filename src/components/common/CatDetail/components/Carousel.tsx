@@ -20,12 +20,19 @@ function CatDetailCarousel(props: any) {
     >
       {props.data &&
         props.data.map((item: any, key: any) => (
-          <SwiperSlide key={key} className="h-[576px] overflow-x-hidden">
-            <img src={item} alt={item} className="h-full m-auto cursor-grab" />
+          <SwiperSlide
+            key={key}
+            className="h-[300px] sm:h-[400px] md:h-[576px] w-full"
+          >
+            <img
+              src={item}
+              alt={item}
+              className="h-full m-auto cursor-grab object-cover"
+            />
           </SwiperSlide>
         ))}
       <div className="swiper-pagination custom-pagination-bullets"></div>
-      <button className="arrow-left xs:hidden md:block">
+      <button className="arrow-right xs:hidden md:block">
         <div className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
           <ArrowLeft />
         </div>

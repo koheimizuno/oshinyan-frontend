@@ -9,7 +9,6 @@ import {
 } from "@mui/material";
 import FileUpload from "../../basic/icons/FileUpload";
 import PrivacyComponent from "../PrivacyComponent";
-import Button from "../../basic/Button";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { Notification } from "../../../constant/notification";
@@ -33,7 +32,6 @@ const OshiResisterForm = () => {
     shop_type: "1",
     cat_info: "",
   });
-  const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
     const fetchShopCategory = async () => {
@@ -83,13 +81,16 @@ const OshiResisterForm = () => {
 
   return (
     <div className="bg-white px-[24px] pb-[48px]">
-      <form className="w-[640px] m-auto" onSubmit={handleSubmit}>
+      <form className="max-w-[640px] m-auto" onSubmit={handleSubmit}>
         {/* row 1 */}
-        <div className="pt-[48px] flex justify-between items-center">
-          <label className="text-[14px]" htmlFor="">
+        <div className="pt-[48px] flex flex-col xs:flex xs:flex-row gap-2 py-2 xs:items-center">
+          <label
+            className="text-[14px] xs:w-[100px] sm:w-[184px]"
+            htmlFor="name_kana"
+          >
             個人／法人のお客さま
           </label>
-          <div className="w-[456px] h-[40px] rounded-[4px] flex items-center">
+          <div className="xs:w-[calc(100%-100px)] sm:w-[calc(100%-184px)]">
             <FormControl>
               <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
@@ -101,8 +102,9 @@ const OshiResisterForm = () => {
                     [e.target.name]: e.target.value,
                   })
                 }
+                className="px-2"
               >
-                <div className="flex gap-10">
+                <div className="flex">
                   <FormControlLabel
                     value="個人"
                     control={<Radio />}
@@ -121,28 +123,31 @@ const OshiResisterForm = () => {
         <div className="border-b border-[#CCCCCC] mt-[27px]"></div>
         {/* row 2 */}
         {registerCatValues.client_type === "法人" && (
-          <div>
-            <div className="pt-[27px] flex justify-between items-center">
-              <label className="text-[14px]" htmlFor="">
-                会社名・法人名
-                <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
-                  *
-                </span>
-              </label>
-              <InputText
-                name="company_name"
-                value={registerCatValues}
-                onChange={handleChange}
-                required={true}
-                containerClass="w-[456px]"
-              />
-            </div>
-            <div className="border-b border-[#CCCCCC] mt-[32px]"></div>
+          <div className="flex flex-col xs:flex xs:flex-row gap-2 py-2 xs:items-center pt-[16px] pb-8 border-b border-[#ccc]">
+            <label
+              className="text-[14px] xs:w-[100px] sm:w-[184px]"
+              htmlFor="name_kana"
+            >
+              会社名・法人名
+              <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
+                *
+              </span>
+            </label>
+            <InputText
+              name="company_name"
+              value={registerCatValues}
+              onChange={handleChange}
+              required={true}
+              containerClass="xs:w-[calc(100%-100px)] sm:w-[calc(100%-184px)]"
+            />
           </div>
         )}
         {/* row 4 */}
-        <div className="pt-[27px] flex justify-between items-center">
-          <label className="text-[14px]" htmlFor="">
+        <div className="flex flex-col xs:flex xs:flex-row gap-2 py-2 xs:items-center pt-8 pb-8 border-b border-[#ccc]">
+          <label
+            className="text-[14px] xs:w-[100px] sm:w-[184px]"
+            htmlFor="name_kana"
+          >
             氏名（漢字）
             <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
               *
@@ -153,11 +158,14 @@ const OshiResisterForm = () => {
             value={registerCatValues}
             onChange={handleChange}
             required={true}
-            containerClass="w-[456px]"
+            containerClass="xs:w-[calc(100%-100px)] sm:w-[calc(100%-184px)]"
           />
         </div>
-        <div className="pt-[48px] flex justify-between items-center">
-          <label className="text-[14px]" htmlFor="">
+        <div className="flex flex-col xs:flex xs:flex-row gap-2 py-2 xs:items-center pt-8 pb-8 border-b border-[#ccc]">
+          <label
+            className="text-[14px] xs:w-[100px] sm:w-[184px]"
+            htmlFor="name_kana"
+          >
             氏名（ふりがな）
             <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
               *
@@ -168,13 +176,12 @@ const OshiResisterForm = () => {
             value={registerCatValues}
             onChange={handleChange}
             required={true}
-            containerClass="w-[456px]"
+            containerClass="xs:w-[calc(100%-100px)] sm:w-[calc(100%-184px)]"
           />
         </div>
-        <div className="border-b border-[#CCCCCC] mt-[32px]"></div>
         {/* row 4 */}
-        <div className="pt-[32px] flex justify-between items-center">
-          <label className="text-[14px]" htmlFor="">
+        <div className="flex flex-col xs:flex xs:flex-row gap-2 py-2 xs:items-center pt-8 pb-8 border-b border-[#ccc]">
+          <label className="text-[14px] xs:w-[100px] sm:w-[184px]">
             メールアドレス
             <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
               *
@@ -186,44 +193,40 @@ const OshiResisterForm = () => {
             value={registerCatValues}
             onChange={handleChange}
             required={true}
-            containerClass="w-[456px]"
+            containerClass="xs:w-[calc(100%-100px)] sm:w-[calc(100%-184px)]"
           />
         </div>
-        <div className="pt-[48px] flex justify-between items-center">
-          <label className="text-[14px]" htmlFor="">
+        <div className="flex flex-col xs:flex xs:flex-row gap-2 py-2 xs:items-center pt-8 pb-8 border-b border-[#ccc]">
+          <label className="text-[14px] xs:w-[100px] sm:w-[184px]">
             (▼確認のため再入力）
             <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
               *
             </span>
           </label>
-          <label>
-            <input
-              type="text"
-              name="re_email"
-              ref={reEmailRef}
-              value={registerCatValues.re_email}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setRegisterCatValues({
-                  ...registerCatValues,
-                  [e.target.name]: e.target.value,
-                })
-              }
-              required
-              className="w-[456px] h-[40px] rounded-[4px] border border-[#CCCCCC] focus:outline-none p-2"
-            />
-            <p className="absolute text-red-500">{errorMsg}</p>
-          </label>
+          <input
+            type="text"
+            name="re_email"
+            ref={reEmailRef}
+            value={registerCatValues.re_email}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setRegisterCatValues({
+                ...registerCatValues,
+                [e.target.name]: e.target.value,
+              })
+            }
+            required
+            className="xs:w-[calc(100%-100px)] sm:w-[calc(100%-184px)] h-[40px] rounded-[4px] border border-[#CCCCCC] focus:outline-none p-2"
+          />
         </div>
-        <div className="border-b border-[#CCCCCC] mt-[32px]"></div>
         {/* row 5 */}
-        <div className="pt-[32px] flex justify-between items-center">
-          <label className="text-[14px]" htmlFor="place">
+        <div className="flex flex-col xs:flex xs:flex-row gap-2 py-2 xs:items-center pt-8 pb-8 border-b border-[#ccc]">
+          <label className="text-[14px] xs:w-[100px] sm:w-[184px]">
             場所種別
             <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
               *
             </span>
           </label>
-          <div className="relative w-[456px]">
+          <div className="xs:w-[calc(100%-100px)] sm:w-[calc(100%-184px)]">
             <Select
               aria-label="shop_type"
               name="shop_type"
@@ -246,31 +249,35 @@ const OshiResisterForm = () => {
             </Select>
           </div>
         </div>
-        <div className="border-b border-[#CCCCCC] mt-[27px]"></div>
         {/* row 6 */}
-        <div className="pt-[32px] flex justify-between items-center">
-          <label className="text-[14px]" htmlFor="place">
-            看板猫情報
+        <div className="flex flex-col xs:flex xs:flex-row gap-2 py-2 xs:items-center pt-8 pb-8 border-b border-[#ccc]">
+          <label
+            className="text-[14px] xs:w-[100px] sm:w-[184px]"
+            htmlFor="name_kana"
+          >
+            <span>看板猫情報</span>
             <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
               *
             </span>
           </label>
-          <textarea
-            name="cat_info"
-            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-              setRegisterCatValues({
-                ...registerCatValues,
-                [e.target.name]: e.target.value,
-              })
-            }
-            required
-            className="h-[192px] w-[456px] border border-[#CCCCCC] focus:outline-none p-2"
-          ></textarea>
+          <div className="xs:w-[calc(100%-100px)] sm:w-[calc(100%-184px)]">
+            <textarea
+              name="cat_info"
+              id="cat_info"
+              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                setRegisterCatValues({
+                  ...registerCatValues,
+                  [e.target.name]: e.target.value,
+                })
+              }
+              className="w-full h-[192px] border border-[#CCCCCC] p-2 focus:outline-none"
+            ></textarea>
+          </div>
         </div>
         <div>
           <button
             type="button"
-            className="w-full mt-[24px] h-[48px] flex justify-center bg-[#F3F3F3] py-3"
+            className="w-full mt-[24px] sm:h-[48px] sm:flex sm:justify-center bg-[#F3F3F3] py-3"
             onClick={handleUpload}
           >
             <FileUpload />{" "}

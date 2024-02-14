@@ -26,7 +26,7 @@ const FeaturePage = () => {
         </div>
         <div className="flex justify-center mt-[48px] mb-[52px]">
           <Pagination
-            count={10}
+            count={5}
             defaultPage={1}
             boundaryCount={1}
             color="secondary"

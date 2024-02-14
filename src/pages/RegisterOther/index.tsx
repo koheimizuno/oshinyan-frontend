@@ -45,7 +45,7 @@ const RegisterOther = () => {
               }`}
             >
               <button
-                className="w-[370px] text-2xl py-2"
+                className="text-[20px] md:text-2xl md:max-w-[364px] md:w-[370px] text-2xl py-2 px-6 whitespace-nowrap"
                 onClick={redirectShopRegister}
               >
                 看板猫登録
@@ -59,10 +59,12 @@ const RegisterOther = () => {
               }`}
             >
               <button
-                className="w-[370px] text-2xl py-2"
+                className="text-[20px] md:text-2xl md:max-w-[364px] md:w-[370px] text-2xl py-2 px-6 whitespace-nowrap"
                 onClick={redirectAmbassadorRegister}
               >
-                推しニャンアンバサダー募集
+                {window.innerWidth < 580
+                  ? "アンバサダー"
+                  : "推しニャンアンバサダー募集"}
               </button>
             </Tab>
           </TabList>

@@ -44,7 +44,7 @@ const NyanPlaceSearchBar = ({
           <div className=" relative xs:block sm:grid sm:grid-cols-2 p-4">
             <div className="xs:block sm:flex sm:justify-between sm:items-center gap-3 xs:pb-6 sm:pb-0">
               <div className="xs:pb-6 sm:pb-0">
-                <p className="text-[16px]">看板猫を探す</p>
+                <p className="text-[16px] whitespace-nowrap">看板猫を探す</p>
               </div>
               <div className="group xs:w-full sm:w-auto flex items-center hover:opacity-70 active:opacity-100">
                 <input

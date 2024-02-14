@@ -71,16 +71,16 @@ const ContactUsForm = () => {
 
   return (
     <div className="bg-white px-[24px] pb-[48px]">
-      <form className="w-[640px] m-auto" onSubmit={handleSubmit}>
+      <form className="max-w-[640px] m-auto" onSubmit={handleSubmit}>
         {/* row 1 */}
-        <div className="pt-[48px] flex justify-between items-center">
-          <label className="text-[14px]" htmlFor="contact_type">
+        <div className="flex flex-col xs:flex xs:flex-row gap-2 py-2 xs:items-center pt-8 pb-8 border-b border-[#ccc]">
+          <label className="text-[14px] xs:w-[100px] sm:w-[184px]">
             問い合わせ種別
             <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
               *
             </span>
           </label>
-          <div className="w-[456px] h-[40px] rounded-[4px] flex items-center relative">
+          <div className="xs:w-[calc(100%-100px)] sm:w-[calc(100%-184px)]">
             <Select
               aria-label="type"
               name="type"
@@ -91,23 +91,26 @@ const ContactUsForm = () => {
                   [e.target.name]: e.target.value,
                 })
               }
-              className="bg-gradient-to-b from-[#EAEAEA] to-[#D3D3D3] h-10 text-center text-[16px] w-[144px]"
+              className="bg-gradient-to-b from-[#EAEAEA] to-[#D3D3D3] h-8 w-[144px] sm:h-10 text-center text-[16px]"
               sx={{ borderRadius: "20px" }}
             >
-              <MenuItem value="質問・相談">質問・相談</MenuItem>
+              <MenuItem value="質問・相談">
+                <span className="px-2 py-1 text-[12px] sm:text-base">
+                  質問・相談
+                </span>
+              </MenuItem>
             </Select>
           </div>
         </div>
-        <div className="border-b border-[#CCCCCC] mt-[27px]"></div>
         {/* row 2 */}
-        <div className="pt-[48px] flex justify-between items-center">
-          <label className="text-[14px]" htmlFor="">
+        <div className="pt-[48px] flex flex-col xs:flex xs:flex-row gap-2 py-2 xs:items-center">
+          <label
+            className="text-[14px] xs:w-[100px] sm:w-[184px]"
+            htmlFor="name_kana"
+          >
             個人／法人のお客さま
-            <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
-              *
-            </span>
           </label>
-          <div className="w-[456px] h-[40px] rounded-[4px] flex items-center">
+          <div className="xs:w-[calc(100%-100px)] sm:w-[calc(100%-184px)]">
             <FormControl>
               <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
@@ -119,8 +122,9 @@ const ContactUsForm = () => {
                     [e.target.name]: e.target.value,
                   })
                 }
+                className="px-2"
               >
-                <div className="flex gap-10">
+                <div className="flex">
                   <FormControlLabel
                     value="個人"
                     control={<Radio />}
@@ -138,8 +142,11 @@ const ContactUsForm = () => {
         </div>
         <div className="border-b border-[#CCCCCC] mt-[27px]"></div>
         {/* row 4 */}
-        <div className="pt-[27px] flex justify-between items-center">
-          <label className="text-[14px]" htmlFor="">
+        <div className="flex flex-col xs:flex xs:flex-row gap-2 py-2 xs:items-center pt-8">
+          <label
+            className="text-[14px] xs:w-[100px] sm:w-[184px]"
+            htmlFor="name_kana"
+          >
             会社名・法人名
             <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
               *
@@ -150,12 +157,16 @@ const ContactUsForm = () => {
             value={submitValue}
             onChange={handleChange}
             required={true}
+            containerClass="xs:w-[calc(100%-100px)] sm:w-[calc(100%-184px)]"
           />
         </div>
         <div className="border-b border-[#CCCCCC] mt-[32px]"></div>
         {/* row 5 */}
-        <div className="pt-[27px] flex justify-between items-center">
-          <label className="text-[14px]">
+        <div className="flex flex-col xs:flex xs:flex-row gap-2 py-2 xs:items-center pt-8 pb-8 border-b border-[#ccc]">
+          <label
+            className="text-[14px] xs:w-[100px] sm:w-[184px]"
+            htmlFor="name_kana"
+          >
             氏名（漢字）
             <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
               *
@@ -166,10 +177,14 @@ const ContactUsForm = () => {
             value={submitValue}
             onChange={handleChange}
             required={true}
+            containerClass="xs:w-[calc(100%-100px)] sm:w-[calc(100%-184px)]"
           />
         </div>
-        <div className="pt-[48px] flex justify-between items-center">
-          <label className="text-[14px]">
+        <div className="flex flex-col xs:flex xs:flex-row gap-2 py-2 xs:items-center pt-8 pb-8 border-b border-[#ccc]">
+          <label
+            className="text-[14px] xs:w-[100px] sm:w-[184px]"
+            htmlFor="name_kana"
+          >
             氏名（ふりがな）
             <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
               *
@@ -180,11 +195,14 @@ const ContactUsForm = () => {
             value={submitValue}
             onChange={handleChange}
             required={true}
+            containerClass="xs:w-[calc(100%-100px)] sm:w-[calc(100%-184px)]"
           />
         </div>
-        <div className="border-b border-[#CCCCCC] mt-[32px]"></div>
-        <div className="pt-[32px] flex justify-between items-center">
-          <label className="text-[14px]">
+        <div className="flex flex-col xs:flex xs:flex-row gap-2 py-2 xs:items-center pt-8 pb-8 border-b border-[#ccc]">
+          <label
+            className="text-[14px] xs:w-[100px] sm:w-[184px]"
+            htmlFor="name_kana"
+          >
             電話番号
             <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
               *
@@ -196,12 +214,12 @@ const ContactUsForm = () => {
             value={submitValue}
             onChange={handleChange}
             required={true}
+            containerClass="xs:w-[calc(100%-100px)] sm:w-[calc(100%-184px)]"
           />
         </div>
-        <div className="border-b border-[#CCCCCC] mt-[32px]"></div>
         {/* row 6 */}
-        <div className="pt-[32px] flex justify-between items-center">
-          <label className="text-[14px]">
+        <div className="flex flex-col xs:flex xs:flex-row gap-2 py-2 xs:items-center pt-8 pb-8 border-b border-[#ccc]">
+          <label className="text-[14px] xs:w-[100px] sm:w-[184px]">
             メールアドレス
             <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
               *
@@ -213,48 +231,57 @@ const ContactUsForm = () => {
             value={submitValue}
             onChange={handleChange}
             required={true}
+            containerClass="xs:w-[calc(100%-100px)] sm:w-[calc(100%-184px)]"
           />
         </div>
-        <div className="pt-[48px] flex justify-between items-center">
-          <label className="text-[14px]">
+        <div className="flex flex-col xs:flex xs:flex-row gap-2 py-2 xs:items-center pt-8 pb-8 border-b border-[#ccc]">
+          <label className="text-[14px] xs:w-[100px] sm:w-[184px]">
             (▼確認のため再入力）
             <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
               *
             </span>
           </label>
-          <label>
-            <InputText
-              type="email"
-              name="re_email"
-              value={submitValue}
-              onChange={handleChange}
-              required={true}
-            />
-            <p className="absolute text-red-500">{errorMsg}</p>
-          </label>
-        </div>
-        <div className="border-b border-[#CCCCCC] mt-[32px]"></div>
-        {/* row 8 */}
-        <div className="pt-[32px] flex justify-between items-start">
-          <label className="text-[14px]">
-            お問合わせ内容
-            <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
-              *
-            </span>
-          </label>
-          <textarea
-            name="detail"
-            className="h-[192px] w-[456px] border border-[#CCCCCC] p-2 focus:outline-none rounded-md"
-            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+          <input
+            type="text"
+            name="re_email"
+            ref={reEmailRef}
+            value={submitValue.re_email}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setSubmitValue({
                 ...submitValue,
                 [e.target.name]: e.target.value,
               })
             }
             required
-          ></textarea>
+            className="xs:w-[calc(100%-100px)] sm:w-[calc(100%-184px)] h-[40px] rounded-[4px] border border-[#CCCCCC] focus:outline-none p-2"
+          />
         </div>
         <div className="border-b border-[#CCCCCC] mt-[32px]"></div>
+        {/* row 8 */}
+        <div className="flex flex-col xs:flex xs:flex-row gap-2 py-2 xs:items-center pt-8 pb-8 border-b border-[#ccc]">
+          <label
+            className="text-[14px] xs:w-[100px] sm:w-[184px]"
+            htmlFor="name_kana"
+          >
+            <span>お問合わせ内容</span>
+            <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
+              *
+            </span>
+          </label>
+          <div className="xs:w-[calc(100%-100px)] sm:w-[calc(100%-184px)]">
+            <textarea
+              name="detail"
+              id="detail"
+              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                setSubmitValue({
+                  ...submitValue,
+                  [e.target.name]: e.target.value,
+                })
+              }
+              className="w-full h-[192px] border border-[#CCCCCC] p-2 focus:outline-none"
+            ></textarea>
+          </div>
+        </div>
         <PrivacyComponent />
         <div className="text-center mt-[27px] pb-[27px] border-b border-[#CCCCCC]">
           <FormControlLabel

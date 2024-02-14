@@ -61,7 +61,7 @@ const Header = () => {
               特集見るニャ！
             </Link>
           </li>
-          <li className="hover:opacity-70 xs:py-3 xs:pb-6 md:pb-3">
+          <li className="hover:opacity-70 py-3">
             {isAuthenticated ? (
               <Link
                 to="/mypage"
@@ -94,9 +94,9 @@ const Header = () => {
             )}
           </li>
           {isAuthenticated && (
-            <li className="hover:text-[rgb(195,129,84)] ml-4">
+            <li className="hover:text-[rgb(195,129,84)] md:ml-4 text-center xs:py-3 xs:pb-6 md:pb-3">
               <button
-                className="w-[120px] h-8 bg-[#f2850c] text-white rounded sm:m-auto px-[8px] pb-[5px] pt-[3px] flex justify-center items-center gap-1"
+                className="w-[120px] h-8 m-auto bg-[#f2850c] text-white rounded sm:m-auto px-[8px] pb-[5px] pt-[3px] flex justify-center items-center gap-1"
                 onClick={handleLogout}
               >
                 <img

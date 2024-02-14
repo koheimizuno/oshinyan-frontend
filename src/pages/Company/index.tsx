@@ -12,39 +12,41 @@ const Company = () => {
       <Container>
         <PageBar page="運営会社" />
         <Title title="運営会社" />
-        <div className="w-full text-[16px] pt-[28px]">
-          <div className="w-full flex py-[28px] border-b border-[#B7B7B7]">
-            <div className="w-[160px]">社名</div>
-            <div className="">
+        <div className="pt-[28px]">
+          <div className="flex py-[28px] border-b border-[#B7B7B7]">
+            <p className="w-[120px] md:w-[160px] whitespace-nowrap">社名</p>
+            <p className="w-[calc(100%-120px)] break-words">
               ⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎
-            </div>
+            </p>
           </div>
           <div className="w-full flex py-[28px] border-b border-[#B7B7B7]">
-            <div className="w-[160px]">所在地</div>
-            <div className="">
+            <p className="w-[120px] md:w-[160px] whitespace-nowrap">所在地</p>
+            <p className="w-[calc(100%-120px)] break-words">
               〒000-0000
               ⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎
-            </div>
+            </p>
           </div>
           <div className="w-full flex py-[28px] border-b border-[#B7B7B7]">
-            <div className="w-[160px]">TEL</div>
-            <div className="">0000-00-0000（代表）</div>
+            <p className="w-[120px] md:w-[160px] whitespace-nowrap">TEL</p>
+            <p className="w-[calc(100%-120px)]">0000-00-0000（代表）</p>
           </div>
           <div className="w-full flex py-[28px] border-b border-[#B7B7B7]">
-            <div className="w-[160px]">設立</div>
-            <div className="">19xx年x月</div>
+            <p className="w-[120px] md:w-[160px] whitespace-nowrap">設立</p>
+            <p className="w-[calc(100%-120px)]">19xx年x月</p>
           </div>
           <div className="w-full flex py-[28px] border-b border-[#B7B7B7]">
-            <div className="w-[160px]">代表者</div>
-            <div className="">
+            <p className="w-[120px] md:w-[160px]">代表者</p>
+            <p className="w-[calc(100%-120px)]">
               代表取締役社長　⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎
-            </div>
+            </p>
           </div>
           <div className="w-full flex py-[28px] border-b border-[#B7B7B7]">
-            <div className="w-[160px]">主な事業内容</div>
-            <div className="break-all w-fit max-w-[792px]">
+            <p className="w-[120px] md:w-[160px] whitespace-nowrap">
+              主な事業内容
+            </p>
+            <p className="w-[calc(100%-120px)] break-all break-words">
               ⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎⬜︎
-            </div>
+            </p>
           </div>
         </div>
       </Container>

@@ -4,16 +4,15 @@ import MainLayout from "../../layouts/MainLayout";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import Container from "../../components/basic/Container";
 import PageBar from "../../components/common/PageBar";
-import { FileUpload } from "@mui/icons-material";
 import { Checkbox, FormControlLabel } from "@mui/material";
 import Title from "../../components/common/Typography/Title";
 import PrivacyComponent from "../../components/common/PrivacyComponent";
-import Button from "../../components/basic/Button";
 import CatDetailCarousel from "../../components/common/CatDetail/components/Carousel";
 import axios from "axios";
-import { CatObjectType, ImageType } from "../../constant/type";
+import { ImageType } from "../../constant/type";
 import { useSelector } from "react-redux";
 import { Notification } from "../../constant/notification";
+import FileUpload from "../../components/basic/icons/FileUpload";
 
 function Comment() {
   const { id } = useParams();
@@ -86,8 +85,8 @@ function Comment() {
       <Container>
         <PageBar page="コメント入力ページ" />
         <Title title="推しコメント入力" />
-        <section className="flex items-center py-9">
-          <div className="flex items-center gap-4 mr-10">
+        <section className="flex flex-col gap-5 md:flex-row md:items-center md:gap-10 py-9">
+          <div className="flex items-center gap-4">
             <img
               src="/assets/imgs/icons/cat_avatar_3.webp"
               alt="cat_avatar_3"
@@ -96,17 +95,22 @@ function Comment() {
               {user.username}
             </Link>
           </div>
-          <div className="mr-5">
+          <div className="hidden md:block">
             <img src="/assets/imgs/icons/pink-arrow.webp" alt="pink-arrow" />
           </div>
-          <div className="flex items-center gap-4 mr-12">
-            <img src="/assets/imgs/icons/face_empty.webp" alt="face_empty" />
-            <p className="text-xl font-medium">{retrieveCat.cat_name}</p>
+          <div className="flex">
+            <div className="flex items-center gap-4 mr-12">
+              <img src="/assets/imgs/icons/face_empty.webp" alt="face_empty" />
+              <p className="text-xl font-medium">{retrieveCat.cat_name}</p>
+            </div>
+            <p>への投稿をするニャー</p>
           </div>
-          <p>への投稿をするニャー</p>
         </section>
-        <form className="bg-white pt-14 pb-12 mb-24" onSubmit={handleSubmit}>
-          <div className="w-[640px] m-auto border-b pb-[27px] border-[#CCC]">
+        <form
+          className="bg-white px-4 md:px-0 pt-14 pb-12 mb-24"
+          onSubmit={handleSubmit}
+        >
+          <div className="max-w-[640px] m-auto border-b pb-[27px] border-[#CCC]">
             {/* row 1 */}
             <CatDetailCarousel data={catDetailImages} />
             <div>
@@ -135,7 +139,7 @@ function Comment() {
             <div>
               <button
                 type="button"
-                className="w-full mt-[24px] h-[48px] flex justify-center bg-[#F3F3F3] py-3"
+                className="w-full mt-[24px] sm:h-[48px] sm:flex sm:justify-center bg-[#F3F3F3] py-3"
                 onClick={handleUpload}
               >
                 <FileUpload />{" "}

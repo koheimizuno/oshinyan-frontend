@@ -65,7 +65,7 @@ function NyanplaceDetail() {
           >
             {AshopData.shop_images &&
               AshopData.shop_images.map((item: any, key: any) => (
-                <SwiperSlide key={key} className="h-[540px] overflow-x-hidden">
+                <SwiperSlide key={key} className="overflow-x-hidden">
                   <img
                     src={item.imgs}
                     alt={item.imgs}
@@ -123,61 +123,69 @@ function NyanplaceDetail() {
             </button>
           </Swiper>
 
-          <div className="py-8 flex flex-col gap-[18px]">
-            <div className="flex gap-5">
-              <div className="flex items-center gap-2">
+          <div className="md:pt-8 pb-8 flex flex-col gap-[18px]">
+            <div className="flex items-start gap-5">
+              <div className="flex items-center gap-2 w-[97px] md:w-[150px]">
                 <div>
                   <img src="/assets/imgs/icons/address.webp" alt="address" />
                 </div>
-                <span className="w-[65px]">住所</span>
+                <span className="whitespace-nowrap">住所</span>
               </div>
               {AshopData.address && (
                 <Link
                   to={""}
-                  className="ml-2 border-b border-white hover:border-gray-400"
+                  className="w-[calc(100%-97px)] md:w-[calc(100%-150px)] border-b border-white hover:border-gray-400 break-all"
                 >
                   {AshopData.address}
                 </Link>
               )}
             </div>
             <div className="flex gap-5">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 w-[97px] md:w-[150px]">
                 <div>
                   <img
                     src="/assets/imgs/icons/neareststation.webp"
                     alt="neareststation"
                   />
                 </div>
-                <span className="w-[65px]">最寄り駅</span>
+                <span className="whitespace-nowrap">最寄り駅</span>
               </div>
-              <p className="ml-2">{AshopData.nearest_station}</p>
+              <p className="w-[calc(100%-97px)] md:w-[calc(100%-150px)]">
+                {AshopData.nearest_station}
+              </p>
             </div>
             <div className="flex gap-5">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 w-[97px] md:w-[150px]">
                 <div>
                   <img src="/assets/imgs/icons/phone.webp" alt="phone" />
                 </div>
-                <span className="w-[65px]">電話番号</span>
+                <span className="whitespace-nowrap">電話番号</span>
               </div>
-              <p className="ml-2">{AshopData.phone}</p>
+              <p className="w-[calc(100%-97px)] md:w-[calc(100%-150px)]">
+                {AshopData.phone}
+              </p>
             </div>
             <div className="flex gap-5">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 w-[97px] md:w-[150px]">
                 <div>
                   <img src="/assets/imgs/icons/clock.webp" alt="clock" />
                 </div>
-                <span className="w-[65px]">営業時間</span>
+                <span className="whitespace-nowrap">営業時間</span>
               </div>
-              <p className="ml-2">{AshopData.business_time}</p>
+              <p className="w-[calc(100%-97px)] md:w-[calc(100%-150px)]">
+                {AshopData.business_time}
+              </p>
             </div>
             <div className="flex gap-5">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 w-[97px] md:w-[150px]">
                 <div>
                   <img src="/assets/imgs/icons/restday.webp" alt="restday" />
                 </div>
-                <span className="w-[65px]">定休日</span>
+                <span className="whitespace-nowrap">定休日</span>
               </div>
-              <p className="ml-2">{AshopData.rest_day}</p>
+              <p className="w-[calc(100%-97px)] md:w-[calc(100%-150px)]">
+                {AshopData.rest_day}
+              </p>
             </div>
           </div>
 

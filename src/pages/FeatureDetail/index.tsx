@@ -31,35 +31,33 @@ const FeatureDetail = () => {
           <br />
           東京には看板猫が出勤している素敵なカフェがたくさんあるニャン！
         </div>
-        <div className="mt-[32px] mb-[56px] flex flex-wrap justify-between">
-          <div className="flex justify-between flex-wrap ">
-            {catData.length !== 0 ? (
-              catData.map((e, i) => (
-                <CatCard
-                  key={i}
-                  id={e.id}
-                  cat_name={e.cat_name}
-                  shop={e.shop}
-                  images={e.images}
-                  admin_images={e.admin_images}
-                  character={e.character}
-                  favorite_things={e.favorite_things}
-                  attendance={e.attendance}
-                  description={e.description}
-                  recommend={e.recommend}
-                  last_update={e.last_update}
-                />
-              ))
-            ) : (
-              <p className="py-10 block w-full text-center text-xl">
-                お探しの看板猫はありません
-              </p>
-            )}
-          </div>
+        <div className="mt-[32px] mb-[56px] flex justify-between flex-wrap gap-3">
+          {catData.length !== 0 ? (
+            catData.map((e, i) => (
+              <CatCard
+                key={i}
+                id={e.id}
+                cat_name={e.cat_name}
+                shop={e.shop}
+                images={e.images}
+                admin_images={e.admin_images}
+                character={e.character}
+                favorite_things={e.favorite_things}
+                attendance={e.attendance}
+                description={e.description}
+                recommend={e.recommend}
+                last_update={e.last_update}
+              />
+            ))
+          ) : (
+            <p className="py-10 block w-full text-center text-xl">
+              お探しの看板猫はありません
+            </p>
+          )}
         </div>
         <div className="flex justify-center mt-[32px] mb-[68px]">
           <Pagination
-            count={10}
+            count={5}
             defaultPage={1}
             boundaryCount={1}
             color="secondary"

@@ -30,6 +30,7 @@ import CommentImageCarousel from "./components/CommentImageCarousel";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import { formatDateTime } from "../../../utils/functions";
 import { Notification } from "../../../constant/notification";
+import CatDetailComment from "./components/CatDetailComment";
 
 const CatDetail = () => {
   const { id } = useParams();
@@ -298,7 +299,9 @@ const CatDetail = () => {
         <div className="flex justify-between">
           <div className="flex items-center font-bold">
             <img src="/assets/imgs/icons/face_empty.webp" alt="cat icon" />
-            <span className="text-2xl ms-4">{retrieveCat.cat_name}</span>
+            <span className="text-xl md:text-2xl ms-4">
+              {retrieveCat.cat_name}
+            </span>
           </div>
           <div
             className="relative flex gap-[6px] items-center"
@@ -313,11 +316,13 @@ const CatDetail = () => {
                 <img
                   src="/assets/imgs/icons/recommend-on.webp"
                   alt="recommend-on"
+                  className="w-10 md:w-12"
                 />
               ) : (
                 <img
                   src="/assets/imgs/icons/recommend-off-black.webp"
                   alt="recommend-off-black"
+                  className="w-10 md:w-12"
                 />
               )}
             </span>
@@ -360,9 +365,14 @@ const CatDetail = () => {
           </div>
         </div>
         <Border className="mt-6" color="#CCCCCC" />
-        <div className="w-full flex items-start gap-8 mt-6">
+        <div className="w-full flex flex-col gap-6 md:flex md:flex-row md:items-start md:gap-8 mt-6">
           <div className="flex gap-2">
-            <CalendarMonthSharp fontSize="large" style={{ fill: "#FAD2B5" }} />
+            <div className="w-6 h-6">
+              <CalendarMonthSharp
+                fontSize="inherit"
+                style={{ fill: "#FAD2B5" }}
+              />
+            </div>
             <div className="ms-2 whitespace-nowrap">出勤頻度</div>
             <div className="ms-4">
               <PrefectureBtn value={retrieveCat.attendance} />
@@ -433,61 +443,7 @@ const CatDetail = () => {
         </div>
         <div className="mt-9">推しニャンコメント</div>
         <div className={`w-full border-b border-black mt-5`}></div>
-        <div className="pt-8 pb-[63px] ">
-          <div className="bg-[#FBA1B7] grid grid-cols-2 h-[92px] overflow-visible rounded-xl">
-            <div className="flex justify-between relative">
-              <div>
-                <div className="relative h-full">
-                  <div className="h-full w-[150px] absolute top-0 left-[-11px] ">
-                    <img
-                      src="/assets/imgs/Group 864.webp"
-                      alt="Group 864"
-                      className="h-full w-auto m-auto"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div className="absolute top-[-20px] right-[20px]">
-                  <p className="flex flex-col text-[20px] font-bold text-[#767676] pt-4 pr-6 pb-4 pl-10 comment-link-tooptip">
-                    <span>推し写真のアップ＆</span>
-                    <span>推しコメントを書いてね！</span>
-                  </p>
-                  <img
-                    src="/assets/imgs/Group 867.webp"
-                    alt="Group 867"
-                    className="absolute top-0 left-0 -z-10"
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="flex justify-between">
-              <div>
-                <Link
-                  to={`/comment/${id}`}
-                  className="flex items-center h-full"
-                >
-                  <span className="text-[28px] tracking-[-3px] text-white font-bold">
-                    コメントするニャン！
-                  </span>
-                  <span>
-                    <img
-                      src="/assets/imgs/icons/arr-right-white.webp"
-                      alt="arr-right-white"
-                    />
-                  </span>
-                </Link>
-              </div>
-              <div className="">
-                <div className="bg-red-400 relative w-[150px]">
-                  <div className="absolute top-0 right-[-11px]">
-                    <img src="/assets/imgs/Group 863.webp" alt="Group 864" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <CatDetailComment id={id} />
         {/* 1 */}
         {commentData &&
           commentData.map((commentitem, key, arr) => (
@@ -743,7 +699,7 @@ const CatDetail = () => {
         {/* album */}
         <div className="text-base mt-14 font-medium">ニャンアルバム</div>
         <div className="w-full border-b border-black mt-4"></div>
-        <div className="grid grid-cols-3 gap-6">
+        <div className="sm:grid sm:grid-cols-2 md:grid-cols-3 gap-6">
           {commentImgs && displayAll
             ? commentImgs.map((item, key) => (
                 <CatImage

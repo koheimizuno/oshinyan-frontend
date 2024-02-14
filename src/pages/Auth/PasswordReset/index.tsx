@@ -45,7 +45,7 @@ function PasswordReset() {
         {successMsg ? (
           <h3 className="text-2xl">{successMsg}</h3>
         ) : (
-          <form onSubmit={handleSubmit} className="w-[50%]">
+          <form onSubmit={handleSubmit} className="w-3/4 md:w-[50%]">
             <label className="block text-center">
               <InputText
                 type="email"

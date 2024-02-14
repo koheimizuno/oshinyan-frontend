@@ -8,7 +8,7 @@ interface Props {
 
 const FavoriteCard = ({ imgUrl, date, recommend = "0" }: Props) => {
   return (
-    <div className="w-[288px] h-[241px]">
+    <div className="m-auto w-[288px] h-[241px]">
       <div className="relative overflow-x-hidden flex justify-center">
         <div className="h-[216px] m-auto">
           <img src={imgUrl} alt="cat" className="h-full" />

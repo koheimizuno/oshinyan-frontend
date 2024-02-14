@@ -16,10 +16,10 @@ const CatImage = ({ imgUrl, username, recommend }: Props) => {
           </div>
           <div className="text-white text-[12px] leading-4">{recommend}</div>
         </div>
+        <p className="mt-[9px] text-[12px] text-[#767676] leading-4 underline">
+          {username}
+        </p>
       </div>
-      <p className="mt-[9px] text-[12px] text-[#767676] leading-4 underline">
-        {username}
-      </p>
     </div>
   );
 };

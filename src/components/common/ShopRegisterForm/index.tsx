@@ -81,10 +81,13 @@ const ShopRegisterForm = () => {
         推しニャンWebサイトに掲載されていない看板猫がいるお店を発見した際のご依頼ニャ
       </p>
       <span className="text-red-500 mt-2 inline-block">＊＝必須</span>
-      <div className="w-[640px] m-auto">
+      <div className="max-w-[640px] m-auto">
         {/* row 1 */}
-        <div className="pt-[16px] pb-8 border-b border-[#ccc] flex justify-between items-center">
-          <label className="text-[14px]" htmlFor="name_kana">
+        <div className="flex flex-col xs:flex xs:flex-row gap-2 py-2 xs:items-center pt-[16px] pb-8 border-b border-[#ccc]">
+          <label
+            className="text-[14px] whitespace-nowrap xs:w-[100px] sm:w-[184px]"
+            htmlFor="name_kana"
+          >
             店舗名
             <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
               *
@@ -94,25 +97,25 @@ const ShopRegisterForm = () => {
             name="shop_name"
             value={registerShopValues}
             onChange={handleChange}
-            containerClass="w-[456px]"
+            containerClass="xs:w-[calc(100%-100px)] sm:w-[calc(100%-184px)]"
           />
         </div>
         {/* row 2 */}
         <div className="py-4 border-b border-[#ccc]">
-          <div className="flex justify-between py-4">
-            <div className="flex items-center">
-              <p className="text-[14px]">店舗住所</p>
+          <div className="flex justify-between items-start md:items-center gap-2 py-4">
+            <div className="text-[14px] whitespace-nowrap flex items-center xs:w-[100px] sm:w-[184px]">
+              店舗住所
             </div>
-            <div className="w-[456px] flex justify-between">
-              <div className="flex items-center">
-                <p className="text-[14px]">
-                  都道府県
+            <div className="xs:w-[calc(100%-100px)] sm:w-[calc(100%-184px)] xs:flex xs:flex-col xs:justify-between sm:flex sm:flex-row sm:justify-between gap-4">
+              <div className="flex items-center w-[130px]">
+                <p className="text-[14px] flex items-center">
+                  <span className="whitespace-nowrap">都道府県</span>
                   <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
                     *
                   </span>
                 </p>
               </div>
-              <div className="w-[329px]">
+              <div className="max-w-[329px] sm:w-[calc(100%-130px)]">
                 <Select
                   aria-label="prefecture"
                   name="prefecture"
@@ -123,65 +126,88 @@ const ShopRegisterForm = () => {
                       [e.target.name]: e.target.value,
                     })
                   }
-                  className="bg-gradient-to-b from-[#EAEAEA] to-[#D3D3D3] h-10 text-center text-[16px] w-[144px]"
+                  className="bg-gradient-to-b from-[#EAEAEA] to-[#D3D3D3] w-[100px] h-8 sm:w-[144px] sm:h-10 text-center text-[16px]"
                   sx={{ borderRadius: "20px" }}
                 >
                   {PREFECTURE &&
                     PREFECTURE.map((item, key) => (
                       <MenuItem value={item[0]} key={key}>
-                        {item[0]}
+                        <span className="px-2 py-1 text-[12px] sm:text-base">
+                          {item[0]}
+                        </span>
                       </MenuItem>
                     ))}
                 </Select>
               </div>
             </div>
           </div>
-          <div className="flex justify-between py-4">
-            <div></div>
-            <div className="flex w-[456px] justify-between items-center">
-              <label htmlFor="city" className="text-[14px]">
-                市区町村
-              </label>
-              <InputText
-                name="city"
-                value={registerShopValues}
-                onChange={handleChange}
-                containerClass="w-[329px]"
-              />
+          <div className="xs:flex xs:flex-row xs:items-start md:items-center gap-2 py-4">
+            <div className="text-[14px] whitespace-nowrap flex items-center xs:w-[100px] sm:w-[184px]"></div>
+            <div className="flex flex-col xs:w-[calc(100%-100px)] sm:w-[calc(100%-184px)] xs:flex xs:flex-col xs:justify-between sm:flex sm:flex-row sm:justify-between gap-4">
+              <div className="flex items-center w-[130px]">
+                <p className="text-[14px] flex items-center">
+                  <span className="whitespace-nowrap">市区町村</span>
+                  <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
+                    *
+                  </span>
+                </p>
+              </div>
+              <div className="max-w-[329px] sm:w-[calc(100%-130px)]">
+                <InputText
+                  name="city"
+                  value={registerShopValues}
+                  onChange={handleChange}
+                />
+              </div>
             </div>
           </div>
-          <div className="flex justify-between py-4">
-            <div></div>
-            <div className="flex w-[456px] justify-between items-center">
-              <label htmlFor="street" className="text-[14px]">
-                番地
-              </label>
-              <InputText
-                name="street"
-                value={registerShopValues}
-                onChange={handleChange}
-                containerClass="w-[329px]"
-              />
+          <div className="xs:flex xs:flex-row xs:items-start md:items-center gap-2 py-4">
+            <div className="text-[14px] whitespace-nowrap flex items-center xs:w-[100px] sm:w-[184px]"></div>
+            <div className="flex flex-col xs:w-[calc(100%-100px)] sm:w-[calc(100%-184px)] xs:flex xs:flex-col xs:justify-between sm:flex sm:flex-row sm:justify-between gap-4">
+              <div className="flex items-center w-[130px]">
+                <p className="text-[14px] flex items-center">
+                  <span className="whitespace-nowrap">番地</span>
+                  <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
+                    *
+                  </span>
+                </p>
+              </div>
+              <div className="max-w-[329px] sm:w-[calc(100%-130px)]">
+                <InputText
+                  name="street"
+                  value={registerShopValues}
+                  onChange={handleChange}
+                />
+              </div>
             </div>
           </div>
-          <div className="flex justify-between py-4">
-            <div></div>
-            <div className="flex w-[456px] justify-between items-center">
-              <label htmlFor="detail_address" className="text-[14px]">
-                建物名・部屋番号
-              </label>
-              <InputText
-                name="detail_address"
-                value={registerShopValues}
-                onChange={handleChange}
-                containerClass="w-[329px]"
-              />
+          <div className="xs:flex xs:flex-row xs:items-start md:items-center gap-2 py-4">
+            <div className="text-[14px] whitespace-nowrap flex items-center xs:w-[100px] sm:w-[184px]"></div>
+            <div className="flex flex-col xs:w-[calc(100%-100px)] sm:w-[calc(100%-184px)] xs:flex xs:flex-col xs:justify-between sm:flex sm:flex-row sm:justify-between gap-4">
+              <div className="flex items-center w-[130px]">
+                <p className="text-[14px] flex items-center">
+                  <span className="whitespace-nowrap">建物名・部屋番号</span>
+                  <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
+                    *
+                  </span>
+                </p>
+              </div>
+              <div className="max-w-[329px] sm:w-[calc(100%-130px)]">
+                <InputText
+                  name="detail_address"
+                  value={registerShopValues}
+                  onChange={handleChange}
+                />
+              </div>
             </div>
           </div>
         </div>
         {/* row 3 */}
-        <div className="flex justify-between items-center border-b border-[#ccc] py-8">
-          <label htmlFor="email" className="text-[14px] tracking-tighter">
+        <div className="flex flex-col xs:flex xs:flex-row gap-2 py-2 xs:items-center pt-[16px] pb-8 border-b border-[#ccc]">
+          <label
+            className="text-[14px] xs:w-[100px] sm:w-[184px]"
+            htmlFor="name_kana"
+          >
             <span>メールアドレス（登録者）</span>
             <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
               *
@@ -191,33 +217,40 @@ const ShopRegisterForm = () => {
             name="email"
             value={registerShopValues}
             onChange={handleChange}
-            containerClass="w-[329px]"
+            containerClass="xs:w-[calc(100%-100px)] sm:w-[calc(100%-184px)]"
           />
         </div>
         {/* row 4 */}
-        <div className="flex justify-between items-center border-b border-[#ccc] py-8">
-          <label htmlFor="phone" className="text-[14px] tracking-tighter">
+        <div className="flex flex-col xs:flex xs:flex-row gap-2 py-2 xs:items-center pt-[16px] pb-8 border-b border-[#ccc]">
+          <label
+            className="text-[14px] xs:w-[100px] sm:w-[184px]"
+            htmlFor="name_kana"
+          >
             電話番号（登録者）
           </label>
           <InputText
             name="phone"
             value={registerShopValues}
             onChange={handleChange}
-            containerClass="w-[329px]"
+            containerClass="xs:w-[calc(100%-100px)] sm:w-[calc(100%-184px)]"
           />
         </div>
         {/* row 5 */}
-        <div className="flex justify-between border-b border-[#ccc] py-6">
-          <div className="flex items-center">
-            <p className="text-[14px] tracking-tighter">店舗の許諾</p>
-          </div>
-          <div className="w-[456px]">
+        <div className="flex flex-col xs:flex xs:flex-row gap-2 py-2 xs:items-center pt-[16px] pb-8 border-b border-[#ccc]">
+          <label
+            className="text-[14px] xs:w-[100px] sm:w-[184px]"
+            htmlFor="name_kana"
+          >
+            店舗の許諾
+          </label>
+          <div className="xs:w-[calc(100%-100px)] sm:w-[calc(100%-184px)]">
             <FormControl>
               <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
                 name="shop_permission"
                 value={shopPermission}
                 onChange={(e: any) => setShopPermission(e.target.value)}
+                className="px-2"
               >
                 <div className="flex">
                   <FormControlLabel
@@ -235,29 +268,34 @@ const ShopRegisterForm = () => {
             </FormControl>
           </div>
         </div>
-        <div className="pt-[32px] flex justify-between">
-          <label className="text-[14px]" htmlFor="cat_info">
-            看板猫情報
+        <div className="flex flex-col xs:flex xs:flex-row gap-2 py-2 xs:items-center pt-[16px] pb-8 border-b border-[#ccc]">
+          <label
+            className="text-[14px] xs:w-[100px] sm:w-[184px]"
+            htmlFor="name_kana"
+          >
+            <span>看板猫情報</span>
             <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
               *
             </span>
           </label>
-          <textarea
-            name="cat_info"
-            id="cat_info"
-            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-              setRegisterShopValues({
-                ...registerShopValues,
-                [e.target.name]: e.target.value,
-              })
-            }
-            className="h-[192px] w-[456px] border border-[#CCCCCC] p-2 focus:outline-none"
-          ></textarea>
+          <div className="xs:w-[calc(100%-100px)] sm:w-[calc(100%-184px)]">
+            <textarea
+              name="cat_info"
+              id="cat_info"
+              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                setRegisterShopValues({
+                  ...registerShopValues,
+                  [e.target.name]: e.target.value,
+                })
+              }
+              className="w-full h-[192px] border border-[#CCCCCC] p-2 focus:outline-none"
+            ></textarea>
+          </div>
         </div>
         <div>
           <button
             type="button"
-            className="w-full mt-[24px] h-[48px] flex justify-center bg-[#F3F3F3] py-3"
+            className="w-full mt-[24px] sm:h-[48px] sm:flex sm:justify-center bg-[#F3F3F3] py-3"
             onClick={handleUpload}
           >
             <FileUpload />{" "}
@@ -282,7 +320,7 @@ const ShopRegisterForm = () => {
         </div>
         <div className="border-b border-[#CCCCCC] mt-[32px]"></div>
         <PrivacyComponent />
-        <div className="w-full flex justify-center">
+        <div className="w-full flex justify-center mt-[27px]">
           <FormControlLabel
             control={
               <Checkbox

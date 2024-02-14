@@ -47,28 +47,30 @@ function ColumnDetail() {
           </p>
           <h2 className="text-[32px] text-[#515151]">{AcolumnData.title}</h2>
         </div>
-        <div className="my-12 h-[576px]">
+        <div className="my-12 h-[300px] sm:h-[400px] md:h-[576px]">
           <img
             src={AcolumnData.detail_image}
             alt={AcolumnData.detail_image}
             className="h-full m-auto"
           />
         </div>
-        <p className="text-2xl mb-[70px] text-[#515151]">
+        <p className="text-2xl mb-10 sm:mb-[70px] text-[#515151]">
           {AcolumnData.subtitle}
         </p>
         <p className="text-[#515151] mb-16">{AcolumnData.description}</p>
         {AcolumnData.blog &&
           AcolumnData.blog.map((item, key) => (
-            <div className="grid grid-cols-12 gap-10 mb-[60px]" key={key}>
-              <div className={`col-span-5 ${key % 2 !== 0 && "order-last"}`}>
-                <img src={item.imgs} alt={item.imgs} />
+            <div className="sm:grid sm:grid-cols-12 gap-10 mb-[60px]" key={key}>
+              <div
+                className={`m-auto col-span-5 ${key % 2 !== 0 && "order-last"}`}
+              >
+                <img src={item.imgs} alt={item.imgs} className="w-full" />
                 <p className="text-sm mt-4 tracking-[-.2em]">
                   {item.img_caption}
                 </p>
               </div>
               <p
-                className={`h-[360px] overflow-hidden col-span-7 ${
+                className={`sm:h-[360px] overflow-hidden col-span-7 ${
                   key % 2 !== 0 && "order-first"
                 }`}
               >

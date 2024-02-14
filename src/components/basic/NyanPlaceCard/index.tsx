@@ -5,7 +5,7 @@ import { shopType } from "../../../constant/type";
 const NyanPlaceCard = (props: shopType) => {
   const navigate = useNavigate();
   return (
-    <div className="w-[312px] bg-white">
+    <div className="max-w-[312px] bg-white m-auto">
       <div
         className="w-full h-[234px] cursor-pointer"
         onClick={() => navigate(`/nyanplace/${props.id}`)}

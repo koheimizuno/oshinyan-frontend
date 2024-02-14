@@ -52,7 +52,7 @@ const Top = () => {
       <Container>
         <RankingBar />
         <div className="mt-[12px]">
-          <div className="flex justify-between flex-wrap ">
+          <div className="flex justify-between flex-wrap gap-3">
             {catData.length !== 0 ? (
               catData.map((e, i) => (
                 <CatCard
