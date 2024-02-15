@@ -4,27 +4,6 @@ import BlogColumnBox from "../basic/blog/BlogColumnBox";
 import axios from "axios";
 import { ColumnType } from "../../constant/type";
 
-const items = [
-  {
-    imgUrl: "/assets/imgs/cats/col_cat1.webp",
-  },
-  {
-    imgUrl: "/assets/imgs/cats/col_cat2.webp",
-  },
-  {
-    imgUrl: "/assets/imgs/cats/col_cat3.webp",
-  },
-  {
-    imgUrl: "/assets/imgs/cats/col_cat4.webp",
-  },
-  {
-    imgUrl: "/assets/imgs/cats/col_cat5.webp",
-  },
-  {
-    imgUrl: "/assets/imgs/cats/col_cat6.webp",
-  },
-];
-
 const ColumnSection = () => {
   const [columnData, setColumnData] = useState<ColumnType[]>([]);
   useEffect(() => {

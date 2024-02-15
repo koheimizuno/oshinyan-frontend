@@ -1,9 +1,7 @@
-import { useSelector } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import { Modal, Box } from "@mui/material";
 import Heart from "../../../basic/icons/Heart";
-import axios from "axios";
 
 type PropsType = {
   username: string;
@@ -23,14 +21,12 @@ const ImageDetail = ({
   showAlbumGallery,
   setShowAlbumGallery,
 }: PropsType) => {
-  const { user } = useSelector((state: any) => state.user);
   const handleCommentImageRecommend = async (id: number) => {
     // await axios.post("api/commentimagerecommend", {
     //   user_id: user.user_id,
     //   comment_image_id: id,
     // });
   };
-  console.log(commentImgs);
 
   return (
     <Modal

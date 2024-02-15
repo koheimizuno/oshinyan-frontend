@@ -30,7 +30,7 @@ function ColumnDetail() {
     };
     fetchColumnData();
     fetchGetColumnDataById();
-  }, []);
+  }, [id]);
 
   return (
     <MainLayout>

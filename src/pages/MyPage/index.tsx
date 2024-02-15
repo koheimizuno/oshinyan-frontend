@@ -69,7 +69,7 @@ const MyPage = () => {
     };
     fetchuserCatData();
     fetchUser();
-  }, [isAuthenticated, catLoading, authLoading]);
+  }, [isAuthenticated, catLoading, authLoading, user.user_id]);
 
   const editUserName = async () => {
     if (!isFetchUserName) {

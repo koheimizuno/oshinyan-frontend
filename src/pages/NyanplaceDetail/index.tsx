@@ -36,7 +36,7 @@ function NyanplaceDetail() {
     };
     fetchAShopData();
     fetchShopData();
-  }, []);
+  }, [id]);
 
   return (
     <MainLayout>

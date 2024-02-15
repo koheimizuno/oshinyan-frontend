@@ -45,12 +45,12 @@ const CatCard = ({
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
-  }, []);
+  }, [last_update]);
 
   const handleRecommend = async () => {
     if (isAuthenticated) {
       if (!advertise) {
-        if (!recommend?.find((e) => e.user == user.user_id)) {
+        if (!recommend?.find((e) => e.user === user.user_id)) {
           const submitData = {
             cat_id: id,
             user_id: user.user_id,
@@ -58,7 +58,7 @@ const CatCard = ({
           await dispatch(RecommendAction(submitData));
         }
       } else {
-        if (!recommend?.find((e) => e.user == user.user_id)) {
+        if (!recommend?.find((e) => e.user === user.user_id)) {
           const submitData = {
             advertise_id: id,
             user_id: user.user_id,
@@ -99,10 +99,7 @@ const CatCard = ({
           >
             {images &&
               images.map((item: any, key: any) => (
-                <SwiperSlide
-                  key={key}
-                  className="md:h-[234px] overflow-x-hidden"
-                >
+                <SwiperSlide key={key} className="md:h-[234px]">
                   <Link
                     to={
                       !advertise
@@ -113,7 +110,7 @@ const CatCard = ({
                     <img
                       src={item.imgs}
                       alt={item.imgs}
-                      className="h-full m-auto cursor-pointer w-full"
+                      className="h-full m-auto cursor-pointer object-cover"
                     />
                   </Link>
                 </SwiperSlide>
@@ -181,7 +178,7 @@ const CatCard = ({
               className="cursor-pointer rounded-full"
               onClick={handleRecommend}
             >
-              {recommend && recommend.find((e) => e.user == user.user_id) ? (
+              {recommend && recommend.find((e) => e.user === user.user_id) ? (
                 <img
                   src="/assets/imgs/icons/recommend-on.webp"
                   alt="recommend-on"

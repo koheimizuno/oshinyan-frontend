@@ -234,6 +234,9 @@ const ContactUsForm = () => {
             containerClass="xs:w-[calc(100%-100px)] sm:w-[calc(100%-184px)]"
           />
         </div>
+        {errorMsg && (
+          <h3 className="text-2xl text-red-500 my-12">{errorMsg}</h3>
+        )}
         <div className="flex flex-col xs:flex xs:flex-row gap-2 py-2 xs:items-center pt-8 pb-8 border-b border-[#ccc]">
           <label className="text-[14px] xs:w-[100px] sm:w-[184px]">
             (▼確認のため再入力）

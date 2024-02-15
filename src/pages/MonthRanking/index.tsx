@@ -54,7 +54,14 @@ const MonthRanking = () => {
       } catch (error) {}
     };
     fetchData();
-  }, [isAuthenticated, catLoading, authLoading]);
+  }, [
+    isAuthenticated,
+    catLoading,
+    authLoading,
+    dates.year,
+    dates.month,
+    dates.date,
+  ]);
 
   useEffect(() => {
     const fetchSearchData = async () => {
@@ -67,9 +74,20 @@ const MonthRanking = () => {
         }
       } catch (error) {}
     };
+    const fetchCharacterSearchData = async () => {
+      try {
+        if (characterKeyword !== null) {
+          const { data } = await axios.get(
+            `api/searchcharacter?keyword=${characterKeyword}`
+          );
+          setCatData(data);
+        }
+      } catch (error) {}
+    };
+    fetchCharacterSearchData();
     fetchSearchData();
     setPrefectureShow(false);
-  }, [prefectureKeyword]);
+  }, [prefectureKeyword, characterKeyword]);
 
   const previousMonthFetch = async () => {
     try {

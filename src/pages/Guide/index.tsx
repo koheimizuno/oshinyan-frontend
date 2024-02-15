@@ -200,8 +200,8 @@ const Guide = () => {
           <div className="mt-[16px] flex items-center gap-4">
             <div className="w-6 h-6">
               <img
-                src="assets/imgs/icons/1-icon.png"
-                alt="1-icon.png"
+                src="assets/imgs/icons/1-icon.webp"
+                alt="1-icon.webp"
                 className="w-full h-full"
               />
             </div>
@@ -212,8 +212,8 @@ const Guide = () => {
           <div className="mt-[16px] flex items-center gap-4">
             <div className="w-6 h-6">
               <img
-                src="assets/imgs/icons/2-icon.png"
-                alt="2-icon.png"
+                src="assets/imgs/icons/2-icon.webp"
+                alt="2-icon.webp"
                 className="w-full h-full"
               />
             </div>
@@ -224,8 +224,8 @@ const Guide = () => {
           <div className="mt-[16px] flex items-center gap-4">
             <div className="w-6 h-6">
               <img
-                src="assets/imgs/icons/3-icon.png"
-                alt="3-icon.png"
+                src="assets/imgs/icons/3-icon.webp"
+                alt="3-icon.webp"
                 className="w-full h-full"
               />
             </div>
@@ -236,8 +236,8 @@ const Guide = () => {
           <div className="mt-[16px] flex items-center gap-4">
             <div className="w-6 h-6">
               <img
-                src="assets/imgs/icons/4-icon.png"
-                alt="4-icon.png"
+                src="assets/imgs/icons/4-icon.webp"
+                alt="4-icon.webp"
                 className="w-full h-full"
               />
             </div>
@@ -248,8 +248,8 @@ const Guide = () => {
           <div className="mt-[16px] flex items-center gap-4">
             <div className="w-6 h-6">
               <img
-                src="assets/imgs/icons/5-icon.png"
-                alt="5-icon.png"
+                src="assets/imgs/icons/5-icon.webp"
+                alt="5-icon.webp"
                 className="w-full h-full"
               />
             </div>
@@ -260,8 +260,8 @@ const Guide = () => {
           <div className="mt-[16px] flex items-center gap-4">
             <div className="w-6 h-6">
               <img
-                src="assets/imgs/icons/6-icon.png"
-                alt="6-icon.png"
+                src="assets/imgs/icons/6-icon.webp"
+                alt="6-icon.webp"
                 className="w-full h-full"
               />
             </div>
@@ -272,8 +272,8 @@ const Guide = () => {
           <div className="mt-[16px] flex items-center gap-4">
             <div className="w-6 h-6">
               <img
-                src="assets/imgs/icons/7-icon.png"
-                alt="7-icon.png"
+                src="assets/imgs/icons/7-icon.webp"
+                alt="7-icon.webp"
                 className="w-full h-full"
               />
             </div>
@@ -284,8 +284,8 @@ const Guide = () => {
           <div className="mt-[16px] flex items-center gap-4">
             <div className="w-6 h-6">
               <img
-                src="assets/imgs/icons/8-icon.png"
-                alt="8-icon.png"
+                src="assets/imgs/icons/8-icon.webp"
+                alt="8-icon.webp"
                 className="w-full h-full"
               />
             </div>
@@ -296,8 +296,8 @@ const Guide = () => {
           <div className="mt-[16px] flex items-center gap-4">
             <div className="w-6 h-6">
               <img
-                src="assets/imgs/icons/9-icon.png"
-                alt="9-icon.png"
+                src="assets/imgs/icons/9-icon.webp"
+                alt="9-icon.webp"
                 className="w-full h-full"
               />
             </div>
@@ -308,8 +308,8 @@ const Guide = () => {
           <div className="mt-[16px] flex items-center gap-4">
             <div className="w-6 h-6">
               <img
-                src="assets/imgs/icons/10-icon.png"
-                alt="10-icon.png"
+                src="assets/imgs/icons/10-icon.webp"
+                alt="10-icon.webp"
                 className="w-full h-full"
               />
             </div>

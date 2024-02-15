@@ -39,16 +39,16 @@ const SmallCatCard = ({
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
-  }, []);
+  }, [last_update]);
 
   const handleRecommend = async () => {
     if (isAuthenticated) {
-      if (!recommend.find((e) => e.user == user.user_id)) {
+      if (!recommend.find((e) => e.user === user.user_id)) {
         const submitData = {
           cat_id: id,
           user_id: user.user_id,
         };
-        const res = await dispatch(RecommendAction(submitData));
+        await dispatch(RecommendAction(submitData));
       }
     } else {
       setRecommendLoginShow(true);
@@ -138,7 +138,7 @@ const SmallCatCard = ({
             className="cursor-pointer rounded-full"
             onClick={handleRecommend}
           >
-            {recommend.find((e) => e.user == user.user_id) ? (
+            {recommend.find((e) => e.user === user.user_id) ? (
               <img
                 src="/assets/imgs/icons/recommend-on.webp"
                 alt="recommend-on"

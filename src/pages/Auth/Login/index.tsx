@@ -13,7 +13,7 @@ function Login() {
   const navigate = useNavigate();
   useEffect(() => {
     isAuthenticated && navigate("/");
-  }, [isAuthenticated]);
+  }, [isAuthenticated, navigate]);
   return (
     <MainLayout>
       <SocialLinkGroup />

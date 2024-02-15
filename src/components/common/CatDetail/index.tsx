@@ -28,7 +28,7 @@ import CatDetailCarousel from "./components/Carousel";
 import AlbumGallery from "./components/AlbumGallery";
 import CommentImageCarousel from "./components/CommentImageCarousel";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import { formatDateTime, isNewUtil } from "../../../utils/functions";
+import { formatDateTime } from "../../../utils/functions";
 import { Notification } from "../../../constant/notification";
 import CatDetailComment from "./components/CatDetailComment";
 
@@ -61,7 +61,6 @@ const CatDetail = () => {
   >([]);
   const [selectedTab, setSelectedTab] = useState(0);
   const [selectedDetail, setSelectedDetail] = useState(0);
-  const [isNew, setIsNew] = useState<boolean | undefined>(false);
   const [commentImgs, setCommentImgs] = useState<
     {
       id: number;
@@ -132,7 +131,7 @@ const CatDetail = () => {
     };
     commentFetch();
     fetchReactionWord();
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -156,9 +155,7 @@ const CatDetail = () => {
               list.push(it.imgs);
             });
           setCatDetailImages(list);
-        } catch (error) {
-          console.log(error);
-        }
+        } catch (error) {}
       };
       RetrieveCat();
     } else {
@@ -171,7 +168,7 @@ const CatDetail = () => {
       RetrieveCat();
     }
     fetchData();
-  }, [isAuthenticated, catLoading, authLoading]);
+  }, [isAuthenticated, catLoading, authLoading, advertise, id]);
 
   useEffect(() => {
     const ListRecommendUser = async () => {
@@ -205,23 +202,23 @@ const CatDetail = () => {
   const handleRecommend = async () => {
     if (isAuthenticated) {
       if (!advertise) {
-        if (!retrieveCat.recommend.find((e) => e.user == user.user_id)) {
+        if (!retrieveCat.recommend.find((e) => e.user === user.user_id)) {
           const submitData = {
             cat_id: id,
             user_id: user.user_id,
           };
           try {
-            const res = await dispatch(RecommendAction(submitData));
+            await dispatch(RecommendAction(submitData));
           } catch (error) {}
         }
       } else {
-        if (!retrieveCat.recommend.find((e) => e.user == user.user_id)) {
+        if (!retrieveCat.recommend.find((e) => e.user === user.user_id)) {
           const submitData = {
             advertise_id: id,
             user_id: user.user_id,
           };
           try {
-            const res = await dispatch(RecommendAction(submitData));
+            await dispatch(RecommendAction(submitData));
           } catch (error) {}
         }
       }
@@ -234,54 +231,42 @@ const CatDetail = () => {
     try {
       const { data } = await axios.get("api/reactionword/");
       setReactionWord(data);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   const fetchReactionCat = async () => {
     try {
       const { data } = await axios.get("api/reactioncat/");
       setReactionCat(data);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   const fetchReactionFood = async () => {
     try {
       const { data } = await axios.get("api/reactionfood/");
       setReactionFood(data);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   const fetchReactionHeart = async () => {
     try {
       const { data } = await axios.get("api/reactionheart/");
       setReactionHeart(data);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   const fetchReactionSeason = async () => {
     try {
       const { data } = await axios.get("api/reactionseason/");
       setReactionSeason(data);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   const fetchReactionParty = async () => {
     try {
       const { data } = await axios.get("api/reactionparty/");
       setReactionParty(data);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   const handleCommentIcon = async (comment_id: number, iconData: ImageType) => {
@@ -328,7 +313,7 @@ const CatDetail = () => {
               onClick={handleRecommend}
             >
               {retrieveCat.recommend &&
-              retrieveCat.recommend.find((e) => e.user == user.user_id) ? (
+              retrieveCat.recommend.find((e) => e.user === user.user_id) ? (
                 <img
                   src="/assets/imgs/icons/recommend-on.webp"
                   alt="recommend-on"
@@ -696,12 +681,12 @@ const CatDetail = () => {
                     ))}
                 </div>
               </div>
-              {showImageDetail && selectedDetail == key && (
+              {showImageDetail && selectedDetail === key && (
                 <CommentImageCarousel
                   username={commentitem.user.username}
                   comment={commentitem.comment}
                   commentImgs={commentitem.comment_images}
-                  showAlbumGallery={selectedDetail == key}
+                  showAlbumGallery={selectedDetail === key}
                   setShowAlbumGallery={setShowImageDetail}
                 />
               )}

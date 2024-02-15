@@ -54,7 +54,7 @@ function App() {
     } else {
       delete axios.defaults.headers.common["Authorization"];
     }
-  }, []);
+  }, [token, dispatch]);
 
   // const PRIVATE_ROUTES = ["mypage", "oshinyan"];
   // const isPrivatePage = PRIVATE_ROUTES.some((path) =>
@@ -71,31 +71,31 @@ function App() {
       <Suspense fallback={<SuspenseContent />}>
         <Routes>
           <Route path="/">
-            //1 <Route index element={<Top />} />
+            <Route index element={<Top />} />
             <Route path="ranking/gekkan" element={<MonthRanking />} />
             <Route path="ranking" element={<TotalRanking />} />
-            //2 <Route path="guide" element={<Guide />} />
-            //3 <Route path="registration" element={<Registration />} />
+            <Route path="guide" element={<Guide />} />
+            <Route path="registration" element={<Registration />} />
             <Route path="login" element={<Login />} />
             <Route path="password_reset" element={<PasswordReset />} />
             <Route
               path="password_reset/:uid/:token/"
               element={<PasswordResetConfirmation />}
             />
-            //4 <Route path="feature" element={<Feature />} />
+            <Route path="feature" element={<Feature />} />
             <Route path="feature/:id" element={<FeatureDetail />} />
-            //5 <Route path="mypage" element={<MyPage />} />
-            //6 <Route path="nyanplace" element={<Nyanplace />} />
-            //7 <Route path="shopresister" element={<RegisterOther />} />
+            <Route path="mypage" element={<MyPage />} />
+            <Route path="nyanplace" element={<Nyanplace />} />
+            <Route path="shopresister" element={<RegisterOther />} />
             <Route path="ambassador" element={<RegisterOther />} />
-            //8 <Route path="privacy" element={<Privacy />} />
-            //9 <Route path="company" element={<Company />} />
-            //10 <Route path="oshiresister" element={<Oshiresister />} />
-            //*11 <Route path="nyanplace/:id" element={<NyanplaceDetail />} />
-            //12 <Route path="oshinyan/:id" element={<OshinyanDetail />} />
-            //15 <Route path="comment/:id" element={<Comment />} />
-            //16 <Route path="column/:id" element={<ColumnDetail />} />
-            //17 <Route path="inquiry" element={<Inquiry />} />
+            <Route path="privacy" element={<Privacy />} />
+            <Route path="company" element={<Company />} />
+            <Route path="oshiresister" element={<Oshiresister />} />
+            <Route path="nyanplace/:id" element={<NyanplaceDetail />} />
+            <Route path="oshinyan/:id" element={<OshinyanDetail />} />
+            <Route path="comment/:id" element={<Comment />} />
+            <Route path="column/:id" element={<ColumnDetail />} />
+            <Route path="inquiry" element={<Inquiry />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

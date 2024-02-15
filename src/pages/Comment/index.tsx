@@ -40,12 +40,10 @@ function Comment() {
             list.push(it.imgs);
           });
         setCatDetailImages(list);
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     };
     RetrieveCat();
-  }, []);
+  }, [id, navigate, isAuthenticated]);
 
   const handleUpload = () => {
     hiddenFileInput.current && hiddenFileInput.current.click();
@@ -67,7 +65,7 @@ function Comment() {
     }
     if (checked) {
       try {
-        const res = await axios.post("api/comment/", formData);
+        await axios.post("api/comment/", formData);
         Notification("success", "未登録店舗の登録が成功しました。");
         setTimeout(() => {
           navigate(`/oshinyan/${id}`);
