@@ -211,7 +211,10 @@ const MonthRanking = () => {
           <div className="xs:max-w-[480px] xs:w-full xs:m-auto xs:mt-[24px] xs:mb-[24px] md:ml-0 ranking-1">
             {catData.length !== 0 ? (
               <div className="ranking-1-tle flex gap-[8px]">
-                <img src="/assets/imgs/icons/ranking-1-cap.svg" alt="cat" />{" "}
+                <img
+                  src="/assets/imgs/icons/ranking-1-cap.svg"
+                  alt="ranking-1-cap"
+                />
                 <span className="text-[24px] font-bold leading-[32px]">
                   1位
                 </span>
@@ -371,7 +374,7 @@ const MonthRanking = () => {
               </div>
               <div className="hover:opacity-70">
                 <Link to="/shopresister">
-                  <img src="/assets/imgs/member.webp" alt="" />
+                  <img src="/assets/imgs/member.webp" alt="member" />
                 </Link>
               </div>
             </div>

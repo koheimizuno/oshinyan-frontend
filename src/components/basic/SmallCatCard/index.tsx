@@ -164,7 +164,7 @@ const SmallCatCard = ({
         </div>
         {isNew && (
           <span className="absolute top-0 left-0 z-10">
-            <img src="/assets/imgs/icons/parts-new.svg" alt="" />
+            <img src="/assets/imgs/icons/parts-new.svg" alt="parts-new" />
           </span>
         )}
       </div>
@@ -186,7 +186,7 @@ const SmallCatCard = ({
               <img
                 src="/assets/imgs/icons/recommend.svg"
                 className=" align-items-center"
-                alt=""
+                alt="recommend"
               />
             </span>
             <h2 className="text-[24px] d-inline-block">

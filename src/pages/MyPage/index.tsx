@@ -142,7 +142,7 @@ const MyPage = () => {
                     <img
                       className="w-full"
                       src={currentUser.avatar_url}
-                      alt="cat"
+                      alt={currentUser.username}
                     />
                   )}
                 </button>

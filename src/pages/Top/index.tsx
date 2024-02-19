@@ -215,7 +215,7 @@ const Top = () => {
             </div>
             <div className="hover:opacity-70">
               <Link to="/shopresister">
-                <img src="/assets/imgs/member.webp" alt="" />
+                <img src="/assets/imgs/member.webp" alt="member" />
               </Link>
             </div>
           </div>

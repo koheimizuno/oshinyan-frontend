@@ -7,8 +7,8 @@ const RankingBar = () => {
         <img
           src="/assets/imgs/icons/ranking-1-cap.svg"
           className="w-[36px]"
-          alt="cat"
-        />{" "}
+          alt="ranking-1-cap"
+        />
         <h4 className="">推しニャンLANKING</h4>
       </div>
       <div className="w-[264px] flex justify-between items-center xs:m-auto sm:ml-[55px]">

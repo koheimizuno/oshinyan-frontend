@@ -271,7 +271,7 @@ const CatDetail = () => {
       <div className="w-full bg-white p-[28px]">
         <div className="flex justify-between">
           <div className="flex items-center font-bold">
-            <img src="/assets/imgs/icons/face_empty.webp" alt="cat icon" />
+            <img src="/assets/imgs/icons/face_empty.webp" alt="face_empty" />
             <span className="text-xl md:text-2xl ms-4">
               {retrieveCat.cat_name}
             </span>
@@ -383,7 +383,7 @@ const CatDetail = () => {
             <img
               className="w-6"
               src="/assets/imgs/icons/recommend.svg"
-              alt=""
+              alt="recommend"
             />
           </div>
           <div className="text-2xl font-medium ms-2">
@@ -408,7 +408,7 @@ const CatDetail = () => {
                     <img
                       className="ms-5"
                       src="/assets/imgs/icons/comment_abbr.webp"
-                      alt=""
+                      alt="comment_abbr"
                     />
                   </div>
                 ))}

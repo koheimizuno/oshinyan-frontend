@@ -13,7 +13,7 @@ const NyanPlaceCard = (props: shopType) => {
         {props.shop_images && (
           <img
             src={props.shop_images[0].imgs}
-            alt="cat"
+            alt={props.shop_images[0].imgs}
             className="h-full m-auto"
           />
         )}

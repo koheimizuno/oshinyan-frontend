@@ -161,7 +161,7 @@ const LargeCatCard = ({
           <hr className="border border-[#CCC]" />
           <div className="flex justify-content-start items-center pt-[10px] pb-[16px] ">
             <div>
-              <img src="/assets/imgs/icons/hear-yellow.svg" alt="" />
+              <img src="/assets/imgs/icons/hear-yellow.svg" alt="hear-yellow" />
             </div>
             <div className="px-[8px] whitespace-nowrap">
               <p>性格</p>
@@ -193,7 +193,7 @@ const LargeCatCard = ({
               <img
                 src="/assets/imgs/icons/recommend.svg"
                 className=" align-items-center "
-                alt=""
+                alt="recommend"
               />
             </span>
             <h2 className="text-[24px] d-inline-block">
@@ -232,7 +232,7 @@ const LargeCatCard = ({
           </div>
           {isNew && (
             <span className="absolute top-0 left-0 z-10">
-              <img src="/assets/imgs/icons/parts-new.svg" alt="" />
+              <img src="/assets/imgs/icons/parts-new.svg" alt="parts-new" />
             </span>
           )}
         </div>
