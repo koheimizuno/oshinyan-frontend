@@ -1,5 +1,5 @@
 import { Suspense, lazy, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import axios from "axios";
 import { LogOutAction, TokenLoginAction } from "./slices/auth";
@@ -35,7 +35,6 @@ axios.defaults.baseURL = "http://162.43.50.92:8000/";
 
 function App() {
   const dispatch = useDispatch();
-  const { user } = useSelector((state: any) => state.user);
   let token: string | null = localStorage.getItem("token");
   useEffect(() => {
     if (token) {

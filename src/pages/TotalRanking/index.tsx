@@ -159,6 +159,7 @@ const TotalRanking = () => {
                   <CatCard
                     key={i}
                     id={e.id}
+                    is_public={e.is_public}
                     cat_name={e.cat_name}
                     shop={e.shop}
                     images={e.images}

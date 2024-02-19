@@ -243,6 +243,7 @@ const MyPage = () => {
               <CatCard
                 key={i}
                 id={e.id}
+                is_public={e.is_public}
                 page="mypage"
                 cat_name={e.cat_name}
                 shop={e.shop}

@@ -9,14 +9,10 @@ import { isNewUtil } from "../../../utils/functions";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 
-interface Props extends CatObjectType {
-  bgcolor?: string;
-}
-
 const CatCard = ({
   id,
   page,
-  bgcolor,
+  is_public,
   advertise,
   cat_name,
   shop,
@@ -25,7 +21,7 @@ const CatCard = ({
   description,
   recommend,
   created_date,
-}: Props) => {
+}: CatObjectType) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const recommendLoginElement = useRef<HTMLDivElement>(null);
@@ -88,7 +84,7 @@ const CatCard = ({
       onMouseLeave={() => setHoverAction(false)}
     >
       <div>
-        <div className="relative bg-white">
+        <div className="relative">
           <Swiper
             modules={[Navigation, Pagination, Scrollbar, A11y]}
             pagination={{
@@ -214,7 +210,11 @@ const CatCard = ({
             </span>
           )}
         </div>
-        <div className={`px-[16px] h-[278px] ${bgcolor}`}>
+        <div
+          className={`px-[16px] h-[278px] ${
+            is_public ? "bg-white" : "bg-[#ccc]"
+          }`}
+        >
           <div>
             <h3 className="text-[24px] font-bold text-left text-ellipsis overflow-hidden whitespace-nowrap">
               {cat_name}
