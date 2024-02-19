@@ -83,7 +83,7 @@ const CatDetail = () => {
     attendance: "",
     description: "",
     recommend: [],
-    last_update: "",
+    created_date: "",
   });
   const { user, authLoading, isAuthenticated } = useSelector(
     (state: any) => state.user
@@ -732,7 +732,7 @@ const CatDetail = () => {
               attendance={e.attendance}
               description={e.description}
               recommend={e.recommend}
-              last_update={e.last_update}
+              created_date={e.created_date}
             />
           ))
         ) : (

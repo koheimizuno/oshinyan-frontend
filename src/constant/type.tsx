@@ -1,8 +1,3 @@
-interface recommendType {
-  user: number;
-  cat: number;
-}
-
 export interface shopType {
   id?: number;
   shop_type?: { id: string; shop_type: string };
@@ -14,7 +9,7 @@ export interface shopType {
   business_time?: string;
   rest_day?: string;
   url?: string;
-  last_update?: string;
+  created_date?: string;
   shop_images?: { imgs?: string }[];
   cat?: any[];
 }
@@ -33,9 +28,17 @@ interface favoritethingType {
   favorite_things: string;
 }
 
-export interface CatObjectType {
-  advertise?: string;
+interface recommendType {
   id: number;
+  user: number;
+  cat: number;
+}
+
+export interface CatObjectType {
+  id: number;
+  page?: string;
+  is_public?: boolean;
+  advertise?: string;
   cat_name: string;
   shop: shopType;
   images?: ImageType[];
@@ -45,7 +48,7 @@ export interface CatObjectType {
   attendance: string;
   description: string;
   recommend: recommendType[];
-  last_update: string;
+  created_date: string;
 }
 
 export interface UserType {
@@ -60,9 +63,11 @@ export interface bannerType {
   url: string;
 }
 
-interface CommentImageType {
+export interface CommentImageType {
   id: number;
   imgs: string;
+  comment_images_recommend: string[];
+  created_date: string;
 }
 
 export interface commentType {

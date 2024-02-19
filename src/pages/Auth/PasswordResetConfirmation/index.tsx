@@ -22,7 +22,6 @@ function PasswordResetConfirmation() {
         await axios.post(`account/password_reset/confirm/${uid}/${token}/`, {
           new_password: inputValues.password,
         });
-        Notification("success", "パスワードが成果的に変更されました。");
         navigate("/login");
       };
       ResestPasswordConfirm();

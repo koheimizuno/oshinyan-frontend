@@ -25,7 +25,6 @@ function Comment() {
   const [catDetailImages, setCatDetailImages] = useState<string[]>([]);
   const { user, isAuthenticated } = useSelector((state: any) => state.user);
   useEffect(() => {
-    !isAuthenticated && navigate("/login");
     const RetrieveCat = async () => {
       try {
         let list: string[] = [];
@@ -86,10 +85,7 @@ function Comment() {
         <Title title="推しコメント入力" />
         <section className="flex flex-col gap-5 md:flex-row md:items-center md:gap-10 py-9">
           <div className="flex items-center gap-4">
-            <img
-              src="/assets/imgs/icons/cat_avatar_3.webp"
-              alt="cat_avatar_3"
-            />
+            <img src={user.avatar_url} alt={user.username} />
             <Link to="#" className="border-b border-[#6d6d6d]">
               {user.username}
             </Link>

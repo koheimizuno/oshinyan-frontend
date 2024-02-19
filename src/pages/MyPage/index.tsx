@@ -4,14 +4,16 @@ import Container from "../../components/basic/Container";
 import PageBar from "../../components/common/PageBar";
 import CatCard from "../../components/basic/blog/CatCard";
 import EditButton from "../../components/basic/EditButton";
-import FavoriteCard from "../../components/basic/FavoriteCard";
+import CommentImageCard from "../../components/basic/CommentImageCard";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import Title from "../../components/common/Typography/Title";
 import axios from "axios";
-import { CatObjectType } from "../../constant/type";
+import { CatObjectType, CommentImageType } from "../../constant/type";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { Modal } from "@mui/material";
 import { Close } from "@mui/icons-material";
+import { formatDateTime } from "../../utils/functions";
 const Box = lazy(() => import("@mui/material/Box"));
 
 interface avatarType {
@@ -20,6 +22,7 @@ interface avatarType {
 }
 
 const MyPage = () => {
+  const navigate = useNavigate();
   const [userCatData, setUserCatData] = useState<CatObjectType[]>([]);
   const [currentUser, setCurrentUser] = useState({
     id: 0,
@@ -33,26 +36,28 @@ const MyPage = () => {
   const [newEmail, setNewEmail] = useState("");
   const [avatars, setAvatars] = useState<avatarType[]>([]);
   const [avatarModal, setAvatarModal] = useState(false);
-  const [commentImgsByUser, setCommentImgsByUser] = useState<string[]>([]);
+  const [commentImgsByUser, setCommentImgsByUser] = useState<
+    CommentImageType[]
+  >([]);
   const { catLoading } = useSelector((state: any) => state.cat);
   const { user, authLoading, isAuthenticated } = useSelector(
     (state: any) => state.user
   );
 
   useEffect(() => {
-    // !isAuthenticated && navigate("/login");
     const commentByUserFetch = async () => {
       let list: any[] = [];
       const { data } = await axios.get(`api/commentbyuser`);
+      console.log(data);
       data.forEach((item: any) => {
         item.comment_images.forEach((it: any) => {
-          list.push(it.imgs);
+          list.push(it);
         });
       });
       setCommentImgsByUser(list);
     };
     commentByUserFetch();
-  }, []);
+  }, [isAuthenticated, navigate, catLoading]);
 
   useEffect(() => {
     const fetchuserCatData = async () => {
@@ -238,6 +243,7 @@ const MyPage = () => {
               <CatCard
                 key={i}
                 id={e.id}
+                page="mypage"
                 cat_name={e.cat_name}
                 shop={e.shop}
                 images={e.images}
@@ -247,7 +253,7 @@ const MyPage = () => {
                 attendance={e.attendance}
                 description={e.description}
                 recommend={e.recommend}
-                last_update={e.last_update}
+                created_date={e.created_date}
               />
             ))
           ) : (
@@ -262,11 +268,12 @@ const MyPage = () => {
         <div className="mt-[40px] mb-[64px] flex flex-wrap justify-between gap-4">
           {commentImgsByUser &&
             commentImgsByUser.map((item, key) => (
-              <FavoriteCard
+              <CommentImageCard
                 key={key}
-                imgUrl={item}
-                date="2023.01.01"
-                recommend="000"
+                id={item.id}
+                imgs={item.imgs}
+                created_date={formatDateTime(item.created_date)}
+                comment_images_recommend={item.comment_images_recommend}
               />
             ))}
         </div>

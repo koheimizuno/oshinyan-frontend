@@ -1,5 +1,5 @@
 import { Suspense, lazy, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import axios from "axios";
 import { LogOutAction, TokenLoginAction } from "./slices/auth";
@@ -29,11 +29,13 @@ const PasswordReset = lazy(() => import("./pages/Auth/PasswordReset"));
 const PasswordResetConfirmation = lazy(
   () => import("./pages/Auth/PasswordResetConfirmation")
 );
+const Test = lazy(() => import("./pages/Test"));
 
 axios.defaults.baseURL = "http://162.43.50.92:8000/";
 
 function App() {
   const dispatch = useDispatch();
+  const { user } = useSelector((state: any) => state.user);
   let token: string | null = localStorage.getItem("token");
   useEffect(() => {
     if (token) {
@@ -56,15 +58,16 @@ function App() {
     }
   }, [token, dispatch]);
 
-  // const PRIVATE_ROUTES = ["mypage", "oshinyan"];
-  // const isPrivatePage = PRIVATE_ROUTES.some((path) =>
-  //   window.location.href.includes(path)
-  // );
+  const PRIVATE_ROUTES = ["mypage", "comment"];
 
-  // if (!token && isPrivatePage) {
-  //   delete axios.defaults.headers.common["Authorization"];
-  //   window.location.href = "/login";
-  // }
+  const isPrivatePage = PRIVATE_ROUTES.some((path) =>
+    window.location.href.includes(path)
+  );
+
+  if (!token && isPrivatePage) {
+    delete axios.defaults.headers.common["Authorization"];
+    window.location.href = "/login";
+  }
 
   return (
     <BrowserRouter>
@@ -96,6 +99,7 @@ function App() {
             <Route path="comment/:id" element={<Comment />} />
             <Route path="column/:id" element={<ColumnDetail />} />
             <Route path="inquiry" element={<Inquiry />} />
+            <Route path="test" element={<Test />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

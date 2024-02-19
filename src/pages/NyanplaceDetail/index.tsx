@@ -215,7 +215,7 @@ function NyanplaceDetail() {
                     attendance={e.attendance}
                     description={e.description}
                     recommend={e.recommend}
-                    last_update={e.last_update}
+                    created_date={e.created_date}
                   />
                 ))
               ) : (

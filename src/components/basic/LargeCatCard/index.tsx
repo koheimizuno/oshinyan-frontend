@@ -19,7 +19,7 @@ const LargeCatCard = ({
   description,
   attendance,
   recommend,
-  last_update,
+  created_date,
 }: CatObjectType) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ const LargeCatCard = ({
   const { user } = useSelector((state: any) => state.user);
   const { isAuthenticated } = useSelector((state: any) => state.user);
   useEffect(() => {
-    setIsNew(isNewUtil(last_update));
+    setIsNew(isNewUtil(created_date));
     const handleClickOutside = (event: any) => {
       if (
         recommendLoginElement.current &&
@@ -44,7 +44,7 @@ const LargeCatCard = ({
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
-  }, [last_update]);
+  }, [created_date]);
 
   const handleRecommend = async () => {
     if (isAuthenticated) {

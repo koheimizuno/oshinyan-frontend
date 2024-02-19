@@ -136,7 +136,7 @@ const TotalRanking = () => {
               attendance={catData[0].attendance}
               description={catData[0].description}
               recommend={catData[0].recommend}
-              last_update={catData[0].last_update}
+              created_date={catData[0].created_date}
             />
           )}
           <div className="md:flex md:justify-between md:flex-wrap ">
@@ -168,7 +168,7 @@ const TotalRanking = () => {
                     attendance={e.attendance}
                     description={e.description}
                     recommend={e.recommend}
-                    last_update={e.last_update}
+                    created_date={e.created_date}
                   />
                 </div>
               ))}
@@ -199,7 +199,7 @@ const TotalRanking = () => {
                       attendance={e.attendance}
                       description={e.description}
                       recommend={e.recommend}
-                      last_update={e.last_update}
+                      created_date={e.created_date}
                     />
                   </div>
                 </div>

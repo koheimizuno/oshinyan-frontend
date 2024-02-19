@@ -2,14 +2,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import { Modal, Box } from "@mui/material";
 import Heart from "../../../basic/icons/Heart";
+import { CommentImageType } from "../../../../constant/type";
 
 type PropsType = {
   username: string;
   comment: string;
-  commentImgs: {
-    id: number;
-    imgs: string;
-  }[];
+  commentImgs: CommentImageType[];
   showAlbumGallery: boolean;
   setShowAlbumGallery: any;
 };

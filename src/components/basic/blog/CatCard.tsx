@@ -3,17 +3,20 @@ import { Link, useNavigate } from "react-router-dom";
 import CustomButton from "../CustomButton";
 import { CatObjectType } from "../../../constant/type";
 import { useDispatch, useSelector } from "react-redux";
-import { RecommendAction } from "../../../slices/cat";
+import { RecommendAction, RecommendOutAction } from "../../../slices/cat";
 import { isNewUtil } from "../../../utils/functions";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 
-interface PropsType extends CatObjectType {
-  id: number;
+interface Props extends CatObjectType {
+  bgcolor?: string;
 }
+
 const CatCard = ({
   id,
+  page,
+  bgcolor,
   advertise,
   cat_name,
   shop,
@@ -21,8 +24,8 @@ const CatCard = ({
   character,
   description,
   recommend,
-  last_update,
-}: PropsType) => {
+  created_date,
+}: Props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const recommendLoginElement = useRef<HTMLDivElement>(null);
@@ -32,7 +35,7 @@ const CatCard = ({
   const { user, isAuthenticated } = useSelector((state: any) => state.user);
 
   useEffect(() => {
-    setIsNew(isNewUtil(last_update));
+    setIsNew(isNewUtil(created_date));
     const handleClickOutside = (event: any) => {
       if (
         recommendLoginElement.current &&
@@ -45,7 +48,7 @@ const CatCard = ({
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
-  }, [last_update]);
+  }, [created_date]);
 
   const handleRecommend = async () => {
     if (isAuthenticated) {
@@ -66,6 +69,11 @@ const CatCard = ({
           await dispatch(RecommendAction(submitData));
         }
       }
+      // Recommend Delete Start
+      if (page && recommend[0].user === user.user_id) {
+        dispatch(RecommendOutAction(recommend[0].id));
+      }
+      // Recommend Delete End
     } else {
       setRecommendLoginShow(true);
     }
@@ -79,7 +87,7 @@ const CatCard = ({
       onMouseOver={() => setHoverAction(true)}
       onMouseLeave={() => setHoverAction(false)}
     >
-      <div className="">
+      <div>
         <div className="relative bg-white">
           <Swiper
             modules={[Navigation, Pagination, Scrollbar, A11y]}
@@ -206,7 +214,7 @@ const CatCard = ({
             </span>
           )}
         </div>
-        <div className="px-[16px]  bg-white h-[278px]">
+        <div className={`px-[16px] h-[278px] ${bgcolor}`}>
           <div>
             <h3 className="text-[24px] font-bold text-left text-ellipsis overflow-hidden whitespace-nowrap">
               {cat_name}
