@@ -426,7 +426,10 @@ const CatDetail = () => {
                   <div className="w-10 h-10">
                     <img
                       className="w-full"
-                      src={commentitem.user.avatar.avatar}
+                      src={
+                        commentitem.user.avatar &&
+                        commentitem.user.avatar.avatar
+                      }
                       alt="avatar"
                     />
                   </div>
@@ -484,8 +487,8 @@ const CatDetail = () => {
                         {isAuthenticated && (
                           <div className="flex items-center gap-3">
                             <img
-                              src={user.avatar.avatar}
-                              alt={user.avatar.avatar}
+                              src={user.avatar && user.avatar.avatar}
+                              alt={user.username}
                               width={32}
                             />
                             <span>{user.username}</span>
