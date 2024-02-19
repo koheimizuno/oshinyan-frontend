@@ -25,14 +25,13 @@ interface dateType {
 const dateObj = new Date();
 
 const MonthRanking = () => {
-  const [prefectureKeyword, selectPrefectureKeyword] = useState<string | null>(
-    null
-  );
-  const [characterKeyword, selectCharacterKeyword] = useState<string | null>(
-    null
-  );
+  const [prefectureKeyword, selectPrefectureKeyword] = useState<string[]>([]);
+  const [characterKeyword, selectCharacterKeyword] = useState<string[]>([]);
   const [prefectureShow, setPrefectureShow] = useState(false);
   const [characterShow, setCharacterShow] = useState(false);
+  const [attendanceKeyword, selectAttendanceKeyword] = useState<string[]>([]);
+  const [attendanceShow, setAttendanceShow] = useState(false);
+  const [searchWord, setSearchWord] = useState<string>("");
   const [catData, setCatData] = useState<CatObjectType[]>([]);
   const [dates, setDates] = useState<dateType>({
     year: dateObj.getFullYear(),
@@ -42,7 +41,6 @@ const MonthRanking = () => {
   const { authLoading } = useSelector((state: any) => state.user);
   const { catLoading } = useSelector((state: any) => state.cat);
   const { isAuthenticated } = useSelector((state: any) => state.user);
-  const [searchWord, setSearchWord] = useState<string>("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -136,21 +134,71 @@ const MonthRanking = () => {
     }
   };
 
-  const handleFreeSearch = () => {};
+  const submitSearchPrefecture = async () => {
+    try {
+      if (prefectureKeyword.length !== 0) {
+        const { data } = await axios.get("api/searchprefecture", {
+          params: {
+            keyword: prefectureKeyword,
+          },
+        });
+        setCatData(data);
+      }
+    } catch (error) {}
+    setPrefectureShow(false);
+    selectPrefectureKeyword([]);
+  };
+
+  const submitSearchCharacter = async () => {
+    try {
+      if (characterKeyword.length !== 0) {
+        const { data } = await axios.get("api/searchcharacter", {
+          params: {
+            keyword: characterKeyword,
+          },
+        });
+        setCatData(data);
+      }
+    } catch (error) {}
+    setCharacterShow(false);
+    selectCharacterKeyword([]);
+  };
+
+  const submitSearchAttendance = () => {};
+
+  const handleFreeSearch = async () => {
+    try {
+      if (searchWord !== null) {
+        const { data } = await axios.get(
+          `api/searchword?keyword=${searchWord}`
+        );
+        setCatData(data);
+      }
+    } catch (error) {}
+  };
 
   return (
     <MainLayout>
       <SocialLinkGroup />
       <SearchBar
+        prefectureKeyword={prefectureKeyword}
         selectPrefectureKeyword={selectPrefectureKeyword}
-        setPrefectureShow={setPrefectureShow}
         prefectureShow={prefectureShow}
+        setPrefectureShow={setPrefectureShow}
+        submitSearchPrefecture={submitSearchPrefecture}
+        characterKeyword={characterKeyword}
+        selectCharacterKeyword={selectCharacterKeyword}
+        characterShow={characterShow}
+        setCharacterShow={setCharacterShow}
+        submitSearchCharacter={submitSearchCharacter}
+        attendanceKeyword={attendanceKeyword}
+        selectAttendanceKeyword={selectAttendanceKeyword}
+        attendanceShow={attendanceShow}
+        setAttendanceShow={setAttendanceShow}
+        submitSearchAttendance={submitSearchAttendance}
         setSearchWord={setSearchWord}
         searchWord={searchWord}
         handleFreeSearch={handleFreeSearch}
-        selectCharacterKeyword={selectCharacterKeyword}
-        setCharacterShow={setCharacterShow}
-        characterShow={characterShow}
       />
       <div className="bg-[#F5F4EC]">
         <Container>

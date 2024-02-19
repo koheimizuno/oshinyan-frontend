@@ -15,21 +15,20 @@ import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import axios from "axios";
 import { CatObjectType } from "../../constant/type";
 import Container from "../../components/basic/Container";
+import BannerCarousel from "../../components/common/BannerCarousel";
 
 const TotalRanking = () => {
-  const [prefectureKeyword, selectPrefectureKeyword] = useState<string | null>(
-    null
-  );
-  const [characterKeyword, selectCharacterKeyword] = useState<string | null>(
-    null
-  );
+  const [prefectureKeyword, selectPrefectureKeyword] = useState<string[]>([]);
+  const [characterKeyword, selectCharacterKeyword] = useState<string[]>([]);
   const [prefectureShow, setPrefectureShow] = useState(false);
   const [characterShow, setCharacterShow] = useState(false);
+  const [attendanceKeyword, selectAttendanceKeyword] = useState<string[]>([]);
+  const [attendanceShow, setAttendanceShow] = useState(false);
+  const [searchWord, setSearchWord] = useState<string>("");
   const [catData, setCatData] = useState<CatObjectType[]>([]);
   const { authLoading } = useSelector((state: any) => state.user);
   const { catLoading } = useSelector((state: any) => state.cat);
   const { isAuthenticated } = useSelector((state: any) => state.user);
-  const [searchWord, setSearchWord] = useState<string>("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,32 +40,37 @@ const TotalRanking = () => {
     fetchData();
   }, [isAuthenticated, catLoading, authLoading]);
 
-  useEffect(() => {
-    const fetchPrefectureSearchData = async () => {
-      try {
-        if (prefectureKeyword !== null) {
-          const { data } = await axios.get(
-            `api/searchprefecture?keyword=${prefectureKeyword}`
-          );
-          setCatData(data);
-        }
-      } catch (error) {}
-    };
-    fetchPrefectureSearchData();
-    const fetchCharacterSearchData = async () => {
-      try {
-        if (characterKeyword !== null) {
-          const { data } = await axios.get(
-            `api/searchcharacter?keyword=${characterKeyword}`
-          );
-          setCatData(data);
-        }
-      } catch (error) {}
-    };
-    fetchCharacterSearchData();
+  const submitSearchPrefecture = async () => {
+    try {
+      if (prefectureKeyword.length !== 0) {
+        const { data } = await axios.get("api/searchprefecture", {
+          params: {
+            keyword: prefectureKeyword,
+          },
+        });
+        setCatData(data);
+      }
+    } catch (error) {}
     setPrefectureShow(false);
+    selectPrefectureKeyword([]);
+  };
+
+  const submitSearchCharacter = async () => {
+    try {
+      if (characterKeyword.length !== 0) {
+        const { data } = await axios.get("api/searchcharacter", {
+          params: {
+            keyword: characterKeyword,
+          },
+        });
+        setCatData(data);
+      }
+    } catch (error) {}
     setCharacterShow(false);
-  }, [prefectureKeyword, characterKeyword]);
+    selectCharacterKeyword([]);
+  };
+
+  const submitSearchAttendance = () => {};
 
   const handleFreeSearch = async () => {
     try {
@@ -81,17 +85,27 @@ const TotalRanking = () => {
 
   return (
     <MainLayout>
-      <SocialLinkGroup />
+      <SocialLinkGroup className="h-[60px]" />
+      <BannerCarousel />
       <SearchBar
+        prefectureKeyword={prefectureKeyword}
         selectPrefectureKeyword={selectPrefectureKeyword}
-        setPrefectureShow={setPrefectureShow}
         prefectureShow={prefectureShow}
+        setPrefectureShow={setPrefectureShow}
+        submitSearchPrefecture={submitSearchPrefecture}
+        characterKeyword={characterKeyword}
+        selectCharacterKeyword={selectCharacterKeyword}
+        characterShow={characterShow}
+        setCharacterShow={setCharacterShow}
+        submitSearchCharacter={submitSearchCharacter}
+        attendanceKeyword={attendanceKeyword}
+        selectAttendanceKeyword={selectAttendanceKeyword}
+        attendanceShow={attendanceShow}
+        setAttendanceShow={setAttendanceShow}
+        submitSearchAttendance={submitSearchAttendance}
         setSearchWord={setSearchWord}
         searchWord={searchWord}
         handleFreeSearch={handleFreeSearch}
-        selectCharacterKeyword={selectCharacterKeyword}
-        setCharacterShow={setCharacterShow}
-        characterShow={characterShow}
       />
       <div className="bg-[#F5F4EC]">
         <Container>

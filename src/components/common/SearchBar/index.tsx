@@ -1,28 +1,56 @@
 import React, { useEffect, useState } from "react";
 import PrefectureBtn from "../../basic/CustomButton";
-
 import { PREFECTURE } from "../../../constant";
 import Container from "../../basic/Container";
 import axios from "axios";
 
 interface SearchProps {
-  selectPrefectureKeyword: (val: string) => void;
-  selectCharacterKeyword: (val: string) => void;
-  setPrefectureShow: (val: boolean) => void;
-  setCharacterShow: (val: boolean) => void;
-  setSearchWord: (val: string) => void;
+  prefectureKeyword: string[];
+  selectPrefectureKeyword: (val: string[]) => void;
   prefectureShow: boolean;
+  setPrefectureShow: (val: boolean) => void;
+  submitSearchPrefecture: () => void;
+  characterKeyword: string[];
+  selectCharacterKeyword: (val: string[]) => void;
   characterShow: boolean;
+  setCharacterShow: (val: boolean) => void;
+  submitSearchCharacter: () => void;
+  attendanceKeyword: string[];
+  selectAttendanceKeyword: (val: string[]) => void;
+  attendanceShow: boolean;
+  setAttendanceShow: (val: boolean) => void;
+  submitSearchAttendance: () => void;
+  setSearchWord: (val: string) => void;
   searchWord: string;
   handleFreeSearch: () => void;
 }
+
+const attendanceData = [
+  "100%います",
+  "ほぼいます",
+  "確率50％",
+  "重役出勤",
+  "会えたらラッキー",
+  "会えたら神",
+  "SNSをチェック",
+];
+
 const SearchBar = ({
+  prefectureKeyword,
   selectPrefectureKeyword,
-  setPrefectureShow,
   prefectureShow,
+  setPrefectureShow,
+  submitSearchPrefecture,
+  characterKeyword,
   selectCharacterKeyword,
-  setCharacterShow,
   characterShow,
+  setCharacterShow,
+  submitSearchCharacter,
+  attendanceKeyword,
+  selectAttendanceKeyword,
+  attendanceShow,
+  setAttendanceShow,
+  submitSearchAttendance,
   setSearchWord,
   searchWord,
   handleFreeSearch,
@@ -37,6 +65,22 @@ const SearchBar = ({
     };
     fetchCharacter();
   }, []);
+
+  const handlePrefecture = (prefecture: string) => {
+    !prefectureKeyword.includes(prefecture) &&
+      selectPrefectureKeyword([...prefectureKeyword, prefecture]);
+  };
+
+  const handleCharacter = (character: string) => {
+    !characterKeyword.includes(character) &&
+      selectCharacterKeyword([...characterKeyword, character]);
+  };
+
+  const handleAttendance = (attendance: string) => {
+    !attendanceKeyword.includes(attendance) &&
+      selectAttendanceKeyword([...attendanceKeyword, attendance]);
+  };
+
   return (
     <>
       <div className="relative bg-white">
@@ -65,52 +109,80 @@ const SearchBar = ({
               </div>
             </div>
             <div className="flex justify-end items-center">
-              <div
-                className=" w-[112px] h-[32px] bg-[#CBB279] shadow-inner rounded pl-[16px] pt-[3px] pb-[5px] pr-[10px] hover:opacity-70 active:opacity-100"
-                onClick={() => {
-                  prefectureShow
-                    ? setPrefectureShow(false)
-                    : setPrefectureShow(true);
-                  setCharacterShow(false);
-                }}
-              >
-                <button className=" w-[100%] flex justify-between items-center ">
-                  <p className=" text-white text-[16px] drop-shadow-[1px_1px_rgba(195,129,84,1)]">
+              <div className="w-[112px] h-[32px] bg-[#CBB279] shadow-inner rounded pl-[16px] pt-[3px] pb-[5px] pr-[10px] hover:opacity-70 active:opacity-100">
+                <button
+                  className=" w-[100%] flex justify-between items-center"
+                  onClick={() => {
+                    prefectureShow
+                      ? setPrefectureShow(false)
+                      : setPrefectureShow(true);
+                    setCharacterShow(false);
+                    setAttendanceShow(false);
+                  }}
+                >
+                  <span className=" text-white text-[16px] drop-shadow-[1px_1px_rgba(195,129,84,1)]">
                     エリア
-                  </p>
-                  <div
-                    className="h-0 w-0 border-t-[8px] border-r-[6px] border-l-[6px] 
-                            border-solid border-r-transparent border-l-transparent border-t-white ml-[20px] mt-[5px]"
-                  ></div>
+                  </span>
+                  <span
+                    className={`h-0 w-0 border-t-[8px] border-r-[6px] border-l-[6px] 
+                            border-solid border-r-transparent border-l-transparent border-t-white ml-[20px] mt-[5px] ${
+                              prefectureShow ? "transform rotate-180" : ""
+                            }`}
+                  ></span>
                 </button>
               </div>
               <div className="ml-[24px] w-[112px] h-[32px] bg-[#CBB279] shadow-inner rounded pl-[16px] pt-[3px] pb-[5px] pr-[10px] hover:opacity-70 active:opacity-100">
                 <button
-                  className=" w-[100%] flex justify-between items-center "
+                  className="w-[100%] flex justify-between items-center"
                   onClick={() => {
                     characterShow
                       ? setCharacterShow(false)
                       : setCharacterShow(true);
                     setPrefectureShow(false);
+                    setAttendanceShow(false);
                   }}
                 >
-                  <p className=" text-white text-[16px] drop-shadow-[1px_1px_rgba(195,129,84,1)]">
+                  <span className=" text-white text-[16px] drop-shadow-[1px_1px_rgba(195,129,84,1)]">
                     性 格
-                  </p>
-                  <div
-                    className="h-0 w-0 border-t-[8px] border-r-[6px] border-l-[6px] 
-                            border-solid border-r-transparent border-l-transparent border-t-white ml-[20px] mt-[5px]"
-                  ></div>
+                  </span>
+                  <span
+                    className={`h-0 w-0 border-t-[8px] border-r-[6px] border-l-[6px] 
+                            border-solid border-r-transparent border-l-transparent border-t-white ml-[20px] mt-[5px] ${
+                              characterShow ? "transform rotate-180" : ""
+                            }`}
+                  ></span>
+                </button>
+              </div>
+              <div className="ml-[24px] h-[32px] bg-[#CBB279] shadow-inner rounded pl-[16px] pt-[3px] pb-[5px] pr-[10px] hover:opacity-70 active:opacity-100">
+                <button
+                  className="w-[100%] flex justify-between items-center"
+                  onClick={() => {
+                    attendanceShow
+                      ? setAttendanceShow(false)
+                      : setAttendanceShow(true);
+                    setPrefectureShow(false);
+                    setCharacterShow(false);
+                  }}
+                >
+                  <span className=" text-white text-[16px] drop-shadow-[1px_1px_rgba(195,129,84,1)]">
+                    出没頻度
+                  </span>
+                  <span
+                    className={`h-0 w-0 border-t-[8px] border-r-[6px] border-l-[6px] 
+                            border-solid border-r-transparent border-l-transparent border-t-white ml-[20px] mt-[5px] ${
+                              attendanceShow ? "transform rotate-180" : ""
+                            }`}
+                  ></span>
                 </button>
               </div>
             </div>
           </div>
           {prefectureShow && (
-            <div className="absolute bg-white w-full xs:top-[168px] xs:px-5 sm:top-[70px] left-0 z-50">
+            <div className="absolute bg-white w-full xs:top-[168px] xs:px-5 sm:top-[64px] left-0 z-50">
               <div className="max-w-[960px] m-auto xs:px-5 lg:px-0 mt-[24px] mb-[16px]">
                 <div className="grid xs:grid-cols-4 sm:grid-cols-8 md:grid-cols-10 lg:grid-cols-12 whitespace-nowrap border-b border-b-solid border-[#EAEAEA]">
                   {PREFECTURE &&
-                    PREFECTURE.map((item, index, arr) => {
+                    PREFECTURE.map((item, index) => {
                       return (
                         <div
                           className="flex justify-center items-center "
@@ -119,11 +191,15 @@ const SearchBar = ({
                           <div
                             key={index}
                             className="mb-[16px] hover:opacity-70"
-                            onClick={() => {
-                              selectPrefectureKeyword(item[0]);
-                            }}
+                            onClick={() => handlePrefecture(item[0])}
                           >
-                            <PrefectureBtn value={item[0]} />
+                            <PrefectureBtn
+                              value={item[0]}
+                              className={`${
+                                prefectureKeyword.includes(item[0]) &&
+                                "bg-[#CBB279] text-white border-[#CBB279]"
+                              }`}
+                            />
                           </div>
                         </div>
                       );
@@ -131,19 +207,17 @@ const SearchBar = ({
                 </div>
                 <div className="pt-[16px] text-center">
                   <button
-                    className="bg-[#FBA1B7] rounded-full shadow-inner text-white hover:opacity-70"
-                    onClick={() => setPrefectureShow(false)}
+                    className="bg-[#FBA1B7] rounded-full shadow-inner text-white hover:opacity-70 py-[6px] px-[26px] drop-shadow-[1px_1px_rgba(230,149,169,1)]"
+                    onClick={submitSearchPrefecture}
                   >
-                    <p className="py-[6px] px-[26px] drop-shadow-[1px_1px_rgba(230,149,169,1)]">
-                      検索するニャン！
-                    </p>
+                    検索するニャン！
                   </button>
                 </div>
               </div>
             </div>
           )}
           {characterShow && (
-            <div className="absolute bg-white w-full xs:top-[168px] xs:px-5 sm:top-[70px] left-0 z-50">
+            <div className="absolute bg-white w-full xs:top-[168px] xs:px-5 sm:top-[64px] left-0 z-50">
               <div className="max-w-[960px] m-auto xs:px-5 lg:px-0 mt-[24px] mb-[16px]">
                 <div className="flex flex-wrap gap-4 whitespace-nowrap ">
                   {characterData &&
@@ -155,22 +229,64 @@ const SearchBar = ({
                         <div
                           className=" hover:opacity-70"
                           onClick={() => {
-                            selectCharacterKeyword(item.character);
+                            handleCharacter(item.character);
                           }}
                         >
-                          <PrefectureBtn value={item.character} />
+                          <PrefectureBtn
+                            value={item.character}
+                            className={`${
+                              characterKeyword.includes(item.character) &&
+                              "bg-[#CBB279] text-white border-[#CBB279]"
+                            }`}
+                          />
                         </div>
                       </div>
                     ))}
                 </div>
                 <div className="mt-4 pt-4 text-center border-t border-t-solid border-[#EAEAEA]">
                   <button
-                    className="bg-[#FBA1B7] rounded-full shadow-inner text-white hover:opacity-70"
-                    onClick={() => setCharacterShow(false)}
+                    className="bg-[#FBA1B7] rounded-full shadow-inner text-white hover:opacity-70 py-[6px] px-[26px] drop-shadow-[1px_1px_rgba(230,149,169,1)]"
+                    onClick={submitSearchCharacter}
                   >
-                    <p className="py-[6px] px-[26px] drop-shadow-[1px_1px_rgba(230,149,169,1)]">
-                      検索するニャン！
-                    </p>
+                    検索するニャン！
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+          {attendanceShow && (
+            <div className="absolute bg-white w-full xs:top-[168px] xs:px-5 sm:top-[64px] left-0 z-50">
+              <div className="max-w-[960px] m-auto xs:px-5 lg:px-0 mt-[24px] mb-[16px]">
+                <div className="flex flex-wrap gap-4 whitespace-nowrap ">
+                  {attendanceData &&
+                    attendanceData.map((item, index) => (
+                      <div
+                        className="flex justify-center items-center "
+                        key={index}
+                      >
+                        <div
+                          className=" hover:opacity-70"
+                          onClick={() => {
+                            handleAttendance(item);
+                          }}
+                        >
+                          <PrefectureBtn
+                            value={item}
+                            className={`${
+                              attendanceKeyword.includes(item) &&
+                              "bg-[#CBB279] text-white border-[#CBB279]"
+                            }`}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                </div>
+                <div className="mt-4 pt-4 text-center border-t border-t-solid border-[#EAEAEA]">
+                  <button
+                    className="bg-[#FBA1B7] rounded-full shadow-inner text-white hover:opacity-70 py-[6px] px-[26px] drop-shadow-[1px_1px_rgba(230,149,169,1)]"
+                    onClick={submitSearchAttendance}
+                  >
+                    検索するニャン！
                   </button>
                 </div>
               </div>

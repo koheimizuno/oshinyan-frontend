@@ -29,14 +29,14 @@ import AlbumGallery from "./components/AlbumGallery";
 import CommentImageCarousel from "./components/CommentImageCarousel";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import { formatDateTime } from "../../../utils/functions";
-import { Notification } from "../../../constant/notification";
 import CatDetailComment from "./components/CatDetailComment";
 
 const CatDetail = () => {
   const { id } = useParams();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const [expanded, setExpanded] = useState(false);
+  // const [expanded, setExpanded] = useState<boolean[]>([]);
+  const [expanded, setExpanded] = useState<{ [key: number]: boolean }>({});
   const advertise = searchParams.get("advertise");
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -130,7 +130,7 @@ const CatDetail = () => {
       } catch (error) {}
     };
     commentFetch();
-    fetchReactionWord();
+    fetchReactionData("reactionword");
   }, [id]);
 
   useEffect(() => {
@@ -227,70 +227,42 @@ const CatDetail = () => {
     }
   };
 
-  const fetchReactionWord = async () => {
+  const fetchReactionData = async (str: string) => {
     try {
-      const { data } = await axios.get("api/reactionword/");
-      setReactionWord(data);
-    } catch (error) {}
-  };
-
-  const fetchReactionCat = async () => {
-    try {
-      const { data } = await axios.get("api/reactioncat/");
-      setReactionCat(data);
-    } catch (error) {}
-  };
-
-  const fetchReactionFood = async () => {
-    try {
-      const { data } = await axios.get("api/reactionfood/");
-      setReactionFood(data);
-    } catch (error) {}
-  };
-
-  const fetchReactionHeart = async () => {
-    try {
-      const { data } = await axios.get("api/reactionheart/");
-      setReactionHeart(data);
-    } catch (error) {}
-  };
-
-  const fetchReactionSeason = async () => {
-    try {
-      const { data } = await axios.get("api/reactionseason/");
-      setReactionSeason(data);
-    } catch (error) {}
-  };
-
-  const fetchReactionParty = async () => {
-    try {
-      const { data } = await axios.get("api/reactionparty/");
-      setReactionParty(data);
+      const { data } = await axios.get(`api/${str}/`);
+      switch (str) {
+        case "reactionword":
+          setReactionWord(data);
+          break;
+        case "reactioncat":
+          setReactionCat(data);
+          break;
+        case "reactionheart":
+          setReactionHeart(data);
+          break;
+        case "reactionseason":
+          setReactionSeason(data);
+          break;
+        case "reactionparty":
+          setReactionParty(data);
+          break;
+        case "reactionfood":
+          setReactionFood(data);
+          break;
+        default:
+          setReactionWord(data);
+          break;
+      }
     } catch (error) {}
   };
 
   const handleCommentIcon = async (comment_id: number, iconData: ImageType) => {
-    const { data } = await axios.post("api/commentreactionicon/", {
+    await axios.post("api/commentreactionicon/", {
       comment: comment_id,
       user: user.user_id,
       imgs: iconData.imgs,
     });
-    console.log(data);
     setReactionIconCreated(true);
-  };
-
-  const handleChange = (expanded: boolean) => {
-    if (expanded === false) {
-      if (isAuthenticated) setExpanded(!expanded);
-      else {
-        Notification("warning", "最初にログインする必要があります。");
-        setTimeout(() => {
-          navigate("/login");
-        }, 2000);
-      }
-    } else {
-      setExpanded(!expanded);
-    }
   };
 
   return (
@@ -447,7 +419,7 @@ const CatDetail = () => {
         <CatDetailComment id={id} />
         {/* 1 */}
         {commentData &&
-          commentData.map((commentitem, key, arr) => (
+          commentData.map((commentitem, key) => (
             <div key={"outer" + key} className="py-3">
               <div>
                 <div className="flex items-center">
@@ -487,8 +459,13 @@ const CatDetail = () => {
               </div>
               <div className="mt-6">
                 <Accordion
-                  expanded={expanded}
-                  onChange={() => handleChange(expanded)}
+                  expanded={expanded[key] || false}
+                  onChange={() =>
+                    setExpanded((prevExpanded) => ({
+                      ...prevExpanded,
+                      [key]: !prevExpanded[key],
+                    }))
+                  }
                 >
                   <AccordionSummary
                     aria-controls="panel1-content"
@@ -519,7 +496,7 @@ const CatDetail = () => {
                             className={`text-base text-[#B7B7B7] ${
                               selectedTab === 0 && "text-[#070707]"
                             } cursor-pointer active:border-none`}
-                            onClick={fetchReactionWord}
+                            onClick={() => fetchReactionData("reactionword")}
                           >
                             メッセージ
                           </Tab>
@@ -528,7 +505,7 @@ const CatDetail = () => {
                             className={`text-base text-[#B7B7B7] ${
                               selectedTab === 1 && "text-[#070707]"
                             } cursor-pointer active:border-none`}
-                            onClick={fetchReactionCat}
+                            onClick={() => fetchReactionData("reactioncat")}
                           >
                             猫ちゃん
                           </Tab>
@@ -537,7 +514,7 @@ const CatDetail = () => {
                             className={`text-base text-[#B7B7B7] ${
                               selectedTab === 2 && "text-[#070707]"
                             } cursor-pointer active:border-none`}
-                            onClick={fetchReactionHeart}
+                            onClick={() => fetchReactionData("reactionheart")}
                           >
                             気持ち
                           </Tab>
@@ -546,7 +523,7 @@ const CatDetail = () => {
                             className={`text-base text-[#B7B7B7] ${
                               selectedTab === 3 && "text-[#070707]"
                             } cursor-pointer active:border-none`}
-                            onClick={fetchReactionSeason}
+                            onClick={() => fetchReactionData("reactionseason")}
                           >
                             季節
                           </Tab>
@@ -555,7 +532,7 @@ const CatDetail = () => {
                             className={`text-base text-[#B7B7B7] ${
                               selectedTab === 4 && "text-[#070707]"
                             } cursor-pointer active:border-none`}
-                            onClick={fetchReactionParty}
+                            onClick={() => fetchReactionData("reactionparty")}
                           >
                             パーティー
                           </Tab>
@@ -564,7 +541,7 @@ const CatDetail = () => {
                             className={`text-base text-[#B7B7B7] ${
                               selectedTab === 5 && "text-[#070707]"
                             } cursor-pointer active:border-none`}
-                            onClick={fetchReactionFood}
+                            onClick={() => fetchReactionData("reactionfood")}
                           >
                             フード
                           </Tab>
@@ -671,14 +648,17 @@ const CatDetail = () => {
                 <BtnAdd />
                 <div className="flex flex-wrap gap-2 mt-4">
                   {reactionIconData &&
-                    reactionIconData.map((item, key) => (
-                      <img
-                        key={key}
-                        src={item.imgs}
-                        alt={item.imgs}
-                        width={28}
-                      />
-                    ))}
+                    reactionIconData.map(
+                      (item, key) =>
+                        item.comment === commentitem.id && (
+                          <img
+                            key={key}
+                            src={item.imgs}
+                            alt={item.imgs}
+                            width={28}
+                          />
+                        )
+                    )}
                 </div>
               </div>
               {showImageDetail && selectedDetail === key && (

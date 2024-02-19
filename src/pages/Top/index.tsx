@@ -12,11 +12,19 @@ import CatCard from "../../components/basic/blog/CatCard";
 import axios from "axios";
 import { CatObjectType } from "../../constant/type";
 import { Notification } from "../../constant/notification";
+import SearchBar from "../../components/common/SearchBar";
 
 const Top = () => {
   const [catData, setCatData] = useState<CatObjectType[]>([]);
   const [advertiseData, setAdvertiseData] = useState<CatObjectType[]>([]);
   const { catLoading } = useSelector((state: any) => state.cat);
+  const [prefectureKeyword, selectPrefectureKeyword] = useState<string[]>([]);
+  const [prefectureShow, setPrefectureShow] = useState(false);
+  const [characterKeyword, selectCharacterKeyword] = useState<string[]>([]);
+  const [characterShow, setCharacterShow] = useState(false);
+  const [attendanceKeyword, selectAttendanceKeyword] = useState<string[]>([]);
+  const [attendanceShow, setAttendanceShow] = useState(false);
+  const [searchWord, setSearchWord] = useState<string>("");
   const { authLoading, isAuthenticated } = useSelector(
     (state: any) => state.user
   );
@@ -44,11 +52,86 @@ const Top = () => {
 
   const handleMoreDisplay = () => {};
 
+  const submitSearchPrefecture = async () => {
+    try {
+      if (prefectureKeyword.length !== 0) {
+        const { data } = await axios.get("api/searchprefecture", {
+          params: {
+            keyword: prefectureKeyword,
+          },
+        });
+        setCatData(data);
+      }
+    } catch (error) {}
+    selectPrefectureKeyword([]);
+    setPrefectureShow(false);
+  };
+
+  const submitSearchCharacter = async () => {
+    try {
+      if (characterKeyword.length !== 0) {
+        const { data } = await axios.get("api/searchcharacter", {
+          params: {
+            keyword: characterKeyword,
+          },
+        });
+        setCatData(data);
+      }
+    } catch (error) {}
+    selectCharacterKeyword([]);
+    setCharacterShow(false);
+  };
+
+  const submitSearchAttendance = async () => {
+    try {
+      if (attendanceKeyword.length !== 0) {
+        const { data } = await axios.get("api/searchattendance", {
+          params: {
+            keyword: attendanceKeyword,
+          },
+        });
+        setCatData(data);
+      }
+    } catch (error) {}
+    selectAttendanceKeyword([]);
+    setAttendanceShow(false);
+  };
+
+  const handleFreeSearch = async () => {
+    try {
+      if (searchWord !== null) {
+        const { data } = await axios.get(
+          `api/searchword?keyword=${searchWord}`
+        );
+        setCatData(data);
+      }
+    } catch (error) {}
+  };
+
   return (
     <MainLayout>
       <SocialLinkGroup page="top" />
       <BannerCarousel />
-      <div className="h-[60px]"></div>
+      <SearchBar
+        prefectureKeyword={prefectureKeyword}
+        selectPrefectureKeyword={selectPrefectureKeyword}
+        prefectureShow={prefectureShow}
+        setPrefectureShow={setPrefectureShow}
+        submitSearchPrefecture={submitSearchPrefecture}
+        characterKeyword={characterKeyword}
+        selectCharacterKeyword={selectCharacterKeyword}
+        characterShow={characterShow}
+        setCharacterShow={setCharacterShow}
+        submitSearchCharacter={submitSearchCharacter}
+        attendanceKeyword={attendanceKeyword}
+        selectAttendanceKeyword={selectAttendanceKeyword}
+        attendanceShow={attendanceShow}
+        setAttendanceShow={setAttendanceShow}
+        submitSearchAttendance={submitSearchAttendance}
+        setSearchWord={setSearchWord}
+        searchWord={searchWord}
+        handleFreeSearch={handleFreeSearch}
+      />
       <Container>
         <RankingBar />
         <div className="mt-[12px]">
@@ -77,7 +160,7 @@ const Top = () => {
             )}
           </div>
         </div>
-        <div className="bg-white text-center py-[65px] mb-[16px]">
+        <div className="bg-white text-center py-[65px] mt-4 mb-[16px]">
           <h3 className="text-[16px]">キャンペーン / AD</h3>
         </div>
         <div>
