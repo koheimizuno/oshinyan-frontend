@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import PrefectureBtn from "../CustomButton";
-import { shopType } from "../../../constant/type";
+import { ShopType } from "../../../constant/type";
 
-const NyanPlaceCard = (props: shopType) => {
+const NyanPlaceCard = (props: ShopType) => {
   const navigate = useNavigate();
   return (
     <div className="max-w-[312px] bg-white m-auto">

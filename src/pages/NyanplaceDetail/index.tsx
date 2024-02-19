@@ -9,14 +9,14 @@ import NyanPlaceCard from "../../components/basic/NyanPlaceCard";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import Title from "../../components/common/Typography/Title";
 import axios from "axios";
-import { CatObjectType, shopType } from "../../constant/type";
+import { CatObjectType, ShopType } from "../../constant/type";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 
 function NyanplaceDetail() {
   const { id } = useParams();
   const [shopData, setShopData] = useState<CatObjectType[]>([]);
-  const [AshopData, setAShopData] = useState<shopType>({
+  const [AshopData, setAShopData] = useState<ShopType>({
     shop_name: "",
     prefecture: "",
     address: "",

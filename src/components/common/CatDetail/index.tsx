@@ -18,10 +18,10 @@ import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
 import axios from "axios";
 import {
   CatObjectType,
-  CommentReactionIcon,
+  CommentReactionIconType,
   ImageType,
   UserType,
-  commentType,
+  CommentType,
 } from "../../../constant/type";
 import { RecommendAction } from "../../../slices/cat";
 import CatDetailCarousel from "./components/Carousel";
@@ -45,7 +45,7 @@ const CatDetail = () => {
   const [showImageDetail, setShowImageDetail] = useState(false);
   const [catData, setCatData] = useState<CatObjectType[]>([]);
   const [recommendedUser, setRecommendedUser] = useState<UserType[]>([]);
-  const [commentData, setCommentData] = useState<commentType[]>([]);
+  const [commentData, setCommentData] = useState<CommentType[]>([]);
   const [displayAll, setDisplayAll] = useState(false);
   const [showAlbumGallery, setShowAlbumGallery] = useState(false);
   const [reactionWord, setReactionWord] = useState<ImageType[]>([]);
@@ -57,7 +57,7 @@ const CatDetail = () => {
   const [reactionIconCreated, setReactionIconCreated] = useState(false);
   const [catDetailImages, setCatDetailImages] = useState<string[]>([]);
   const [reactionIconData, setReactionIconData] = useState<
-    CommentReactionIcon[]
+    CommentReactionIconType[]
   >([]);
   const [selectedTab, setSelectedTab] = useState(0);
   const [selectedDetail, setSelectedDetail] = useState(0);

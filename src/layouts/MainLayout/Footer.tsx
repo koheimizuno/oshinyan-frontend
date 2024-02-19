@@ -86,7 +86,9 @@ const Footer = () => {
           </div>
         </div>
         <div className="py-[16px] text-center">
-          <p className="text-[12px] font-medium">© 2023 推しニャン！</p>
+          <p className="text-[12px] font-medium">
+            © {new Date().getFullYear()} 推しニャン！
+          </p>
         </div>
       </div>
     </div>

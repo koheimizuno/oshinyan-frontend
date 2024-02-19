@@ -6,11 +6,11 @@ import NyanPlaceCard from "../../components/basic/NyanPlaceCard";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import Title from "../../components/common/Typography/Title";
 import axios from "axios";
-import { shopType } from "../../constant/type";
+import { ShopType } from "../../constant/type";
 import NyanPlaceSearchBar from "../../components/common/NyanPlaceSearchBar";
 
 const Nyanplace = () => {
-  const [shopData, setShopData] = useState<shopType[]>([]);
+  const [shopData, setShopData] = useState<ShopType[]>([]);
   const [prefectureKeyword, selectPrefectureKeyword] = useState<string | null>(
     null
   );

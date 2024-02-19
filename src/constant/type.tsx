@@ -1,4 +1,16 @@
-export interface shopType {
+export interface ImageType {
+  id: number;
+  imgs: string;
+}
+
+export interface UserType {
+  id: number;
+  username: string;
+  email: string;
+  avatar_url: string;
+}
+
+export interface ShopType {
   id?: number;
   shop_type?: { id: string; shop_type: string };
   shop_name: string;
@@ -14,21 +26,16 @@ export interface shopType {
   cat?: any[];
 }
 
-export interface ImageType {
-  id: number;
-  imgs: string;
-}
-
-interface characterType {
+interface CharacterType {
   id: number;
   character: string;
 }
 
-interface favoritethingType {
+interface FavoritethingType {
   favorite_things: string;
 }
 
-interface recommendType {
+interface RecommendType {
   id: number;
   user: number;
   cat: number;
@@ -40,25 +47,18 @@ export interface CatObjectType {
   is_public?: boolean;
   advertise?: string;
   cat_name: string;
-  shop: shopType;
+  shop: ShopType;
   images?: ImageType[];
   admin_images?: ImageType[];
-  character?: characterType[];
-  favorite_things?: favoritethingType[];
+  character?: CharacterType[];
+  favorite_things?: FavoritethingType[];
   attendance: string;
   description: string;
-  recommend: recommendType[];
+  recommend: RecommendType[];
   created_date: string;
 }
 
-export interface UserType {
-  id: number;
-  username: string;
-  email: string;
-  avatar_url: string;
-}
-
-export interface bannerType {
+export interface BannerType {
   image: string;
   url: string;
 }
@@ -70,7 +70,7 @@ export interface CommentImageType {
   created_date: string;
 }
 
-export interface commentType {
+export interface CommentType {
   id: number;
   comment: string;
   comment_images: CommentImageType[];
@@ -102,9 +102,16 @@ export interface ColumnType {
   blog?: ColumnBlogType[];
 }
 
-export interface CommentReactionIcon {
+export interface CommentReactionIconType {
   id: number;
   comment: number;
   user: number;
   imgs: string;
+}
+
+export interface NoticeType {
+  id: number;
+  title: string;
+  pdf: string;
+  created_date: string;
 }

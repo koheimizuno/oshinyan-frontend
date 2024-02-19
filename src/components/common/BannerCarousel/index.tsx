@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ArrowLeft from "../../basic/icons/ArrowLeft";
 import ArrowRight from "../../basic/icons/ArrowRight";
-import { bannerType } from "../../../constant/type";
+import { BannerType } from "../../../constant/type";
 import { Notification } from "../../../constant/notification";
 import axios from "axios";
 
@@ -16,7 +16,7 @@ import {
 } from "swiper/modules";
 
 function BannerCarousel() {
-  const [bannerData, setBannerData] = useState<bannerType[]>([]);
+  const [bannerData, setBannerData] = useState<BannerType[]>([]);
   useEffect(() => {
     const fetchBanner = async () => {
       try {
