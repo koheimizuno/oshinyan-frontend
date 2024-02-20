@@ -22,6 +22,8 @@ import {
   AccordionSummary,
   Modal,
   Box,
+  FormControlLabel,
+  Checkbox,
 } from "@mui/material";
 import { CalendarMonthSharp } from "@mui/icons-material";
 import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
@@ -37,6 +39,7 @@ import { RecommendAction } from "../../../slices/cat";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import { formatDateTime } from "../../../utils/functions";
 import { Notification } from "../../../constant/notification";
+import InputText from "../../basic/InputText";
 
 const CatDetail = () => {
   const { id } = useParams();
@@ -46,6 +49,7 @@ const CatDetail = () => {
   const recommendLoginElement = useRef<HTMLDivElement>(null);
   const searchParams = new URLSearchParams(location.search);
   const advertise = searchParams.get("advertise");
+  const [checked, setChecked] = useState(false);
   const [expanded, setExpanded] = useState<{ [key: number]: boolean }>({});
   const [recommendLoginShow, setRecommendLoginShow] = useState(false);
   const [showImageDetail, setShowImageDetail] = useState(false);
@@ -62,14 +66,19 @@ const CatDetail = () => {
   const [reactionFood, setReactionFood] = useState<ImageType[]>([]);
   const [reactionIconCreated, setReactionIconCreated] = useState(false);
   const [catDetailImages, setCatDetailImages] = useState<string[]>([]);
-  const [reportModalShow, setReportModalShow] = useState<number | undefined>(
-    undefined
-  );
+  const [reportModalShow, setReportModalShow] = useState<number | undefined>(1);
   const [reactionIconData, setReactionIconData] = useState<
     CommentReactionIconType[]
   >([]);
   const [selectedTab, setSelectedTab] = useState(0);
   const [selectedDetail, setSelectedDetail] = useState(0);
+  const [reportValue, setReportValue] = useState({
+    kanji_name: "",
+    furi_name: "",
+    phone: "",
+    email: "",
+    content: "",
+  });
   const [commentImgs, setCommentImgs] = useState<
     {
       id: number;
@@ -283,13 +292,40 @@ const CatDetail = () => {
       : navigate("/login");
   };
 
-  const handleReport = async (commentId: number) => {
+  const handleChange = (newFormData: { [key: string]: string }) => {
+    setReportValue({
+      ...reportValue,
+      ...newFormData,
+    });
+  };
+
+  const handleReportModalShow = (key: number) => {
+    if (isAuthenticated) {
+      setReportModalShow(key);
+    } else {
+      Notification("warning", "最初にログインする必要があります。");
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
+    }
+  };
+
+  const handleReport = async (
+    e: React.FormEvent<HTMLFormElement>,
+    commentId: number
+  ) => {
+    e.preventDefault();
     try {
       await axios.post("api/report/", {
-        comment: commentId,
         user: user.user_id,
+        url: window.location.href,
+        kanji_name: reportValue.kanji_name,
+        furi_name: reportValue.furi_name,
+        phone: reportValue.phone,
+        email: reportValue.email,
+        content: reportValue.content,
+        comment: commentId,
       });
-      console.log(commentId);
       setReportModalShow(undefined);
       Notification("success", "成果的に通報しました。");
     } catch (error: any) {
@@ -696,11 +732,7 @@ const CatDetail = () => {
                   </div>
                   <button
                     className="text-xs text-[#ccc] border-b"
-                    onClick={() =>
-                      isAuthenticated
-                        ? setReportModalShow(key)
-                        : navigate("/login")
-                    }
+                    onClick={() => handleReportModalShow(key)}
                   >
                     通報する
                   </button>
@@ -710,26 +742,101 @@ const CatDetail = () => {
                     aria-labelledby="modal-modal-title"
                     aria-describedby="modal-modal-description"
                   >
-                    <Box className="max-w-[960px] bg-white absolute rounded-md shadow-md top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 overflow-y-hidden">
-                      <div className="px-20 py-10">
-                        <h1 className="text-center text-2xl pb-5">
-                          本当に通報しますか？
+                    <Box className="w-full max-w-[960px] bg-white absolute rounded-md shadow-md top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 overflow-y-hidden">
+                      <form
+                        className="px-20 py-10"
+                        onSubmit={(e) => handleReport(e, commentitem.id)}
+                      >
+                        <h1 className="text-4xl text-center tracking-widest py-4">
+                          通報報告
                         </h1>
-                        <div className="flex gap-5">
+                        <label className="flex items-center gap-5 py-3">
+                          <span className="w-[135px]">氏名: </span>
+                          <div className="w-[calc(100%-135px)]">
+                            <InputText
+                              name="kanji_name"
+                              value={reportValue}
+                              onChange={handleChange}
+                              required={true}
+                              containerClass="xs:w-[calc(100%-100px)] sm:w-[calc(100%-184px)]"
+                            />
+                          </div>
+                        </label>
+                        <label className="flex items-center gap-5 py-3">
+                          <span className="w-[135px]">ふりなが: </span>
+                          <div className="w-[calc(100%-135px)]">
+                            <InputText
+                              name="furi_name"
+                              value={reportValue}
+                              onChange={handleChange}
+                              required={true}
+                              containerClass="xs:w-[calc(100%-100px)] sm:w-[calc(100%-184px)]"
+                            />
+                          </div>
+                        </label>
+                        <label className="flex items-center gap-5 py-3">
+                          <span className="w-[135px]">電話番号: </span>
+                          <div className="w-[calc(100%-135px)]">
+                            <InputText
+                              type="tel"
+                              name="phone"
+                              value={reportValue}
+                              onChange={handleChange}
+                              required={true}
+                              containerClass="xs:w-[calc(100%-100px)] sm:w-[calc(100%-184px)]"
+                            />
+                          </div>
+                        </label>
+                        <label className="flex items-center gap-5 py-3">
+                          <span className="w-[135px]">メールアドレス: </span>
+                          <div className="w-[calc(100%-135px)]">
+                            <InputText
+                              type="email"
+                              name="email"
+                              value={reportValue}
+                              onChange={handleChange}
+                              required={true}
+                              containerClass="xs:w-[calc(100%-100px)] sm:w-[calc(100%-184px)]"
+                            />
+                          </div>
+                        </label>
+                        <label className="flex items-center gap-5 py-3">
+                          <span className="w-[135px]">お問い合わせ内容: </span>
+                          <div className="w-[calc(100%-135px)]">
+                            <InputText
+                              name="content"
+                              value={reportValue}
+                              onChange={handleChange}
+                              required={true}
+                              containerClass="xs:w-[calc(100%-100px)] sm:w-[calc(100%-184px)]"
+                            />
+                          </div>
+                        </label>
+                        <div className="text-center mt-[27px] pb-[27px] border-b border-[#CCCCCC]">
+                          <FormControlLabel
+                            control={
+                              <Checkbox
+                                checked={checked}
+                                onChange={(
+                                  e: React.ChangeEvent<HTMLInputElement>
+                                ) => setChecked(e.target.checked)}
+                              />
+                            }
+                            label="同意するニャン"
+                            required
+                          />
+                        </div>
+                        <div className="mt-[47px] text-center">
                           <button
-                            className="text-[24px] bg-[#FBA1B7] h-[48px] border-solid rounded-full py-2 ps-[42px] pe-[40px] leading-[32px] text-center text-white"
-                            onClick={() => handleReport(commentitem.id)}
+                            type="submit"
+                            className={`text-[24px] ${
+                              checked ? "bg-[#FBA1B7]" : "bg-[#f8c6d2]"
+                            }  h-[48px] border-solid rounded-full py-2 ps-[42px] pe-[40px] leading-[32px] text-center text-white`}
                           >
-                            はい
-                          </button>
-                          <button
-                            className="text-[24px] bg-whtie border border-[#9c9c9c] shadow-inner h-[48px] border-solid rounded-full py-2 ps-[42px] pe-[40px] leading-[32px] text-center"
-                            onClick={() => setReportModalShow(undefined)}
-                          >
-                            いいえ
+                            確認ニャ！
                           </button>
                         </div>
-                      </div>
+                      </form>
                     </Box>
                   </Modal>
                 </div>

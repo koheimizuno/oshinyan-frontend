@@ -247,8 +247,7 @@ const AmbassadorRegisterFrom = () => {
             </label>
             <div className="xs:w-[calc(100%-100px)] sm:w-[calc(100%-184px)]">
               <textarea
-                name="cat_info"
-                id="cat_info"
+                name="preferred"
                 onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
                   setSubmitValue({
                     ...submitValue,
