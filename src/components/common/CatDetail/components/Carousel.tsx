@@ -8,7 +8,6 @@ function CatDetailCarousel(props: any) {
   const [isZoomed, setIsZoomed] = useState(false);
   const handleImageClick = () => {
     setIsZoomed((prevIsZoomed) => !prevIsZoomed);
-    console.log(isZoomed);
   };
   return (
     <Swiper

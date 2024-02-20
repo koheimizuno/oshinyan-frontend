@@ -12,7 +12,17 @@ import BtnAdd from "./components/BtnAdd";
 import BtnSolid from "./components/BtnSolid";
 import CatImage from "./components/CatImage";
 import CatCard from "../../basic/blog/CatCard";
-import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
+import CatDetailCarousel from "./components/Carousel";
+import AlbumGallery from "./components/AlbumGallery";
+import CommentImageCarousel from "./components/CommentImageCarousel";
+import CatDetailComment from "./components/CatDetailComment";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Modal,
+  Box,
+} from "@mui/material";
 import { CalendarMonthSharp } from "@mui/icons-material";
 import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
 import axios from "axios";
@@ -24,23 +34,19 @@ import {
   CommentType,
 } from "../../../constant/type";
 import { RecommendAction } from "../../../slices/cat";
-import CatDetailCarousel from "./components/Carousel";
-import AlbumGallery from "./components/AlbumGallery";
-import CommentImageCarousel from "./components/CommentImageCarousel";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import { formatDateTime } from "../../../utils/functions";
-import CatDetailComment from "./components/CatDetailComment";
+import { Notification } from "../../../constant/notification";
 
 const CatDetail = () => {
   const { id } = useParams();
   const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  // const [expanded, setExpanded] = useState<boolean[]>([]);
-  const [expanded, setExpanded] = useState<{ [key: number]: boolean }>({});
-  const advertise = searchParams.get("advertise");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const recommendLoginElement = useRef<HTMLDivElement>(null);
+  const searchParams = new URLSearchParams(location.search);
+  const advertise = searchParams.get("advertise");
+  const [expanded, setExpanded] = useState<{ [key: number]: boolean }>({});
   const [recommendLoginShow, setRecommendLoginShow] = useState(false);
   const [showImageDetail, setShowImageDetail] = useState(false);
   const [catData, setCatData] = useState<CatObjectType[]>([]);
@@ -56,6 +62,9 @@ const CatDetail = () => {
   const [reactionFood, setReactionFood] = useState<ImageType[]>([]);
   const [reactionIconCreated, setReactionIconCreated] = useState(false);
   const [catDetailImages, setCatDetailImages] = useState<string[]>([]);
+  const [reportModalShow, setReportModalShow] = useState<number | undefined>(
+    undefined
+  );
   const [reactionIconData, setReactionIconData] = useState<
     CommentReactionIconType[]
   >([]);
@@ -265,6 +274,32 @@ const CatDetail = () => {
     setReactionIconCreated(true);
   };
 
+  const handleAccordion = (key: number) => {
+    isAuthenticated
+      ? setExpanded((prevExpanded) => ({
+          ...prevExpanded,
+          [key]: !prevExpanded[key],
+        }))
+      : navigate("/login");
+  };
+
+  const handleReport = async (commentId: number) => {
+    try {
+      await axios.post("api/report/", {
+        comment: commentId,
+        user: user.user_id,
+      });
+      console.log(commentId);
+      setReportModalShow(undefined);
+      Notification("success", "成果的に通報しました。");
+    } catch (error: any) {
+      if (error.response.status === 400) {
+        setReportModalShow(undefined);
+        Notification("warning", "すでに通報しています。");
+      }
+    }
+  };
+
   return (
     <div className="w-full relative">
       <CatDetailCarousel data={catDetailImages} />
@@ -463,17 +498,12 @@ const CatDetail = () => {
               <div className="mt-6">
                 <Accordion
                   expanded={expanded[key] || false}
-                  onChange={() =>
-                    setExpanded((prevExpanded) => ({
-                      ...prevExpanded,
-                      [key]: !prevExpanded[key],
-                    }))
-                  }
+                  onChange={() => handleAccordion(key)}
                 >
                   <AccordionSummary
                     aria-controls="panel1-content"
                     id="panel1-header"
-                    style={{ display: "inline-block" }}
+                    style={{ display: "inline-block", position: "relative" }}
                   >
                     <BtnAdd />
                   </AccordionSummary>
@@ -649,19 +679,59 @@ const CatDetail = () => {
               </div>
               <div className="mt-6">
                 <BtnAdd />
-                <div className="flex flex-wrap gap-2 mt-4">
-                  {reactionIconData &&
-                    reactionIconData.map(
-                      (item, key) =>
-                        item.comment === commentitem.id && (
-                          <img
-                            key={key}
-                            src={item.imgs}
-                            alt={item.imgs}
-                            width={28}
-                          />
-                        )
-                    )}
+                <div className="flex justify-between items-center mt-4">
+                  <div className="flex flex-wrap gap-2">
+                    {reactionIconData &&
+                      reactionIconData.map(
+                        (item, key) =>
+                          item.comment === commentitem.id && (
+                            <img
+                              key={key}
+                              src={item.imgs}
+                              alt={item.imgs}
+                              width={28}
+                            />
+                          )
+                      )}
+                  </div>
+                  <button
+                    className="text-xs text-[#ccc] border-b"
+                    onClick={() =>
+                      isAuthenticated
+                        ? setReportModalShow(key)
+                        : navigate("/login")
+                    }
+                  >
+                    通報する
+                  </button>
+                  <Modal
+                    open={reportModalShow === key}
+                    onClose={() => setReportModalShow(undefined)}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                  >
+                    <Box className="max-w-[960px] bg-white absolute rounded-md shadow-md top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 overflow-y-hidden">
+                      <div className="px-20 py-10">
+                        <h1 className="text-center text-2xl pb-5">
+                          本当に通報しますか？
+                        </h1>
+                        <div className="flex gap-5">
+                          <button
+                            className="text-[24px] bg-[#FBA1B7] h-[48px] border-solid rounded-full py-2 ps-[42px] pe-[40px] leading-[32px] text-center text-white"
+                            onClick={() => handleReport(commentitem.id)}
+                          >
+                            はい
+                          </button>
+                          <button
+                            className="text-[24px] bg-whtie border border-[#9c9c9c] shadow-inner h-[48px] border-solid rounded-full py-2 ps-[42px] pe-[40px] leading-[32px] text-center"
+                            onClick={() => setReportModalShow(undefined)}
+                          >
+                            いいえ
+                          </button>
+                        </div>
+                      </div>
+                    </Box>
+                  </Modal>
                 </div>
               </div>
               {showImageDetail && selectedDetail === key && (

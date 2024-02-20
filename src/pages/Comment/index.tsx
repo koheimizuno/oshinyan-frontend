@@ -65,13 +65,13 @@ function Comment() {
     if (checked) {
       try {
         await axios.post("api/comment/", formData);
-        Notification("success", "未登録店舗の登録が成功しました。");
+        Notification("success", "コメントの登録が成功しました。");
         setTimeout(() => {
           navigate(`/oshinyan/${id}`);
         }, 2000);
       } catch (error: any) {
         if (error.response.status === 400)
-          Notification("error", "店舗は既に存在します。");
+          Notification("error", "コメントは既に存在します。");
         else Notification("error", "Server Error!");
       }
     }
