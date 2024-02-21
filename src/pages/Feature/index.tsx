@@ -5,13 +5,19 @@ import { Pagination } from "@mui/material";
 import FeatureCard from "../../components/basic/FeatureCard";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import Title from "../../components/common/Typography/Title";
-
-const features = new Array(12).fill({
-  imgUrl: "/assets/imgs/cats/feature_cat.webp",
-  text: "特集内容コピー特集内容コピー特集内容コピー特集内容コピー",
-});
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { FeatureType } from "../../constant/type";
 
 const FeaturePage = () => {
+  const [featureData, setFeatureData] = useState<FeatureType[]>([]);
+  useEffect(() => {
+    const fetchFeatureData = async () => {
+      const { data } = await axios.get("api/feature/");
+      setFeatureData(data);
+    };
+    fetchFeatureData();
+  }, []);
   return (
     <MainLayout>
       <SocialLinkGroup />
@@ -19,14 +25,21 @@ const FeaturePage = () => {
         <PageBar page="特集を見るニャ！（一覧）" />
         <Title title="特集（仮）一覧" />
         <div className="mt-[32px] mb-[56px] flex flex-wrap justify-between">
-          {features &&
-            features.map((e, key) => {
-              return <FeatureCard imgUrl={e.imgUrl} text={e.text} key={key} />;
+          {featureData &&
+            featureData.map((e, key) => {
+              return (
+                <FeatureCard
+                  key={key}
+                  id={e.id}
+                  imgUrl={e.image.imgs}
+                  title={e.title}
+                />
+              );
             })}
         </div>
         <div className="flex justify-center mt-[48px] mb-[52px]">
           <Pagination
-            count={5}
+            count={featureData.length}
             defaultPage={1}
             boundaryCount={1}
             color="secondary"

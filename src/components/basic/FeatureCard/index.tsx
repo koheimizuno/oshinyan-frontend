@@ -1,15 +1,23 @@
 import { Link } from "react-router-dom";
 
-const FeatureCard = ({ imgUrl, text }: { imgUrl: string; text: string }) => {
+const FeatureCard = ({
+  id,
+  imgUrl,
+  title,
+}: {
+  id: number;
+  imgUrl: string;
+  title: string;
+}) => {
   return (
-    <div className="max-w-[312px] h-[328px] bg-white m-auto mb-4">
+    <div className="w-[312px] h-[328px] bg-white m-auto mb-4">
       <div className="w-full h-[234px] text-center">
-        <Link to="/feature/1">
-          <img className="max-h-[234px]" src={imgUrl} alt={imgUrl} />
+        <Link to={`/feature/${id}`}>
+          <img className="max-h-[234px] m-auto" src={imgUrl} alt={imgUrl} />
         </Link>
       </div>
-      <div className="pt-[19px] px-4 pb-[10px] h-[65px] text-[20px] leading-[27px] font-bold text-ellipsis">
-        {text}
+      <div className="flex h-[94px] justify-center items-center">
+        <span className="text-[20px] font-bold text-ellipsis">{title}</span>
       </div>
     </div>
   );

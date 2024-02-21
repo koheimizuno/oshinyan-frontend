@@ -115,3 +115,15 @@ export interface NoticeType {
   pdf: string;
   created_date: string;
 }
+
+export interface FeatureType {
+  id: number;
+  title: string;
+  prefecture?: string | null;
+  character?: string | null;
+  description: string;
+  image: {
+    imgs: string;
+  };
+  cats: any[];
+}
