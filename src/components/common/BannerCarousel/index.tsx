@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import ArrowLeft from "../../basic/icons/ArrowLeft";
 import ArrowRight from "../../basic/icons/ArrowRight";
 import { BannerType } from "../../../constant/type";
@@ -48,13 +47,13 @@ function BannerCarousel() {
         {bannerData &&
           bannerData.map((item: any, key: any) => (
             <SwiperSlide key={key}>
-              <Link to="/feature/1">
+              <a href={item.url} rel="noreferrer" target="_blank">
                 <img
                   src={item.image}
                   alt={item.image}
                   className="h-full m-auto"
                 />
-              </Link>
+              </a>
             </SwiperSlide>
           ))}
         <div>
