@@ -65,7 +65,7 @@ function NyanplaceDetail() {
           >
             {AshopData.shop_images &&
               AshopData.shop_images.map((item: any, key: any) => (
-                <SwiperSlide key={key} className="overflow-x-hidden">
+                <SwiperSlide key={key} className="h-[540px] overflow-x-hidden">
                   <img
                     src={item.imgs}
                     alt={item.imgs}
@@ -201,7 +201,7 @@ function NyanplaceDetail() {
           <div>
             <p className="text-2xl pt-6 pb-4">ここで会える「看板猫」</p>
             <div className="flex justify-between flex-wrap ">
-              {AshopData.cat ? (
+              {AshopData.cat &&
                 AshopData.cat.map((e: any, i: number) => (
                   <CatCard
                     key={i}
@@ -218,12 +218,7 @@ function NyanplaceDetail() {
                     recommend={e.recommend}
                     created_date={e.created_date}
                   />
-                ))
-              ) : (
-                <p className="py-10 block w-full text-center text-xl">
-                  お探しの看板猫はありません
-                </p>
-              )}
+                ))}
             </div>
             <div className="mt-[124px]">
               <img

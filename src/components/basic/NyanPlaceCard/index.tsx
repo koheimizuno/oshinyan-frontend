@@ -5,7 +5,7 @@ import { ShopType } from "../../../constant/type";
 const NyanPlaceCard = (props: ShopType) => {
   const navigate = useNavigate();
   return (
-    <div className="max-w-[312px] bg-white m-auto">
+    <div className="w-[312px] h-[328px] bg-white m-auto">
       <div
         className="w-full h-[234px] cursor-pointer"
         onClick={() => navigate(`/nyanplace/${props.id}`)}
@@ -14,13 +14,13 @@ const NyanPlaceCard = (props: ShopType) => {
           <img
             src={props.shop_images[0].imgs}
             alt={props.shop_images[0].imgs}
-            className="h-full m-auto"
+            className="max-h-[234px] h-full m-auto object-cover"
           />
         )}
       </div>
-      <div className="m-4 mt-[19px] flex-wrap flex flex-end">
+      <div className="m-4 mt-[19px]">
         <div className="w-full">{props.shop_name}</div>
-        <div className="ms-auto mt-[10px] flex gap-2">
+        <div className="ms-auto mt-[10px] flex justify-end flex-wrap gap-2">
           {props.shop_type && (
             <PrefectureBtn value={props.shop_type.shop_type}></PrefectureBtn>
           )}

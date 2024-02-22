@@ -108,6 +108,8 @@ const Top = () => {
     } catch (error) {}
   };
 
+  console.log(catData);
+
   return (
     <MainLayout>
       <SocialLinkGroup page="top" />
@@ -136,7 +138,7 @@ const Top = () => {
         <RankingBar />
         <div className="mt-[12px]">
           <div className="flex justify-between flex-wrap gap-3">
-            {catData.length !== 0 ? (
+            {catData.length !== 0 &&
               catData.map((e, i) => (
                 <CatCard
                   key={i}
@@ -153,12 +155,7 @@ const Top = () => {
                   recommend={e.recommend}
                   created_date={e.created_date}
                 />
-              ))
-            ) : (
-              <p className="py-10 block w-full text-center text-xl">
-                お探しの看板猫はありません
-              </p>
-            )}
+              ))}
           </div>
         </div>
         <div className="bg-white text-center py-[65px] mt-4 mb-[16px]">
@@ -166,7 +163,7 @@ const Top = () => {
         </div>
         <div>
           <div className="flex justify-between flex-wrap ">
-            {advertiseData.length !== 0 ? (
+            {advertiseData.length !== 0 &&
               advertiseData.map((e, i) => (
                 <CatCard
                   key={i}
@@ -183,12 +180,7 @@ const Top = () => {
                   recommend={e.recommend}
                   created_date={e.created_date}
                 />
-              ))
-            ) : (
-              <p className="py-10 block w-full text-center text-xl">
-                お探しの看板猫はありません
-              </p>
-            )}
+              ))}
           </div>
         </div>
         <div className="pt-[15px] pb-[35px] text-center border-b border-b-solid border-[#CCC]">

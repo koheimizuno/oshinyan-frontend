@@ -52,6 +52,7 @@ const CatDetail = () => {
   const [checked, setChecked] = useState(false);
   const [expanded, setExpanded] = useState<{ [key: number]: boolean }>({});
   const [recommendLoginShow, setRecommendLoginShow] = useState(false);
+  const [loginSectionHover, setLoginSectionHover] = useState(false);
   const [showImageDetail, setShowImageDetail] = useState(false);
   const [catData, setCatData] = useState<CatObjectType[]>([]);
   const [recommendedUser, setRecommendedUser] = useState<UserType[]>([]);
@@ -107,21 +108,6 @@ const CatDetail = () => {
     (state: any) => state.user
   );
   const { catLoading } = useSelector((state: any) => state.cat);
-
-  useEffect(() => {
-    const handleClickOutside = (event: any) => {
-      if (
-        recommendLoginElement.current &&
-        !recommendLoginElement.current.contains(event.target)
-      ) {
-        setRecommendLoginShow(false);
-      }
-    };
-    document.addEventListener("click", handleClickOutside);
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, []);
 
   useEffect(() => {
     const commentFetch = async () => {
@@ -350,6 +336,12 @@ const CatDetail = () => {
           <div
             className="relative flex gap-[6px] items-center"
             ref={recommendLoginElement}
+            onMouseLeave={() => {
+              if (!loginSectionHover) {
+                setRecommendLoginShow(false);
+                setLoginSectionHover(false);
+              }
+            }}
           >
             <span
               className="cursor-pointer rounded-full"
@@ -372,11 +364,18 @@ const CatDetail = () => {
             </span>
             {recommendLoginShow && (
               <span
-                className="absolute -left-5 -bottom-[75px] w-[250px] bg-white px-4 py-2 shadow-md rounded-xl cursor-pointer"
+                className="absolute z-[9999] right-1 -bottom-[70px] w-[250px] bg-white px-4 py-2 shadow-md rounded-xl cursor-pointer"
                 onClick={() => navigate("/login")}
+                onMouseOver={() => setLoginSectionHover(true)}
+                onMouseLeave={() => {
+                  setRecommendLoginShow(false);
+                  setLoginSectionHover(false);
+                }}
               >
                 会員ログイン後にボタンを押すことが可能です
-                <span className="w-2 h-4 absolute left-10 -top-4 z-20 border-8 border-transparent border-b-white"></span>
+                <div className="absolute right-2 -top-4 w-full flex justify-end">
+                  <span className="w-2 h-4 z-20 border-8 border-transparent border-b-white"></span>
+                </div>
               </span>
             )}
           </div>
@@ -898,7 +897,7 @@ const CatDetail = () => {
       </div>
       <div className="w-full border-b border-[#CBB279] mt-4"></div>
       <div className="mt-6 mb-12 flex flex-wrap justify-between">
-        {catData.length !== 0 ? (
+        {catData.length !== 0 &&
           catData.map((e, i) => (
             <CatCard
               key={i}
@@ -915,12 +914,7 @@ const CatDetail = () => {
               recommend={e.recommend}
               created_date={e.created_date}
             />
-          ))
-        ) : (
-          <p className="py-10 block w-full text-center text-xl">
-            お探しの看板猫はありません
-          </p>
-        )}
+          ))}
       </div>
       <AlbumGallery
         cat_name={retrieveCat.cat_name}

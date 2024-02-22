@@ -83,6 +83,8 @@ const TotalRanking = () => {
     } catch (error) {}
   };
 
+  console.log(catData);
+
   return (
     <MainLayout>
       <SocialLinkGroup className="h-[60px]" />
@@ -111,7 +113,7 @@ const TotalRanking = () => {
         <Container>
           <RankingBar />
           <div className="xs:max-w-[480px] xs:w-full xs:m-auto xs:mt-[24px] xs:mb-[24px] md:ml-0 ranking-1">
-            {catData.length !== 0 ? (
+            {catData.length !== 0 && (
               <div className="ranking-1-tle flex gap-[8px]">
                 <img
                   src="/assets/imgs/icons/ranking-1-cap.svg"
@@ -121,10 +123,6 @@ const TotalRanking = () => {
                   1位
                 </span>
               </div>
-            ) : (
-              <p className="py-10 block w-full text-center text-xl">
-                お探しの看板猫はありません
-              </p>
             )}
           </div>
           {catData[0] && (
@@ -162,6 +160,7 @@ const TotalRanking = () => {
                   <CatCard
                     key={i}
                     id={e.id}
+                    is_public={e.is_public}
                     cat_name={e.cat_name}
                     shop={e.shop}
                     images={e.images}

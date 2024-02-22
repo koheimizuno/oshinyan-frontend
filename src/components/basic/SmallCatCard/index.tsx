@@ -20,25 +20,14 @@ const SmallCatCard = ({
   const navigate = useNavigate();
   const recommendLoginElement = useRef<HTMLDivElement>(null);
   const [recommendLoginShow, setRecommendLoginShow] = useState(false);
+  const [loginSectionHover, setLoginSectionHover] = useState(false);
   const [isNew, setIsNew] = useState<boolean | undefined>(false);
   const { user } = useSelector((state: any) => state.user);
   const { isAuthenticated } = useSelector((state: any) => state.user);
+  const [hoverAction, setHoverAction] = useState(false);
+
   useEffect(() => {
     setIsNew(isNewUtil(created_date));
-    const handleClickOutside = (event: any) => {
-      if (
-        recommendLoginElement.current &&
-        !recommendLoginElement.current.contains(event.target)
-      ) {
-        setRecommendLoginShow(false);
-      }
-    };
-
-    document.addEventListener("click", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
   }, [created_date]);
 
   const handleRecommend = async () => {
@@ -55,7 +44,13 @@ const SmallCatCard = ({
     }
   };
   return (
-    <div className="relative m-auto xs:max-w-[300px] lg:max-w-none lg:w-full lg:h-[144px] xs:block lg:flex">
+    <div
+      className={`relative m-auto xs:max-w-[300px] lg:max-w-none lg:w-full lg:h-[144px] xs:block lg:flex bg-white ${
+        hoverAction && "transform transition duration-500 scale-105"
+      }`}
+      onMouseOver={() => setHoverAction(true)}
+      onMouseLeave={() => setHoverAction(false)}
+    >
       <div className="relative h-full xs:w-full lg:w-[192px] bg-center bg-no-repeat">
         <Swiper
           modules={[Navigation, Pagination, Scrollbar, A11y]}
@@ -69,17 +64,19 @@ const SmallCatCard = ({
           centeredSlides
           slidesPerView={1}
           navigation={{ nextEl: ".arrow-right", prevEl: ".arrow-left" }}
-          className="cursor-pointer hover:opacity-70"
+          className="cursor-pointer"
         >
           {images &&
             images.map((item: any, key: any) => (
-              <SwiperSlide key={key} className="lg:h-[144px] overflow-x-hidden">
+              <SwiperSlide key={key} className="lg:h-[144px]">
                 <Link to={`/oshinyan/${id}`}>
-                  <img
-                    src={item.imgs}
-                    alt={item.imgs}
-                    className="m-auto cursor-pointer h-full"
-                  />
+                  <span className="inline-block ">
+                    <img
+                      src={item.imgs}
+                      alt={item.imgs}
+                      className="m-auto cursor-pointer h-full object-cover"
+                    />
+                  </span>
                 </Link>
               </SwiperSlide>
             ))}
@@ -133,6 +130,12 @@ const SmallCatCard = ({
         <div
           className="absolute top-[8px] right-[8px] z-10"
           ref={recommendLoginElement}
+          onMouseLeave={() => {
+            if (!loginSectionHover) {
+              setRecommendLoginShow(false);
+              setLoginSectionHover(false);
+            }
+          }}
         >
           <span
             className="cursor-pointer rounded-full"
@@ -156,9 +159,16 @@ const SmallCatCard = ({
             <span
               className="absolute -left-5 -bottom-[75px] w-[250px] bg-white px-4 py-2 shadow-lg rounded-xl cursor-pointer"
               onClick={() => navigate("/login")}
+              onMouseOver={() => setLoginSectionHover(true)}
+              onMouseLeave={() => {
+                setRecommendLoginShow(false);
+                setLoginSectionHover(false);
+              }}
             >
               会員ログイン後にボタンを押すことが可能です
-              <span className="w-2 h-4 absolute left-10 -top-4 z-20 border-8 border-transparent border-b-white"></span>
+              <div className="absolute right-2 -top-4 w-full flex justify-end">
+                <span className="w-2 h-4 z-20 border-8 border-transparent border-b-white"></span>
+              </div>
             </span>
           )}
         </div>

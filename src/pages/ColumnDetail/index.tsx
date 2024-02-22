@@ -9,6 +9,7 @@ import { ColumnType } from "../../constant/type";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { formatDateTime } from "../../utils/functions";
+import styles from "./index.module.css";
 
 function ColumnDetail() {
   const { id } = useParams();
@@ -60,22 +61,26 @@ function ColumnDetail() {
         <p className="text-[#515151] mb-16">{AcolumnData.description}</p>
         {AcolumnData.blog &&
           AcolumnData.blog.map((item, key) => (
-            <div className="sm:grid sm:grid-cols-12 gap-10 mb-[60px]" key={key}>
+            <div
+              className="sm:grid sm:grid-cols-12 sm:items-start gap-10 mb-[60px]"
+              key={key}
+            >
               <div
-                className={`m-auto col-span-5 ${key % 2 !== 0 && "order-last"}`}
+                className={`mx-auto col-span-5 ${
+                  key % 2 !== 0 && "order-last"
+                }`}
               >
                 <img src={item.imgs} alt={item.imgs} className="w-full" />
-                <p className="text-sm mt-4 tracking-[-.2em]">
+                <p className="text-base mt-4 tracking-[-.2em]">
                   {item.img_caption}
                 </p>
               </div>
               <p
-                className={`sm:h-[360px] overflow-hidden col-span-7 ${
+                className={`overflow-hidden col-span-7 ${styles.container} ${
                   key % 2 !== 0 && "order-first"
                 }`}
-              >
-                {item.description}
-              </p>
+                dangerouslySetInnerHTML={{ __html: item.description }}
+              />
             </div>
           ))}
         <div className="mt-6 mb-10 flex flex-wrap justify-between">

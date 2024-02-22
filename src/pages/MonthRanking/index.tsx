@@ -208,7 +208,7 @@ const MonthRanking = () => {
               {dates.year}年{dates.month}月
             </span>
           </div>
-          <div className="xs:max-w-[480px] xs:w-full xs:m-auto xs:mt-[24px] xs:mb-[24px] md:ml-0 ranking-1">
+          <div className=" xs:w-full xs:m-auto xs:mt-[24px] xs:mb-[24px] md:ml-0 ranking-1">
             {catData.length !== 0 ? (
               <div className="ranking-1-tle flex gap-[8px]">
                 <img
@@ -220,9 +220,43 @@ const MonthRanking = () => {
                 </span>
               </div>
             ) : (
-              <p className="py-10 block w-full text-center text-xl">
-                お探しの看板猫はありません
-              </p>
+              <div>
+                <p className="py-10 block w-full text-center text-xl">
+                  お探しの看板猫はありません
+                </p>
+                <div className="flex justify-between pb-[8px] border-b border-[#CBB279] mb-[24px]">
+                  <button
+                    className="flex mt-[32px] items-center"
+                    onClick={previousMonthFetch}
+                  ></button>
+                  <button
+                    className={`flex mt-[32px] items-center ${
+                      dates.month === dateObj.getMonth() + 1 && "hidden"
+                    }`}
+                    onClick={nextMonthFetch}
+                  >
+                    翌月
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="12.728"
+                      height="12.728"
+                      viewBox="0 0 12.728 12.728"
+                    >
+                      <path
+                        id="arr_right"
+                        d="M499-1749v8h-8"
+                        transform="translate(890.247 1590.283) rotate(-45)"
+                        fill="none"
+                        stroke="#000"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="1"
+                        opacity="0.75"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
             )}
           </div>
           {catData[0] && (
@@ -332,7 +366,7 @@ const MonthRanking = () => {
                     opacity="0.75"
                   />
                 </svg>
-                次月
+                前月
               </button>
               <button
                 className={`flex mt-[32px] items-center ${
@@ -340,7 +374,7 @@ const MonthRanking = () => {
                 }`}
                 onClick={nextMonthFetch}
               >
-                前月
+                翌月
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="12.728"

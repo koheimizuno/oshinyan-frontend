@@ -83,7 +83,7 @@ export interface AmbassadorType {
   prefecture: string;
 }
 
-interface ColumnBlogType {
+export interface ColumnBlogType {
   id: number;
   imgs: string;
   img_caption: string;

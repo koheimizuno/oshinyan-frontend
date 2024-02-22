@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -6,27 +6,13 @@ const CatDetailComment = (props: any) => {
   const navigate = useNavigate();
   const commentLoginElement = useRef<HTMLDivElement>(null);
   const [commentLoginShow, setCommentLoginShow] = useState(false);
+  const [loginSectionHover, setLoginSectionHover] = useState(false);
   const { isAuthenticated } = useSelector((state: any) => state.user);
 
   const goToComment = () => {
     if (isAuthenticated) navigate(`/comment/${props.id}`);
     else setCommentLoginShow(true);
   };
-
-  useEffect(() => {
-    const handleClickOutside = (event: any) => {
-      if (
-        commentLoginElement.current &&
-        !commentLoginElement.current.contains(event.target)
-      ) {
-        setCommentLoginShow(false);
-      }
-    };
-    document.addEventListener("click", handleClickOutside);
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, []);
 
   return (
     <div className="pt-8 pb-8 sm:pb-[63px]">
@@ -58,7 +44,16 @@ const CatDetailComment = (props: any) => {
           </div>
         </div>
         <div className="block sm:flex justify-between sm:col-span-1 md:col-span-1">
-          <div className="relative" ref={commentLoginElement}>
+          <div
+            className="relative"
+            ref={commentLoginElement}
+            onMouseLeave={() => {
+              if (!loginSectionHover) {
+                setCommentLoginShow(false);
+                setLoginSectionHover(false);
+              }
+            }}
+          >
             <button
               onClick={goToComment}
               className="flex justify-center items-center h-full"
@@ -77,6 +72,11 @@ const CatDetailComment = (props: any) => {
               <span
                 className="absolute -left-0 -bottom-[50px] w-[250px] bg-white px-4 py-2 shadow-md rounded-xl cursor-pointer"
                 onClick={() => navigate("/login")}
+                onMouseOver={() => setLoginSectionHover(true)}
+                onMouseLeave={() => {
+                  setCommentLoginShow(false);
+                  setLoginSectionHover(false);
+                }}
               >
                 会員ログイン後にボタンを押すことが可能です
                 <span className="w-2 h-4 absolute left-10 -top-4 z-20 border-8 border-transparent border-b-white"></span>

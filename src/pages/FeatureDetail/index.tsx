@@ -31,7 +31,8 @@ const FeatureDetail = () => {
           {featureData?.description}
         </div>
         <div className="mt-[32px] mb-[56px] flex justify-between flex-wrap gap-3">
-          {featureData && featureData.cats ? (
+          {featureData &&
+            featureData.cats &&
             featureData.cats.map((e, i) => (
               <CatCard
                 key={i}
@@ -48,12 +49,7 @@ const FeatureDetail = () => {
                 recommend={e.recommend}
                 created_date={e.created_date}
               />
-            ))
-          ) : (
-            <p className="py-10 block w-full text-center text-xl">
-              お探しの看板猫はありません
-            </p>
-          )}
+            ))}
         </div>
         <div className="flex justify-center mt-[32px] mb-[68px]">
           <Pagination

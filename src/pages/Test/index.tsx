@@ -131,7 +131,7 @@ const Test = () => {
         <RankingBar />
         <div className="my-[12px]">
           <div className="flex justify-between flex-wrap gap-3">
-            {catData.length !== 0 ? (
+            {catData.length !== 0 &&
               catData.map((e, i) => (
                 <CatCard
                   key={i}
@@ -148,12 +148,7 @@ const Test = () => {
                   recommend={e.recommend}
                   created_date={e.created_date}
                 />
-              ))
-            ) : (
-              <p className="py-10 block w-full text-center text-xl">
-                お探しの看板猫はありません
-              </p>
-            )}
+              ))}
           </div>
         </div>
       </Container>

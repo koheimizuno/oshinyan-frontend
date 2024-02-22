@@ -13,7 +13,11 @@ const FeatureCard = ({
     <div className="w-[312px] h-[328px] bg-white m-auto mb-4">
       <div className="w-full h-[234px] text-center">
         <Link to={`/feature/${id}`}>
-          <img className="max-h-[234px] m-auto" src={imgUrl} alt={imgUrl} />
+          <img
+            className="max-h-[234px] h-full m-auto object-cover"
+            src={imgUrl}
+            alt={imgUrl}
+          />
         </Link>
       </div>
       <div className="flex h-[94px] justify-center items-center">

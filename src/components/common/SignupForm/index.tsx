@@ -1,4 +1,4 @@
-import React, { lazy, useState } from "react";
+import React, { lazy, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { PREFECTURE } from "../../../constant";
@@ -13,6 +13,8 @@ import {
   Select,
 } from "@mui/material";
 import { Close } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
+import { Notification } from "../../../constant/notification";
 const Box = lazy(() => import("@mui/material/Box"));
 
 interface avatarType {
@@ -22,6 +24,7 @@ interface avatarType {
 
 const SignupForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [checked, setChecked] = useState(false);
   const [avatarModal, setAvatarModal] = useState(false);
   const [avatars, setAvatars] = useState<avatarType[]>([]);
@@ -36,6 +39,23 @@ const SignupForm = () => {
   const [errorMsg, setErrorMsg] = useState({
     avatar: "",
   });
+
+  // useEffect(() => {
+  //   const handleBeforeUnload = () => {
+  //     if (
+  //       values.username ||
+  //       values.prefecture !== "北海道" ||
+  //       values.email ||
+  //       values.password
+  //     ) {
+  //       Notification("warning", "登録ニャ！を押さないと変更されません");
+  //     }
+  //   };
+  //   window.addEventListener("beforeunload", handleBeforeUnload);
+  //   return () => {
+  //     window.removeEventListener("beforeunload", handleBeforeUnload);
+  //   };
+  // }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -237,7 +257,7 @@ const SignupForm = () => {
               checked ? "bg-[#FBA1B7]" : "bg-[#f8c6d2]"
             }  h-[48px] border-solid rounded-full py-2 ps-[42px] pe-[40px] leading-[32px] text-center text-white`}
           >
-            確認ニャ！
+            登録ニャ！
           </button>
         </div>
       </form>

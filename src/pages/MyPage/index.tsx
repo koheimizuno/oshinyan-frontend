@@ -238,7 +238,7 @@ const MyPage = () => {
           マイページには自分の推しニャン（サイト内で推しボタンを押した猫）が一覧で出てくるニャー
         </div>
         <div className="mt-[32px] mb-[48px] flex justify-between flex-wrap">
-          {userCatData.length !== 0 ? (
+          {userCatData.length !== 0 &&
             userCatData.map((e, i) => (
               <CatCard
                 key={i}
@@ -256,12 +256,7 @@ const MyPage = () => {
                 recommend={e.recommend}
                 created_date={e.created_date}
               />
-            ))
-          ) : (
-            <p className="py-10 block w-full text-center text-xl">
-              お探しの看板猫はありません
-            </p>
-          )}
+            ))}
         </div>
         <div className="mb-4 text-[24px] leading-[32px] border-b border-[#CBB279] pb-[16px]">
           投稿した推しニャン画像

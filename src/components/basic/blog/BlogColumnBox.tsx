@@ -21,7 +21,11 @@ const BlogColumnBox = (props: ColumnType) => {
           props.id && goColumnDetail(props.id);
         }}
       >
-        <img src={props.hero_image} className="h-full m-auto" alt={props.cat_name} />
+        <img
+          src={props.hero_image}
+          className="h-full m-auto object-cover"
+          alt={props.cat_name}
+        />
       </div>
       <div className="p-4">
         <p className="py-2 tracking-tighter text-xl border-b border-[#ccc]">
