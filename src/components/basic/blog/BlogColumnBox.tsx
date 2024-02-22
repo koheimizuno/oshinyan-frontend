@@ -11,7 +11,7 @@ const BlogColumnBox = (props: ColumnType) => {
   const [hoverAction, setHoverAction] = useState(false);
   return (
     <div
-      className=" w-[312px] mb-[15px] opacity-70 hover:opacity-100 bg-white border m-auto"
+      className=" m-auto w-full xs:max-w-[480px] xs:m-auto md:max-w-[312px] md:h-[420px] mb-[15px] bg-white border"
       onMouseOver={() => setHoverAction(true)}
       onMouseLeave={() => setHoverAction(false)}
     >
@@ -28,7 +28,7 @@ const BlogColumnBox = (props: ColumnType) => {
         />
       </div>
       <div className="p-4">
-        <p className="py-2 tracking-tighter text-xl border-b border-[#ccc]">
+        <p className="h-[100px] py-2 tracking-tighter text-xl border-b border-[#ccc]">
           {props.title}
         </p>
         <div className="flex justify-between py-4">
