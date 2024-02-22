@@ -11,7 +11,9 @@ const BlogColumnBox = (props: ColumnType) => {
   const [hoverAction, setHoverAction] = useState(false);
   return (
     <div
-      className=" m-auto w-full xs:max-w-[480px] xs:m-auto md:max-w-[312px] md:h-[420px] mb-[15px] bg-white border"
+      className={`w-full xs:max-w-[480px] xs:mx-auto md:max-w-[312px] md:h-[420px] mb-[15px] bg-white border ${
+        hoverAction && "transform transition duration-500 scale-105"
+      }`}
       onMouseOver={() => setHoverAction(true)}
       onMouseLeave={() => setHoverAction(false)}
     >
