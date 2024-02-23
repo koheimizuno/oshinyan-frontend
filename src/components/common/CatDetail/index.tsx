@@ -54,7 +54,6 @@ const CatDetail = () => {
   const [recommendLoginShow, setRecommendLoginShow] = useState(false);
   const [loginSectionHover, setLoginSectionHover] = useState(false);
   const [showImageDetail, setShowImageDetail] = useState(false);
-  const [catNearByData, setcatNearByData] = useState<CatObjectType[]>([]);
   const [recommendedUser, setRecommendedUser] = useState<UserType[]>([]);
   const [commentData, setCommentData] = useState<CommentType[]>([]);
   const [displayAll, setDisplayAll] = useState(false);
@@ -105,6 +104,7 @@ const CatDetail = () => {
     recommend: [],
     created_date: "",
   });
+  const [catNearby, setCatNearBy] = useState<CatObjectType[]>([]);
   const { user, authLoading, isAuthenticated } = useSelector(
     (state: any) => state.user
   );
@@ -162,13 +162,12 @@ const CatDetail = () => {
               list.push(it.imgs);
             });
           setCatDetailImages(list);
-          const fetchCatNearBy = async () => {
+          try {
             const { data } = await axios.get(
               `api/catnearby/?address=${cattemp.shop.address}`
             );
-            setcatNearByData(data);
-          };
-          fetchCatNearBy();
+            setCatNearBy(data);
+          } catch (error) {}
         } catch (error) {}
       };
       RetrieveCat();
@@ -547,7 +546,10 @@ const CatDetail = () => {
                   <AccordionSummary
                     aria-controls="panel1-content"
                     id="panel1-header"
-                    style={{ display: "inline-block", position: "relative" }}
+                    style={{
+                      display: "inline-block",
+                      position: "relative",
+                    }}
                   >
                     <BtnAdd />
                   </AccordionSummary>
@@ -906,8 +908,8 @@ const CatDetail = () => {
       </div>
       <div className="w-full border-b border-[#CBB279] mt-4"></div>
       <div className="mt-6 mb-12 flex flex-wrap justify-between gap-3">
-        {catNearByData.length !== 0 &&
-          catNearByData.map((e, i) => (
+        {catNearby.length !== 0 ? (
+          catNearby.map((e: CatObjectType, i: number) => (
             <CatCard
               key={i}
               id={e.id}
@@ -923,7 +925,10 @@ const CatDetail = () => {
               recommend={e.recommend}
               created_date={e.created_date}
             />
-          ))}
+          ))
+        ) : (
+          <p>Loading...</p>
+        )}
       </div>
       <AlbumGallery
         cat_name={retrieveCat.cat_name}

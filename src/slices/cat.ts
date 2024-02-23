@@ -42,7 +42,6 @@ const catSlice = createSlice({
   initialState: {
     catLoading: false,
     recommend: {},
-    catData: [],
   },
   reducers: {},
   extraReducers: (builder) => {
