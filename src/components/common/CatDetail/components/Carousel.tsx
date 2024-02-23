@@ -9,6 +9,7 @@ function CatDetailCarousel(props: any) {
   const handleImageClick = () => {
     setIsZoomed((prevIsZoomed) => !prevIsZoomed);
   };
+
   return (
     <Swiper
       modules={[Navigation, Pagination, Scrollbar, A11y]}
@@ -33,7 +34,7 @@ function CatDetailCarousel(props: any) {
               src={item}
               alt={item}
               className={`h-full m-auto cursor-pointer object-cover ${
-                isZoomed ? "max-w-full h-[120%]" : ""
+                isZoomed ? "max-w-full w-[105%]" : ""
               }`}
               onClick={handleImageClick}
             />

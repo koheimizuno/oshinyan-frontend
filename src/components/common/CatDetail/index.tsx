@@ -55,6 +55,7 @@ const CatDetail = () => {
   const [loginSectionHover, setLoginSectionHover] = useState(false);
   const [showImageDetail, setShowImageDetail] = useState(false);
   const [catData, setCatData] = useState<CatObjectType[]>([]);
+  const [catNearByData, setcatNearByData] = useState<CatObjectType[]>([]);
   const [recommendedUser, setRecommendedUser] = useState<UserType[]>([]);
   const [commentData, setCommentData] = useState<CommentType[]>([]);
   const [displayAll, setDisplayAll] = useState(false);
@@ -94,6 +95,7 @@ const CatDetail = () => {
     shop: {
       shop_name: "",
       prefecture: "",
+      address: "",
     },
     images: [],
     admin_images: [],
@@ -147,9 +149,17 @@ const CatDetail = () => {
     if (!advertise) {
       const RetrieveCat = async () => {
         try {
-          let list: string[] = [];
+          let list: string[] = [],
+            cattemp: Pick<CatObjectType, "shop"> = {
+              shop: {
+                shop_name: "",
+                prefecture: "",
+                address: "",
+              },
+            };
           const { data } = await axios.get(`api/cats/${id}/`);
           setRetrieveCat(data);
+          cattemp = data;
           data.images &&
             data.images.forEach((item: ImageType) => {
               list.push(item.imgs);
@@ -159,6 +169,13 @@ const CatDetail = () => {
               list.push(it.imgs);
             });
           setCatDetailImages(list);
+          const fetchCatNearBy = async () => {
+            const { data } = await axios.get(
+              `api/catnearby/?address=${cattemp.shop.address}`
+            );
+            setcatNearByData(data);
+          };
+          fetchCatNearBy();
         } catch (error) {}
       };
       RetrieveCat();
@@ -896,9 +913,9 @@ const CatDetail = () => {
         同じ地域の看板猫を探すニャン！
       </div>
       <div className="w-full border-b border-[#CBB279] mt-4"></div>
-      <div className="mt-6 mb-12 flex flex-wrap justify-between">
-        {catData.length !== 0 &&
-          catData.map((e, i) => (
+      <div className="mt-6 mb-12 flex flex-wrap justify-between gap-3">
+        {catNearByData.length !== 0 &&
+          catNearByData.map((e, i) => (
             <CatCard
               key={i}
               id={e.id}
