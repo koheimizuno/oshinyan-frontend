@@ -45,8 +45,6 @@ const Test = () => {
     fetchCatData();
   }, [isAuthenticated, catLoading, authLoading, user.username]);
 
-  console.log(catData);
-
   const submitSearchPrefecture = async () => {
     try {
       if (prefectureKeyword.length !== 0) {

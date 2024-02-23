@@ -108,8 +108,6 @@ const Top = () => {
     } catch (error) {}
   };
 
-  console.log(catData);
-
   return (
     <MainLayout>
       <SocialLinkGroup page="top" />

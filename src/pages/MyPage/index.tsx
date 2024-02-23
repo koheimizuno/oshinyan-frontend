@@ -48,7 +48,6 @@ const MyPage = () => {
     const commentByUserFetch = async () => {
       let list: any[] = [];
       const { data } = await axios.get(`api/commentbyuser`);
-      console.log(data);
       data.forEach((item: any) => {
         item.comment_images.forEach((it: any) => {
           list.push(it);

@@ -54,7 +54,6 @@ const CatDetail = () => {
   const [recommendLoginShow, setRecommendLoginShow] = useState(false);
   const [loginSectionHover, setLoginSectionHover] = useState(false);
   const [showImageDetail, setShowImageDetail] = useState(false);
-  const [catData, setCatData] = useState<CatObjectType[]>([]);
   const [catNearByData, setcatNearByData] = useState<CatObjectType[]>([]);
   const [recommendedUser, setRecommendedUser] = useState<UserType[]>([]);
   const [commentData, setCommentData] = useState<CommentType[]>([]);
@@ -140,12 +139,6 @@ const CatDetail = () => {
   }, [id]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { data } = await axios.get("api/randomcat");
-        setCatData(data);
-      } catch (error) {}
-    };
     if (!advertise) {
       const RetrieveCat = async () => {
         try {
@@ -188,7 +181,6 @@ const CatDetail = () => {
       };
       RetrieveCat();
     }
-    fetchData();
   }, [isAuthenticated, catLoading, authLoading, advertise, id]);
 
   useEffect(() => {

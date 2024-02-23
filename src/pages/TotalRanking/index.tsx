@@ -83,8 +83,6 @@ const TotalRanking = () => {
     } catch (error) {}
   };
 
-  console.log(catData);
-
   return (
     <MainLayout>
       <SocialLinkGroup className="h-[60px]" />
