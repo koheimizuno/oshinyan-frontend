@@ -85,7 +85,7 @@ function Comment() {
         <Title title="推しコメント入力" />
         <section className="flex flex-col gap-5 md:flex-row md:items-center md:gap-10 py-9">
           <div className="flex items-center gap-4">
-            <img src={user.avatar_url} alt={user.username} />
+            <img src={user.avatar.avatar} alt={user.username} />
             <Link to="#" className="border-b border-[#6d6d6d]">
               {user.username}
             </Link>
@@ -113,7 +113,7 @@ function Comment() {
                 コメントを入力するニャー
               </p>
               <p className="py-4">
-                推し猫への想い／推し猫の行動や性格／お店のおススメポイントなど（000文字以内）
+                推し猫への想い／推し猫の行動や性格／お店のおススメポイントなど
               </p>
             </div>
             <textarea

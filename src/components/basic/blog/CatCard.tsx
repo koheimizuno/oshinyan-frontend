@@ -65,9 +65,9 @@ const CatCard = ({
   };
 
   return (
-    <div className="relative">
+    <div className="relative m-auto">
       <div
-        className={`m-auto w-full xs:max-w-[480px] xs:m-auto md:max-w-[312px] md:h-[512px] mb-[15px] ${
+        className={`m-auto w-[312px] xs:max-w-[480px] xs:m-auto md:max-w-[312px] md:h-[512px] mb-[15px] ${
           hoverAction && "transform transition duration-500 scale-105"
         }`}
         onMouseOver={() => setHoverAction(true)}
@@ -93,7 +93,7 @@ const CatCard = ({
             >
               {images &&
                 images.map((item: any, key: any) => (
-                  <SwiperSlide key={key} className="md:h-[234px] bg-white">
+                  <SwiperSlide key={key} className="h-[234px] bg-white">
                     <Link
                       to={
                         !advertise

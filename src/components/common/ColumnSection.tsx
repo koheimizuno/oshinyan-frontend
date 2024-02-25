@@ -22,7 +22,7 @@ const ColumnSection = () => {
             推しニャン！コラム
           </h3>
         </div>
-        <div className="flex justify-between flex-wrap">
+        <div className="flex justify-start flex-wrap">
           {columnData.length !== 0 ? (
             columnData.map((e, i) => (
               <BlogColumnBox

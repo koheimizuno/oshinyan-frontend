@@ -66,7 +66,9 @@ const CatDetail = () => {
   const [reactionFood, setReactionFood] = useState<ImageType[]>([]);
   const [reactionIconCreated, setReactionIconCreated] = useState(false);
   const [catDetailImages, setCatDetailImages] = useState<string[]>([]);
-  const [reportModalShow, setReportModalShow] = useState<number | undefined>(1);
+  const [reportModalShow, setReportModalShow] = useState<number | undefined>(
+    undefined
+  );
   const [reactionIconData, setReactionIconData] = useState<
     CommentReactionIconType[]
   >([]);
@@ -98,7 +100,7 @@ const CatDetail = () => {
     images: [],
     admin_images: [],
     character: [],
-    favorite_things: [],
+    favorite_things: "",
     attendance: "",
     description: "",
     recommend: [],
@@ -109,6 +111,10 @@ const CatDetail = () => {
     (state: any) => state.user
   );
   const { catLoading } = useSelector((state: any) => state.cat);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     const commentFetch = async () => {
@@ -136,7 +142,7 @@ const CatDetail = () => {
     };
     commentFetch();
     fetchReactionData("reactionword");
-  }, [id]);
+  }, [id, catLoading]);
 
   useEffect(() => {
     if (!advertise) {
@@ -446,15 +452,7 @@ const CatDetail = () => {
             style={{ fill: "#FAD2B5", fontSize: "30px" }}
           />
           <div className="w-[150px]">好きなモノ・コト</div>
-          <div className="">
-            {retrieveCat.favorite_things &&
-              retrieveCat.favorite_things.map((item, key, arr) => (
-                <span key={key}>
-                  {item.favorite_things}
-                  {key !== arr.length - 1 && "、"}
-                </span>
-              ))}
-          </div>
+          <div className="">{retrieveCat?.favorite_things}</div>
         </div>
         <div className="w-full flex mt-6 items-center h-10">
           <div className="flex items-center">
@@ -528,7 +526,7 @@ const CatDetail = () => {
                     return (
                       <CatFavorite
                         imgUrl={e.imgs}
-                        recommend={retrieveCat.recommend.length}
+                        comment_images_id={e.id}
                         key={"inner" + i}
                         onClick={() => {
                           setShowImageDetail(true);
@@ -572,8 +570,10 @@ const CatDetail = () => {
                         )}
                         <TabList className="flex items-center gap-2">
                           <Tab
-                            className={`text-base text-[#B7B7B7] ${
-                              selectedTab === 0 && "text-[#070707]"
+                            className={`text-base ${
+                              selectedTab === 0
+                                ? "text-[#070707]"
+                                : "text-[#B7B7B7]"
                             } cursor-pointer active:border-none`}
                             onClick={() => fetchReactionData("reactionword")}
                           >
@@ -581,8 +581,10 @@ const CatDetail = () => {
                           </Tab>
                           <span>|</span>
                           <Tab
-                            className={`text-base text-[#B7B7B7] ${
-                              selectedTab === 1 && "text-[#070707]"
+                            className={`text-base ${
+                              selectedTab === 1
+                                ? "text-[#070707]"
+                                : "text-[#B7B7B7]"
                             } cursor-pointer active:border-none`}
                             onClick={() => fetchReactionData("reactioncat")}
                           >
@@ -590,8 +592,10 @@ const CatDetail = () => {
                           </Tab>
                           <span>|</span>
                           <Tab
-                            className={`text-base text-[#B7B7B7] ${
-                              selectedTab === 2 && "text-[#070707]"
+                            className={`text-base ${
+                              selectedTab === 2
+                                ? "text-[#070707]"
+                                : "text-[#B7B7B7]"
                             } cursor-pointer active:border-none`}
                             onClick={() => fetchReactionData("reactionheart")}
                           >
@@ -599,8 +603,10 @@ const CatDetail = () => {
                           </Tab>
                           <span>|</span>
                           <Tab
-                            className={`text-base text-[#B7B7B7] ${
-                              selectedTab === 3 && "text-[#070707]"
+                            className={`text-base ${
+                              selectedTab === 3
+                                ? "text-[#070707]"
+                                : "text-[#B7B7B7]"
                             } cursor-pointer active:border-none`}
                             onClick={() => fetchReactionData("reactionseason")}
                           >
@@ -608,8 +614,10 @@ const CatDetail = () => {
                           </Tab>
                           <span>|</span>
                           <Tab
-                            className={`text-base text-[#B7B7B7] ${
-                              selectedTab === 4 && "text-[#070707]"
+                            className={`text-base ${
+                              selectedTab === 4
+                                ? "text-[#070707]"
+                                : "text-[#B7B7B7]"
                             } cursor-pointer active:border-none`}
                             onClick={() => fetchReactionData("reactionparty")}
                           >
@@ -617,8 +625,10 @@ const CatDetail = () => {
                           </Tab>
                           <span>|</span>
                           <Tab
-                            className={`text-base text-[#B7B7B7] ${
-                              selectedTab === 5 && "text-[#070707]"
+                            className={`text-base ${
+                              selectedTab === 5
+                                ? "text-[#070707]"
+                                : "text-[#B7B7B7]"
                             } cursor-pointer active:border-none`}
                             onClick={() => fetchReactionData("reactionfood")}
                           >
@@ -724,7 +734,6 @@ const CatDetail = () => {
                 </Accordion>
               </div>
               <div className="mt-6">
-                <BtnAdd />
                 <div className="flex justify-between items-center mt-4">
                   <div className="flex flex-wrap gap-2">
                     {reactionIconData &&
@@ -919,7 +928,6 @@ const CatDetail = () => {
               images={e.images}
               admin_images={e.admin_images}
               character={e.character}
-              favorite_things={e.favorite_things}
               attendance={e.attendance}
               description={e.description}
               recommend={e.recommend}

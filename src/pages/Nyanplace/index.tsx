@@ -84,7 +84,7 @@ const Nyanplace = () => {
               shopTypeShow={shopTypeShow}
             />
           </div>
-          <div className="mt-[40px] mb-[64px] flex flex-wrap justify-between gap-y-4">
+          <div className="mt-[40px] mb-[64px] flex flex-wrap justify-start gap-3">
             {shopData &&
               shopData.map((e, key) => (
                 <NyanPlaceCard

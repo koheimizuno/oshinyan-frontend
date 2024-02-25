@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { LoginAction } from "../../../slices/auth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../../basic/Button";
 import InputText from "../../basic/InputText";
 
@@ -76,7 +76,24 @@ const LoginForm = () => {
           </button>
         </div>
       </div>
-      <Button />
+      <div className="text-center flex flex-col gap-6 sm:flex-row sm:justify-center sm:items-center sm:gap-10">
+        <div className="text-center pt-12">
+          <button
+            type="submit"
+            className="w-[274px] text-[24px] bg-[#FBA1B7] h-[48px] border-solid rounded-full py-2 ps-[42px] pe-[40px] leading-[32px] text-center text-white"
+          >
+            ログイン！
+          </button>
+        </div>
+        <div className="sm:mt-12 ">
+          <Link
+            to={"/login"}
+            className="w-[274px] text-[24px] bg-[#FBA1B7] h-[48px] border-solid rounded-full py-2 ps-[42px] pe-[40px] leading-[32px] text-center text-white"
+          >
+            会員登録はコチラ
+          </Link>
+        </div>
+      </div>
     </form>
   );
 };

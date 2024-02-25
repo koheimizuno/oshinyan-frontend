@@ -26,7 +26,13 @@ const FeatureDetail = () => {
       <SocialLinkGroup />
       <Container>
         <PageBar page="特集を見るニャ！（各特集）" />
-        <Title title={`特集（仮）${featureData?.title}`} />
+        <Title
+          title={`特集（仮）${
+            featureData?.character
+              ? featureData?.character
+              : featureData?.prefecture
+          }`}
+        />
         <div className="mt-[24px] text-[20px] leading-[27px]">
           {featureData?.description}
         </div>
@@ -43,7 +49,6 @@ const FeatureDetail = () => {
                 images={e.images}
                 admin_images={e.admin_images}
                 character={e.character}
-                favorite_things={e.favorite_things}
                 attendance={e.attendance}
                 description={e.description}
                 recommend={e.recommend}

@@ -18,10 +18,10 @@ function Login() {
     <MainLayout>
       <SocialLinkGroup />
       <Container>
-        <PageBar page="会員登録ニャ！" />
-        <Title title="会員登録ニャ！" />
+        <PageBar page="ログインするニャ！" />
+        <Title title="ログインするニャ！" />
         <div className="mt-[16px] text-[16px] leading-[21px]">
-          会員登録して、推しニャンを見つけて楽しむニャー
+          ログインして、好きなにゃんこを見つけるニャ！
         </div>
         <div className="mt-[32px] mb-[56px]">
           <LoginForm />

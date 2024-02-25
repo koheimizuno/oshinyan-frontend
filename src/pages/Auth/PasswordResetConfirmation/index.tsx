@@ -61,7 +61,7 @@ function PasswordResetConfirmation() {
               onChange={handleChange}
             />
           </label>
-          <Button />
+          <Button value="確認ニャ！" />
         </form>
       </div>
     </Container>

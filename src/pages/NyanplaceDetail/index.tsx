@@ -15,7 +15,7 @@ import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 
 function NyanplaceDetail() {
   const { id } = useParams();
-  const [shopData, setShopData] = useState<CatObjectType[]>([]);
+  const [shopNearByData, setShopNearByData] = useState<CatObjectType[]>([]);
   const [AshopData, setAShopData] = useState<ShopType>({
     shop_name: "",
     prefecture: "",
@@ -29,14 +29,18 @@ function NyanplaceDetail() {
     const fetchAShopData = async () => {
       const { data } = await axios.get(`api/shop/${id}/`);
       setAShopData(data);
-    };
-    const fetchShopData = async () => {
-      const { data } = await axios.get("api/shop/");
-      setShopData(data);
+      const fetchShopData = async () => {
+        const { data } = await axios.get(
+          `api/shopnearby/?address=${AshopData.address}`
+        );
+        setShopNearByData(data);
+      };
+      fetchShopData();
     };
     fetchAShopData();
-    fetchShopData();
-  }, [id]);
+  }, [id, AshopData.address]);
+
+  useEffect(() => {}, []);
 
   return (
     <MainLayout>
@@ -192,15 +196,20 @@ function NyanplaceDetail() {
           <div className="flex gap-4 pb-8 border-b border-[#CCCCCC]">
             <span>店舗ホームページ</span>
             {AshopData.url && (
-              <Link to={AshopData.url} className="border-b border-gray-400">
+              <a
+                href={AshopData.url}
+                className="border-b border-gray-400"
+                target="_blank"
+                rel="noreferrer"
+              >
                 {AshopData.url}
-              </Link>
+              </a>
             )}
           </div>
 
           <div>
             <p className="text-2xl pt-6 pb-4">ここで会える「看板猫」</p>
-            <div className="flex justify-between flex-wrap ">
+            <div className="flex justify-start flex-wrap gap-3">
               {AshopData.cat &&
                 AshopData.cat.map((e: any, i: number) => (
                   <CatCard
@@ -212,7 +221,6 @@ function NyanplaceDetail() {
                     images={e.images}
                     admin_images={e.admin_images}
                     character={e.character}
-                    favorite_things={e.favorite_things}
                     attendance={e.attendance}
                     description={e.description}
                     recommend={e.recommend}
@@ -235,9 +243,9 @@ function NyanplaceDetail() {
           <h3 className="text-2xl mt-[76px] mb-[40px] pb-3 border-b border-[#CBB279]">
             近くの「看板猫」がいる場所
           </h3>
-          <div className="mt-[40px] mb-[20px] flex flex-wrap justify-between gap-y-4">
-            {shopData &&
-              shopData.map((e: any, key: number) => {
+          <div className="mt-[40px] mb-[20px] flex justify-start flex-wrap gap-3">
+            {shopNearByData.length !== 0 ? (
+              shopNearByData.map((e: any, key: number) => {
                 return (
                   <NyanPlaceCard
                     key={key}
@@ -248,7 +256,10 @@ function NyanplaceDetail() {
                     shop_type={e.shop_type}
                   />
                 );
-              })}
+              })
+            ) : (
+              <p>Loading...</p>
+            )}
           </div>
           <div className="bg-white mb-[64px]">
             {/* <SignboardSearchBar list={regions} setList={setRegions} /> */}

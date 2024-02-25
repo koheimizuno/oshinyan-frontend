@@ -249,7 +249,6 @@ const MyPage = () => {
                 images={e.images}
                 admin_images={e.admin_images}
                 character={e.character}
-                favorite_things={e.favorite_things}
                 attendance={e.attendance}
                 description={e.description}
                 recommend={e.recommend}
@@ -268,7 +267,9 @@ const MyPage = () => {
                 id={item.id}
                 imgs={item.imgs}
                 created_date={formatDateTime(item.created_date)}
-                comment_images_recommend={item.comment_images_recommend}
+                comment_images_recommend_count={
+                  item.comment_images_recommend.length
+                }
               />
             ))}
         </div>

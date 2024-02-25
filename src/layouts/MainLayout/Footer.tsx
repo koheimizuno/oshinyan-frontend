@@ -1,7 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Footer = () => {
+interface Props {
+  handleScrollTop: () => void;
+}
+
+const Footer = ({ handleScrollTop }: Props) => {
   return (
     <div className="bg-[#F5F4EC] ">
       <div className="">
@@ -76,13 +80,16 @@ const Footer = () => {
             </div>
           </div>
           <div className="xs:mt-12 sm:mt-0 border-b-2 border-solid border-[#CCC]">
-            <span className="sm:absolute sm:bottom-0 sm:right-0 hover:opacity-70">
+            <div
+              className="sm:absolute sm:bottom-0 sm:right-0 hover:opacity-70 transform transition duration-500 cursor-pointer"
+              onClick={handleScrollTop}
+            >
               <img
                 src="/assets/imgs/footer-logo.webp"
                 alt="footer-logo"
                 className="xs:m-auto sm:m-0"
               />
-            </span>
+            </div>
           </div>
         </div>
         <div className="py-[16px] text-center">

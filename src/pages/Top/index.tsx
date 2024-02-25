@@ -135,7 +135,7 @@ const Top = () => {
       <Container>
         <RankingBar />
         <div className="mt-[12px]">
-          <div className="flex justify-between flex-wrap gap-3">
+          <div className="flex justify-start flex-wrap gap-3">
             {catData.length !== 0 &&
               catData.map((e, i) => (
                 <CatCard
@@ -147,7 +147,6 @@ const Top = () => {
                   images={e.images}
                   admin_images={e.admin_images}
                   character={e.character}
-                  favorite_things={e.favorite_things}
                   attendance={e.attendance}
                   description={e.description}
                   recommend={e.recommend}
@@ -156,41 +155,43 @@ const Top = () => {
               ))}
           </div>
         </div>
-        <div className="bg-white text-center py-[65px] mt-4 mb-[16px]">
-          <h3 className="text-[16px]">キャンペーン / AD</h3>
-        </div>
-        <div>
-          <div className="flex justify-between flex-wrap ">
-            {advertiseData.length !== 0 &&
-              advertiseData.map((e, i) => (
-                <CatCard
-                  key={i}
-                  id={e.id}
-                  is_public={e.is_public}
-                  advertise="advertise"
-                  cat_name={e.cat_name}
-                  shop={e.shop}
-                  images={e.images}
-                  character={e.character}
-                  favorite_things={e.favorite_things}
-                  attendance={e.attendance}
-                  description={e.description}
-                  recommend={e.recommend}
-                  created_date={e.created_date}
-                />
-              ))}
-          </div>
-        </div>
-        <div className="pt-[15px] pb-[35px] text-center border-b border-b-solid border-[#CCC]">
-          <button
-            className="w-[161px] h-[32px] rounded text-white bg-[#CBB279] shadow-inner text-[16px] py-[5px]"
-            onClick={handleMoreDisplay}
-          >
-            <span className="drop-shadow-[1px_1px_rgba(195,129,84,1)] translate-x-0.5">
-              もっとみるニャン！
-            </span>
-          </button>
-        </div>
+        {advertiseData.length !== 0 && (
+          <>
+            <div className="bg-white text-center py-[65px] mt-4 mb-[16px]">
+              <h3 className="text-[16px]">キャンペーン / AD</h3>
+            </div>
+            <div>
+              <div className="flex justify-start flex-wrap ">
+                {advertiseData.map((e, i) => (
+                  <CatCard
+                    key={i}
+                    id={e.id}
+                    is_public={e.is_public}
+                    advertise="advertise"
+                    cat_name={e.cat_name}
+                    shop={e.shop}
+                    images={e.images}
+                    character={e.character}
+                    attendance={e.attendance}
+                    description={e.description}
+                    recommend={e.recommend}
+                    created_date={e.created_date}
+                  />
+                ))}
+              </div>
+            </div>
+            <div className="pt-[15px] pb-[35px] text-center border-b border-b-solid border-[#CCC]">
+              <button
+                className="w-[161px] h-[32px] rounded text-white bg-[#CBB279] shadow-inner text-[16px] py-[5px]"
+                onClick={handleMoreDisplay}
+              >
+                <span className="drop-shadow-[1px_1px_rgba(195,129,84,1)] translate-x-0.5">
+                  もっとみるニャン！
+                </span>
+              </button>
+            </div>
+          </>
+        )}
       </Container>
       <Container>
         <div>

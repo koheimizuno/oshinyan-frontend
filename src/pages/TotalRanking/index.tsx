@@ -131,7 +131,6 @@ const TotalRanking = () => {
               images={catData[0].images}
               admin_images={catData[0].admin_images}
               character={catData[0].character}
-              favorite_things={catData[0].favorite_things}
               attendance={catData[0].attendance}
               description={catData[0].description}
               recommend={catData[0].recommend}
@@ -164,7 +163,6 @@ const TotalRanking = () => {
                     images={e.images}
                     admin_images={e.admin_images}
                     character={e.character}
-                    favorite_things={e.favorite_things}
                     attendance={e.attendance}
                     description={e.description}
                     recommend={e.recommend}
@@ -195,7 +193,6 @@ const TotalRanking = () => {
                       images={e.images}
                       admin_images={e.admin_images}
                       character={e.character}
-                      favorite_things={e.favorite_things}
                       attendance={e.attendance}
                       description={e.description}
                       recommend={e.recommend}

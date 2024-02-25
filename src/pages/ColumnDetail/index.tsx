@@ -71,9 +71,7 @@ function ColumnDetail() {
                 }`}
               >
                 <img src={item.imgs} alt={item.imgs} className="w-full" />
-                <p className="text-base mt-4 tracking-[-.2em]">
-                  {item.img_caption}
-                </p>
+                <p className="text-base mt-4">{item.img_caption}</p>
               </div>
               <p
                 className={`overflow-hidden col-span-7 ${styles.container} ${

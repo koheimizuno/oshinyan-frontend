@@ -39,10 +39,6 @@ const ShopRegisterForm = () => {
     e.preventDefault();
     let formData = new FormData();
     formData.append("shop_name", registerShopValues.shop_name);
-    formData.append("prefecture", registerShopValues.prefecture);
-    formData.append("city", registerShopValues.city);
-    formData.append("street", registerShopValues.street);
-    formData.append("detail_address", registerShopValues.detail_address);
     formData.append("email", registerShopValues.email);
     formData.append("phone", registerShopValues.phone);
     formData.append("shop_permission", shopPermission.toString());
@@ -101,7 +97,7 @@ const ShopRegisterForm = () => {
           />
         </div>
         {/* row 2 */}
-        <div className="py-4 border-b border-[#ccc]">
+        {/* <div className="py-4 border-b border-[#ccc]">
           <div className="flex justify-between items-start md:items-center gap-2 py-4">
             <div className="text-[14px] whitespace-nowrap flex items-center xs:w-[100px] sm:w-[184px]">
               店舗住所
@@ -201,14 +197,14 @@ const ShopRegisterForm = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         {/* row 3 */}
-        <div className="flex flex-col xs:flex xs:flex-row gap-2 py-2 xs:items-center pt-[16px] pb-8 border-b border-[#ccc]">
+        <div className="flex flex-col xs:flex xs:flex-row gap-2 xs:items-center py-8 border-b border-[#ccc]">
           <label
             className="text-[14px] xs:w-[100px] sm:w-[184px]"
             htmlFor="name_kana"
           >
-            <span>メールアドレス（登録者）</span>
+            <span className="tracking-tight">メールアドレス（登録者）</span>
             <span className="text-[16px] text-[#DC0000] ms-[8px] relative top-1">
               *
             </span>
@@ -221,7 +217,7 @@ const ShopRegisterForm = () => {
           />
         </div>
         {/* row 4 */}
-        <div className="flex flex-col xs:flex xs:flex-row gap-2 py-2 xs:items-center pt-[16px] pb-8 border-b border-[#ccc]">
+        <div className="flex flex-col xs:flex xs:flex-row gap-2 xs:items-center py-8 border-b border-[#ccc]">
           <label
             className="text-[14px] xs:w-[100px] sm:w-[184px]"
             htmlFor="name_kana"
@@ -236,7 +232,7 @@ const ShopRegisterForm = () => {
           />
         </div>
         {/* row 5 */}
-        <div className="flex flex-col xs:flex xs:flex-row gap-2 py-2 xs:items-center pt-[16px] pb-8 border-b border-[#ccc]">
+        <div className="flex flex-col xs:flex xs:flex-row gap-2 xs:items-center py-8 border-b border-[#ccc]">
           <label
             className="text-[14px] xs:w-[100px] sm:w-[184px]"
             htmlFor="name_kana"
@@ -268,7 +264,7 @@ const ShopRegisterForm = () => {
             </FormControl>
           </div>
         </div>
-        <div className="flex flex-col xs:flex xs:flex-row gap-2 py-2 xs:items-center pt-[16px] pb-8 border-b border-[#ccc]">
+        <div className="flex flex-col xs:flex xs:flex-row gap-2 xs:items-center py-8 border-b border-[#ccc]">
           <label
             className="text-[14px] xs:w-[100px] sm:w-[184px]"
             htmlFor="name_kana"
@@ -295,7 +291,7 @@ const ShopRegisterForm = () => {
         <div>
           <button
             type="button"
-            className="w-full mt-[24px] sm:h-[48px] sm:flex sm:justify-center bg-[#F3F3F3] py-3"
+            className="w-full mt-[36px] sm:h-[48px] sm:flex sm:justify-center bg-[#F3F3F3] py-3"
             onClick={handleUpload}
           >
             <FileUpload />{" "}

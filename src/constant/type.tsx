@@ -30,11 +30,6 @@ interface CharacterType {
   id: number;
   character: string;
 }
-
-interface FavoritethingType {
-  favorite_things: string;
-}
-
 interface RecommendType {
   id: number;
   user: number;
@@ -51,7 +46,7 @@ export interface CatObjectType {
   images?: ImageType[];
   admin_images?: ImageType[];
   character?: CharacterType[];
-  favorite_things?: FavoritethingType[];
+  favorite_things?: "";
   attendance: string;
   description: string;
   recommend: RecommendType[];
@@ -66,7 +61,7 @@ export interface BannerType {
 export interface CommentImageType {
   id: number;
   imgs: string;
-  comment_images_recommend: string[];
+  comment_images_recommend: any[];
   created_date: string;
 }
 

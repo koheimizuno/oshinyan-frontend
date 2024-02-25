@@ -3,6 +3,10 @@ import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import { Modal, Box } from "@mui/material";
 import Heart from "../../../basic/icons/Heart";
 import { CommentImageType } from "../../../../constant/type";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { CommentImageRecommentAction } from "../../../../slices/cat";
 
 type PropsType = {
   username: string;
@@ -12,18 +16,21 @@ type PropsType = {
   setShowAlbumGallery: any;
 };
 
-const ImageDetail = ({
+const CommentImageCarousel = ({
   username,
   comment,
   commentImgs,
   showAlbumGallery,
   setShowAlbumGallery,
 }: PropsType) => {
+  const dispatch = useDispatch();
+  const { user } = useSelector((state: any) => state.user);
   const handleCommentImageRecommend = async (id: number) => {
-    // await axios.post("api/commentimagerecommend", {
-    //   user_id: user.user_id,
-    //   comment_image_id: id,
-    // });
+    const actionData = {
+      user_id: user.user_id,
+      comment_image_id: id,
+    };
+    dispatch(CommentImageRecommentAction(actionData));
   };
 
   return (
@@ -85,7 +92,7 @@ const ImageDetail = ({
                         onClick={() => handleCommentImageRecommend(item.id)}
                       >
                         <Heart />
-                        000
+                        {item.comment_images_recommend.length}
                       </span>
                     </div>
                   </div>
@@ -213,4 +220,4 @@ const ImageDetail = ({
   );
 };
 
-export default ImageDetail;
+export default CommentImageCarousel;

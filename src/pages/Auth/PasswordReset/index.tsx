@@ -56,7 +56,7 @@ function PasswordReset() {
                 placeholder="メールアドレスを入力してください。"
               />
             </label>
-            <Button />
+            <Button value="確認ニャ！" />
           </form>
         )}
       </div>

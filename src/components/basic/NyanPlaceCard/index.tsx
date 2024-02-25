@@ -1,14 +1,12 @@
-import { useNavigate } from "react-router-dom";
 import PrefectureBtn from "../CustomButton";
 import { ShopType } from "../../../constant/type";
 
 const NyanPlaceCard = (props: ShopType) => {
-  const navigate = useNavigate();
   return (
-    <div className="w-[312px] h-[328px] bg-white m-auto">
+    <div className="w-[312px] h-[328px] bg-white">
       <div
         className="w-full h-[234px] cursor-pointer"
-        onClick={() => navigate(`/nyanplace/${props.id}`)}
+        onClick={() => (window.location.href = `/nyanplace/${props.id}`)}
       >
         {props.shop_images && (
           <img

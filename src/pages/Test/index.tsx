@@ -140,7 +140,6 @@ const Test = () => {
                   images={e.images}
                   admin_images={e.admin_images}
                   character={e.character}
-                  favorite_things={e.favorite_things}
                   attendance={e.attendance}
                   description={e.description}
                   recommend={e.recommend}

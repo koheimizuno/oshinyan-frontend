@@ -1,5 +1,4 @@
 import { useDispatch } from "react-redux";
-import { CommentImageType } from "../../../constant/type";
 import Heart from "../icons/Heart";
 import { CommentImageDeleteAction } from "../../../slices/cat";
 
@@ -7,8 +6,13 @@ const CommentImageCard = ({
   id,
   imgs,
   created_date,
-  comment_images_recommend,
-}: CommentImageType) => {
+  comment_images_recommend_count,
+}: {
+  id: number;
+  imgs: string;
+  created_date: string;
+  comment_images_recommend_count: number;
+}) => {
   const dispatch = useDispatch();
   const handleCommendImageDelete = () => {
     dispatch(CommentImageDeleteAction(id));
@@ -23,7 +27,7 @@ const CommentImageCard = ({
               <Heart />
             </div>
             <div className="text-white text-[12px] leading-4">
-              {comment_images_recommend}
+              {comment_images_recommend_count}
             </div>
           </div>
         </div>

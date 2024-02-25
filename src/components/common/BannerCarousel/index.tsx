@@ -47,7 +47,7 @@ function BannerCarousel() {
         {bannerData &&
           bannerData.map((item: any, key: any) => (
             <SwiperSlide key={key}>
-              <a href={item.url} rel="noreferrer" target="_blank">
+              <a href={item.url}>
                 <img
                   src={item.image}
                   alt={item.image}

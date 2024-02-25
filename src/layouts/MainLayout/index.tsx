@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import { PropsWithChildren } from "react";
@@ -6,17 +6,21 @@ import Container from "../../components/basic/Container";
 import { ReactNotifications } from "react-notifications-component";
 
 const MainLayout = (props: PropsWithChildren) => {
+  const topRef = useRef<HTMLDivElement>(null);
+  const handleScrollTop = () => {
+    topRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
   return (
     <div>
       <ReactNotifications />
       <div className="bg-white">
         <Container>
-          <Header />
+          <Header ref={topRef} />
         </Container>
       </div>
       {props.children}
       <Container>
-        <Footer />
+        <Footer handleScrollTop={handleScrollTop} />
       </Container>
     </div>
   );

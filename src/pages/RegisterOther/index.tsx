@@ -10,14 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 const RegisterOther = () => {
   const navigate = useNavigate();
-
   const [tabValue, setTabValue] = useState(1);
-
-  // useEffect(() => {
-  //   window.location.pathname === "/shopresister" && setTabValue(1);
-  //   window.location.pathname === "/ambassador" && setTabValue(2);
-  // }, []);
-
   const redirectShopRegister = () => {
     setTabValue(1);
     navigate("/shopresister");

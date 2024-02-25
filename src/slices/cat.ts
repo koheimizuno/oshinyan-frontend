@@ -37,11 +37,24 @@ export const CommentImageDeleteAction: any = createAsyncThunk(
   }
 );
 
+export const CommentImageRecommentAction: any = createAsyncThunk(
+  "commentimagerecommend",
+  async (payload, thunkApi) => {
+    try {
+      const { data } = await axios.post(`api/commentimagerecommend/`, payload);
+      return data;
+    } catch (error: any) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
 const catSlice = createSlice({
   name: "cat",
   initialState: {
     catLoading: false,
     recommend: {},
+    commentImageRecommend: {},
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -74,6 +87,15 @@ const catSlice = createSlice({
         state.recommend = action.payload;
       })
       .addCase(CommentImageDeleteAction.rejected, (state, action) => {
+        state.catLoading = false;
+      })
+      .addCase(CommentImageRecommentAction.pending, (state, action) => {
+        state.catLoading = true;
+      })
+      .addCase(CommentImageRecommentAction.fulfilled, (state, action) => {
+        state.catLoading = false;
+      })
+      .addCase(CommentImageRecommentAction.rejected, (state, action) => {
         state.catLoading = false;
       });
   },

@@ -30,7 +30,7 @@ const BlogColumnBox = (props: ColumnType) => {
         />
       </div>
       <div className="p-4">
-        <p className="h-[100px] py-2 tracking-tighter text-xl border-b border-[#ccc]">
+        <p className="h-[100px] overflow-hidden leading-relaxed pb-4 tracking-tighter text-xl border-b border-[#ccc]">
           {props.title}
         </p>
         <div className="flex justify-between py-4">
