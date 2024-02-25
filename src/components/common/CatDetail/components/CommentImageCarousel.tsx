@@ -1,11 +1,17 @@
+import SwiperCore from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import {
+  Controller,
+  Navigation,
+  Pagination,
+  Scrollbar,
+  A11y,
+} from "swiper/modules";
 import { Modal, Box } from "@mui/material";
 import Heart from "../../../basic/icons/Heart";
 import { CommentImageType } from "../../../../constant/type";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useState } from "react";
 import { CommentImageRecommentAction } from "../../../../slices/cat";
 
 type PropsType = {
@@ -16,6 +22,8 @@ type PropsType = {
   setShowAlbumGallery: any;
 };
 
+SwiperCore.use([Controller, Navigation]);
+
 const CommentImageCarousel = ({
   username,
   comment,
@@ -25,6 +33,9 @@ const CommentImageCarousel = ({
 }: PropsType) => {
   const dispatch = useDispatch();
   const { user } = useSelector((state: any) => state.user);
+  const [firstSwiper, setFirstSwiper] = useState<SwiperCore | null>(null);
+  const [secondSwiper, setSecondSwiper] = useState<SwiperCore | null>(null);
+
   const handleCommentImageRecommend = async (id: number) => {
     const actionData = {
       user_id: user.user_id,
@@ -58,20 +69,23 @@ const CommentImageCarousel = ({
         </div>
         <Swiper
           modules={[Navigation, Pagination, Scrollbar, A11y]}
+          loop={true}
+          centeredSlides={true}
+          centeredSlidesBounds={true}
           speed={800}
+          slidesPerView={1}
           pagination={{
             el: ".swiper-pagination",
             type: "bullets",
             clickable: true,
           }}
-          loop={true}
-          centeredSlides={true}
-          slidesPerView={1}
           navigation={{
             nextEl: `.arrow-right`,
             prevEl: `.arrow-left`,
           }}
           className="cursor-pointer w-[960px]"
+          onSwiper={setFirstSwiper}
+          controller={{ control: secondSwiper }}
         >
           {commentImgs.map((item, key) => (
             <SwiperSlide key={key} className="inline-block">
@@ -153,10 +167,16 @@ const CommentImageCarousel = ({
             modules={[Navigation, Pagination, Scrollbar, A11y]}
             loop={true}
             centeredSlides={true}
+            centeredSlidesBounds={true}
             spaceBetween="16px"
             slidesPerView={window.innerWidth / 160}
-            navigation={{ nextEl: ".arrow-right", prevEl: ".arrow-left" }}
-            className="h-40 cursor-pointer"
+            navigation={{
+              nextEl: `.arrow-right`,
+              prevEl: `.arrow-left`,
+            }}
+            className="h-40 cursor-pointer flex flex-wrap"
+            onSwiper={setSecondSwiper}
+            controller={{ control: firstSwiper }}
           >
             {commentImgs &&
               commentImgs.map((item: any, key: any) => (
@@ -168,50 +188,46 @@ const CommentImageCarousel = ({
                   />
                 </SwiperSlide>
               ))}
-            <button className="arrow-left xs:hidden md:block">
-              <div className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
-                <svg
-                  style={{ marginRight: "4px" }}
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="35"
-                  height="35"
-                  viewBox="0 0 12.728 12.728"
-                >
-                  <path
-                    id="arr_left"
-                    d="M499-1749v8h-8"
-                    transform="translate(-877.52 -1577.555) rotate(135)"
-                    fill="none"
-                    stroke="#fff"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="1"
-                    opacity="0.75"
-                  />
-                </svg>
-              </div>
+            <button className="arrow-left xs:hidden md:block absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
+              <svg
+                style={{ marginRight: "4px" }}
+                xmlns="http://www.w3.org/2000/svg"
+                width="35"
+                height="35"
+                viewBox="0 0 12.728 12.728"
+              >
+                <path
+                  id="arr_left"
+                  d="M499-1749v8h-8"
+                  transform="translate(-877.52 -1577.555) rotate(135)"
+                  fill="none"
+                  stroke="#fff"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1"
+                  opacity="0.75"
+                />
+              </svg>
             </button>
-            <button className="arrow-right xs:hidden md:block">
-              <div className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="35"
-                  height="35"
-                  viewBox="0 0 12.728 12.728"
-                >
-                  <path
-                    id="arr_right"
-                    d="M499-1749v8h-8"
-                    transform="translate(890.247 1590.283) rotate(-45)"
-                    fill="none"
-                    stroke="#fff"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="1"
-                    opacity="0.75"
-                  />
-                </svg>
-              </div>
+            <button className="arrow-right xs:hidden md:block absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="35"
+                height="35"
+                viewBox="0 0 12.728 12.728"
+              >
+                <path
+                  id="arr_right"
+                  d="M499-1749v8h-8"
+                  transform="translate(890.247 1590.283) rotate(-45)"
+                  fill="none"
+                  stroke="#fff"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1"
+                  opacity="0.75"
+                />
+              </svg>
             </button>
           </Swiper>
         </div>
