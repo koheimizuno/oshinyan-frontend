@@ -89,9 +89,9 @@ const SearchBar = ({
   return (
     <div className="relative bg-white">
       <Container>
-        <div className=" relative xs:block sm:grid sm:grid-cols-2 py-4">
-          <div className="xs:block sm:flex sm:justify-between sm:items-center gap-3 xs:pb-6 sm:pb-0">
-            <div className="xs:pb-6 sm:pb-0">
+        <div className=" relative xs:block md:grid md:grid-cols-2 md:items-center gap-5 py-4">
+          <div className="xs:block md:flex md:justify-between md:items-center gap-3 pb-6 md:pb-0">
+            <div className="xs:pb-6 md:pb-0">
               <p className="text-[16px]">看板猫を探す</p>
             </div>
             <form
@@ -115,8 +115,8 @@ const SearchBar = ({
               </button>
             </form>
           </div>
-          <div className="flex justify-end items-center">
-            <div className="w-[112px] h-[32px] bg-[#CBB279] shadow-inner rounded pl-[16px] pt-[3px] pb-[5px] pr-[10px] hover:opacity-70 active:opacity-100">
+          <div className="flex flex-col md:flex-row md:justify-end md:items-center gap-3">
+            <div className="w-full md:w-[112px] h-[32px] bg-[#CBB279] shadow-inner rounded pl-[16px] pt-[3px] pb-[5px] pr-[10px] hover:opacity-70 active:opacity-100">
               <button
                 className=" w-[100%] flex justify-between items-center"
                 onClick={() => {
@@ -138,7 +138,7 @@ const SearchBar = ({
                 ></span>
               </button>
             </div>
-            <div className="ml-[24px] w-[112px] h-[32px] bg-[#CBB279] shadow-inner rounded pl-[16px] pt-[3px] pb-[5px] pr-[10px] hover:opacity-70 active:opacity-100">
+            <div className="w-full md:w-[105px] h-[32px] bg-[#CBB279] shadow-inner rounded pl-[16px] pt-[3px] pb-[5px] pr-[10px] hover:opacity-70 active:opacity-100">
               <button
                 className="w-[100%] flex justify-between items-center"
                 onClick={() => {
@@ -160,7 +160,7 @@ const SearchBar = ({
                 ></span>
               </button>
             </div>
-            <div className="ml-[24px] h-[32px] bg-[#CBB279] shadow-inner rounded pl-[16px] pt-[3px] pb-[5px] pr-[10px] hover:opacity-70 active:opacity-100">
+            <div className="h-[32px] md:w-[130px] bg-[#CBB279] shadow-inner rounded pl-[16px] pt-[3px] pb-[5px] pr-[10px] hover:opacity-70 active:opacity-100">
               <button
                 className="w-[100%] flex justify-between items-center"
                 onClick={() => {
@@ -192,7 +192,7 @@ const SearchBar = ({
                   PREFECTURE.map((item, index) => {
                     return (
                       <div
-                        className="flex justify-center items-center "
+                        className="flex justify-center items-center"
                         key={index}
                       >
                         <div

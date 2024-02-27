@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MainLayout from "../../layouts/MainLayout";
 import Container from "../../components/basic/Container";
 import PageBar from "../../components/common/PageBar";
@@ -11,6 +11,11 @@ import { useNavigate } from "react-router-dom";
 const RegisterOther = () => {
   const navigate = useNavigate();
   const [tabValue, setTabValue] = useState(1);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const redirectShopRegister = () => {
     setTabValue(1);
     navigate("/shopresister");
