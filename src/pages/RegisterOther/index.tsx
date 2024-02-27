@@ -14,6 +14,8 @@ const RegisterOther = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    window.location.href.includes("shopresister") && setTabValue(1);
+    window.location.href.includes("ambassador") && setTabValue(2);
   }, []);
 
   const redirectShopRegister = () => {
