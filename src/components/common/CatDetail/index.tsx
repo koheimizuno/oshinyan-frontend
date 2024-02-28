@@ -921,24 +921,27 @@ const CatDetail = () => {
         同じ地域の看板猫を探すニャン！
       </div>
       <div className="w-full border-b border-[#CBB279] mt-4"></div>
-      <div className="mt-6 mb-12 flex flex-wrap justify-between gap-3">
+      <div className="mt-6 mb-12 flex flex-wrap justify-start gap-3">
         {catNearby.length !== 0 ? (
-          catNearby.map((e: CatObjectType, i: number) => (
-            <CatCard
-              key={i}
-              id={e.id}
-              is_public={e.is_public}
-              cat_name={e.cat_name}
-              shop={e.shop}
-              images={e.images}
-              admin_images={e.admin_images}
-              character={e.character}
-              attendance={e.attendance}
-              description={e.description}
-              recommend={e.recommend}
-              created_date={e.created_date}
-            />
-          ))
+          catNearby.map(
+            (e: CatObjectType, i: number) =>
+              e.id !== Number(id) && (
+                <CatCard
+                  key={i}
+                  id={e.id}
+                  is_public={e.is_public}
+                  cat_name={e.cat_name}
+                  shop={e.shop}
+                  images={e.images}
+                  admin_images={e.admin_images}
+                  character={e.character}
+                  attendance={e.attendance}
+                  description={e.description}
+                  recommend={e.recommend}
+                  created_date={e.created_date}
+                />
+              )
+          )
         ) : (
           <p>Loading...</p>
         )}

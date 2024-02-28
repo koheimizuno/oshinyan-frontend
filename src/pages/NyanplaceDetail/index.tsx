@@ -245,18 +245,19 @@ function NyanplaceDetail() {
           </h3>
           <div className="mt-[40px] mb-[20px] flex justify-start flex-wrap gap-3">
             {shopNearByData.length !== 0 ? (
-              shopNearByData.map((e: any, key: number) => {
-                return (
-                  <NyanPlaceCard
-                    key={key}
-                    id={e.id}
-                    shop_name={e.shop_name}
-                    prefecture={e.prefecture}
-                    shop_images={e.shop_images}
-                    shop_type={e.shop_type}
-                  />
-                );
-              })
+              shopNearByData.map(
+                (e: any, key: number) =>
+                  e.id !== Number(id) && (
+                    <NyanPlaceCard
+                      key={key}
+                      id={e.id}
+                      shop_name={e.shop_name}
+                      prefecture={e.prefecture}
+                      shop_images={e.shop_images}
+                      shop_type={e.shop_type}
+                    />
+                  )
+              )
             ) : (
               <p>Loading...</p>
             )}
