@@ -65,7 +65,7 @@ const CatCard = ({
   };
 
   return (
-    <div className="relative m-auto">
+    <div className="relative m-auto sm:m-0">
       <div
         className={`m-auto w-[312px] xs:max-w-[480px] xs:m-auto md:max-w-[312px] md:h-[512px] mb-[15px] ${
           hoverAction && "transform transition duration-500 scale-105"
@@ -267,7 +267,7 @@ const CatCard = ({
               <div className="px-[8px] whitespace-nowrap">
                 <p>性格</p>
               </div>
-              <div className="flex flex-wrap justify-start gap-1 h-14 overflow-hidden">
+              <div className="flex flex-wrap justify-start items-center gap-1 h-[60px] overflow-hidden">
                 {character &&
                   character.slice(0, 3).map((item, key, arr) => (
                     <div className="" key={key}>

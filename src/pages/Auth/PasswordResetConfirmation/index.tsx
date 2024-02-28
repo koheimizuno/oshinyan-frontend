@@ -4,7 +4,6 @@ import Container from "../../../components/basic/Container";
 import Button from "../../../components/basic/Button";
 import axios from "axios";
 import InputText from "../../../components/basic/InputText";
-import { Notification } from "../../../constant/notification";
 
 function PasswordResetConfirmation() {
   const navigate = useNavigate();

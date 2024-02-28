@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { Notification } from "../constant/notification";
 
 export const RecommendAction: any = createAsyncThunk(
   "catRecommend",
@@ -65,6 +66,7 @@ const catSlice = createSlice({
       .addCase(RecommendAction.fulfilled, (state, action) => {
         state.catLoading = false;
         state.recommend = action.payload;
+        Notification("success", "推しました。");
       })
       .addCase(RecommendAction.rejected, (state, action) => {
         state.catLoading = false;

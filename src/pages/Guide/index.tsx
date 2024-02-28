@@ -1,6 +1,5 @@
 import MainLayout from "../../layouts/MainLayout";
 import Container from "../../components/basic/Container";
-import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import PageBar from "../../components/common/PageBar";
 import Title from "../../components/common/Typography/Title";
 import GuideCarousel from "../../components/common/GuideCarousel";
@@ -8,7 +7,7 @@ import GuideCarousel from "../../components/common/GuideCarousel";
 const Guide = () => {
   return (
     <MainLayout>
-      <SocialLinkGroup />
+      {/* <SocialLinkGroup /> */}
       <Container>
         <PageBar page="推しニャンとは ?" />
         <Title title="推しニャンとは？" />

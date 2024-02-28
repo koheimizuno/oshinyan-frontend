@@ -12,7 +12,9 @@ function Login() {
   const { isAuthenticated } = useSelector((state: any) => state.user);
   const navigate = useNavigate();
   useEffect(() => {
-    isAuthenticated && navigate("/");
+    setTimeout(() => {
+      isAuthenticated && navigate("/");
+    }, 2000);
   }, [isAuthenticated, navigate]);
   return (
     <MainLayout>

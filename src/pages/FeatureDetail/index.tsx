@@ -27,10 +27,10 @@ const FeatureDetail = () => {
       <Container>
         <PageBar page="特集を見るニャ！（各特集）" />
         <Title
-          title={`特集（仮）${
+          title={`${
             featureData?.character
-              ? featureData?.character
-              : featureData?.prefecture
+              ? "性格 「" + featureData?.character + "」猫の特集"
+              : featureData?.prefecture + "の猫の特集"
           }`}
         />
         <div className="mt-[24px] text-[20px] leading-[27px]">

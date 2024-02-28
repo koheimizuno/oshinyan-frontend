@@ -1,4 +1,4 @@
-import React, { lazy, useEffect, useState } from "react";
+import React, { lazy, useState } from "react";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { PREFECTURE } from "../../../constant";
@@ -13,8 +13,6 @@ import {
   Select,
 } from "@mui/material";
 import { Close } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
-import { Notification } from "../../../constant/notification";
 const Box = lazy(() => import("@mui/material/Box"));
 
 interface avatarType {
@@ -24,7 +22,6 @@ interface avatarType {
 
 const SignupForm = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [checked, setChecked] = useState(false);
   const [avatarModal, setAvatarModal] = useState(false);
   const [avatars, setAvatars] = useState<avatarType[]>([]);

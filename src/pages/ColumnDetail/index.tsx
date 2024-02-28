@@ -55,10 +55,6 @@ function ColumnDetail() {
             className="h-full m-auto"
           />
         </div>
-        <p className="text-2xl mb-10 sm:mb-[70px] text-[#515151]">
-          {AcolumnData.subtitle}
-        </p>
-        <p className="text-[#515151] mb-16">{AcolumnData.description}</p>
         {AcolumnData.blog &&
           AcolumnData.blog.map((item, key) => (
             <div
@@ -66,12 +62,12 @@ function ColumnDetail() {
               key={key}
             >
               <div
-                className={`mx-auto col-span-5 ${
+                className={`mx-auto col-span-5 mb-5 ${
                   key % 2 !== 0 && "order-last"
                 }`}
               >
                 <img src={item.imgs} alt={item.imgs} className="w-full" />
-                <p className="text-base mt-4">{item.img_caption}</p>
+                <p className="text-base sm:mt-4">{item.img_caption}</p>
               </div>
               <p
                 className={`overflow-hidden col-span-7 ${styles.container} ${

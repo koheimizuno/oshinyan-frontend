@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { LoginAction } from "../../../slices/auth";
 import { Link, useNavigate } from "react-router-dom";
-import Button from "../../basic/Button";
 import InputText from "../../basic/InputText";
 
 const LoginForm = () => {
@@ -87,7 +86,7 @@ const LoginForm = () => {
         </div>
         <div className="sm:mt-12 ">
           <Link
-            to={"/login"}
+            to={"/registration"}
             className="w-[274px] text-[24px] bg-[#FBA1B7] h-[48px] border-solid rounded-full py-2 ps-[42px] pe-[40px] leading-[32px] text-center text-white"
           >
             会員登録はコチラ

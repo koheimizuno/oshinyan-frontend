@@ -6,7 +6,6 @@ import PrefectureBtn from "../../basic/CustomButton";
 import Twitter from "../../basic/icons/Twitter";
 import Instagram from "../../basic/icons/Instagram";
 import Border from "./components/Border";
-import HeartCircle from "../../basic/icons/HeartCircle";
 import CatFavorite from "./components/CatFavorite";
 import BtnAdd from "./components/BtnAdd";
 import BtnSolid from "./components/BtnSolid";
@@ -25,8 +24,6 @@ import {
   FormControlLabel,
   Checkbox,
 } from "@mui/material";
-import { CalendarMonthSharp } from "@mui/icons-material";
-import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
 import axios from "axios";
 import {
   CatObjectType,
@@ -112,9 +109,9 @@ const CatDetail = () => {
   );
   const { catLoading } = useSelector((state: any) => state.cat);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, []);
 
   useEffect(() => {
     const commentFetch = async () => {
@@ -316,7 +313,7 @@ const CatDetail = () => {
   ) => {
     e.preventDefault();
     try {
-      await axios.post("api/report/", {
+      await axios.post("other/report/", {
         user: user.user_id,
         url: window.location.href,
         kanji_name: reportValue.kanji_name,
@@ -423,22 +420,29 @@ const CatDetail = () => {
         </div>
         <Border className="mt-6" color="#CCCCCC" />
         <div className="w-full flex flex-col gap-6 md:flex md:flex-row md:items-start md:gap-8 mt-6">
-          <div className="flex gap-2">
+          <div className="flex gap-5">
             <div className="w-6 h-6">
-              <CalendarMonthSharp
-                fontSize="inherit"
-                style={{ fill: "#FAD2B5" }}
+              <img
+                src="/assets/imgs/icons/calendar.webp"
+                alt="calendar.webp"
+                className="w-6"
               />
             </div>
-            <div className="ms-2 whitespace-nowrap">出勤頻度</div>
-            <div className="ms-4">
+            <div className="whitespace-nowrap">出勤頻度</div>
+            <div className="w-[calc(100%-128px)]">
               <PrefectureBtn value={retrieveCat.attendance} />
             </div>
           </div>
-          <div className="flex gap-2">
-            <HeartCircle />
-            <div className="ms-2 whitespace-nowrap">性格</div>
-            <div className="ms-4 flex gap-2 flex-wrap">
+          <div className="flex gap-5">
+            <div className="w-6 h-6">
+              <img
+                src="/assets/imgs/icons/heart.webp"
+                alt="heart.webp"
+                className="w-6"
+              />
+            </div>
+            <div className="whitespace-nowrap">性格</div>
+            <div className="w-[calc(100%-96px)] flex gap-2 flex-wrap">
               {retrieveCat.character &&
                 retrieveCat.character.map((item, key) => (
                   <PrefectureBtn key={key} value={item.character} />
@@ -446,13 +450,14 @@ const CatDetail = () => {
             </div>
           </div>
         </div>
-        <div className="w-full flex mt-6">
-          <StarRateRoundedIcon
-            className="me-2"
-            style={{ fill: "#FAD2B5", fontSize: "30px" }}
-          />
-          <div className="w-[150px]">好きなモノ・コト</div>
-          <div className="">{retrieveCat?.favorite_things}</div>
+        <div className="w-full flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-5 mt-6">
+          <div className="flex justify-start items-center gap-5">
+            <div className="w-6 h-6">
+              <img src="/assets/imgs/icons/star.webp" alt="star.webp" />
+            </div>
+            <div className="w-[150px]">好きなモノ・コト</div>
+          </div>
+          <div className="ms-11 sm:ms-0">{retrieveCat?.favorite_things}</div>
         </div>
         <div className="w-full flex mt-6 items-center h-10">
           <div className="flex items-center">
@@ -468,7 +473,7 @@ const CatDetail = () => {
         </div>
         <div className="w-full border-b border-black mt-4"></div>
         <div className="flex flex-wrap mt-4">
-          <div className="flex flex-wrap gap-x-20 gap-y-4">
+          <div className="flex flex-start flex-wrap gap-x-5 gap-y-4">
             {recommendedUser &&
               recommendedUser
                 .sort(() => Math.random() - 0.5)
@@ -481,11 +486,6 @@ const CatDetail = () => {
                       alt={item.avatar_url}
                     />
                     <div className="ms-3">{item.username}</div>
-                    <img
-                      className="ms-5"
-                      src="/assets/imgs/icons/comment_abbr.webp"
-                      alt="comment_abbr"
-                    />
                   </div>
                 ))}
           </div>
@@ -535,203 +535,6 @@ const CatDetail = () => {
                       />
                     );
                   })}
-              </div>
-              <div className="mt-6">
-                <Accordion
-                  expanded={expanded[key] || false}
-                  onChange={() => handleAccordion(key)}
-                >
-                  <AccordionSummary
-                    aria-controls="panel1-content"
-                    id="panel1-header"
-                    style={{
-                      display: "inline-block",
-                      position: "relative",
-                    }}
-                  >
-                    <BtnAdd />
-                  </AccordionSummary>
-                  <AccordionDetails>
-                    <Tabs
-                      selectedIndex={selectedTab}
-                      onSelect={handleTabSelect}
-                      className="rounded-lg p-6 shadow-md border"
-                    >
-                      <div className="flex items-center gap-16">
-                        {isAuthenticated && (
-                          <div className="flex items-center gap-3">
-                            <img
-                              src={user.avatar && user.avatar.avatar}
-                              alt={user.username}
-                              width={32}
-                            />
-                            <span>{user.username}</span>
-                          </div>
-                        )}
-                        <TabList className="flex items-center gap-2">
-                          <Tab
-                            className={`text-base ${
-                              selectedTab === 0
-                                ? "text-[#070707]"
-                                : "text-[#B7B7B7]"
-                            } cursor-pointer active:border-none`}
-                            onClick={() => fetchReactionData("reactionword")}
-                          >
-                            メッセージ
-                          </Tab>
-                          <span>|</span>
-                          <Tab
-                            className={`text-base ${
-                              selectedTab === 1
-                                ? "text-[#070707]"
-                                : "text-[#B7B7B7]"
-                            } cursor-pointer active:border-none`}
-                            onClick={() => fetchReactionData("reactioncat")}
-                          >
-                            猫ちゃん
-                          </Tab>
-                          <span>|</span>
-                          <Tab
-                            className={`text-base ${
-                              selectedTab === 2
-                                ? "text-[#070707]"
-                                : "text-[#B7B7B7]"
-                            } cursor-pointer active:border-none`}
-                            onClick={() => fetchReactionData("reactionheart")}
-                          >
-                            気持ち
-                          </Tab>
-                          <span>|</span>
-                          <Tab
-                            className={`text-base ${
-                              selectedTab === 3
-                                ? "text-[#070707]"
-                                : "text-[#B7B7B7]"
-                            } cursor-pointer active:border-none`}
-                            onClick={() => fetchReactionData("reactionseason")}
-                          >
-                            季節
-                          </Tab>
-                          <span>|</span>
-                          <Tab
-                            className={`text-base ${
-                              selectedTab === 4
-                                ? "text-[#070707]"
-                                : "text-[#B7B7B7]"
-                            } cursor-pointer active:border-none`}
-                            onClick={() => fetchReactionData("reactionparty")}
-                          >
-                            パーティー
-                          </Tab>
-                          <span>|</span>
-                          <Tab
-                            className={`text-base ${
-                              selectedTab === 5
-                                ? "text-[#070707]"
-                                : "text-[#B7B7B7]"
-                            } cursor-pointer active:border-none`}
-                            onClick={() => fetchReactionData("reactionfood")}
-                          >
-                            フード
-                          </Tab>
-                        </TabList>
-                      </div>
-                      <div className="border-b pb-4 mb-4"></div>
-                      <div className="h-24 overflow-y-auto">
-                        <TabPanel className="flex flex-wrap gap-4">
-                          {reactionWord &&
-                            reactionWord.map((item, key) => (
-                              <img
-                                key={key}
-                                src={item.imgs}
-                                alt={item.imgs}
-                                width={40}
-                                className="cursor-pointer"
-                                onClick={() =>
-                                  handleCommentIcon(commentitem.id, item)
-                                }
-                              />
-                            ))}
-                        </TabPanel>
-                        <TabPanel className="flex flex-wrap gap-4">
-                          {reactionCat &&
-                            reactionCat.map((item, key) => (
-                              <img
-                                key={key}
-                                src={item.imgs}
-                                alt={item.imgs}
-                                width={40}
-                                className="cursor-pointer"
-                                onClick={() =>
-                                  handleCommentIcon(commentitem.id, item)
-                                }
-                              />
-                            ))}
-                        </TabPanel>
-                        <TabPanel className="flex flex-wrap gap-4">
-                          {reactionHeart &&
-                            reactionHeart.map((item, key) => (
-                              <img
-                                key={key}
-                                src={item.imgs}
-                                alt={item.imgs}
-                                width={40}
-                                className="cursor-pointer"
-                                onClick={() =>
-                                  handleCommentIcon(commentitem.id, item)
-                                }
-                              />
-                            ))}
-                        </TabPanel>
-                        <TabPanel className="flex flex-wrap gap-4">
-                          {reactionSeason &&
-                            reactionSeason.map((item, key) => (
-                              <img
-                                key={key}
-                                src={item.imgs}
-                                alt={item.imgs}
-                                width={40}
-                                className="cursor-pointer"
-                                onClick={() =>
-                                  handleCommentIcon(commentitem.id, item)
-                                }
-                              />
-                            ))}
-                        </TabPanel>
-                        <TabPanel className="flex flex-wrap gap-4">
-                          {reactionParty &&
-                            reactionParty.map((item, key) => (
-                              <img
-                                key={key}
-                                src={item.imgs}
-                                alt={item.imgs}
-                                width={40}
-                                className="cursor-pointer"
-                                onClick={() =>
-                                  handleCommentIcon(commentitem.id, item)
-                                }
-                              />
-                            ))}
-                        </TabPanel>
-                        <TabPanel className="flex flex-wrap gap-4">
-                          {reactionFood &&
-                            reactionFood.map((item, key) => (
-                              <img
-                                key={key}
-                                src={item.imgs}
-                                alt={item.imgs}
-                                width={40}
-                                className="cursor-pointer"
-                                onClick={() =>
-                                  handleCommentIcon(commentitem.id, item)
-                                }
-                              />
-                            ))}
-                        </TabPanel>
-                      </div>
-                    </Tabs>
-                  </AccordionDetails>
-                </Accordion>
               </div>
               <div className="mt-6">
                 <div className="flex justify-between items-center mt-4">
@@ -860,6 +663,201 @@ const CatDetail = () => {
                   </Modal>
                 </div>
               </div>
+              <div className="mt-6">
+                <Accordion
+                  expanded={expanded[key] || false}
+                  onChange={() => handleAccordion(key)}
+                >
+                  <AccordionSummary
+                    aria-controls="panel1-content"
+                    id="panel1-header"
+                    style={{
+                      display: "",
+                      position: "relative",
+                    }}
+                  >
+                    <BtnAdd />
+                  </AccordionSummary>
+                  <AccordionDetails
+                    style={{
+                      padding: 0,
+                    }}
+                  >
+                    <Tabs
+                      selectedIndex={selectedTab}
+                      onSelect={handleTabSelect}
+                      className="rounded-lg p-6 shadow-md border"
+                    >
+                      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-16">
+                        {isAuthenticated && (
+                          <div className="flex items-center gap-3">
+                            <img
+                              src={user.avatar && user.avatar.avatar}
+                              alt={user.username}
+                              width={32}
+                            />
+                            <span>{user.username}</span>
+                          </div>
+                        )}
+                        <TabList className="flex flex-col sm:flex-row sm:flex-wrap justify-between items-center gap-2">
+                          <Tab
+                            className={`text-base whitespace-nowrap ${
+                              selectedTab === 0
+                                ? "text-[#070707]"
+                                : "text-[#B7B7B7]"
+                            } cursor-pointer active:border-none`}
+                            onClick={() => fetchReactionData("reactionword")}
+                          >
+                            メッセージ
+                          </Tab>
+                          <span className="hidden sm:block">|</span>
+                          <Tab
+                            className={`text-base whitespace-nowrap ${
+                              selectedTab === 1
+                                ? "text-[#070707]"
+                                : "text-[#B7B7B7]"
+                            } cursor-pointer active:border-none`}
+                            onClick={() => fetchReactionData("reactioncat")}
+                          >
+                            猫ちゃん
+                          </Tab>
+                          <span className="hidden sm:block">|</span>
+                          <Tab
+                            className={`text-base whitespace-nowrap ${
+                              selectedTab === 2
+                                ? "text-[#070707]"
+                                : "text-[#B7B7B7]"
+                            } cursor-pointer active:border-none`}
+                            onClick={() => fetchReactionData("reactionheart")}
+                          >
+                            気持ち
+                          </Tab>
+                          <span className="hidden sm:block">|</span>
+                          <Tab
+                            className={`text-base whitespace-nowrap ${
+                              selectedTab === 3
+                                ? "text-[#070707]"
+                                : "text-[#B7B7B7]"
+                            } cursor-pointer active:border-none`}
+                            onClick={() => fetchReactionData("reactionseason")}
+                          >
+                            季節
+                          </Tab>
+                          <span className="hidden sm:block">|</span>
+                          <Tab
+                            className={`text-base whitespace-nowrap ${
+                              selectedTab === 4
+                                ? "text-[#070707]"
+                                : "text-[#B7B7B7]"
+                            } cursor-pointer active:border-none`}
+                            onClick={() => fetchReactionData("reactionparty")}
+                          >
+                            パーティー
+                          </Tab>
+                          <span className="hidden sm:block">|</span>
+                          <Tab
+                            className={`text-base whitespace-nowrap ${
+                              selectedTab === 5
+                                ? "text-[#070707]"
+                                : "text-[#B7B7B7]"
+                            } cursor-pointer active:border-none`}
+                            onClick={() => fetchReactionData("reactionfood")}
+                          >
+                            フード
+                          </Tab>
+                        </TabList>
+                      </div>
+                      <div className="border-b pb-4 mb-4"></div>
+                      <div className="h-24 overflow-y-auto">
+                        <TabPanel className="flex flex-wrap gap-2 sm:gap-4">
+                          {reactionWord &&
+                            reactionWord.map((item, key) => (
+                              <img
+                                key={key}
+                                src={item.imgs}
+                                alt={item.imgs}
+                                className="cursor-pointer w-7 sm:w-10"
+                                onClick={() =>
+                                  handleCommentIcon(commentitem.id, item)
+                                }
+                              />
+                            ))}
+                        </TabPanel>
+                        <TabPanel className="flex flex-wrap gap-2 sm:gap-4">
+                          {reactionCat &&
+                            reactionCat.map((item, key) => (
+                              <img
+                                key={key}
+                                src={item.imgs}
+                                alt={item.imgs}
+                                className="cursor-pointer w-7 sm:w-10"
+                                onClick={() =>
+                                  handleCommentIcon(commentitem.id, item)
+                                }
+                              />
+                            ))}
+                        </TabPanel>
+                        <TabPanel className="flex flex-wrap gap-2 sm:gap-4">
+                          {reactionHeart &&
+                            reactionHeart.map((item, key) => (
+                              <img
+                                key={key}
+                                src={item.imgs}
+                                alt={item.imgs}
+                                className="cursor-pointer w-7 sm:w-10"
+                                onClick={() =>
+                                  handleCommentIcon(commentitem.id, item)
+                                }
+                              />
+                            ))}
+                        </TabPanel>
+                        <TabPanel className="flex flex-wrap gap-2 sm:gap-4">
+                          {reactionSeason &&
+                            reactionSeason.map((item, key) => (
+                              <img
+                                key={key}
+                                src={item.imgs}
+                                alt={item.imgs}
+                                className="cursor-pointer w-7 sm:w-10"
+                                onClick={() =>
+                                  handleCommentIcon(commentitem.id, item)
+                                }
+                              />
+                            ))}
+                        </TabPanel>
+                        <TabPanel className="flex flex-wrap gap-2 sm:gap-4">
+                          {reactionParty &&
+                            reactionParty.map((item, key) => (
+                              <img
+                                key={key}
+                                src={item.imgs}
+                                alt={item.imgs}
+                                className="cursor-pointer w-7 sm:w-10"
+                                onClick={() =>
+                                  handleCommentIcon(commentitem.id, item)
+                                }
+                              />
+                            ))}
+                        </TabPanel>
+                        <TabPanel className="flex flex-wrap gap-2 sm:gap-4">
+                          {reactionFood &&
+                            reactionFood.map((item, key) => (
+                              <img
+                                key={key}
+                                src={item.imgs}
+                                alt={item.imgs}
+                                className="cursor-pointer w-7 sm:w-10"
+                                onClick={() =>
+                                  handleCommentIcon(commentitem.id, item)
+                                }
+                              />
+                            ))}
+                        </TabPanel>
+                      </div>
+                    </Tabs>
+                  </AccordionDetails>
+                </Accordion>
+              </div>
               {showImageDetail && selectedDetail === key && (
                 <CommentImageCarousel
                   username={commentitem.user.username}
@@ -873,14 +871,19 @@ const CatDetail = () => {
           ))}
         {/* 2 */}
         <Border className="mt-5 border-dashed" color="#CCCCCC" />
-        <div className="mt-8 flex justify-center">
-          <BtnSolid onClick={() => {}} />
-        </div>
-        {/* album */}
-        <div className="text-base mt-14 font-medium">ニャンアルバム</div>
-        <div className="w-full border-b border-black mt-4"></div>
+        {commentData.length !== 0 && (
+          <div className="mt-8 flex justify-center">
+            <BtnSolid onClick={() => {}} />
+          </div>
+        )}
+        {commentImgs.length !== 0 && (
+          <>
+            <div className="text-base mt-14 font-medium">ニャンアルバム</div>
+            <div className="w-full border-b border-black mt-4"></div>
+          </>
+        )}
         <div className="sm:grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {commentImgs && displayAll
+          {commentImgs.length !== 0 && displayAll
             ? commentImgs.map((item, key) => (
                 <CatImage
                   imgUrl={item.imgs}
@@ -900,15 +903,17 @@ const CatDetail = () => {
                   />
                 ))}
         </div>
-        <div className="text-right mt-[57px] mb-[32px] px-2">
-          <button
-            type="button"
-            className="underline"
-            onClick={() => setDisplayAll(true)}
-          >
-            すべての写真を見るニャン
-          </button>
-        </div>
+        {commentImgs.length !== 0 && (
+          <div className="text-right mt-[57px] mb-[32px] px-2">
+            <button
+              type="button"
+              className="underline"
+              onClick={() => setDisplayAll(true)}
+            >
+              すべての写真を見るニャン
+            </button>
+          </div>
+        )}
       </div>
 
       {/* signboard cat in the same place */}

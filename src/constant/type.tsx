@@ -92,8 +92,6 @@ export interface ColumnType {
   hero_image: string;
   created_date: string;
   detail_image?: string;
-  subtitle?: string;
-  description?: string;
   blog?: ColumnBlogType[];
 }
 

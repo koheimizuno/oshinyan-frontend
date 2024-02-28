@@ -17,6 +17,7 @@ import SearchBar from "../../components/common/SearchBar";
 const Top = () => {
   const [catData, setCatData] = useState<CatObjectType[]>([]);
   const [advertiseData, setAdvertiseData] = useState<CatObjectType[]>([]);
+  const [advertiseMoreBtnShow, setAdvertiseMoreBtnShow] = useState(true);
   const { catLoading } = useSelector((state: any) => state.cat);
   const [prefectureKeyword, selectPrefectureKeyword] = useState<string[]>([]);
   const [prefectureShow, setPrefectureShow] = useState(false);
@@ -40,8 +41,8 @@ const Top = () => {
     };
     const fetchAdvertiseCatData = async () => {
       try {
-        const { data } = await axios.get("api/randomadvertise");
-        setAdvertiseData(data);
+        const { data } = await axios.get("api/advertise/");
+        setAdvertiseData(data.data);
       } catch (error) {
         Notification("error", "サーバーエラー");
       }
@@ -50,7 +51,17 @@ const Top = () => {
     fetchAdvertiseCatData();
   }, [isAuthenticated, catLoading, authLoading]);
 
-  const handleMoreDisplay = () => {};
+  const handleMoreDisplay = async (count: number) => {
+    try {
+      const { data } = await axios.get(`api/advertise/?count=${count + 6}`);
+      setAdvertiseData(data.data);
+      setAdvertiseMoreBtnShow(data.end);
+    } catch (error) {
+      Notification("error", "サーバーエラー");
+    }
+  };
+
+  console.log(advertiseMoreBtnShow);
 
   const submitSearchPrefecture = async () => {
     try {
@@ -161,35 +172,38 @@ const Top = () => {
               <h3 className="text-[16px]">キャンペーン / AD</h3>
             </div>
             <div>
-              <div className="flex justify-start flex-wrap ">
-                {advertiseData.map((e, i) => (
-                  <CatCard
-                    key={i}
-                    id={e.id}
-                    is_public={e.is_public}
-                    advertise="advertise"
-                    cat_name={e.cat_name}
-                    shop={e.shop}
-                    images={e.images}
-                    character={e.character}
-                    attendance={e.attendance}
-                    description={e.description}
-                    recommend={e.recommend}
-                    created_date={e.created_date}
-                  />
-                ))}
+              <div className="flex justify-start flex-wrap gap-3">
+                {advertiseData &&
+                  advertiseData.map((e, i) => (
+                    <CatCard
+                      key={i}
+                      id={e.id}
+                      is_public={e.is_public}
+                      advertise="advertise"
+                      cat_name={e.cat_name}
+                      shop={e.shop}
+                      images={e.images}
+                      character={e.character}
+                      attendance={e.attendance}
+                      description={e.description}
+                      recommend={e.recommend}
+                      created_date={e.created_date}
+                    />
+                  ))}
               </div>
             </div>
-            <div className="pt-[15px] pb-[35px] text-center border-b border-b-solid border-[#CCC]">
-              <button
-                className="w-[161px] h-[32px] rounded text-white bg-[#CBB279] shadow-inner text-[16px] py-[5px]"
-                onClick={handleMoreDisplay}
-              >
-                <span className="drop-shadow-[1px_1px_rgba(195,129,84,1)] translate-x-0.5">
-                  もっとみるニャン！
-                </span>
-              </button>
-            </div>
+            {advertiseMoreBtnShow && (
+              <div className="py-[35px] text-center border-b border-b-solid border-[#CCC]">
+                <button
+                  className="w-[161px] h-[32px] rounded text-white bg-[#CBB279] shadow-inner text-[16px] py-[5px]"
+                  onClick={() => handleMoreDisplay(advertiseData.length)}
+                >
+                  <span className="drop-shadow-[1px_1px_rgba(195,129,84,1)] translate-x-0.5">
+                    もっとみるニャン！
+                  </span>
+                </button>
+              </div>
+            )}
           </>
         )}
       </Container>

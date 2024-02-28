@@ -3,7 +3,6 @@ import FileUpload from "../../basic/icons/FileUpload";
 import PrivacyComponent from "../PrivacyComponent";
 import InputText from "../../basic/InputText";
 import axios from "axios";
-import { PREFECTURE } from "../../../constant";
 import { Notification } from "../../../constant/notification";
 import {
   FormControl,
@@ -11,8 +10,6 @@ import {
   RadioGroup,
   FormControlLabel,
   Checkbox,
-  Select,
-  MenuItem,
 } from "@mui/material";
 
 const ShopRegisterForm = () => {
