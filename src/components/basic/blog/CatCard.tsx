@@ -1,10 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import CustomButton from "../CustomButton";
 import { CatObjectType } from "../../../constant/type";
 import { useDispatch, useSelector } from "react-redux";
 import { RecommendAction, RecommendOutAction } from "../../../slices/cat";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import { isNewUtil } from "../../../utils/functions";

@@ -22,11 +22,11 @@ const ColumnSection = () => {
             推しニャン！コラム
           </h3>
         </div>
-        <div className="flex justify-start flex-wrap">
+        <div className="flex justify-start flex-wrap gap-3">
           {columnData.length !== 0 ? (
             columnData.map((e, i) => (
               <BlogColumnBox
-                key={i}
+              key={i}
                 id={e.id}
                 hero_image={e.hero_image}
                 title={e.title}

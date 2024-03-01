@@ -82,7 +82,7 @@ function ColumnDetail() {
               />
             </div>
           ))}
-        <div className="mt-6 mb-10 flex flex-wrap justify-start">
+        <div className="mt-6 mb-10 flex flex-wrap justify-start gap-3">
           {columnData &&
             columnData.map((e, i) => (
               <BlogColumnBox
