@@ -8,6 +8,7 @@ import Title from "../../components/common/Typography/Title";
 import axios from "axios";
 import { ShopType } from "../../constant/type";
 import NyanPlaceSearchBar from "../../components/common/NyanPlaceSearchBar";
+import HelmetPage from "../../layouts/MainLayout/HelmetPage";
 
 const Nyanplace = () => {
   const [shopData, setShopData] = useState<ShopType[]>([]);
@@ -66,6 +67,11 @@ const Nyanplace = () => {
 
   return (
     <>
+      <HelmetPage
+        title="看板猫を探すページ"
+        description="看板猫を探して、自分の好みの看板猫に「推しボタン」を押したり、コメントしたりして楽しんでみてください。"
+        keywords="看板猫, 推しニャン, 猫のいる店"
+      />
       <MainLayout>
         <SocialLinkGroup />
         <Container>

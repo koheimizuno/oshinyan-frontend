@@ -29,35 +29,16 @@ const SignupForm = () => {
   const [avatar, setAvatar] = useState(0);
   const [values, setValues] = useState({
     username: "",
-    prefecture: "北海道",
+    prefecture: "",
     email: "",
     password: "",
   });
-  const [errorMsg, setErrorMsg] = useState({
-    avatar: "",
-  });
-
-  // useEffect(() => {
-  //   const handleBeforeUnload = () => {
-  //     if (
-  //       values.username ||
-  //       values.prefecture !== "北海道" ||
-  //       values.email ||
-  //       values.password
-  //     ) {
-  //       Notification("warning", "登録ニャ！を押さないと変更されません");
-  //     }
-  //   };
-  //   window.addEventListener("beforeunload", handleBeforeUnload);
-  //   return () => {
-  //     window.removeEventListener("beforeunload", handleBeforeUnload);
-  //   };
-  // }, []);
+  const [submitAfter, setSubmitAfter] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (checked) {
-      if (avatar) {
+      if (avatar && values.prefecture) {
         dispatch(
           RegistrationAction({
             username: values.username,
@@ -67,13 +48,9 @@ const SignupForm = () => {
             avatar: avatar,
           })
         );
-      } else {
-        setErrorMsg({
-          ...errorMsg,
-          avatar: "猫のアイコンを選択してください。",
-        });
       }
     }
+    setSubmitAfter(true);
   };
 
   const handleChange = (newFormData: { [key: string]: string }) => {
@@ -103,7 +80,7 @@ const SignupForm = () => {
             <button
               type="button"
               className={`w-[72px] h-[72px] me-[38px] text-sm bg-[#ccc] rounded-full flex justify-center items-center text-center cursor-pointer ${
-                errorMsg.avatar && "border-2 border-red-400"
+                submitAfter && !avatar && "border-2 border-red-400"
               }`}
               onClick={handleAvatar}
             >
@@ -187,7 +164,11 @@ const SignupForm = () => {
                     onChange={(e: any) =>
                       setValues({ ...values, [e.target.name]: e.target.value })
                     }
-                    className="bg-gradient-to-b from-[#EAEAEA] to-[#D3D3D3] h-10 text-center text-[16px] w-[144px]"
+                    className={`bg-gradient-to-b from-[#EAEAEA] to-[#D3D3D3] h-10 text-center text-[16px] w-[144px] ${
+                      submitAfter &&
+                      !values.prefecture &&
+                      "border border-red-500"
+                    }`}
                     sx={{ borderRadius: "20px" }}
                   >
                     {PREFECTURE &&

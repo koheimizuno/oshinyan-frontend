@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Twitter from "../../basic/icons/Twitter";
-import Instagram from "../../basic/icons/Instagram";
 
 function SocialLinkGroup(props: any) {
   return (
@@ -13,11 +12,8 @@ function SocialLinkGroup(props: any) {
       <Link to={"/mypage"} className="p-4 inline-block">
         <img src="/assets/imgs/icons/fancier-pink.webp" alt="fancier-pink" />
       </Link>
-      <Link to={""} className="p-4 inline-block">
+      <Link to="https://twitter.com/oshinyan222" className="p-4 inline-block">
         <Twitter />
-      </Link>
-      <Link to={""} className="p-4 inline-block">
-        <Instagram />
       </Link>
     </div>
   );

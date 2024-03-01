@@ -16,6 +16,7 @@ import axios from "axios";
 import { CatObjectType } from "../../constant/type";
 import Container from "../../components/basic/Container";
 import BannerCarousel from "../../components/common/BannerCarousel";
+import HelmetPage from "../../layouts/MainLayout/HelmetPage";
 
 const TotalRanking = () => {
   const [prefectureKeyword, selectPrefectureKeyword] = useState<string[]>([]);
@@ -84,110 +85,86 @@ const TotalRanking = () => {
   };
 
   return (
-    <MainLayout>
-      <SocialLinkGroup className="h-[60px]" />
-      <BannerCarousel />
-      <SearchBar
-        prefectureKeyword={prefectureKeyword}
-        selectPrefectureKeyword={selectPrefectureKeyword}
-        prefectureShow={prefectureShow}
-        setPrefectureShow={setPrefectureShow}
-        submitSearchPrefecture={submitSearchPrefecture}
-        characterKeyword={characterKeyword}
-        selectCharacterKeyword={selectCharacterKeyword}
-        characterShow={characterShow}
-        setCharacterShow={setCharacterShow}
-        submitSearchCharacter={submitSearchCharacter}
-        attendanceKeyword={attendanceKeyword}
-        selectAttendanceKeyword={selectAttendanceKeyword}
-        attendanceShow={attendanceShow}
-        setAttendanceShow={setAttendanceShow}
-        submitSearchAttendance={submitSearchAttendance}
-        setSearchWord={setSearchWord}
-        searchWord={searchWord}
-        handleFreeSearch={handleFreeSearch}
+    <>
+      <HelmetPage
+        title="推しニャン｜全国の看板猫総合ランキング"
+        description="全国にいる看板猫から、皆様の「推し」を集計して、総合ランキングを発表させていただいております。"
+        keywords="看板猫, 推しニャン, 猫のいる店"
       />
-      <div className="bg-[#F5F4EC]">
-        <Container>
-          <RankingBar />
-          <div className="xs:max-w-[480px] xs:w-full xs:m-auto xs:mt-[24px] xs:mb-[24px] md:ml-0 ranking-1">
-            {catData.length !== 0 && (
-              <div className="ranking-1-tle flex gap-[8px]">
-                <img
-                  src="/assets/imgs/icons/ranking-1-cap.svg"
-                  alt="ranking-1-cap"
-                />
-                <span className="text-[24px] font-bold leading-[32px]">
-                  1位
-                </span>
-              </div>
-            )}
-          </div>
-          {catData[0] && (
-            <LargeCatCard
-              id={catData[0].id}
-              cat_name={catData[0].cat_name}
-              shop={catData[0].shop}
-              images={catData[0].images}
-              admin_images={catData[0].admin_images}
-              character={catData[0].character}
-              attendance={catData[0].attendance}
-              description={catData[0].description}
-              recommend={catData[0].recommend}
-              created_date={catData[0].created_date}
-            />
-          )}
-          <div className="md:flex md:justify-between md:flex-wrap ">
-            {catData &&
-              catData.slice(1, 4).map((e, i) => (
-                <div className="flex flex-col" key={i}>
-                  <div className="xs:max-w-[480px] xs:w-full xs:m-auto xs:mt-[24px] xs:mb-[15px] md:ml-0 flex leading-[27px]">
-                    {i === 0 && (
-                      <div className="w-[36px] h-[26px] me-[12px]">
-                        <CapSecond />
-                      </div>
-                    )}
-                    {i === 1 && (
-                      <div className="w-[36px] h-[26px] me-[12px]">
-                        <CapThird />
-                      </div>
-                    )}
-                    {i + 2}位
-                  </div>
-                  <CatCard
-                    key={i}
-                    id={e.id}
-                    is_public={e.is_public}
-                    cat_name={e.cat_name}
-                    shop={e.shop}
-                    images={e.images}
-                    admin_images={e.admin_images}
-                    character={e.character}
-                    attendance={e.attendance}
-                    description={e.description}
-                    recommend={e.recommend}
-                    created_date={e.created_date}
+      <MainLayout>
+        <SocialLinkGroup className="h-[60px]" />
+        <BannerCarousel />
+        <SearchBar
+          prefectureKeyword={prefectureKeyword}
+          selectPrefectureKeyword={selectPrefectureKeyword}
+          prefectureShow={prefectureShow}
+          setPrefectureShow={setPrefectureShow}
+          submitSearchPrefecture={submitSearchPrefecture}
+          characterKeyword={characterKeyword}
+          selectCharacterKeyword={selectCharacterKeyword}
+          characterShow={characterShow}
+          setCharacterShow={setCharacterShow}
+          submitSearchCharacter={submitSearchCharacter}
+          attendanceKeyword={attendanceKeyword}
+          selectAttendanceKeyword={selectAttendanceKeyword}
+          attendanceShow={attendanceShow}
+          setAttendanceShow={setAttendanceShow}
+          submitSearchAttendance={submitSearchAttendance}
+          setSearchWord={setSearchWord}
+          searchWord={searchWord}
+          handleFreeSearch={handleFreeSearch}
+        />
+        <div className="bg-[#F5F4EC]">
+          <Container>
+            <RankingBar />
+            <div className="xs:max-w-[480px] xs:w-full xs:m-auto xs:mt-[24px] xs:mb-[24px] md:ml-0 ranking-1">
+              {catData.length !== 0 && (
+                <div className="ranking-1-tle flex gap-[8px]">
+                  <img
+                    src="/assets/imgs/icons/ranking-1-cap.svg"
+                    alt="ranking-1-cap"
                   />
+                  <span className="text-[24px] font-bold leading-[32px]">
+                    1位
+                  </span>
                 </div>
-              ))}
-          </div>
-          <div
-            className={`flex-wrap m-auto mt-[16px] grid grid-cols-2 gap-x-[24px] gap-y-[16px] border-b border-[#CBB279] ${
-              catData.length !== 0 && "pb-[65px]"
-            }`}
-          >
-            {catData &&
-              catData.slice(4, 10).map((e, i) => (
-                <div
-                  className="xs:max-w-[300px] md:max-w-none flex flex-col m-auto w-full"
-                  key={i}
-                >
-                  <div className="m-auto">
-                    <div className="flex leading-[27px] mb-[7px]">
-                      {i + 5}位
+              )}
+            </div>
+            {catData[0] && (
+              <LargeCatCard
+                id={catData[0].id}
+                cat_name={catData[0].cat_name}
+                shop={catData[0].shop}
+                images={catData[0].images}
+                admin_images={catData[0].admin_images}
+                character={catData[0].character}
+                attendance={catData[0].attendance}
+                description={catData[0].description}
+                recommend={catData[0].recommend}
+                created_date={catData[0].created_date}
+              />
+            )}
+            <div className="md:flex md:justify-between md:flex-wrap ">
+              {catData &&
+                catData.slice(1, 4).map((e, i) => (
+                  <div className="flex flex-col" key={i}>
+                    <div className="xs:max-w-[480px] xs:w-full xs:m-auto xs:mt-[24px] xs:mb-[15px] md:ml-0 flex leading-[27px]">
+                      {i === 0 && (
+                        <div className="w-[36px] h-[26px] me-[12px]">
+                          <CapSecond />
+                        </div>
+                      )}
+                      {i === 1 && (
+                        <div className="w-[36px] h-[26px] me-[12px]">
+                          <CapThird />
+                        </div>
+                      )}
+                      {i + 2}位
                     </div>
-                    <SmallCatCard
+                    <CatCard
+                      key={i}
                       id={e.id}
+                      is_public={e.is_public}
                       cat_name={e.cat_name}
                       shop={e.shop}
                       images={e.images}
@@ -199,34 +176,65 @@ const TotalRanking = () => {
                       created_date={e.created_date}
                     />
                   </div>
+                ))}
+            </div>
+            <div
+              className={`flex-wrap m-auto mt-[16px] grid grid-cols-2 gap-x-[24px] gap-y-[16px] border-b border-[#CBB279] ${
+                catData.length !== 0 && "pb-[65px]"
+              }`}
+            >
+              {catData &&
+                catData.slice(4, 10).map((e, i) => (
+                  <div
+                    className="xs:max-w-[300px] md:max-w-none flex flex-col m-auto w-full"
+                    key={i}
+                  >
+                    <div className="m-auto">
+                      <div className="flex leading-[27px] mb-[7px]">
+                        {i + 5}位
+                      </div>
+                      <SmallCatCard
+                        id={e.id}
+                        cat_name={e.cat_name}
+                        shop={e.shop}
+                        images={e.images}
+                        admin_images={e.admin_images}
+                        character={e.character}
+                        attendance={e.attendance}
+                        description={e.description}
+                        recommend={e.recommend}
+                        created_date={e.created_date}
+                      />
+                    </div>
+                  </div>
+                ))}
+            </div>
+            <div>
+              <div className="pt-[65px] pb-[80px]">
+                <div className="mb-[24px] hover:opacity-70">
+                  <Link to="/nyanplace" className="relative">
+                    <img
+                      src="/assets/imgs/nyanplace-banner.webp"
+                      alt="nyanplace-banner"
+                    />
+                    <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[32px] text-white font-bold tracking-widest">
+                      『看板猫に会える場所』一覧
+                    </p>
+                  </Link>
                 </div>
-              ))}
-          </div>
-          <div>
-            <div className="pt-[65px] pb-[80px]">
-              <div className="mb-[24px] hover:opacity-70">
-                <Link to="/nyanplace" className="relative">
-                  <img
-                    src="/assets/imgs/nyanplace-banner.webp"
-                    alt="nyanplace-banner"
-                  />
-                  <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[32px] text-white font-bold tracking-widest">
-                    『看板猫に会える場所』一覧
-                  </p>
-                </Link>
-              </div>
-              <div className="hover:opacity-70">
-                <Link to="/shopresister">
-                  <img src="/assets/imgs/member.webp" alt="member" />
-                </Link>
+                <div className="hover:opacity-70">
+                  <Link to="/shopresister">
+                    <img src="/assets/imgs/member.webp" alt="member" />
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
-        </Container>
-      </div>
-      <Store />
-      <Notices />
-    </MainLayout>
+          </Container>
+        </div>
+        <Store />
+        <Notices />
+      </MainLayout>
+    </>
   );
 };
 

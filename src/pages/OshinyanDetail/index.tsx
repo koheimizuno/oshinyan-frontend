@@ -6,15 +6,18 @@ import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 
 const OshinyanDetail = () => {
   return (
-    <MainLayout>
-      <SocialLinkGroup />
-      <Container>
-        <PageBar page="看板猫詳細" />
-        <div className="mt-2">
-          <CatDetail />
-        </div>
-      </Container>
-    </MainLayout>
+    <>
+      
+      <MainLayout>
+        <SocialLinkGroup />
+        <Container>
+          <PageBar page="看板猫詳細" />
+          <div className="mt-2">
+            <CatDetail />
+          </div>
+        </Container>
+      </MainLayout>
+    </>
   );
 };
 

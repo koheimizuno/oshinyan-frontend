@@ -4,22 +4,30 @@ import PageBar from "../../../components/common/PageBar";
 import SignupForm from "../../../components/common/SignupForm";
 import SocialLinkGroup from "../../../components/common/SocialLinkGroup";
 import Title from "../../../components/common/Typography/Title";
+import HelmetPage from "../../../layouts/MainLayout/HelmetPage";
 
 const Registration = () => {
   return (
-    <MainLayout>
-      <SocialLinkGroup />
-      <Container>
-        <PageBar page="会員登録ニャ！" />
-        <Title title="会員登録ニャ！" />
-        <div className="mt-[16px] text-[16px] leading-[21px]">
-          会員登録して、推しニャンを見つけて楽しむニャー
-        </div>
-        <div className="mt-[32px] mb-[56px]">
-          <SignupForm />
-        </div>
-      </Container>
-    </MainLayout>
+    <>
+      <HelmetPage
+        title="推しニャン｜会員登録ページ"
+        description="推しニャンに会員登録をするページ。メールアドレスだけで簡単登録が可能です。"
+        keywords="看板猫, 推しニャン, 猫のいる店"
+      />
+      <MainLayout>
+        <SocialLinkGroup />
+        <Container>
+          <PageBar page="会員登録ニャ！" />
+          <Title title="会員登録ニャ！" />
+          <div className="mt-[16px] text-[16px] leading-[21px]">
+            会員登録して、推しニャンを見つけて楽しむニャー
+          </div>
+          <div className="mt-[32px] mb-[56px]">
+            <SignupForm />
+          </div>
+        </Container>
+      </MainLayout>
+    </>
   );
 };
 

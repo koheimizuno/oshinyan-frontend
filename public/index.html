@@ -2,21 +2,40 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/x-icon" href="%PUBLIC_URL%/favicon.webp" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
+    <meta property="og:title" content="推しニャンサイト" />
     <meta
-      name="description"
-      content="Web site created using create-react-app"
+      property="og:description"
+      content="推しニャンは『 お気に入りの看板猫が探せる！推せるサイト』 です"
     />
+    <meta property="og:image" content="%PUBLIC_URL%/OGP-oshinyan.webp" />
+    <meta property="og:url" content="https://www.oshinyan.love" />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/x-icon" href="%PUBLIC_URL%/favicon.webp" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/icons/info_cat.webp" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="canonical" href="https://www.oshinyan.love" />
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Roboto:wght@100&display=swap"
       rel="stylesheet"
     />
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-KQ3M45Z4");
+    </script>
+    <!-- End Google Tag Manager -->
     <script>
       (function (d) {
         var config = {
@@ -48,9 +67,18 @@
         s.parentNode.insertBefore(tk, s);
       })(document);
     </script>
-    <title>推せるサイト</title>
   </head>
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-KQ3M45Z4"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <div id="root" class="bg-[#F5F4EC]"></div>
   </body>
 </html>

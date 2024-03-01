@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import { Modal } from "@mui/material";
 import { Close } from "@mui/icons-material";
 import { formatDateTime } from "../../utils/functions";
+import HelmetPage from "../../layouts/MainLayout/HelmetPage";
 const Box = lazy(() => import("@mui/material/Box"));
 
 interface avatarType {
@@ -127,154 +128,161 @@ const MyPage = () => {
   };
 
   return (
-    <MainLayout>
-      <SocialLinkGroup />
-      <Container>
-        <PageBar page="マイページ" />
-        <Title title="マイページ" />
-        <div className="p-[24px] pb-[16px] bg-white">
-          <div className="xs:flex xs:flex-col md:flex md:flex-row md:flex-wrap md:justify-between md:items-center gap-4 pb-[24px] border-b border-[#CCCCCC]">
-            <div className="flex items-center justify-between xs:w-full md:w-[calc(100%-300px)]">
-              <div className="flex justify-between items-center gap-10">
-                <button className="w-[72px] h-[72px]" onClick={handleAvatar}>
-                  {currentUser.avatar_url && (
-                    <img
-                      className="w-full"
-                      src={currentUser.avatar_url}
-                      alt={currentUser.username}
-                    />
-                  )}
-                </button>
+    <>
+      <HelmetPage
+        title="推しニャン｜マイページ"
+        description="推しニャンサイトのログイン後のマイページ"
+        keywords="看板猫, 推しニャン, 猫のいる店"
+      />
+      <MainLayout>
+        <SocialLinkGroup />
+        <Container>
+          <PageBar page="マイページ" />
+          <Title title="マイページ" />
+          <div className="p-[24px] pb-[16px] bg-white">
+            <div className="xs:flex xs:flex-col md:flex md:flex-row md:flex-wrap md:justify-between md:items-center gap-4 pb-[24px] border-b border-[#CCCCCC]">
+              <div className="flex items-center justify-between xs:w-full md:w-[calc(100%-300px)]">
+                <div className="flex justify-between items-center gap-10">
+                  <button className="w-[72px] h-[72px]" onClick={handleAvatar}>
+                    {currentUser.avatar_url && (
+                      <img
+                        className="w-full"
+                        src={currentUser.avatar_url}
+                        alt={currentUser.username}
+                      />
+                    )}
+                  </button>
+                  <div>
+                    {!isFetchUserName ? (
+                      <p className="text-[24px] font-bold leading-[32px]">
+                        {currentUser.username}
+                      </p>
+                    ) : (
+                      <input
+                        type="text"
+                        value={newUsername}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                          setNewUserName(e.target.value)
+                        }
+                        className="bg-[#F7F7F7] border border-[#CCCCCC] rounded-[5px] me-auto h-[40px] w-[304px] p-2 focus:outline-none"
+                      />
+                    )}
+                  </div>
+                </div>
+                <Modal
+                  open={avatarModal}
+                  onClose={() => setAvatarModal(false)}
+                  aria-labelledby="modal-modal-title"
+                  aria-describedby="modal-modal-description"
+                  slotProps={{
+                    backdrop: {
+                      sx: {
+                        backgroundColor: "rgba(0,0,0,.85)",
+                      },
+                    },
+                  }}
+                >
+                  <Box className="w-3/4 sm:2/3 md:w-1/2 bg-white rounded-lg outline-none absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                    <div className="p-6 pb-[34px]">
+                      <Close
+                        className="absolute top-2 right-2 bg-[#474747] rounded-full text-white p-1 cursor-pointer"
+                        onClick={() => setAvatarModal(false)}
+                      />
+                      <h3 className="text-[24px]">
+                        使用する猫アイコンを選択するニャン！
+                      </h3>
+                      <div className="mt-10 flex flex-wrap gap-10">
+                        {avatars.length &&
+                          avatars.map((item, index) => (
+                            <label
+                              key={index}
+                              className="cursor-pointer"
+                              onClick={() => selectAvatar(item.id)}
+                            >
+                              <img src={item.avatar} alt={item.avatar} />
+                            </label>
+                          ))}
+                      </div>
+                    </div>
+                  </Box>
+                </Modal>
                 <div>
-                  {!isFetchUserName ? (
-                    <p className="text-[24px] font-bold leading-[32px]">
-                      {currentUser.username}
-                    </p>
-                  ) : (
-                    <input
-                      type="text"
-                      value={newUsername}
-                      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                        setNewUserName(e.target.value)
-                      }
-                      className="bg-[#F7F7F7] border border-[#CCCCCC] rounded-[5px] me-auto h-[40px] w-[304px] p-2 focus:outline-none"
-                    />
-                  )}
+                  <EditButton onClick={editUserName} />
                 </div>
               </div>
-              <Modal
-                open={avatarModal}
-                onClose={() => setAvatarModal(false)}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-                slotProps={{
-                  backdrop: {
-                    sx: {
-                      backgroundColor: "rgba(0,0,0,.85)",
-                    },
-                  },
-                }}
-              >
-                <Box className="w-3/4 sm:2/3 md:w-1/2 bg-white rounded-lg outline-none absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                  <div className="p-6 pb-[34px]">
-                    <Close
-                      className="absolute top-2 right-2 bg-[#474747] rounded-full text-white p-1 cursor-pointer"
-                      onClick={() => setAvatarModal(false)}
-                    />
-                    <h3 className="text-[24px]">
-                      使用する猫アイコンを選択するニャン！
-                    </h3>
-                    <div className="mt-10 flex flex-wrap gap-10">
-                      {avatars.length &&
-                        avatars.map((item, index) => (
-                          <label
-                            key={index}
-                            className="cursor-pointer"
-                            onClick={() => selectAvatar(item.id)}
-                          >
-                            <img src={item.avatar} alt={item.avatar} />
-                          </label>
-                        ))}
-                    </div>
-                  </div>
-                </Box>
-              </Modal>
-              <div>
-                <EditButton onClick={editUserName} />
+              <div className="md:h-8 border-l border-[#CCCCCC]"></div>
+              <div className="text-[24px] leading-[32px]">
+                Oshy-Nyan ID : 0000222
               </div>
             </div>
-            <div className="md:h-8 border-l border-[#CCCCCC]"></div>
-            <div className="text-[24px] leading-[32px]">
-              Oshy-Nyan ID : 0000222
+            <div className="sm:flex mt-[16px]">
+              <div className="w-[152px] me-[24px] text-[16px] leading-[21px] whitespace-nowrap">
+                登録メールアドレス
+              </div>
+              <div className="w-full flex justify-between items-center">
+                {!isFetchEmail ? (
+                  <p className="me-auto text-[16px] leading-[21px] font-bold">
+                    {currentUser.email}
+                  </p>
+                ) : (
+                  <input
+                    type="email"
+                    value={newEmail}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setNewEmail(e.target.value)
+                    }
+                    className="bg-[#F7F7F7] border border-[#CCCCCC] rounded-[5px] me-auto h-[40px] w-[304px] p-2 focus:outline-none"
+                  />
+                )}
+                <div>
+                  <EditButton onClick={editEmail} />
+                </div>
+              </div>
             </div>
           </div>
-          <div className="sm:flex mt-[16px]">
-            <div className="w-[152px] me-[24px] text-[16px] leading-[21px] whitespace-nowrap">
-              登録メールアドレス
-            </div>
-            <div className="w-full flex justify-between items-center">
-              {!isFetchEmail ? (
-                <p className="me-auto text-[16px] leading-[21px] font-bold">
-                  {currentUser.email}
-                </p>
-              ) : (
-                <input
-                  type="email"
-                  value={newEmail}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    setNewEmail(e.target.value)
-                  }
-                  className="bg-[#F7F7F7] border border-[#CCCCCC] rounded-[5px] me-auto h-[40px] w-[304px] p-2 focus:outline-none"
+          <div className="mt-[40px] text-[20px] leading-[27px]">
+            マイページには自分の推しニャン（サイト内で推しボタンを押した猫）が一覧で出てくるニャー
+          </div>
+          <div className="mt-[32px] mb-[48px] flex justify-between flex-wrap">
+            {userCatData.length !== 0 &&
+              userCatData.map((e, i) => (
+                <CatCard
+                  key={i}
+                  id={e.id}
+                  is_public={e.is_public}
+                  page="mypage"
+                  cat_name={e.cat_name}
+                  shop={e.shop}
+                  images={e.images}
+                  admin_images={e.admin_images}
+                  character={e.character}
+                  attendance={e.attendance}
+                  description={e.description}
+                  recommend={e.recommend}
+                  created_date={e.created_date}
                 />
-              )}
-              <div>
-                <EditButton onClick={editEmail} />
-              </div>
-            </div>
+              ))}
           </div>
-        </div>
-        <div className="mt-[40px] text-[20px] leading-[27px]">
-          マイページには自分の推しニャン（サイト内で推しボタンを押した猫）が一覧で出てくるニャー
-        </div>
-        <div className="mt-[32px] mb-[48px] flex justify-between flex-wrap">
-          {userCatData.length !== 0 &&
-            userCatData.map((e, i) => (
-              <CatCard
-                key={i}
-                id={e.id}
-                is_public={e.is_public}
-                page="mypage"
-                cat_name={e.cat_name}
-                shop={e.shop}
-                images={e.images}
-                admin_images={e.admin_images}
-                character={e.character}
-                attendance={e.attendance}
-                description={e.description}
-                recommend={e.recommend}
-                created_date={e.created_date}
-              />
-            ))}
-        </div>
-        <div className="mb-4 text-[24px] leading-[32px] border-b border-[#CBB279] pb-[16px]">
-          投稿した推しニャン画像
-        </div>
-        <div className="mt-[40px] mb-[64px] flex flex-wrap justify-between gap-4">
-          {commentImgsByUser &&
-            commentImgsByUser.map((item, key) => (
-              <CommentImageCard
-                key={key}
-                id={item.id}
-                imgs={item.imgs}
-                created_date={formatDateTime(item.created_date)}
-                comment_images_recommend_count={
-                  item.comment_images_recommend.length
-                }
-              />
-            ))}
-        </div>
-      </Container>
-    </MainLayout>
+          <div className="mb-4 text-[24px] leading-[32px] border-b border-[#CBB279] pb-[16px]">
+            投稿した推しニャン画像
+          </div>
+          <div className="mt-[40px] mb-[64px] flex flex-wrap justify-between gap-4">
+            {commentImgsByUser &&
+              commentImgsByUser.map((item, key) => (
+                <CommentImageCard
+                  key={key}
+                  id={item.id}
+                  imgs={item.imgs}
+                  created_date={formatDateTime(item.created_date)}
+                  comment_images_recommend_count={
+                    item.comment_images_recommend.length
+                  }
+                />
+              ))}
+          </div>
+        </Container>
+      </MainLayout>
+    </>
   );
 };
 
