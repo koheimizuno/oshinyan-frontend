@@ -20,6 +20,11 @@ function ColumnDetail() {
     hero_image: "",
     created_date: "",
   });
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   useEffect(() => {
     const fetchColumnData = async () => {
       const { data } = await axios.get("api/column/");
@@ -77,7 +82,7 @@ function ColumnDetail() {
               />
             </div>
           ))}
-        <div className="mt-6 mb-10 flex flex-wrap justify-between">
+        <div className="mt-6 mb-10 flex flex-wrap justify-start">
           {columnData &&
             columnData.map((e, i) => (
               <BlogColumnBox

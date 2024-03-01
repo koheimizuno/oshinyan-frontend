@@ -1,14 +1,17 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import { ColumnType } from "../../../constant/type";
 import { formatDateTime } from "../../../utils/functions";
 
 const BlogColumnBox = (props: ColumnType) => {
-  const navigate = useNavigate();
-  const goColumnDetail = (id: number) => {
-    navigate(`/column/${id}`);
-  };
   const [hoverAction, setHoverAction] = useState(false);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const goColumnDetail = (id: number) => {
+    window.location.href = `/column/${id}`;
+  };
+
   return (
     <div
       className={`w-full xs:max-w-[480px] md:max-w-[312px] md:h-[420px] mb-[15px] bg-white border ${
@@ -36,14 +39,13 @@ const BlogColumnBox = (props: ColumnType) => {
         <div className="flex justify-between py-4">
           <div className="flex gap-2">
             <img src="/assets/imgs/icons/pen.webp" alt="pen" />
-            <Link
-              to={`column/${props.id}`}
+            <span
               className={`border-b border-black ${
                 hoverAction && "text-[#0000FF]"
               }`}
             >
               {props.cat_name}
-            </Link>
+            </span>
           </div>
           <p>{formatDateTime(props.created_date)}</p>
         </div>

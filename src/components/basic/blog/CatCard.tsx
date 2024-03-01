@@ -64,6 +64,12 @@ const CatCard = ({
     }
   };
 
+  const goToCatDetail = (id: number) => {
+    !advertise
+      ? (window.location.href = `/oshinyan/${id}`)
+      : (window.location.href = `/oshinyan/${id}?advertise=${"advertise"}`);
+  };
+
   return (
     <div className="relative m-auto sm:m-0">
       <div
@@ -94,19 +100,13 @@ const CatCard = ({
               {images &&
                 images.map((item: any, key: any) => (
                   <SwiperSlide key={key} className="h-[234px] bg-white">
-                    <Link
-                      to={
-                        !advertise
-                          ? `/oshinyan/${id}`
-                          : `/oshinyan/${id}?advertise=${"advertise"}`
-                      }
-                    >
+                    <button onClick={() => goToCatDetail(id)}>
                       <img
                         src={item.imgs}
                         alt={item.imgs}
                         className={`h-full m-auto cursor-pointer object-cover  overflow-hidden`}
                       />
-                    </Link>
+                    </button>
                   </SwiperSlide>
                 ))}
               <div className="swiper-pagination custom-pagination-bullets"></div>
