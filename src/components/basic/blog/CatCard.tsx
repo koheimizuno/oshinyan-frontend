@@ -99,7 +99,10 @@ const CatCard = ({
               {images &&
                 images.map((item: any, key: any) => (
                   <SwiperSlide key={key} className="h-[234px] bg-white">
-                    <button onClick={() => goToCatDetail(id)}>
+                    <button
+                      onClick={() => goToCatDetail(id)}
+                      className="h-full w-full"
+                    >
                       <img
                         src={item.imgs}
                         alt={item.imgs}

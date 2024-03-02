@@ -40,10 +40,10 @@ function BannerCarousel() {
           disableOnInteraction: false,
         }}
         spaceBetween={window.innerWidth < 640 ? 8 : 16}
-        // slidesPerView={window.innerWidth / 344}
-        slidesPerView={5}
+        slidesPerView={window.innerWidth / 344}
+        // slidesPerView={5}
         navigation={{ nextEl: ".arrow-right", prevEl: ".arrow-left" }}
-        className="h-[240px] cursor-pointer py-2"
+        className="h-[258px] cursor-pointer py-2"
       >
         {bannerData &&
           bannerData.map((item: any, key: any) => (
