@@ -50,7 +50,7 @@ function BannerCarousel() {
         slidesPerView={window.innerWidth / 344}
         // slidesPerView={5}
         navigation={{ nextEl: ".arrow-right", prevEl: ".arrow-left" }}
-        className="h-[258px] cursor-pointer py-2"
+        className="h-[256px] cursor-pointer py-2 m-0"
       >
         {bannerData &&
           bannerData.map((item: any, key: any) => (
