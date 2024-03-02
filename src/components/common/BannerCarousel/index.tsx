@@ -40,8 +40,8 @@ function BannerCarousel() {
           disableOnInteraction: false,
         }}
         spaceBetween={window.innerWidth < 640 ? 8 : 16}
-        // slidesPerView={window.innerWidth / 344}
-        slidesPerView={5}
+        slidesPerView={window.innerWidth / 344}
+        // slidesPerView={5}
         navigation={{ nextEl: ".arrow-right", prevEl: ".arrow-left" }}
         className="h-[258px] cursor-pointer py-2"
       >
