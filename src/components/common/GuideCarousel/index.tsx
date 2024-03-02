@@ -11,101 +11,53 @@ import ArrowLeft from "../../basic/icons/ArrowLeft";
 import ArrowRight from "../../basic/icons/ArrowRight";
 import { Link } from "react-router-dom";
 
-const CAROUSELIMAGES: object[] = [
+const GUIDEBANNERIMGS: object[] = [
   {
-    src: "/assets/imgs/cats/guide-cat-1.webp",
+    src: "/assets/imgs/guide-bnr-1.webp",
     alt: "guide-cat-1",
   },
   {
-    src: "/assets/imgs/cats/guide-cat-2.webp",
+    src: "/assets/imgs/guide-bnr-2.webp",
     alt: "guide-cat-2",
   },
   {
-    src: "/assets/imgs/cats/guide-cat-3.webp",
+    src: "/assets/imgs/guide-bnr-3.webp",
     alt: "guide-cat-3",
   },
   {
-    src: "/assets/imgs/cats/guide-cat-4.webp",
+    src: "/assets/imgs/guide-bnr-4.webp",
     alt: "guide-cat-4",
   },
   {
-    src: "/assets/imgs/cats/guide-cat-5.webp",
+    src: "/assets/imgs/guide-bnr-5.webp",
     alt: "guide-cat-5",
   },
   {
-    src: "/assets/imgs/cats/guide-cat-6.webp",
+    src: "/assets/imgs/guide-bnr-6.webp",
     alt: "guide-cat-6",
   },
   {
-    src: "/assets/imgs/cats/guide-cat-1.webp",
+    src: "/assets/imgs/guide-bnr-1.webp",
     alt: "guide-cat-1",
   },
   {
-    src: "/assets/imgs/cats/guide-cat-2.webp",
+    src: "/assets/imgs/guide-bnr-2.webp",
     alt: "guide-cat-2",
   },
   {
-    src: "/assets/imgs/cats/guide-cat-3.webp",
+    src: "/assets/imgs/guide-bnr-3.webp",
     alt: "guide-cat-3",
   },
   {
-    src: "/assets/imgs/cats/guide-cat-4.webp",
+    src: "/assets/imgs/guide-bnr-4.webp",
     alt: "guide-cat-4",
   },
   {
-    src: "/assets/imgs/cats/guide-cat-5.webp",
+    src: "/assets/imgs/guide-bnr-5.webp",
     alt: "guide-cat-5",
   },
   {
-    src: "/assets/imgs/cats/guide-cat-6.webp",
-    alt: "guide-cat-6",
-  },
-  {
-    src: "/assets/imgs/cats/guide-cat-1.webp",
-    alt: "guide-cat-1",
-  },
-  {
-    src: "/assets/imgs/cats/guide-cat-2.webp",
-    alt: "guide-cat-2",
-  },
-  {
-    src: "/assets/imgs/cats/guide-cat-3.webp",
-    alt: "guide-cat-3",
-  },
-  {
-    src: "/assets/imgs/cats/guide-cat-4.webp",
-    alt: "guide-cat-4",
-  },
-  {
-    src: "/assets/imgs/cats/guide-cat-5.webp",
-    alt: "guide-cat-5",
-  },
-  {
-    src: "/assets/imgs/cats/guide-cat-6.webp",
-    alt: "guide-cat-6",
-  },
-  {
-    src: "/assets/imgs/cats/guide-cat-1.webp",
-    alt: "guide-cat-1",
-  },
-  {
-    src: "/assets/imgs/cats/guide-cat-2.webp",
-    alt: "guide-cat-2",
-  },
-  {
-    src: "/assets/imgs/cats/guide-cat-3.webp",
-    alt: "guide-cat-3",
-  },
-  {
-    src: "/assets/imgs/cats/guide-cat-4.webp",
-    alt: "guide-cat-4",
-  },
-  {
-    src: "/assets/imgs/cats/guide-cat-5.webp",
-    alt: "guide-cat-5",
-  },
-  {
-    src: "/assets/imgs/cats/guide-cat-6.webp",
+    src: "/assets/imgs/guide-bnr-6.webp",
     alt: "guide-cat-6",
   },
 ];
@@ -126,8 +78,8 @@ function GuideCarousel() {
         navigation={{ nextEl: ".arrow-right", prevEl: ".arrow-left" }}
         className="h-[240px] cursor-pointer"
       >
-        {CAROUSELIMAGES &&
-          CAROUSELIMAGES.map((item: any, key: any) => (
+        {GUIDEBANNERIMGS &&
+          GUIDEBANNERIMGS.map((item: any, key: any) => (
             <SwiperSlide key={key}>
               <Link to="/feature/1">
                 <img src={item.src} alt={item.src} className="h-full m-auto" />

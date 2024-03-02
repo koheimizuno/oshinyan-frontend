@@ -19,8 +19,15 @@ function BannerCarousel() {
   useEffect(() => {
     const fetchBanner = async () => {
       try {
+        let list: BannerType[] = [];
         const { data } = await axios.get("api/banner/");
-        setBannerData(data);
+        data.forEach((item: BannerType) => {
+          list.push(item);
+        });
+        data.forEach((item: BannerType) => {
+          list.push(item);
+        });
+        setBannerData(list);
       } catch (error) {
         Notification("error", "サーバーエラー");
       }
