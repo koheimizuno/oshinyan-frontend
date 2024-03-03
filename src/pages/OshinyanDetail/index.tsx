@@ -7,7 +7,6 @@ import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 const OshinyanDetail = () => {
   return (
     <>
-      
       <MainLayout>
         <SocialLinkGroup />
         <Container>

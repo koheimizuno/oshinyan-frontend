@@ -89,7 +89,7 @@ const SearchBar = ({
   return (
     <div className="relative bg-white">
       <Container>
-        <div className=" relative xs:block md:grid md:grid-cols-2 md:items-center gap-5 py-4">
+        <div className="xs:block md:grid md:grid-cols-2 md:items-center gap-5 py-4">
           <div className="xs:block md:flex md:justify-between md:items-center gap-3 pb-6 md:pb-0">
             <div className="xs:pb-6 md:pb-0">
               <p className="text-[16px]">看板猫を探す</p>
@@ -111,11 +111,12 @@ const SearchBar = ({
                 type="submit"
                 className="rounded-r-md w-8 h-8 bg-[#FBA1B7] flex justify-center items-center"
               >
+                `
                 <img src="/assets/imgs/icons/search.webp" alt="search" />
               </button>
             </form>
           </div>
-          <div className="flex flex-col md:flex-row md:justify-end md:items-center gap-3">
+          <div className="flex flex-col md:flex-row md:justify-end md:items-center gap-3 ">
             <div className="w-full md:w-[112px] h-[32px] bg-[#CBB279] shadow-inner rounded pl-[16px] pt-[3px] pb-[5px] pr-[10px] hover:opacity-70 active:opacity-100">
               <button
                 className=" w-[100%] flex justify-between items-center"
@@ -138,6 +139,45 @@ const SearchBar = ({
                 ></span>
               </button>
             </div>
+            {prefectureShow && (
+              <div className="md:absolute md:left-0 md:z-50 bg-white w-full xs:top-[168px] xs:px-5 sm:top-[64px]">
+                <div className="max-w-[960px] m-auto xs:px-5 lg:px-0 mt-[24px] mb-[16px]">
+                  <div className="grid xs:grid-cols-4 sm:grid-cols-8 md:grid-cols-10 lg:grid-cols-12 whitespace-nowrap border-b border-b-solid border-[#EAEAEA]">
+                    {PREFECTURE &&
+                      PREFECTURE.map((item, index) => {
+                        return (
+                          <div
+                            className="flex justify-center items-center"
+                            key={index}
+                          >
+                            <div
+                              key={index}
+                              className="mb-[16px] hover:opacity-70"
+                              onClick={() => handlePrefecture(item[0])}
+                            >
+                              <PrefectureBtn
+                                value={item[0]}
+                                className={`${
+                                  prefectureKeyword.includes(item[0]) &&
+                                  "bg-[#CBB279] text-white border-[#CBB279]"
+                                }`}
+                              />
+                            </div>
+                          </div>
+                        );
+                      })}
+                  </div>
+                  <div className="pt-[16px] text-center">
+                    <button
+                      className="bg-[#FBA1B7] rounded-full shadow-inner text-white hover:opacity-70 py-[6px] px-[26px] drop-shadow-[1px_1px_rgba(230,149,169,1)]"
+                      onClick={submitSearchPrefecture}
+                    >
+                      検索するニャン！
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
             <div className="w-full md:w-[105px] h-[32px] bg-[#CBB279] shadow-inner rounded pl-[16px] pt-[3px] pb-[5px] pr-[10px] hover:opacity-70 active:opacity-100">
               <button
                 className="w-[100%] flex justify-between items-center"
@@ -160,6 +200,44 @@ const SearchBar = ({
                 ></span>
               </button>
             </div>
+            {characterShow && (
+              <div className="md:absolute md:left-0 md:z-50 bg-white w-full xs:top-[168px] xs:px-5 sm:top-[64px]">
+                <div className="max-w-[960px] m-auto xs:px-5 lg:px-0 mt-[24px] mb-[16px]">
+                  <div className="flex flex-wrap gap-4 whitespace-nowrap ">
+                    {characterData &&
+                      characterData.map((item, index) => (
+                        <div
+                          className="flex justify-center items-center "
+                          key={index}
+                        >
+                          <div
+                            className=" hover:opacity-70"
+                            onClick={() => {
+                              handleCharacter(item.character);
+                            }}
+                          >
+                            <PrefectureBtn
+                              value={item.character}
+                              className={`${
+                                characterKeyword.includes(item.character) &&
+                                "bg-[#CBB279] text-white border-[#CBB279]"
+                              }`}
+                            />
+                          </div>
+                        </div>
+                      ))}
+                  </div>
+                  <div className="mt-4 pt-4 text-center border-t border-t-solid border-[#EAEAEA]">
+                    <button
+                      className="bg-[#FBA1B7] rounded-full shadow-inner text-white hover:opacity-70 py-[6px] px-[26px] drop-shadow-[1px_1px_rgba(230,149,169,1)]"
+                      onClick={submitSearchCharacter}
+                    >
+                      検索するニャン！
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
             <div className="h-[32px] md:w-[130px] bg-[#CBB279] shadow-inner rounded pl-[16px] pt-[3px] pb-[5px] pr-[10px] hover:opacity-70 active:opacity-100">
               <button
                 className="w-[100%] flex justify-between items-center"
@@ -182,123 +260,46 @@ const SearchBar = ({
                 ></span>
               </button>
             </div>
+            {attendanceShow && (
+              <div className="md:absolute md:left-0 md:z-50 bg-white w-full xs:top-[168px] xs:px-5 sm:top-[64px]">
+                <div className="max-w-[960px] m-auto xs:px-5 lg:px-0 mt-[24px] mb-[16px]">
+                  <div className="flex flex-wrap gap-4 whitespace-nowrap ">
+                    {attendanceData &&
+                      attendanceData.map((item, index) => (
+                        <div
+                          className="flex justify-center items-center "
+                          key={index}
+                        >
+                          <div
+                            className=" hover:opacity-70"
+                            onClick={() => {
+                              handleAttendance(item);
+                            }}
+                          >
+                            <PrefectureBtn
+                              value={item}
+                              className={`${
+                                attendanceKeyword.includes(item) &&
+                                "bg-[#CBB279] text-white border-[#CBB279]"
+                              }`}
+                            />
+                          </div>
+                        </div>
+                      ))}
+                  </div>
+                  <div className="mt-4 pt-4 text-center border-t border-t-solid border-[#EAEAEA]">
+                    <button
+                      className="bg-[#FBA1B7] rounded-full shadow-inner text-white hover:opacity-70 py-[6px] px-[26px] drop-shadow-[1px_1px_rgba(230,149,169,1)]"
+                      onClick={submitSearchAttendance}
+                    >
+                      検索するニャン！
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
-        {prefectureShow && (
-          <div className="absolute bg-white w-full xs:top-[168px] xs:px-5 sm:top-[64px] left-0 z-50">
-            <div className="max-w-[960px] m-auto xs:px-5 lg:px-0 mt-[24px] mb-[16px]">
-              <div className="grid xs:grid-cols-4 sm:grid-cols-8 md:grid-cols-10 lg:grid-cols-12 whitespace-nowrap border-b border-b-solid border-[#EAEAEA]">
-                {PREFECTURE &&
-                  PREFECTURE.map((item, index) => {
-                    return (
-                      <div
-                        className="flex justify-center items-center"
-                        key={index}
-                      >
-                        <div
-                          key={index}
-                          className="mb-[16px] hover:opacity-70"
-                          onClick={() => handlePrefecture(item[0])}
-                        >
-                          <PrefectureBtn
-                            value={item[0]}
-                            className={`${
-                              prefectureKeyword.includes(item[0]) &&
-                              "bg-[#CBB279] text-white border-[#CBB279]"
-                            }`}
-                          />
-                        </div>
-                      </div>
-                    );
-                  })}
-              </div>
-              <div className="pt-[16px] text-center">
-                <button
-                  className="bg-[#FBA1B7] rounded-full shadow-inner text-white hover:opacity-70 py-[6px] px-[26px] drop-shadow-[1px_1px_rgba(230,149,169,1)]"
-                  onClick={submitSearchPrefecture}
-                >
-                  検索するニャン！
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
-        {characterShow && (
-          <div className="absolute bg-white w-full xs:top-[168px] xs:px-5 sm:top-[64px] left-0 z-50">
-            <div className="max-w-[960px] m-auto xs:px-5 lg:px-0 mt-[24px] mb-[16px]">
-              <div className="flex flex-wrap gap-4 whitespace-nowrap ">
-                {characterData &&
-                  characterData.map((item, index) => (
-                    <div
-                      className="flex justify-center items-center "
-                      key={index}
-                    >
-                      <div
-                        className=" hover:opacity-70"
-                        onClick={() => {
-                          handleCharacter(item.character);
-                        }}
-                      >
-                        <PrefectureBtn
-                          value={item.character}
-                          className={`${
-                            characterKeyword.includes(item.character) &&
-                            "bg-[#CBB279] text-white border-[#CBB279]"
-                          }`}
-                        />
-                      </div>
-                    </div>
-                  ))}
-              </div>
-              <div className="mt-4 pt-4 text-center border-t border-t-solid border-[#EAEAEA]">
-                <button
-                  className="bg-[#FBA1B7] rounded-full shadow-inner text-white hover:opacity-70 py-[6px] px-[26px] drop-shadow-[1px_1px_rgba(230,149,169,1)]"
-                  onClick={submitSearchCharacter}
-                >
-                  検索するニャン！
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
-        {attendanceShow && (
-          <div className="absolute bg-white w-full xs:top-[168px] xs:px-5 sm:top-[64px] left-0 z-50">
-            <div className="max-w-[960px] m-auto xs:px-5 lg:px-0 mt-[24px] mb-[16px]">
-              <div className="flex flex-wrap gap-4 whitespace-nowrap ">
-                {attendanceData &&
-                  attendanceData.map((item, index) => (
-                    <div
-                      className="flex justify-center items-center "
-                      key={index}
-                    >
-                      <div
-                        className=" hover:opacity-70"
-                        onClick={() => {
-                          handleAttendance(item);
-                        }}
-                      >
-                        <PrefectureBtn
-                          value={item}
-                          className={`${
-                            attendanceKeyword.includes(item) &&
-                            "bg-[#CBB279] text-white border-[#CBB279]"
-                          }`}
-                        />
-                      </div>
-                    </div>
-                  ))}
-              </div>
-              <div className="mt-4 pt-4 text-center border-t border-t-solid border-[#EAEAEA]">
-                <button
-                  className="bg-[#FBA1B7] rounded-full shadow-inner text-white hover:opacity-70 py-[6px] px-[26px] drop-shadow-[1px_1px_rgba(230,149,169,1)]"
-                  onClick={submitSearchAttendance}
-                >
-                  検索するニャン！
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
       </Container>
     </div>
   );
