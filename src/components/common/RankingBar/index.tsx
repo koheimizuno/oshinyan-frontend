@@ -9,7 +9,7 @@ const RankingBar = () => {
           className="w-[36px]"
           alt="ranking-1-cap"
         />
-        <h4 className="">推しニャンLANKING</h4>
+        <h4 className="">推しニャンRANKING</h4>
       </div>
       <div className="w-[264px] flex justify-between items-center xs:m-auto sm:ml-[55px]">
         <div>

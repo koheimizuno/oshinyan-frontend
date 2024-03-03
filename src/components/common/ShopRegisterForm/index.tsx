@@ -51,7 +51,7 @@ const ShopRegisterForm = () => {
         Notification("success", "未登録店舗の登録が成功しました。");
       } catch (error: any) {
         if (error.response.status === 400)
-          Notification("error", "店舗は既に存在します。");
+          Notification("error", " すでに登録済みです。");
         else Notification("error", "Server Error!");
       }
     }
