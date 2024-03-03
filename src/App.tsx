@@ -31,7 +31,7 @@ const PasswordResetConfirmation = lazy(
 );
 const Test = lazy(() => import("./pages/Test"));
 
-axios.defaults.baseURL = "http://162.43.50.92:8000/";
+axios.defaults.baseURL = "http://oshinyan.love:8000/";
 
 function App() {
   const dispatch = useDispatch();
