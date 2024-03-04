@@ -33,7 +33,7 @@ const Company = () => {
               </p>
             </div>
             <div className="w-full flex py-[28px] border-b border-[#B7B7B7]">
-              <p className="w-[120px] md:w-[160px] whitespace-nowrap">TEL</p>
+              <p className="w-[120px] md:w-[160px] whitespace-nowrap">MAIL</p>
               <p className="w-[calc(100%-120px)]">info@oshinyan.love</p>
             </div>
             <div className="w-full flex py-[28px] border-b border-[#B7B7B7]">
