@@ -78,7 +78,7 @@ function NyanplaceDetail() {
                 AshopData.shop_images.map((item: any, key: any) => (
                   <SwiperSlide
                     key={key}
-                    className="h-[540px] overflow-x-hidden"
+                    className="h-[300px] sm:h-[400px] md:h-[540px] overflow-x-hidden"
                   >
                     <img
                       src={item.imgs}
@@ -137,7 +137,7 @@ function NyanplaceDetail() {
               </button>
             </Swiper>
 
-            <div className="md:pt-8 pb-8 flex flex-col gap-[18px]">
+            <div className="pt-3 md:pt-8 pb-8 flex flex-col gap-[10px] md:gap-[18px]">
               <div className="flex items-start gap-5">
                 <div className="flex items-center gap-2 w-[97px] md:w-[150px]">
                   <div>
