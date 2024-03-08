@@ -2,7 +2,7 @@ import { Suspense, lazy, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import axios from "axios";
-import { LogOutAction, TokenLoginAction } from "./slices/auth";
+import { TokenLoginAction } from "./slices/auth";
 import "./App.css";
 import SuspenseContent from "./components/basic/SuspenseContent";
 import NotFound from "./pages/404";
