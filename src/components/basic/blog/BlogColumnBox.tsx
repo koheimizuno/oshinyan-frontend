@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { ColumnType } from "../../../constant/type";
 import { formatDateTime } from "../../../utils/functions";
 
 const BlogColumnBox = (props: ColumnType) => {
   const [hoverAction, setHoverAction] = useState(false);
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   const goColumnDetail = (id: number) => {
     window.location.href = `/column/${id}`;

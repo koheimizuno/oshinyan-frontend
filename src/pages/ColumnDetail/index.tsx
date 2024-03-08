@@ -27,7 +27,7 @@ function ColumnDetail() {
 
   useEffect(() => {
     const fetchColumnData = async () => {
-      const { data } = await axios.get("api/column/");
+      const { data } = await axios.get(`api/advancedcolumn/?all=${false}`);
       setColumnData(data);
     };
     const fetchGetColumnDataById = async () => {

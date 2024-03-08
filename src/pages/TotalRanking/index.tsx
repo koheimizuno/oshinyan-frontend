@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import MainLayout from "../../layouts/MainLayout";
 import SearchBar from "../../components/common/SearchBar";
 import RankingBar from "../../components/common/RankingBar";
-import Store from "../../components/common/ColumnSection";
+import ColumnSection from "../../components/common/ColumnSection";
 import Notices from "../../components/common/Notices";
 import LargeCatCard from "../../components/basic/LargeCatCard";
 import CatCard from "../../components/basic/blog/CatCard";
@@ -231,7 +231,7 @@ const TotalRanking = () => {
             </div>
           </Container>
         </div>
-        <Store />
+        <ColumnSection />
         <Notices />
       </MainLayout>
     </>

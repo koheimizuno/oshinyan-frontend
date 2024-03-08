@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import MoreButton from "../basic/BasicMoreButton";
 import BlogColumnBox from "../basic/blog/BlogColumnBox";
 import axios from "axios";
@@ -6,20 +6,21 @@ import { ColumnType } from "../../constant/type";
 
 const ColumnSection = () => {
   const [columnData, setColumnData] = useState<ColumnType[]>([]);
-  const [isAll, setIsAll] = useState(true);
+  const [isAll, setIsAll] = useState<boolean>(true);
+
   useEffect(() => {
     const fetchColumnData = async () => {
-      const { data } = await axios.get(`api/column/?all=${false}`);
+      const { data } = await axios.get(`api/advancedcolumn/?all=${false}`);
       setColumnData(data);
     };
     fetchColumnData();
   }, []);
 
-  const handleMoreDisplay = async () => {
-    const { data } = await axios.get(`api/column/?all=${true}`);
+  const handleMoreDisplay = useCallback(async () => {
+    const { data } = await axios.get(`api/advancedcolumn/?all=${true}`);
     setIsAll(false);
     setColumnData(data);
-  };
+  }, []);
 
   return (
     <div className="bg-white">
