@@ -6,13 +6,20 @@ import { ColumnType } from "../../constant/type";
 
 const ColumnSection = () => {
   const [columnData, setColumnData] = useState<ColumnType[]>([]);
+  const [isAll, setIsAll] = useState(true);
   useEffect(() => {
     const fetchColumnData = async () => {
-      const { data } = await axios.get("api/column/");
+      const { data } = await axios.get(`api/column/?all=${false}`);
       setColumnData(data);
     };
     fetchColumnData();
   }, []);
+
+  const handleMoreDisplay = async () => {
+    const { data } = await axios.get(`api/column/?all=${true}`);
+    setIsAll(false);
+    setColumnData(data);
+  };
 
   return (
     <div className="bg-white">
@@ -26,7 +33,7 @@ const ColumnSection = () => {
           {columnData.length !== 0 ? (
             columnData.map((e, i) => (
               <BlogColumnBox
-              key={i}
+                key={i}
                 id={e.id}
                 hero_image={e.hero_image}
                 title={e.title}
@@ -40,7 +47,9 @@ const ColumnSection = () => {
             </p>
           )}
         </div>
-        {columnData.length !== 0 && <MoreButton />}
+        {columnData.length !== 0 && isAll && (
+          <MoreButton handleMoreDisplay={handleMoreDisplay} />
+        )}
       </div>
     </div>
   );
