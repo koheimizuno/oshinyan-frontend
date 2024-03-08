@@ -92,12 +92,7 @@ const userSlice = createSlice({
         state.error = null;
       })
       .addCase(LoginAction.fulfilled, (state, action) => {
-        const now = new Date();
-        const item = {
-          value: action.payload.token,
-          expiry: now.getTime() + 3600000,
-        };
-        localStorage.setItem("token", JSON.stringify(item));
+        localStorage.setItem("token", JSON.stringify(action.payload.token));
         state.isAuthenticated = true;
         state.authLoading = false;
         state.user = action.payload;

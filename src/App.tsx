@@ -39,14 +39,8 @@ function App() {
   useEffect(() => {
     if (token) {
       let data;
-      const now = new Date();
       if (token !== null) data = JSON.parse(token);
-      axios.defaults.headers.common["Authorization"] = `Token ${data.value}`;
-      if (now.getTime() > data.expiry) {
-        dispatch(LogOutAction(data.value));
-        localStorage.removeItem("token");
-        window.location.href = "/login";
-      }
+      axios.defaults.headers.common["Authorization"] = `Token ${data}`;
       try {
         dispatch(TokenLoginAction());
       } catch (error) {

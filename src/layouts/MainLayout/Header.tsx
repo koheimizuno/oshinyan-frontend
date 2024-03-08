@@ -17,7 +17,7 @@ const Header = React.forwardRef(
       const token: string | null = localStorage.getItem("token");
       let data;
       if (token !== null) data = JSON.parse(token);
-      dispatch(LogOutAction({ token: data.value }));
+      dispatch(LogOutAction({ token: data }));
       delete axios.defaults.headers.common["Authorization"];
       localStorage.removeItem("token");
     };
