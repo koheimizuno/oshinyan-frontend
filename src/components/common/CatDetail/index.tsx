@@ -22,6 +22,7 @@ import {
   Box,
   FormControlLabel,
   Checkbox,
+  CircularProgress,
 } from "@mui/material";
 import axios from "axios";
 import {
@@ -950,7 +951,9 @@ const CatDetail = () => {
                 )
             )
           ) : (
-            <p>Loading...</p>
+            <div className="m-auto">
+              <CircularProgress />
+            </div>
           )}
         </div>
         <AlbumGallery

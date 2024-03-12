@@ -35,7 +35,12 @@ const BlogColumnBox = (props: ColumnType) => {
         </p>
         <div className="flex justify-between py-4">
           <div className="flex gap-2">
-            <img src="/assets/imgs/icons/pen.webp" alt="pen" />
+            <img
+              src="/assets/imgs/icons/pen.webp"
+              alt="pen"
+              width={24}
+              height={24}
+            />
             <span
               className={`border-b border-black ${
                 hoverAction && "text-[#0000FF]"

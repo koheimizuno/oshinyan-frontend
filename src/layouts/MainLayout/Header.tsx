@@ -84,7 +84,7 @@ const Header = React.forwardRef(
               ) : (
                 <Link
                   to="/login"
-                  className="bg-[#edc97a] w-[120px] rounded xs:m-auto px-[8px] pb-[5px] pt-[3px] flex justify-center items-center gap-1"
+                  className="bg-[#CBB279] shadow-inner w-[120px] rounded xs:m-auto px-[8px] pb-[5px] pt-[3px] flex justify-center items-center gap-1"
                 >
                   <div className="pr-[8px]">
                     <img
@@ -94,7 +94,7 @@ const Header = React.forwardRef(
                       alt="lock--v1"
                     />
                   </div>
-                  <p className="text-white text-[16px] tracking-[-.15em] font-medium">
+                  <p className="text-white text-[16px] tracking-[-.15em] font-medium drop-shadow-[1px_1px_rgba(195,129,84,1)]">
                     ログイン
                   </p>
                 </Link>
@@ -103,7 +103,7 @@ const Header = React.forwardRef(
             {isAuthenticated && (
               <li className="hover:text-[rgb(195,129,84)] md:ml-4 text-center xs:py-3 xs:pb-6 md:pb-3">
                 <button
-                  className="w-[120px] h-8 m-auto bg-[#f2850c] text-white rounded sm:m-auto px-[8px] pb-[5px] pt-[3px] flex justify-center items-center gap-1"
+                  className="bg-[#CBB279] shadow-inner w-[120px] h-8 m-auto text-white rounded sm:m-auto px-[8px] pb-[5px] pt-[3px] flex justify-center items-center gap-1"
                   onClick={handleLogout}
                 >
                   <img
@@ -112,7 +112,9 @@ const Header = React.forwardRef(
                     src="https://img.icons8.com/office/16/unlock.png"
                     alt="unlock"
                   />
-                  <span>ログアウト</span>
+                  <p className="text-white text-[16px] tracking-[-.15em] font-medium drop-shadow-[1px_1px_rgba(195,129,84,1)]">
+                    ログアウト
+                  </p>
                 </button>
               </li>
             )}

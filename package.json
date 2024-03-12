@@ -38,8 +38,6 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "prorelocate": "react-scripts build && rm -rf ../backend/build && mv -f build ../backend",
-    "devrelocate": "react-scripts build && rmdir /s /q ..\\backend\\build && move /Y build ..\\backend",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
