@@ -28,7 +28,12 @@ const Header = React.forwardRef(
       >
         <div className="hover:opacity-70">
           <Link to="/">
-            <img src="/assets/imgs/logo.svg" alt="logo" />
+            <img
+              src="/assets/imgs/logo.webp"
+              alt="logo"
+              width={239}
+              height={51}
+            />
           </Link>
           <h1 className="text-[12px] font-medium tracking-tighter ">
             お気に入りの看板猫が探せる！推せるサイト

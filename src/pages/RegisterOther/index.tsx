@@ -11,13 +11,18 @@ import HelmetPage from "../../layouts/MainLayout/HelmetPage";
 
 const RegisterOther = () => {
   const navigate = useNavigate();
-  const [tabValue, setTabValue] = useState(1);
+  const [tabValue, setTabValue] = useState<number | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    window.location.href.includes("shopresister") && setTabValue(1);
-    window.location.href.includes("ambassador") && setTabValue(2);
-  }, []);
+    if (window.location.href.includes("shopresister")) {
+      setTabValue(1);
+      navigate("/shopresister");
+    } else {
+      setTabValue(2);
+      navigate("/ambassador");
+    }
+  }, [navigate]);
 
   const redirectShopRegister = () => {
     setTabValue(1);
@@ -51,7 +56,7 @@ const RegisterOther = () => {
             page={tabValue === 1 ? "未登録店舗登録" : "アンバサダー登録"}
           />
           <Tabs className="mt-10 mb-24">
-            <TabList className="flex">
+            <TabList className="flex" value={tabValue || undefined}>
               <Tab
                 className={`text-center rounded-tl-lg rounded-tr-lg ${
                   tabValue === 1

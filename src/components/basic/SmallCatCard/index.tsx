@@ -22,6 +22,8 @@ const SmallCatCard = ({
   const [recommendLoginShow, setRecommendLoginShow] = useState(false);
   const [loginSectionHover, setLoginSectionHover] = useState(false);
   const [isNew, setIsNew] = useState<boolean | undefined>(false);
+  const [imgWidth, setImgWidth] = useState<number>();
+  const [imgHeight, setImgHeight] = useState<number>();
   const { user } = useSelector((state: any) => state.user);
   const { isAuthenticated } = useSelector((state: any) => state.user);
   const [hoverAction, setHoverAction] = useState(false);
@@ -43,6 +45,15 @@ const SmallCatCard = ({
       setRecommendLoginShow(true);
     }
   };
+
+  const handleImageLoad = (
+    event: React.SyntheticEvent<HTMLImageElement, Event>
+  ) => {
+    const img = event.currentTarget;
+    setImgWidth(img.width);
+    setImgHeight(img.height);
+  };
+
   return (
     <div
       className={`relative m-auto xs:max-w-[300px] lg:max-w-none lg:w-full lg:h-[144px] xs:block lg:flex bg-white ${
@@ -75,6 +86,9 @@ const SmallCatCard = ({
                       src={item.imgs}
                       alt={item.imgs}
                       className="m-auto cursor-pointer h-full object-cover"
+                      onLoad={handleImageLoad}
+                      width={imgWidth}
+                      height={imgHeight}
                     />
                   </span>
                 </Link>
@@ -152,6 +166,7 @@ const SmallCatCard = ({
                 src="/assets/imgs/icons/recommend-off.webp"
                 alt="recommend-off"
                 width={32}
+                height={32}
               />
             )}
           </span>
@@ -174,7 +189,7 @@ const SmallCatCard = ({
         </div>
         {isNew && (
           <span className="absolute top-0 left-0 z-10">
-            <img src="/assets/imgs/icons/parts-new.svg" alt="parts-new" />
+            <img src="/assets/imgs/icons/parts-new.webp" alt="parts-new" />
           </span>
         )}
       </div>
@@ -194,9 +209,11 @@ const SmallCatCard = ({
           <div className="flex items-center">
             <span className=" flex d-inline-block align-items-center w-[24px] h-[24px]  mr-[9px]">
               <img
-                src="/assets/imgs/icons/recommend.svg"
+                src="/assets/imgs/icons/recommend.webp"
                 className=" align-items-center"
                 alt="recommend"
+                width={24}
+                height={24}
               />
             </span>
             <h2 className="text-[24px] d-inline-block">

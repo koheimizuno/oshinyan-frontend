@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import BannerCarousel from "../../components/common/BannerCarousel";
@@ -14,8 +14,8 @@ import { Notification } from "../../constant/notification";
 import SearchBar from "../../components/common/SearchBar";
 import HelmetPage from "../../layouts/MainLayout/HelmetPage";
 import SuspenseContent from "../../components/basic/SuspenseContent";
-import { ResponsiveImage } from "../../components/basic/ResponsiveImage";
-const CatCard = lazy(() => import("../../components/basic/blog/CatCard"));
+import ResponsiveImage from "../../components/basic/ResponsiveImage";
+import CatCard from "../../components/basic/blog/CatCard";
 
 const Top = () => {
   const [catData, setCatData] = useState<CatObjectType[]>([]);
@@ -186,7 +186,7 @@ const Top = () => {
               </Suspense>
             </div>
             {catMoreBtnShow && (
-              <div className="py-[35px] text-center border-b border-b-solid border-[#CCC]">
+              <div className="w-full py-[35px] text-center border-b border-b-solid border-[#CCC]">
                 <button
                   className="w-[161px] h-[32px] rounded text-white bg-[#CBB279] shadow-inner text-[16px] py-[5px]"
                   onClick={() => handleMoreDisplay(catData.length)}
@@ -225,7 +225,7 @@ const Top = () => {
                 </div>
               </div>
               {advertiseMoreBtnShow && (
-                <div className="py-[35px] text-center border-b border-b-solid border-[#CCC]">
+                <div className="w-full py-[35px] text-center border-b border-b-solid border-[#CCC]">
                   <button
                     className="w-[161px] h-[32px] rounded text-white bg-[#CBB279] shadow-inner text-[16px] py-[5px]"
                     onClick={() =>
@@ -250,7 +250,7 @@ const Top = () => {
                     src="/assets/imgs/nyanplace-banner.webp"
                     srcSet="/assets/imgs/nyanplace-banner-small.webp 768w, /assets/imgs/nyanplace-banner.webp 2000w"
                     alt="nyanplace-banner"
-                    className="w-full"
+                    className="w-full max-w-[960px]"
                   />
                   <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:text-[32px] text-white font-bold tracking-widest whitespace-nowrap">
                     『看板猫に会える場所』一覧
@@ -263,7 +263,7 @@ const Top = () => {
                     src="/assets/imgs/member.webp"
                     srcSet="/assets/imgs/member-small.webp 768w, /assets/imgs/member.webp 2000w"
                     alt="member"
-                    className="w-full"
+                    className="w-full max-w-[960px]"
                   />
                 </Link>
               </div>

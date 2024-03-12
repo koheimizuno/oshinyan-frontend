@@ -377,6 +377,8 @@ const CatDetail = () => {
                     src="/assets/imgs/icons/recommend-off-black.webp"
                     alt="recommend-off-black"
                     className="w-10 md:w-12"
+                    width={48}
+                    height={48}
                   />
                 )}
               </span>
@@ -467,8 +469,10 @@ const CatDetail = () => {
             <div className="flex items-center">
               <img
                 className="w-6"
-                src="/assets/imgs/icons/recommend.svg"
+                src="/assets/imgs/icons/recommend.webp"
                 alt="recommend"
+                width={24}
+                height={24}
               />
             </div>
             <div className="text-2xl font-medium ms-2">

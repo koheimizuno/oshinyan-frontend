@@ -12,16 +12,16 @@ const Footer = ({ handleScrollTop }: Props) => {
         <div className="flex xs:flex-col xs:gap-5 sm:flex-row sm:justify-between sm:items-center">
           <Link to="/guide" className="border">
             <img
-              src="/assets/imgs/footer-1.webp"
-              alt="footer-1"
-              className="w-full"
+              src="/assets/imgs/footer-banner-1.webp"
+              alt="footer-banner-1"
+              className="w-full max-w-[464px]"
             />
           </Link>
           <Link to="/shopresister">
             <img
-              src="/assets/imgs/footer-2.webp"
-              alt="footer-2"
-              className="w-full"
+              src="/assets/imgs/footer-banner-2.webp"
+              alt="footer-banner-2"
+              className="w-full max-w-[464px]"
             />
           </Link>
         </div>
@@ -88,6 +88,8 @@ const Footer = ({ handleScrollTop }: Props) => {
                 src="/assets/imgs/footer-logo.webp"
                 alt="footer-logo"
                 className="xs:m-auto sm:m-0"
+                width={92}
+                height={57}
               />
             </div>
           </div>

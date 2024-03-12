@@ -4,9 +4,19 @@ import { formatDateTime } from "../../../utils/functions";
 
 const BlogColumnBox = (props: ColumnType) => {
   const [hoverAction, setHoverAction] = useState(false);
+  const [imgWidth, setImgWidth] = useState<number>();
+  const [imgHeight, setImgHeight] = useState<number>();
 
   const goColumnDetail = (id: number) => {
     window.location.href = `/column/${id}`;
+  };
+
+  const handleImageLoad = (
+    event: React.SyntheticEvent<HTMLImageElement, Event>
+  ) => {
+    const img = event.currentTarget;
+    setImgWidth(img.width);
+    setImgHeight(img.height);
   };
 
   return (
@@ -27,6 +37,9 @@ const BlogColumnBox = (props: ColumnType) => {
           src={props.hero_image}
           className="h-full m-auto object-cover"
           alt={props.cat_name}
+          onLoad={handleImageLoad}
+          width={imgWidth}
+          height={imgHeight}
         />
       </div>
       <div className="p-4">

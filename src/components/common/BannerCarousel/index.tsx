@@ -16,6 +16,9 @@ import {
 
 function BannerCarousel() {
   const [bannerData, setBannerData] = useState<BannerType[]>([]);
+  const [imgWidth, setImgWidth] = useState<number>();
+  const [imgHeight, setImgHeight] = useState<number>();
+
   useEffect(() => {
     const fetchBanner = async () => {
       try {
@@ -35,6 +38,14 @@ function BannerCarousel() {
     fetchBanner();
   }, []);
 
+  const handleImageLoad = (
+    event: React.SyntheticEvent<HTMLImageElement, Event>
+  ) => {
+    const img = event.currentTarget;
+    setImgWidth(img.width);
+    setImgHeight(img.height);
+  };
+
   return (
     <div className="bg-white">
       <Swiper
@@ -48,7 +59,6 @@ function BannerCarousel() {
         }}
         spaceBetween={window.innerWidth < 640 ? 8 : 16}
         slidesPerView={window.innerWidth / 344}
-        // slidesPerView={5}
         navigation={{ nextEl: ".arrow-right", prevEl: ".arrow-left" }}
         className="h-[256px] cursor-pointer py-2 m-0"
       >
@@ -57,8 +67,13 @@ function BannerCarousel() {
             <SwiperSlide key={key}>
               <a href={item.url}>
                 <img
+                  fetchpriority="high"
+                  loading="lazy"
                   src={item.image}
                   alt={item.image}
+                  onLoad={handleImageLoad}
+                  width={imgWidth}
+                  height={imgHeight}
                   className="h-full m-auto"
                 />
               </a>

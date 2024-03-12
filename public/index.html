@@ -13,14 +13,37 @@
     <meta property="og:url" content="https://www.oshinyan.love" />
     <meta property="og:type" content="website" />
     <link rel="icon" type="image/x-icon" href="%PUBLIC_URL%/favicon.webp" />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/icons/info_cat.webp" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="canonical" href="https://www.oshinyan.love" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Roboto:wght@100&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      as="image"
+      fetchpriority="high"
+      type="image/webp"
+      href="%PUBLIC_URL%/assets/imgs/nyanplace-banner.webp"
+    />
+    <link
+      rel="preload"
+      as="image"
+      fetchpriority="high"
+      type="image/webp"
+      href="%PUBLIC_URL%/assets/imgs/nyanplace-banner-small.webp"
+    />
+    <link
+      rel="preload"
+      as="image"
+      fetchpriority="high"
+      type="image/webp"
+      href="%PUBLIC_URL%/assets/imgs/member.webp"
+    />
+    <link
+      rel="preload"
+      as="image"
+      fetchpriority="high"
+      type="image/webp"
+      href="%PUBLIC_URL%/assets/imgs/member-small.webp"
     />
     <!-- Google Tag Manager -->
     <script>
@@ -37,35 +60,37 @@
     </script>
     <!-- End Google Tag Manager -->
     <script>
-      (function (d) {
-        var config = {
-            kitId: "fxr5kvr",
-            scriptTimeout: 3000,
-            async: true,
-          },
-          h = d.documentElement,
-          t = setTimeout(function () {
-            h.className =
-              h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive";
-          }, config.scriptTimeout),
-          tk = d.createElement("script"),
-          f = false,
-          s = d.getElementsByTagName("script")[0],
-          a;
-        h.className += " wf-loading";
-        tk.src = "https://use.typekit.net/" + config.kitId + ".js";
-        tk.async = true;
-        tk.onload = tk.onreadystatechange = function () {
-          a = this.readyState;
-          if (f || (a && a != "complete" && a != "loaded")) return;
-          f = true;
-          clearTimeout(t);
-          try {
-            Typekit.load(config);
-          } catch (e) {}
-        };
-        s.parentNode.insertBefore(tk, s);
-      })(document);
+      document.addEventListener("DOMContentLoaded", function () {
+        (function (d) {
+          var config = {
+              kitId: "fxr5kvr",
+              scriptTimeout: 3000,
+              async: true,
+            },
+            h = d.documentElement,
+            t = setTimeout(function () {
+              h.className =
+                h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive";
+            }, config.scriptTimeout),
+            tk = d.createElement("script"),
+            f = false,
+            s = d.getElementsByTagName("script")[0],
+            a;
+          h.className += " wf-loading";
+          tk.src = "https://use.typekit.net/" + config.kitId + ".js";
+          tk.async = true;
+          tk.onload = tk.onreadystatechange = function () {
+            a = this.readyState;
+            if (f || (a && a != "complete" && a != "loaded")) return;
+            f = true;
+            clearTimeout(t);
+            try {
+              Typekit.load(config);
+            } catch (e) {}
+          };
+          s.parentNode.insertBefore(tk, s);
+        })(document);
+      });
     </script>
   </head>
   <body>

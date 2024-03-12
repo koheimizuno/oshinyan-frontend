@@ -35,4 +35,3 @@ const InputText = (props: InputProps) => {
 };
 
 export default InputText;
-// className={`bg-[#FFF] border border-[#CCCCCC] rounded-[5px] w-full me-auto h-[40px] p-2 focus:outline-none focus:shadow-md focus:shadow-[#ffe4eb] ${props.className}`}

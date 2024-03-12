@@ -6,8 +6,19 @@ import ArrowRight from "../../../basic/icons/ArrowRight";
 
 function CatDetailCarousel(props: any) {
   const [isZoomed, setIsZoomed] = useState(false);
+  const [imgWidth, setImgWidth] = useState<number>();
+  const [imgHeight, setImgHeight] = useState<number>();
+
   const handleImageClick = () => {
     setIsZoomed((prevIsZoomed) => !prevIsZoomed);
+  };
+
+  const handleImageLoad = (
+    event: React.SyntheticEvent<HTMLImageElement, Event>
+  ) => {
+    const img = event.currentTarget;
+    setImgWidth(img.width);
+    setImgHeight(img.height);
   };
 
   return (
@@ -37,6 +48,9 @@ function CatDetailCarousel(props: any) {
                 isZoomed ? "max-w-full w-[105%]" : ""
               }`}
               onClick={handleImageClick}
+              onLoad={handleImageLoad}
+              width={imgWidth}
+              height={imgHeight}
             />
           </SwiperSlide>
         ))}

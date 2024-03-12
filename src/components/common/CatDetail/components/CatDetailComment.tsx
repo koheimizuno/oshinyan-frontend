@@ -22,8 +22,8 @@ const CatDetailComment = (props: any) => {
             <div className="relative h-full">
               <div className="h-full w-[100px] lg:w-[150px] absolute top-0 left-[-11px] ">
                 <img
-                  src="/assets/imgs/Group 864.webp"
-                  alt="Group 864"
+                  src="/assets/imgs/catdetailcomment-2.webp"
+                  alt="catdetailcomment-2"
                   className="h-full w-auto m-auto"
                 />
               </div>
@@ -36,8 +36,8 @@ const CatDetailComment = (props: any) => {
                 <span>推しコメントを書いてね！</span>
               </p>
               <img
-                src="/assets/imgs/Group 867.webp"
-                alt="Group 867"
+                src="/assets/imgs/catdetailcomment-1.webp"
+                alt="catdetailcomment-1"
                 className="absolute top-0 left-0 -z-10"
               />
             </div>
@@ -56,7 +56,7 @@ const CatDetailComment = (props: any) => {
           >
             <button
               onClick={goToComment}
-              className="flex justify-center items-center h-full"
+              className="flex justify-center items-center h-full m-auto"
             >
               <span className="lg:text-[28px] tracking-[-3px] text-white font-bold">
                 コメントするニャン！
@@ -87,8 +87,8 @@ const CatDetailComment = (props: any) => {
             <div className="relative h-full">
               <div className="hidden sm:block absolute top-0 right-[-11px] h-full w-[100px] lg:w-[150px]">
                 <img
-                  src="/assets/imgs/Group 863.webp"
-                  alt="Group 864"
+                  src="/assets/imgs/catdetailcomment-1.webp"
+                  alt="catdetailcomment-1"
                   className="h-full"
                 />
               </div>

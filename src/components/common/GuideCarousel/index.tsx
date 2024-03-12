@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import {
   Navigation,
@@ -14,55 +14,64 @@ import { Link } from "react-router-dom";
 const GUIDEBANNERIMGS: object[] = [
   {
     src: "/assets/imgs/guide-bnr-1.webp",
-    alt: "guide-cat-1",
+    alt: "guide-bnr-1",
   },
   {
     src: "/assets/imgs/guide-bnr-2.webp",
-    alt: "guide-cat-2",
+    alt: "guide-bnr-2",
   },
   {
     src: "/assets/imgs/guide-bnr-3.webp",
-    alt: "guide-cat-3",
+    alt: "guide-bnr-3",
   },
   {
     src: "/assets/imgs/guide-bnr-4.webp",
-    alt: "guide-cat-4",
+    alt: "guide-bnr-4",
   },
   {
     src: "/assets/imgs/guide-bnr-5.webp",
-    alt: "guide-cat-5",
+    alt: "guide-bnr-5",
   },
   {
     src: "/assets/imgs/guide-bnr-6.webp",
-    alt: "guide-cat-6",
+    alt: "guide-bnr-6",
   },
   {
     src: "/assets/imgs/guide-bnr-1.webp",
-    alt: "guide-cat-1",
+    alt: "guide-bnr-1",
   },
   {
     src: "/assets/imgs/guide-bnr-2.webp",
-    alt: "guide-cat-2",
+    alt: "guide-bnr-2",
   },
   {
     src: "/assets/imgs/guide-bnr-3.webp",
-    alt: "guide-cat-3",
+    alt: "guide-bnr-3",
   },
   {
     src: "/assets/imgs/guide-bnr-4.webp",
-    alt: "guide-cat-4",
+    alt: "guide-bnr-4",
   },
   {
     src: "/assets/imgs/guide-bnr-5.webp",
-    alt: "guide-cat-5",
+    alt: "guide-bnr-5",
   },
   {
     src: "/assets/imgs/guide-bnr-6.webp",
-    alt: "guide-cat-6",
+    alt: "guide-bnr-6",
   },
 ];
 
 function GuideCarousel() {
+  const [imgWidth, setImgWidth] = useState<number>();
+  const [imgHeight, setImgHeight] = useState<number>();
+  const handleImageLoad = (
+    event: React.SyntheticEvent<HTMLImageElement, Event>
+  ) => {
+    const img = event.currentTarget;
+    setImgWidth(img.width);
+    setImgHeight(img.height);
+  };
   return (
     <div className="bg-[#F5F4EC]">
       <Swiper
@@ -82,7 +91,14 @@ function GuideCarousel() {
           GUIDEBANNERIMGS.map((item: any, key: any) => (
             <SwiperSlide key={key}>
               <Link to="/feature/1">
-                <img src={item.src} alt={item.src} className="h-full m-auto" />
+                <img
+                  src={item.src}
+                  alt={item.src}
+                  className="h-full m-auto"
+                  onLoad={handleImageLoad}
+                  width={imgWidth}
+                  height={imgHeight}
+                />
               </Link>
             </SwiperSlide>
           ))}

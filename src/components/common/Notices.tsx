@@ -36,6 +36,8 @@ const Notices = () => {
                         <img
                           src="assets/imgs/icons/pdf_icon.webp"
                           alt="pdf_icon"
+                          width={58}
+                          height={24}
                         />
                       )}
                     </a>

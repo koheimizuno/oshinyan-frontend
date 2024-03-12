@@ -19,6 +19,8 @@ const NyanPlaceCard = lazy(
 
 function NyanplaceDetail() {
   const { id } = useParams();
+  const [imgWidth, setImgWidth] = useState<number>();
+  const [imgHeight, setImgHeight] = useState<number>();
   const [shopNearByData, setShopNearByData] = useState<CatObjectType[]>([]);
   const [AshopData, setAShopData] = useState<ShopType>({
     shop_name: "",
@@ -44,7 +46,13 @@ function NyanplaceDetail() {
     fetchAShopData();
   }, [id, AshopData.address]);
 
-  useEffect(() => {}, []);
+  const handleImageLoad = (
+    event: React.SyntheticEvent<HTMLImageElement, Event>
+  ) => {
+    const img = event.currentTarget;
+    setImgWidth(img.width);
+    setImgHeight(img.height);
+  };
 
   return (
     <>
@@ -87,6 +95,9 @@ function NyanplaceDetail() {
                       src={item.imgs}
                       alt={item.imgs}
                       className="h-full m-auto"
+                      onLoad={handleImageLoad}
+                      width={imgWidth}
+                      height={imgHeight}
                     />
                   </SwiperSlide>
                 ))}
@@ -243,8 +254,8 @@ function NyanplaceDetail() {
               </div>
               <div className="mt-[124px]">
                 <img
-                  src="/assets/imgs/Group 802.webp"
-                  alt="Group 802"
+                  src="/assets/imgs/nyanplacedetail-banner.webp"
+                  alt="nyanplacedetail-banner"
                   className="m-auto"
                 />
               </div>

@@ -64,7 +64,13 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Suspense fallback={<SuspenseContent />}>
+      <Suspense
+        fallback={
+          <div className="w-screen h-screen ">
+            <SuspenseContent />
+          </div>
+        }
+      >
         <Routes>
           <Route path="/">
             <Route index element={<Top />} />

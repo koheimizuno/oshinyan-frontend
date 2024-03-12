@@ -111,7 +111,12 @@ const SearchBar = ({
                 type="submit"
                 className="rounded-r-md w-8 h-8 bg-[#FBA1B7] flex justify-center items-center"
               >
-                <img src="/assets/imgs/icons/search.webp" alt="search" />
+                <img
+                  src="/assets/imgs/icons/search.webp"
+                  alt="search"
+                  width={12}
+                  height={12}
+                />
               </button>
             </form>
           </div>

@@ -2,25 +2,20 @@ import { useEffect } from "react";
 
 interface ImageProps {
   src: string;
-  srcSet: string;
+  srcSet?: string;
   alt: string;
   className?: string;
 }
 
-export const ResponsiveImage: React.FC<ImageProps> = ({
-  src,
-  srcSet,
-  alt,
-  className,
-}) => {
+const ResponsiveImage = ({ src, srcSet, alt, className }: ImageProps) => {
   useEffect(() => {
     const link = document.createElement("link");
     link.setAttribute("rel", "preload");
     link.setAttribute("as", "image");
 
-    const sizes = srcSet.split(",").map((size) => size.trim().split(" ")[0]);
+    const sizes = srcSet?.split(",").map((size) => size.trim().split(" ")[0]);
 
-    sizes.forEach((size) => {
+    sizes?.forEach((size) => {
       const preloadSrc = size.split(" ")[0];
       link.setAttribute("href", preloadSrc);
       document.head.appendChild(link);
@@ -30,5 +25,16 @@ export const ResponsiveImage: React.FC<ImageProps> = ({
       document.head.removeChild(link);
     };
   }, [src, srcSet]);
-  return <img src={src} srcSet={srcSet} alt={alt} className={className} />;
+  return (
+    <img
+      fetchpriority="high"
+      loading="lazy"
+      src={src}
+      srcSet={srcSet}
+      alt={alt}
+      className={className}
+    />
+  );
 };
+
+export default ResponsiveImage;

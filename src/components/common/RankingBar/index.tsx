@@ -5,9 +5,10 @@ const RankingBar = () => {
     <div className="xs:block sm:flex sm:justify-start mt-[35px] mb-[12px] pt-[12px] pb-[11px]  border-y-2 border-y-solid border-y-[#CBB279] text-[20px]">
       <div className="flex gap-4 mr-[16px] xs:justify-center sm:justify-start xs:mb-3 sm:m-0">
         <img
-          src="/assets/imgs/icons/ranking-1-cap.svg"
-          className="w-[36px]"
+          src="/assets/imgs/icons/ranking-1-cap.webp"
           alt="ranking-1-cap"
+          width={36}
+          height={24}
         />
         <h4 className="">推しニャンRANKING</h4>
       </div>

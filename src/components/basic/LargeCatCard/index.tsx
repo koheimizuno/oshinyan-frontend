@@ -27,6 +27,8 @@ const LargeCatCard = ({
   const [loginSectionHover, setLoginSectionHover] = useState(false);
   const [isNew, setIsNew] = useState<boolean | undefined>(false);
   const [hoverAction, setHoverAction] = useState(false);
+  const [imgWidth, setImgWidth] = useState<number>();
+  const [imgHeight, setImgHeight] = useState<number>();
   const { user } = useSelector((state: any) => state.user);
   const { isAuthenticated } = useSelector((state: any) => state.user);
 
@@ -47,6 +49,15 @@ const LargeCatCard = ({
       setRecommendLoginShow(true);
     }
   };
+
+  const handleImageLoad = (
+    event: React.SyntheticEvent<HTMLImageElement, Event>
+  ) => {
+    const img = event.currentTarget;
+    setImgWidth(img.width);
+    setImgHeight(img.height);
+  };
+
   return (
     <div
       className={`relative xs:max-w-[480px] xs:m-auto md:max-w-none w-full mb-[15px] md:grid md:grid-cols-2 bg-white ${
@@ -80,6 +91,9 @@ const LargeCatCard = ({
                     src={item.imgs}
                     alt={item.imgs}
                     className="m-auto cursor-pointer max-w-full h-full"
+                    onLoad={handleImageLoad}
+                    width={imgWidth}
+                    height={imgHeight}
                   />
                 </Link>
               </SwiperSlide>
@@ -154,7 +168,12 @@ const LargeCatCard = ({
         <hr className="border border-[#CCC]" />
         <div className="flex justify-content-start items-center pt-[10px] pb-[16px] ">
           <div>
-            <img src="/assets/imgs/icons/hear-yellow.svg" alt="hear-yellow" />
+            <img
+              src="/assets/imgs/icons/hear-yellow.webp"
+              alt="hear-yellow"
+              width={24}
+              height={24}
+            />
           </div>
           <div className="px-[8px] whitespace-nowrap">
             <p>性格</p>
@@ -184,9 +203,11 @@ const LargeCatCard = ({
         <div className="flex justify-content-start items-center mt-[15px] mb-[8px]">
           <span className=" flex d-inline-block align-items-center w-[24px] h-[24px]  mr-[9px]">
             <img
-              src="/assets/imgs/icons/recommend.svg"
+              src="/assets/imgs/icons/recommend.webp"
               className=" align-items-center "
               alt="recommend"
+              width={24}
+              height={24}
             />
           </span>
           <h2 className="text-[24px] d-inline-block">
@@ -194,7 +215,7 @@ const LargeCatCard = ({
           </h2>
         </div>
         <div
-          className="absolute bottom-6 right-6"
+          className="absolute bottom-3 right-6"
           ref={recommendLoginElement}
           onMouseLeave={() => {
             if (!loginSectionHover) {
@@ -216,6 +237,8 @@ const LargeCatCard = ({
               <img
                 src="/assets/imgs/icons/recommend-off.webp"
                 alt="recommend-off"
+                width={48}
+                height={48}
               />
             )}
           </span>
@@ -238,7 +261,7 @@ const LargeCatCard = ({
         </div>
         {isNew && (
           <span className="absolute top-0 left-0 z-10">
-            <img src="/assets/imgs/icons/parts-new.svg" alt="parts-new" />
+            <img src="/assets/imgs/icons/parts-new.webp" alt="parts-new" />
           </span>
         )}
       </div>

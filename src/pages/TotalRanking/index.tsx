@@ -121,8 +121,10 @@ const TotalRanking = () => {
               {catData.length !== 0 && (
                 <div className="ranking-1-tle flex gap-[8px]">
                   <img
-                    src="/assets/imgs/icons/ranking-1-cap.svg"
+                    src="/assets/imgs/icons/ranking-1-cap.webp"
                     alt="ranking-1-cap"
+                    width={36}
+                    height={24}
                   />
                   <span className="text-[24px] font-bold leading-[32px]">
                     1位

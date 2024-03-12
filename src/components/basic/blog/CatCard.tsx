@@ -28,6 +28,8 @@ const CatCard = ({
   const [recommendLoginShow, setRecommendLoginShow] = useState(false);
   const [loginSectionHover, setLoginSectionHover] = useState(false);
   const [hoverAction, setHoverAction] = useState(false);
+  const [imgWidth, setImgWidth] = useState<number>();
+  const [imgHeight, setImgHeight] = useState<number>();
   const { user, isAuthenticated } = useSelector((state: any) => state.user);
 
   useEffect(() => {
@@ -69,6 +71,14 @@ const CatCard = ({
       : (window.location.href = `/oshinyan/${id}?advertise=${"advertise"}`);
   };
 
+  const handleImageLoad = (
+    event: React.SyntheticEvent<HTMLImageElement, Event>
+  ) => {
+    const img = event.currentTarget;
+    setImgWidth(img.width);
+    setImgHeight(img.height);
+  };
+
   return (
     <div className="relative m-auto sm:m-0">
       <div
@@ -104,9 +114,14 @@ const CatCard = ({
                       className="h-full w-full"
                     >
                       <img
+                        fetchpriority="high"
+                        loading="lazy"
                         src={item.imgs}
                         alt={item.imgs}
                         className={`h-full m-auto cursor-pointer object-cover  overflow-hidden`}
+                        onLoad={handleImageLoad}
+                        width={imgWidth}
+                        height={imgHeight}
                       />
                     </button>
                   </SwiperSlide>
@@ -191,6 +206,8 @@ const CatCard = ({
                   <img
                     src="/assets/imgs/icons/recommend-off.webp"
                     alt="recommend-off"
+                    width={48}
+                    height={48}
                   />
                 )}
               </span>
@@ -213,7 +230,7 @@ const CatCard = ({
             </div>
             {isNew && (
               <span className="absolute top-0 left-0 z-10">
-                <img src="/assets/imgs/icons/parts-new.svg" alt="parts-new" />
+                <img src="/assets/imgs/icons/parts-new.webp" alt="parts-new" />
               </span>
             )}
           </div>
@@ -249,9 +266,11 @@ const CatCard = ({
             <div className="flex justify-content-start items-center mt-[15px] mb-[8px]">
               <span className=" flex d-inline-block align-items-center w-[24px] h-[24px]  mr-[9px]">
                 <img
-                  src="/assets/imgs/icons/recommend.svg"
-                  className=" align-items-center "
+                  src="/assets/imgs/icons/recommend.webp"
+                  className=" align-items-center"
                   alt="recommend"
+                  width={24}
+                  height={24}
                 />
               </span>
               <h2 className="text-[24px] d-inline-block">
@@ -262,8 +281,10 @@ const CatCard = ({
             <div className="flex justify-content-start items-center gap-1 pt-[10px] pb-[19px] ">
               <div>
                 <img
-                  src="/assets/imgs/icons/hear-yellow.svg"
+                  src="/assets/imgs/icons/hear-yellow.webp"
                   alt="hear-yellow"
+                  width={24}
+                  height={24}
                 />
               </div>
               <div className="px-[8px] whitespace-nowrap">
