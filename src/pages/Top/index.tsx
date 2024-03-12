@@ -14,6 +14,7 @@ import { Notification } from "../../constant/notification";
 import SearchBar from "../../components/common/SearchBar";
 import HelmetPage from "../../layouts/MainLayout/HelmetPage";
 import SuspenseContent from "../../components/basic/SuspenseContent";
+import { ResponsiveImage } from "../../components/basic/ResponsiveImage";
 const CatCard = lazy(() => import("../../components/basic/blog/CatCard"));
 
 const Top = () => {
@@ -244,10 +245,12 @@ const Top = () => {
           <div>
             <div className="pt-[48px] pb-[80px]">
               <div className="mb-[24px] hover:opacity-70">
-                <Link to="/nyanplace" className="relative">
-                  <img
+                <Link to="/nyanplace" className="relative block">
+                  <ResponsiveImage
                     src="/assets/imgs/nyanplace-banner.webp"
+                    srcSet="/assets/imgs/nyanplace-banner-small.webp 768w, /assets/imgs/nyanplace-banner.webp 2000w"
                     alt="nyanplace-banner"
+                    className="w-full"
                   />
                   <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:text-[32px] text-white font-bold tracking-widest whitespace-nowrap">
                     『看板猫に会える場所』一覧
@@ -256,7 +259,12 @@ const Top = () => {
               </div>
               <div className="hover:opacity-70">
                 <Link to="/registration">
-                  <img src="/assets/imgs/member.webp" alt="member" />
+                  <ResponsiveImage
+                    src="/assets/imgs/member.webp"
+                    srcSet="/assets/imgs/member-small.webp 768w, /assets/imgs/member.webp 2000w"
+                    alt="member"
+                    className="w-full"
+                  />
                 </Link>
               </div>
             </div>

@@ -31,7 +31,7 @@ const PasswordResetConfirmation = lazy(
 );
 const Test = lazy(() => import("./pages/Test"));
 
-axios.defaults.baseURL = "https://192.168.145.195:8000";
+axios.defaults.baseURL = "https://x162-43-50-92.static.xvps.ne.jp";
 
 function App() {
   const dispatch = useDispatch();
