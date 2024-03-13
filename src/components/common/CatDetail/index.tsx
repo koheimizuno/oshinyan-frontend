@@ -577,9 +577,9 @@ const CatDetail = () => {
                           className="px-20 py-10"
                           onSubmit={(e) => handleReport(e, commentitem.id)}
                         >
-                          <h1 className="text-4xl text-center tracking-widest py-4">
+                          <p className="text-4xl text-center tracking-widest py-4">
                             通報報告
-                          </h1>
+                          </p>
                           <label className="flex items-center gap-5 py-3">
                             <span className="w-[135px]">氏名: </span>
                             <div className="w-[calc(100%-135px)]">

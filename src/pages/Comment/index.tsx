@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import MainLayout from "../../layouts/MainLayout";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import Container from "../../components/basic/Container";
@@ -86,9 +86,7 @@ function Comment() {
         <section className="flex flex-col gap-5 md:flex-row md:items-center md:gap-10 py-9">
           <div className="flex items-center gap-4">
             <img src={user.avatar.avatar} alt={user.username} />
-            <Link to="#" className="border-b border-[#6d6d6d]">
-              {user.username}
-            </Link>
+            <span className="border-b border-[#6d6d6d]">{user.username}</span>
           </div>
           <div className="hidden md:block">
             <img src="/assets/imgs/icons/pink-arrow.webp" alt="pink-arrow" />

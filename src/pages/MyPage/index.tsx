@@ -212,7 +212,7 @@ const MyPage = () => {
               </div>
               <div className="md:h-8 border-l border-[#CCCCCC]"></div>
               <div className="text-[24px] leading-[32px]">
-                Oshy-Nyan ID : 0000222
+                Oshy-Nyan ID : {currentUser.id}
               </div>
             </div>
             <div className="sm:flex mt-[16px]">

@@ -36,8 +36,7 @@ function PasswordResetConfirmation() {
   return (
     <Container>
       <div className="h-screen flex flex-col justify-center items-center">
-        <h1 className="text-3xl mb-6">パスワードリセット</h1>
-
+        <p className="text-3xl mb-6">パスワードリセット</p>
         <p className="text-left text-red-500 w-[50%]">{error}</p>
         <form onSubmit={handleSubmit} className="w-[50%]">
           <label className="block text-center py-3">
