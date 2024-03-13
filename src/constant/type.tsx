@@ -120,3 +120,10 @@ export interface FeatureType {
   };
   cats: any[];
 }
+
+export interface ImgTagType {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+}

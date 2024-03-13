@@ -9,13 +9,13 @@ import Notices from "../../components/common/Notices";
 import Container from "../../components/basic/Container";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import axios from "axios";
-import { CatObjectType } from "../../constant/type";
+import { CatObjectType, ImgTagType } from "../../constant/type";
 import { Notification } from "../../constant/notification";
 import SearchBar from "../../components/common/SearchBar";
 import HelmetPage from "../../layouts/MainLayout/HelmetPage";
 import SuspenseContent from "../../components/basic/SuspenseContent";
-import ResponsiveImage from "../../components/basic/ResponsiveImage";
 import CatCard from "../../components/basic/blog/CatCard";
+import { MEM_BNR_IMG, MEM_BNR_SP_IMG } from "./constants";
 
 const Top = () => {
   const [catData, setCatData] = useState<CatObjectType[]>([]);
@@ -30,6 +30,10 @@ const Top = () => {
   const [attendanceKeyword, selectAttendanceKeyword] = useState<string[]>([]);
   const [attendanceShow, setAttendanceShow] = useState(false);
   const [searchWord, setSearchWord] = useState<string>("");
+  const [nypHeight, setNypHeight] = useState<string>();
+  const [nypImg, setNypImg] = useState<ImgTagType[]>([]);
+  const [memBnrImg, setMemBnrImg] = useState<ImgTagType[]>([]);
+  const [memGap, setMemGap] = useState("");
   const { authLoading, isAuthenticated } = useSelector(
     (state: any) => state.user
   );
@@ -54,6 +58,77 @@ const Top = () => {
     fetchCatData();
     fetchAdvertiseCatData();
   }, [isAuthenticated, catLoading, authLoading]);
+
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth > 452) {
+        setNypHeight("h-[208px]");
+        setMemBnrImg(MEM_BNR_IMG);
+        setMemGap("gap-3");
+        setNypImg([
+          {
+            src: "/assets/imgs/nyp-bnr-1.webp",
+            alt: "nyp-bnr-1.webp",
+            width: 240,
+            height: 204,
+          },
+          {
+            src: "/assets/imgs/nyp-bnr-2.webp",
+            alt: "nyp-bnr-2.webp",
+            width: 240,
+            height: 204,
+          },
+          {
+            src: "/assets/imgs/nyp-bnr-3.webp",
+            alt: "nyp-bnr-3.webp",
+            width: 240,
+            height: 204,
+          },
+          {
+            src: "/assets/imgs/nyp-bnr-4.webp",
+            alt: "nyp-bnr-4.webp",
+            width: 240,
+            height: 204,
+          },
+        ]);
+      } else {
+        setNypHeight("h-[128px]");
+        setMemBnrImg(MEM_BNR_SP_IMG);
+        setMemGap("gap-2");
+        setNypImg([
+          {
+            src: "/assets/imgs/nyp-bnr-sp-1.webp",
+            alt: "nyp-bnr-sp-1.webp",
+            width: 113,
+            height: 128,
+          },
+          {
+            src: "/assets/imgs/nyp-bnr-sp-2.webp",
+            alt: "nyp-bnr-sp-2.webp",
+            width: 113,
+            height: 128,
+          },
+          {
+            src: "/assets/imgs/nyp-bnr-sp-3.webp",
+            alt: "nyp-bnr-sp-3.webp",
+            width: 113,
+            height: 128,
+          },
+          {
+            src: "/assets/imgs/nyp-bnr-sp-4.webp",
+            alt: "nyp-bnr-sp-4.webp",
+            width: 113,
+            height: 128,
+          },
+        ]);
+      }
+    }
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const handleMoreDisplay = async (count: number) => {
     try {
@@ -243,28 +318,109 @@ const Top = () => {
         </Container>
         <Container>
           <div>
-            <div className="pt-[48px] pb-[80px]">
+            <div className="pt-[40px] pb-[48px] md:pt-[48px] md:pb-[80px]">
               <div className="mb-[24px] hover:opacity-70">
                 <Link to="/nyanplace" className="relative block">
-                  <ResponsiveImage
-                    src="/assets/imgs/nyanplace-banner.webp"
-                    srcSet="/assets/imgs/nyanplace-banner-small.webp 768w, /assets/imgs/nyanplace-banner.webp 2000w"
-                    alt="nyanplace-banner"
-                    className="w-full max-w-[960px]"
-                  />
-                  <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:text-[32px] text-white font-bold tracking-widest whitespace-nowrap">
+                  <div className={`relative flex overflow-hidden ${nypHeight}`}>
+                    <img
+                      src={nypImg[0]?.src}
+                      alt={nypImg[0]?.alt}
+                      className="absolute left-0"
+                      width={nypImg[0]?.width}
+                      height={nypImg[0]?.height}
+                    />
+                    <img
+                      src={nypImg[1]?.src}
+                      alt={nypImg[1]?.alt}
+                      className="absolute left-[25%]"
+                      width={nypImg[0]?.width}
+                      height={nypImg[0]?.height}
+                    />
+                    <img
+                      src={nypImg[2]?.src}
+                      alt={nypImg[2]?.alt}
+                      className="absolute left-[50%]"
+                      width={nypImg[0]?.width}
+                      height={nypImg[0]?.height}
+                    />
+                    <img
+                      src={nypImg[3]?.src}
+                      alt={nypImg[3]?.alt}
+                      className="absolute left-[75%]"
+                      width={nypImg[0]?.width}
+                      height={nypImg[0]?.height}
+                    />
+                  </div>
+                  <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xl md:text-[32px] text-white font-medium tracking-widest whitespace-nowrap">
                     『看板猫に会える場所』一覧
                   </p>
                 </Link>
               </div>
               <div className="hover:opacity-70">
-                <Link to="/registration">
-                  <ResponsiveImage
-                    src="/assets/imgs/member.webp"
-                    srcSet="/assets/imgs/member-small.webp 768w, /assets/imgs/member.webp 2000w"
-                    alt="member"
-                    className="w-full max-w-[960px]"
-                  />
+                <Link
+                  to="/registration"
+                  className={`bg-[#F6F0BC] flex flex-col justify-between m-auto ${nypHeight} p-2`}
+                >
+                  <div className="h-[48px] overflow-hidden">
+                    <div className={`flex flex-wrap ${memGap} justify-between`}>
+                      {memBnrImg
+                        .slice(8)
+                        .map((item: ImgTagType, key: number) => (
+                          <img
+                            key={key}
+                            src={item.src}
+                            alt={item.alt}
+                            width={item.width}
+                            height={item.height}
+                          />
+                        ))}
+                    </div>
+                  </div>
+                  <div className="h-[48px] overflow-hidden">
+                    <div className={`flex ${memGap} justify-center`}>
+                      {memBnrImg
+                        .slice(0, 4)
+                        .map((item: ImgTagType, key: number) => (
+                          <img
+                            key={key}
+                            src={item.src}
+                            alt={item.alt}
+                            width={item.width}
+                            height={item.height}
+                          />
+                        ))}
+                      <p className="text-[20px] md:text-[32px] text-[#C38154] font-medium whitespace-nowrap">
+                        『推しニャン！会員』登録
+                      </p>
+                      {memBnrImg
+                        .slice(4, 8)
+                        .map((item: ImgTagType, key: number) => (
+                          <img
+                            key={key}
+                            src={item.src}
+                            alt={item.alt}
+                            width={item.width}
+                            height={item.height}
+                          />
+                        ))}
+                    </div>
+                  </div>
+                  <div className="h-[48px] overflow-hidden">
+                    <div className={`flex flex-wrap ${memGap} justify-between`}>
+                      {memBnrImg
+                        .reverse()
+                        .slice(8)
+                        .map((item: ImgTagType, key: number) => (
+                          <img
+                            key={key}
+                            src={item.src}
+                            alt={item.alt}
+                            width={item.width}
+                            height={item.height}
+                          />
+                        ))}
+                    </div>
+                  </div>
                 </Link>
               </div>
             </div>

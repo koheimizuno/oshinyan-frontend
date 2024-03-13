@@ -14,7 +14,6 @@ const Guide = () => {
         keywords="看板猫, 推しニャン, 猫のいる店"
       />
       <MainLayout>
-        {/* <SocialLinkGroup /> */}
         <Container>
           <PageBar page="推しニャンとは ?" />
           <Title title="推しニャンとは？" />
