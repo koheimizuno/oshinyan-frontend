@@ -113,7 +113,7 @@ const SignupForm = () => {
                 <h3 className="xs:text-[18px] md:text-[24px]">
                   使用する猫アイコンを選択するニャン！
                 </h3>
-                <div className="xs:mt-5 md:mt-10 flex flex-wrap gap-4">
+                <div className="xs:mt-5 md:mt-10 flex justify-center flex-wrap gap-4 xl:gap-10">
                   {avatars.length &&
                     avatars.map((item, index) => (
                       <label

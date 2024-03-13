@@ -3,7 +3,7 @@
 @import "swiper/css/pagination";
 
 .comment-link-tooptip {
-  background: url("../public/assets/imgs/Group 867.webp") no-repeat;
+  background: url("../public/assets/imgs/comment_link_outline.webp") no-repeat;
   background-size: cover;
 }
 
