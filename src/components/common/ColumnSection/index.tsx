@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useCallback } from "react";
-import MoreButton from "../basic/BasicMoreButton";
-import BlogColumnBox from "../basic/blog/BlogColumnBox";
+import MoreButton from "../../basic/BasicMoreButton";
+import BlogColumnBox from "../../basic/blog/BlogColumnBox";
 import axios from "axios";
-import { ColumnType } from "../../constant/type";
+import { ColumnType } from "../../../constant/type";
 
 const ColumnSection = () => {
   const [columnData, setColumnData] = useState<ColumnType[]>([]);

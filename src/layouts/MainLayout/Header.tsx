@@ -129,6 +129,8 @@ const Header = React.forwardRef(
           <img
             src="/assets/imgs/icons/hamburger-btn.webp"
             alt="hamburger-btn"
+            width={32}
+            height={32}
           />
         </div>
       </div>

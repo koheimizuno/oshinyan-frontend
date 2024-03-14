@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ArrowLeft from "../../basic/icons/ArrowLeft";
 import ArrowRight from "../../basic/icons/ArrowRight";
 import { BannerType } from "../../../constant/type";
@@ -14,10 +14,37 @@ import {
   Autoplay,
 } from "swiper/modules";
 
-function BannerCarousel() {
+const BannerCarousel = React.memo(() => {
+  const bannerRef = useRef(null);
+  const [inViewport, setInViewport] = useState(false);
   const [bannerData, setBannerData] = useState<BannerType[]>([]);
   const [imgWidth, setImgWidth] = useState<number>();
   const [imgHeight, setImgHeight] = useState<number>();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setInViewport(true);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.5 } // you can adjust the threshold as needed
+    );
+
+    if (bannerRef.current) {
+      observer.observe(bannerRef.current);
+    }
+
+    return () => {
+      if (bannerRef.current) {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        observer.unobserve(bannerRef.current);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     const fetchBanner = async () => {
@@ -57,7 +84,7 @@ function BannerCarousel() {
   };
 
   return (
-    <div className="bg-white">
+    <div ref={bannerRef} className="bg-white">
       <Swiper
         modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
         speed={800}
@@ -68,11 +95,16 @@ function BannerCarousel() {
           disableOnInteraction: false,
         }}
         spaceBetween={window.innerWidth < 640 ? 8 : 16}
-        slidesPerView={window.innerWidth / 344}
+        slidesPerView={
+          window.innerWidth < 640
+            ? window.innerWidth / 345
+            : window.innerWidth / 355
+        }
         navigation={{ nextEl: ".arrow-right", prevEl: ".arrow-left" }}
         className="h-[256px] cursor-pointer py-2 m-0"
       >
-        {bannerData &&
+        {inViewport &&
+          bannerData &&
           bannerData.map((item: any, key: any) => (
             <SwiperSlide key={key}>
               <a href={item.url}>
@@ -83,7 +115,7 @@ function BannerCarousel() {
                   onLoad={handleImageLoad}
                   width={imgWidth}
                   height={imgHeight}
-                  className="h-full m-auto"
+                  className="h-full"
                 />
               </a>
             </SwiperSlide>
@@ -107,6 +139,6 @@ function BannerCarousel() {
       </Swiper>
     </div>
   );
-}
+});
 
 export default BannerCarousel;

@@ -10,8 +10,9 @@ const Footer = ({ handleScrollTop }: Props) => {
     <div className="bg-[#F5F4EC] ">
       <div className="">
         <div className="flex xs:flex-col xs:gap-5 sm:flex-row sm:justify-between sm:items-center">
-          <Link to="/guide" className="border">
+          <Link to="/guide" className="">
             <img
+              loading="lazy"
               src="/assets/imgs/footer-banner-1.webp"
               alt="footer-banner-1"
               className="w-full max-w-[464px]"
@@ -19,6 +20,7 @@ const Footer = ({ handleScrollTop }: Props) => {
           </Link>
           <Link to="/shopresister">
             <img
+              loading="lazy"
               src="/assets/imgs/footer-banner-2.webp"
               alt="footer-banner-2"
               className="w-full max-w-[464px]"
