@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from "react";
-import MainLayout from "../../layouts/MainLayout";
-import SocialLinkGroup from "../../components/common/SocialLinkGroup";
-import Container from "../../components/basic/Container";
-import PageBar from "../../components/common/PageBar";
-import Title from "../../components/common/Typography/Title";
-import BlogColumnBox from "../../components/basic/blog/BlogColumnBox";
-import { ColumnType } from "../../constant/type";
 import axios from "axios";
+import { lazy, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import MainLayout from "../../layouts/MainLayout";
+import Container from "../../components/basic/Container";
+import SocialLinkGroup from "../../components/common/SocialLinkGroup";
+import Title from "../../components/common/Typography/Title";
+import PageBar from "../../components/common/PageBar";
+import { ColumnType } from "../../constant/type";
 import { formatDateTime } from "../../utils/functions";
 import styles from "./index.module.css";
+const BlogColumnBox = lazy(
+  () => import("../../components/basic/blog/BlogColumnBox")
+);
 
 function ColumnDetail() {
   const { id } = useParams();

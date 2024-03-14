@@ -1,6 +1,6 @@
-import React, { lazy, useState } from "react";
-import { useDispatch } from "react-redux";
 import axios from "axios";
+import { lazy, useState } from "react";
+import { useDispatch } from "react-redux";
 import { PREFECTURE } from "../../../constant";
 import PrivacyComponent from "../PrivacyComponent";
 import InputText from "../../basic/InputText";

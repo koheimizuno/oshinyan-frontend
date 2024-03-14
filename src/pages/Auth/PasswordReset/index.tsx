@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Button from "../../../components/basic/Button";
 import Container from "../../../components/basic/Container";
-import axios from "axios";
 import InputText from "../../../components/basic/InputText";
+import axios from "axios";
 
 function PasswordReset() {
   const [inputValues, setInputValues] = useState({

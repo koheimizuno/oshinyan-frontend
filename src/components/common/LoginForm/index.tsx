@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { LoginAction } from "../../../slices/auth";
 import { Link, useNavigate } from "react-router-dom";
+import { LoginAction } from "../../../slices/auth";
 import InputText from "../../basic/InputText";
 
 const LoginForm = () => {

@@ -1,15 +1,17 @@
-import React, { lazy, useEffect, useState } from "react";
+import axios from "axios";
+import { lazy, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import BannerCarousel from "../../components/common/BannerCarousel";
 import MainLayout from "../../layouts/MainLayout";
-import RankingBar from "../../components/common/RankingBar";
 import Container from "../../components/basic/Container";
+import SearchBar from "../../components/common/SearchBar";
+import RankingBar from "../../components/common/RankingBar";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
-import axios from "axios";
 import { CatObjectType } from "../../constant/type";
 import { Notification } from "../../constant/notification";
-import SearchBar from "../../components/common/SearchBar";
+const BannerCarousel = lazy(
+  () => import("../../components/common/BannerCarousel")
+);
 const CatCard = lazy(() => import("../../components/basic/blog/CatCard"));
 
 const Test = () => {

@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from "react";
+import { lazy, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import MainLayout from "../../layouts/MainLayout";
 import Container from "../../components/basic/Container";
-import PageBar from "../../components/common/PageBar";
-import ShopRegisterForm from "../../components/common/ShopRegisterForm";
-import AmbassadorRegisterFrom from "../../components/common/AmbassadorRegisterFrom";
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import SocialLinkGroup from "../../components/common/SocialLinkGroup";
-import { useNavigate } from "react-router-dom";
 import HelmetPage from "../../layouts/MainLayout/HelmetPage";
+import PageBar from "../../components/common/PageBar";
+import SocialLinkGroup from "../../components/common/SocialLinkGroup";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+const ShopRegisterForm = lazy(
+  () => import("../../components/common/ShopRegisterForm")
+);
+const AmbassadorRegisterFrom = lazy(
+  () => import("../../components/common/AmbassadorRegisterFrom")
+);
 
 const RegisterOther = () => {
   const navigate = useNavigate();

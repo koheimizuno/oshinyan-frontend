@@ -1,10 +1,13 @@
+import { lazy } from "react";
 import MainLayout from "../../layouts/MainLayout";
 import Container from "../../components/basic/Container";
-import PageBar from "../../components/common/PageBar";
-import ContactUsForm from "../../components/common/ContactUsForm";
-import SocialLinkGroup from "../../components/common/SocialLinkGroup";
-import Title from "../../components/common/Typography/Title";
 import HelmetPage from "../../layouts/MainLayout/HelmetPage";
+import Title from "../../components/common/Typography/Title";
+import PageBar from "../../components/common/PageBar";
+import SocialLinkGroup from "../../components/common/SocialLinkGroup";
+const ContactUsForm = lazy(
+  () => import("../../components/common/ContactUsForm")
+);
 
 const Inquiry = () => {
   return (

@@ -1,18 +1,18 @@
-import React, { lazy, useEffect, useState } from "react";
+import axios from "axios";
+import { lazy, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import MainLayout from "../../layouts/MainLayout";
-import PageBar from "../../components/common/PageBar";
 import Container from "../../components/basic/Container";
-import PrefectureBtn from "../../components/basic/CustomButton";
-import CatCard from "../../components/basic/blog/CatCard";
-import SocialLinkGroup from "../../components/common/SocialLinkGroup";
+import HelmetPage from "../../layouts/MainLayout/HelmetPage";
 import Title from "../../components/common/Typography/Title";
+import PageBar from "../../components/common/PageBar";
+import SocialLinkGroup from "../../components/common/SocialLinkGroup";
+import PrefectureBtn from "../../components/basic/CustomButton";
 import { CircularProgress } from "@mui/material";
-import axios from "axios";
-import { CatObjectType, ShopType } from "../../constant/type";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
-import HelmetPage from "../../layouts/MainLayout/HelmetPage";
+import { CatObjectType, ShopType } from "../../constant/type";
+const CatCard = lazy(() => import("../../components/basic/blog/CatCard"));
 const NyanPlaceCard = lazy(
   () => import("../../components/basic/NyanPlaceCard")
 );

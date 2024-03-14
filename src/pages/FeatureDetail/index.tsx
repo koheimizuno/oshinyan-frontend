@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
+import axios from "axios";
+import { lazy, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import MainLayout from "../../layouts/MainLayout";
 import Container from "../../components/basic/Container";
-import PageBar from "../../components/common/PageBar";
-import { Pagination } from "@mui/material";
-import CatCard from "../../components/basic/blog/CatCard";
-import SocialLinkGroup from "../../components/common/SocialLinkGroup";
-import Title from "../../components/common/Typography/Title";
-import { FeatureType } from "../../constant/type";
-import axios from "axios";
 import HelmetPage from "../../layouts/MainLayout/HelmetPage";
+import Title from "../../components/common/Typography/Title";
+import PageBar from "../../components/common/PageBar";
+import SocialLinkGroup from "../../components/common/SocialLinkGroup";
+import { Pagination } from "@mui/material";
+import { FeatureType } from "../../constant/type";
+const CatCard = lazy(() => import("../../components/basic/blog/CatCard"));
 
 const FeatureDetail = () => {
   const { id } = useParams();

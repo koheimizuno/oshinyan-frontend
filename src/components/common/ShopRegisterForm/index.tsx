@@ -1,8 +1,8 @@
+import axios from "axios";
 import { useRef, useState } from "react";
 import FileUpload from "../../basic/icons/FileUpload";
 import PrivacyComponent from "../PrivacyComponent";
 import InputText from "../../basic/InputText";
-import axios from "axios";
 import { Notification } from "../../../constant/notification";
 import {
   FormControl,

@@ -1,3 +1,5 @@
+import axios from "axios";
+import { useEffect, useRef, useState } from "react";
 import {
   Checkbox,
   FormControl,
@@ -9,8 +11,6 @@ import {
 } from "@mui/material";
 import FileUpload from "../../basic/icons/FileUpload";
 import PrivacyComponent from "../PrivacyComponent";
-import { useEffect, useRef, useState } from "react";
-import axios from "axios";
 import { Notification } from "../../../constant/notification";
 import InputText from "../../basic/InputText";
 

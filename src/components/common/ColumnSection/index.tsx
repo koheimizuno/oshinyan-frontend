@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useCallback } from "react";
-import MoreButton from "../../basic/BasicMoreButton";
-import BlogColumnBox from "../../basic/blog/BlogColumnBox";
 import axios from "axios";
+import { useEffect, useState, useCallback, lazy } from "react";
+import MoreButton from "../../basic/BasicMoreButton";
 import { ColumnType } from "../../../constant/type";
+const BlogColumnBox = lazy(() => import("../../basic/blog/BlogColumnBox"));
 
 const ColumnSection = () => {
   const [columnData, setColumnData] = useState<ColumnType[]>([]);

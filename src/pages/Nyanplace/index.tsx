@@ -1,14 +1,16 @@
-import { useEffect, useState } from "react";
+import axios from "axios";
+import { lazy, useEffect, useState } from "react";
 import MainLayout from "../../layouts/MainLayout";
 import Container from "../../components/basic/Container";
-import PageBar from "../../components/common/PageBar";
-import NyanPlaceCard from "../../components/basic/NyanPlaceCard";
-import SocialLinkGroup from "../../components/common/SocialLinkGroup";
-import Title from "../../components/common/Typography/Title";
-import axios from "axios";
-import { ShopType } from "../../constant/type";
-import NyanPlaceSearchBar from "../../components/common/NyanPlaceSearchBar";
 import HelmetPage from "../../layouts/MainLayout/HelmetPage";
+import Title from "../../components/common/Typography/Title";
+import PageBar from "../../components/common/PageBar";
+import SocialLinkGroup from "../../components/common/SocialLinkGroup";
+import NyanPlaceSearchBar from "../../components/common/NyanPlaceSearchBar";
+import { ShopType } from "../../constant/type";
+const NyanPlaceCard = lazy(
+  () => import("../../components/basic/NyanPlaceCard")
+);
 
 const Nyanplace = () => {
   const [shopData, setShopData] = useState<ShopType[]>([]);

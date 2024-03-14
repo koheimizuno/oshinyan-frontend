@@ -1,17 +1,18 @@
 import React, { Suspense, lazy, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import BannerCarousel from "../../components/common/BannerCarousel";
 import MainLayout from "../../layouts/MainLayout";
 import RankingBar from "../../components/common/RankingBar";
 import Container from "../../components/basic/Container";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
-import CatCard from "../../components/basic/blog/CatCard";
 import SearchBar from "../../components/common/SearchBar";
 import HelmetPage from "../../layouts/MainLayout/HelmetPage";
 import SuspenseContent from "../../components/basic/SuspenseContent";
 import { CatObjectType } from "../../constant/type";
 import { Notification } from "../../constant/notification";
 import axios from "axios";
+const BannerCarousel = lazy(
+  () => import("../../components/common/BannerCarousel")
+);
 const ImgLinkSection = lazy(
   () => import("../../components/common/ImgLinkSection")
 );
@@ -19,6 +20,7 @@ const ColumnSection = lazy(
   () => import("../../components/common/ColumnSection")
 );
 const Notices = lazy(() => import("../../components/common/Notices"));
+const CatCard = lazy(() => import("../../components/basic/blog/CatCard"));
 
 const Top = () => {
   const [catData, setCatData] = useState<CatObjectType[]>([]);

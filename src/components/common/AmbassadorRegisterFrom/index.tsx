@@ -1,4 +1,8 @@
+import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import PrivacyComponent from "../PrivacyComponent";
+import InputText from "../../basic/InputText";
 import {
   FormControlLabel,
   Checkbox,
@@ -8,12 +12,8 @@ import {
   MenuItem,
 } from "@mui/material";
 import { Close } from "@mui/icons-material";
-import PrivacyComponent from "../PrivacyComponent";
 import { PREFECTURE } from "../../../constant";
-import axios from "axios";
 import { Notification } from "../../../constant/notification";
-import { useNavigate } from "react-router-dom";
-import InputText from "../../basic/InputText";
 
 const AmbassadorRegisterFrom = () => {
   const navigate = useNavigate();

@@ -1,14 +1,14 @@
+import { lazy, useEffect, useState } from "react";
+import axios from "axios";
 import MainLayout from "../../layouts/MainLayout";
 import Container from "../../components/basic/Container";
-import PageBar from "../../components/common/PageBar";
-import { Pagination } from "@mui/material";
-import FeatureCard from "../../components/basic/FeatureCard";
-import SocialLinkGroup from "../../components/common/SocialLinkGroup";
-import Title from "../../components/common/Typography/Title";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { FeatureType } from "../../constant/type";
 import HelmetPage from "../../layouts/MainLayout/HelmetPage";
+import Title from "../../components/common/Typography/Title";
+import PageBar from "../../components/common/PageBar";
+import SocialLinkGroup from "../../components/common/SocialLinkGroup";
+import { Pagination } from "@mui/material";
+import { FeatureType } from "../../constant/type";
+const FeatureCard = lazy(() => import("../../components/basic/FeatureCard"));
 
 const FeaturePage = () => {
   const [featureData, setFeatureData] = useState<FeatureType[]>([]);

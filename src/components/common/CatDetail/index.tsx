@@ -1,6 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import axios from "axios";
+import { lazy, useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import HelmetPage from "../../../layouts/MainLayout/HelmetPage";
 import BtnPurple from "./components/BtnPurple";
 import PrefectureBtn from "../../basic/CustomButton";
 import Twitter from "../../basic/icons/Twitter";
@@ -9,11 +11,7 @@ import CatFavorite from "./components/CatFavorite";
 import BtnAdd from "./components/BtnAdd";
 import BtnSolid from "./components/BtnSolid";
 import CatImage from "./components/CatImage";
-import CatCard from "../../basic/blog/CatCard";
-import CatDetailCarousel from "./components/Carousel";
-import AlbumGallery from "./components/AlbumGallery";
-import CommentImageCarousel from "./components/CommentImageCarousel";
-import CatDetailComment from "./components/CatDetailComment";
+import InputText from "../../basic/InputText";
 import {
   Accordion,
   AccordionDetails,
@@ -24,7 +22,6 @@ import {
   Checkbox,
   CircularProgress,
 } from "@mui/material";
-import axios from "axios";
 import {
   CatObjectType,
   CommentReactionIconType,
@@ -36,8 +33,14 @@ import { RecommendAction } from "../../../slices/cat";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import { formatDateTime } from "../../../utils/functions";
 import { Notification } from "../../../constant/notification";
-import InputText from "../../basic/InputText";
-import HelmetPage from "../../../layouts/MainLayout/HelmetPage";
+
+const CatCard = lazy(() => import("../../basic/blog/CatCard"));
+const AlbumGallery = lazy(() => import("./components/AlbumGallery"));
+const CatDetailComment = lazy(() => import("./components/CatDetailComment"));
+const CatDetailCarousel = lazy(() => import("./components/Carousel"));
+const CommentImageCarousel = lazy(
+  () => import("./components/CommentImageCarousel")
+);
 
 const CatDetail = () => {
   const { id } = useParams();

@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
-import PrefectureBtn from "../../basic/CustomButton";
-
-import { PREFECTURE } from "../../../constant";
-import Container from "../../basic/Container";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import { PREFECTURE } from "../../../constant";
+import PrefectureBtn from "../../basic/CustomButton";
+import Container from "../../basic/Container";
 
 interface SearchProps {
   selectPrefectureKeyword: (val: string) => void;

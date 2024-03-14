@@ -1,18 +1,20 @@
-import React, { useEffect, useRef, useState } from "react";
+import axios from "axios";
+import { lazy, useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import MainLayout from "../../layouts/MainLayout";
-import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import Container from "../../components/basic/Container";
+import SocialLinkGroup from "../../components/common/SocialLinkGroup";
+import Title from "../../components/common/Typography/Title";
 import PageBar from "../../components/common/PageBar";
 import { Checkbox, FormControlLabel } from "@mui/material";
-import Title from "../../components/common/Typography/Title";
 import PrivacyComponent from "../../components/common/PrivacyComponent";
-import CatDetailCarousel from "../../components/common/CatDetail/components/Carousel";
-import axios from "axios";
 import { ImageType } from "../../constant/type";
-import { useSelector } from "react-redux";
 import { Notification } from "../../constant/notification";
 import FileUpload from "../../components/basic/icons/FileUpload";
+const CatDetailCarousel = lazy(
+  () => import("../../components/common/CatDetail/components/Carousel")
+);
 
 function Comment() {
   const { id } = useParams();

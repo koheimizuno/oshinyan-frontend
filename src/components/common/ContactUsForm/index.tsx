@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -10,7 +11,6 @@ import {
   Select,
 } from "@mui/material";
 import PrivacyComponent from "../PrivacyComponent";
-import axios from "axios";
 import { Notification } from "../../../constant/notification";
 import InputText from "../../basic/InputText";
 

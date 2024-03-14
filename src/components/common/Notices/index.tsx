@@ -1,7 +1,7 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { NoticeType } from "../../constant/type";
-import { formatDateTime } from "../../utils/functions";
+import { useEffect, useState } from "react";
+import { NoticeType } from "../../../constant/type";
+import { formatDateTime } from "../../../utils/functions";
 
 const Notices = () => {
   const [noticeData, setNoticeData] = useState<NoticeType[]>([]);

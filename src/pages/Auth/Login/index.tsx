@@ -1,13 +1,13 @@
-import { useEffect } from "react";
+import { lazy, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import MainLayout from "../../../layouts/MainLayout";
 import Container from "../../../components/basic/Container";
-import SocialLinkGroup from "../../../components/common/SocialLinkGroup";
-import PageBar from "../../../components/common/PageBar";
-import Title from "../../../components/common/Typography/Title";
-import LoginForm from "../../../components/common/LoginForm";
-import { useNavigate } from "react-router-dom";
 import HelmetPage from "../../../layouts/MainLayout/HelmetPage";
+import Title from "../../../components/common/Typography/Title";
+import PageBar from "../../../components/common/PageBar";
+import SocialLinkGroup from "../../../components/common/SocialLinkGroup";
+const LoginForm = lazy(() => import("../../../components/common/LoginForm"));
 
 function Login() {
   const { isAuthenticated } = useSelector((state: any) => state.user);

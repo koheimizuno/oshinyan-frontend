@@ -1,8 +1,11 @@
+import { lazy } from "react";
 import MainLayout from "../../layouts/MainLayout";
 import Container from "../../components/basic/Container";
-import PageBar from "../../components/common/PageBar";
-import OshiresisterForm from "../../components/common/OshiResisterForm";
 import HelmetPage from "../../layouts/MainLayout/HelmetPage";
+import PageBar from "../../components/common/PageBar";
+const OshiresisterForm = lazy(
+  () => import("../../components/common/OshiResisterForm")
+);
 
 const Oshiresister = () => {
   return (

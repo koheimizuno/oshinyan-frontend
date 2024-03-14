@@ -1,3 +1,57 @@
+export const NYP_IMG = [
+  {
+    src: "/assets/imgs/nyp-bnr-1.webp",
+    alt: "nyp-bnr-1.webp",
+    width: 240,
+    height: 204,
+  },
+  {
+    src: "/assets/imgs/nyp-bnr-2.webp",
+    alt: "nyp-bnr-2.webp",
+    width: 240,
+    height: 204,
+  },
+  {
+    src: "/assets/imgs/nyp-bnr-3.webp",
+    alt: "nyp-bnr-3.webp",
+    width: 240,
+    height: 204,
+  },
+  {
+    src: "/assets/imgs/nyp-bnr-4.webp",
+    alt: "nyp-bnr-4.webp",
+    width: 240,
+    height: 204,
+  },
+];
+
+export const NYP_SP_IMG = [
+  {
+    src: "/assets/imgs/nyp-bnr-sp-1.webp",
+    alt: "nyp-bnr-1.webp",
+    width: 148,
+    height: 128,
+  },
+  {
+    src: "/assets/imgs/nyp-bnr-sp-2.webp",
+    alt: "nyp-bnr-2.webp",
+    width: 148,
+    height: 128,
+  },
+  {
+    src: "/assets/imgs/nyp-bnr-sp-3.webp",
+    alt: "nyp-bnr-3.webp",
+    width: 148,
+    height: 128,
+  },
+  {
+    src: "/assets/imgs/nyp-bnr-sp-4.webp",
+    alt: "nyp-bnr-4.webp",
+    width: 148,
+    height: 128,
+  },
+];
+
 export const MEM_BNR_IMG = [
   {
     src: "/assets/imgs/cats/cat (1).png",

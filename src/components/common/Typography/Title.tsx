@@ -1,5 +1,3 @@
-import React from "react";
-
 function Title({ title }: { title: string }) {
   return (
     <>

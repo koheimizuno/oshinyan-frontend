@@ -1,20 +1,22 @@
-import { lazy, useEffect, useState } from "react";
-import MainLayout from "../../layouts/MainLayout";
-import Container from "../../components/basic/Container";
-import PageBar from "../../components/common/PageBar";
-import CatCard from "../../components/basic/blog/CatCard";
-import EditButton from "../../components/basic/EditButton";
-import CommentImageCard from "../../components/basic/CommentImageCard";
-import SocialLinkGroup from "../../components/common/SocialLinkGroup";
-import Title from "../../components/common/Typography/Title";
 import axios from "axios";
-import { CatObjectType, CommentImageType } from "../../constant/type";
+import { lazy, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import MainLayout from "../../layouts/MainLayout";
+import Container from "../../components/basic/Container";
+import HelmetPage from "../../layouts/MainLayout/HelmetPage";
+import Title from "../../components/common/Typography/Title";
+import PageBar from "../../components/common/PageBar";
+import SocialLinkGroup from "../../components/common/SocialLinkGroup";
+import EditButton from "../../components/basic/EditButton";
 import { Modal } from "@mui/material";
 import { Close } from "@mui/icons-material";
+import { CatObjectType, CommentImageType } from "../../constant/type";
 import { formatDateTime } from "../../utils/functions";
-import HelmetPage from "../../layouts/MainLayout/HelmetPage";
+const CatCard = lazy(() => import("../../components/basic/blog/CatCard"));
+const CommentImageCard = lazy(
+  () => import("../../components/basic/CommentImageCard")
+);
 const Box = lazy(() => import("@mui/material/Box"));
 
 interface avatarType {

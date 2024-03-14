@@ -1,9 +1,12 @@
+import { lazy } from "react";
 import MainLayout from "../../layouts/MainLayout";
 import Container from "../../components/basic/Container";
+import HelmetPage from "../../layouts/MainLayout/HelmetPage";
 import PageBar from "../../components/common/PageBar";
 import Title from "../../components/common/Typography/Title";
-import GuideCarousel from "../../components/common/GuideCarousel";
-import HelmetPage from "../../layouts/MainLayout/HelmetPage";
+const GuideCarousel = lazy(
+  () => import("../../components/common/GuideCarousel")
+);
 
 const Guide = () => {
   return (

@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Container from "../../../components/basic/Container";
 import Button from "../../../components/basic/Button";
-import axios from "axios";
 import InputText from "../../../components/basic/InputText";
+import axios from "axios";
 
 function PasswordResetConfirmation() {
   const navigate = useNavigate();

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ImgTagType } from "../../../constant/type";
-import { MEM_BNR_IMG, MEM_BNR_SP_IMG } from "./constants";
+import { NYP_IMG, NYP_SP_IMG, MEM_BNR_IMG, MEM_BNR_SP_IMG } from "./constants";
 
 const ImgLinkSection = () => {
   const [nypHeight, setNypHeight] = useState<string>();
@@ -15,62 +15,12 @@ const ImgLinkSection = () => {
         setNypHeight("h-[208px]");
         setMemBnrImg(MEM_BNR_IMG);
         setMemGap("gap-3");
-        setNypImg([
-          {
-            src: "/assets/imgs/nyp-bnr-1.webp",
-            alt: "nyp-bnr-1.webp",
-            width: 240,
-            height: 204,
-          },
-          {
-            src: "/assets/imgs/nyp-bnr-2.webp",
-            alt: "nyp-bnr-2.webp",
-            width: 240,
-            height: 204,
-          },
-          {
-            src: "/assets/imgs/nyp-bnr-3.webp",
-            alt: "nyp-bnr-3.webp",
-            width: 240,
-            height: 204,
-          },
-          {
-            src: "/assets/imgs/nyp-bnr-4.webp",
-            alt: "nyp-bnr-4.webp",
-            width: 240,
-            height: 204,
-          },
-        ]);
+        setNypImg(NYP_IMG);
       } else {
         setNypHeight("h-[128px]");
         setMemBnrImg(MEM_BNR_SP_IMG);
         setMemGap("gap-2");
-        setNypImg([
-          {
-            src: "/assets/imgs/nyp-bnr-sp-1.webp",
-            alt: "nyp-bnr-sp-1.webp",
-            width: 113,
-            height: 128,
-          },
-          {
-            src: "/assets/imgs/nyp-bnr-sp-2.webp",
-            alt: "nyp-bnr-sp-2.webp",
-            width: 113,
-            height: 128,
-          },
-          {
-            src: "/assets/imgs/nyp-bnr-sp-3.webp",
-            alt: "nyp-bnr-sp-3.webp",
-            width: 113,
-            height: 128,
-          },
-          {
-            src: "/assets/imgs/nyp-bnr-sp-4.webp",
-            alt: "nyp-bnr-sp-4.webp",
-            width: 113,
-            height: 128,
-          },
-        ]);
+        setNypImg(NYP_SP_IMG);
       }
     }
     window.addEventListener("resize", handleResize);
@@ -85,7 +35,9 @@ const ImgLinkSection = () => {
       <div className="pt-[40px] pb-[48px] md:pt-[48px] md:pb-[80px]">
         <div className="mb-[24px] hover:opacity-70">
           <Link to="/nyanplace" className="relative block">
-            <div className={`relative flex overflow-hidden ${nypHeight}`}>
+            <div
+              className={`relative flex items-center overflow-hidden ${nypHeight}`}
+            >
               <img
                 src={nypImg[0]?.src}
                 alt={nypImg[0]?.alt}
@@ -115,7 +67,7 @@ const ImgLinkSection = () => {
                 height={nypImg[0]?.height}
               />
             </div>
-            <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[1.25rem] xs:text-[1.5rem] md:text-[2rem] text-white font-medium tracking-widest whitespace-nowrap">
+            <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[20px] sm:text-[28px] md:text-[32px] text-white font-medium tracking-widest whitespace-nowrap">
               『看板猫に会える場所』一覧
             </p>
           </Link>
@@ -149,7 +101,7 @@ const ImgLinkSection = () => {
                     height={item.height}
                   />
                 ))}
-                <p className="text-[1.25rem] xs:text-[1.5rem] md:text-[2rem] text-[#C38154] font-medium whitespace-nowrap pl-3 pr-6">
+                <p className="text-[20px] sm:text-[28px] md:text-[32px] text-[#C38154] font-medium whitespace-nowrap pl-3 pr-6">
                   『推しニャン！会員』登録
                 </p>
                 {memBnrImg.slice(4, 8).map((item: ImgTagType, key: number) => (

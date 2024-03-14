@@ -1,21 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { lazy, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import MainLayout from "../../layouts/MainLayout";
+import Container from "../../components/basic/Container";
+import HelmetPage from "../../layouts/MainLayout/HelmetPage";
 import SearchBar from "../../components/common/SearchBar";
 import RankingBar from "../../components/common/RankingBar";
-import ColumnSection from "../../components/common/ColumnSection";
-import Notices from "../../components/common/Notices";
-import LargeCatCard from "../../components/basic/LargeCatCard";
-import CatCard from "../../components/basic/blog/CatCard";
 import { CapSecond } from "../../components/basic/icons/CapSecond";
 import { CapThird } from "../../components/basic/icons/CapThird";
-import SmallCatCard from "../../components/basic/SmallCatCard";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import axios from "axios";
 import { CatObjectType } from "../../constant/type";
-import Container from "../../components/basic/Container";
-import HelmetPage from "../../layouts/MainLayout/HelmetPage";
+const BannerCarousel = lazy(
+  () => import("../../components/common/BannerCarousel")
+);
+const ColumnSection = lazy(
+  () => import("../../components/common/ColumnSection")
+);
+const Notices = lazy(() => import("../../components/common/Notices"));
+const CatCard = lazy(() => import("../../components/basic/blog/CatCard"));
+const LargeCatCard = lazy(() => import("../../components/basic/LargeCatCard"));
+const SmallCatCard = lazy(() => import("../../components/basic/SmallCatCard"));
 
 interface dateType {
   year: number;
@@ -187,6 +192,7 @@ const MonthRanking = () => {
       />
       <MainLayout>
         <SocialLinkGroup />
+        <BannerCarousel />
         <SearchBar
           prefectureKeyword={prefectureKeyword}
           selectPrefectureKeyword={selectPrefectureKeyword}

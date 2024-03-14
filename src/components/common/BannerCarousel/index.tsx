@@ -1,9 +1,9 @@
+import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import ArrowLeft from "../../basic/icons/ArrowLeft";
 import ArrowRight from "../../basic/icons/ArrowRight";
 import { BannerType } from "../../../constant/type";
 import { Notification } from "../../../constant/notification";
-import axios from "axios";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import {
@@ -64,7 +64,7 @@ const BannerCarousel = React.memo(() => {
             link.setAttribute("rel", "preload");
             link.setAttribute("as", "image");
             link.setAttribute("type", "image/webp");
-            link.setAttribute("fetchpriority", "high");
+            // link.setAttribute("fetchpriority", "high");
             link.setAttribute("href", item.image);
             document.head.appendChild(link);
           });
