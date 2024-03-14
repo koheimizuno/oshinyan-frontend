@@ -31,6 +31,16 @@ function BannerCarousel() {
           list.push(item);
         });
         setBannerData(list);
+        data &&
+          data.forEach((item: BannerType) => {
+            const link = document.createElement("link");
+            link.setAttribute("rel", "preload");
+            link.setAttribute("as", "image");
+            link.setAttribute("type", "image/webp");
+            link.setAttribute("fetchpriority", "high");
+            link.setAttribute("href", item.image);
+            document.head.appendChild(link);
+          });
       } catch (error) {
         Notification("error", "サーバーエラー");
       }
@@ -67,7 +77,7 @@ function BannerCarousel() {
             <SwiperSlide key={key}>
               <a href={item.url}>
                 <img
-                  loading="lazy"
+                  fetchpriority="high"
                   src={item.image}
                   alt={item.image}
                   onLoad={handleImageLoad}
