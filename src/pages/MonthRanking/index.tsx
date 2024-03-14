@@ -224,12 +224,14 @@ const MonthRanking = () => {
             <div className=" xs:w-full xs:m-auto xs:mt-[24px] xs:mb-[24px] md:ml-0 ranking-1">
               {catData.length !== 0 ? (
                 <div className="ranking-1-tle flex gap-[8px]">
-                  <img
-                    src="/assets/imgs/icons/ranking-1-cap.webp"
-                    alt="ranking-1-cap"
-                    width={36}
-                    height={24}
-                  />
+                  <div className="flex items-center">
+                    <img
+                      src="/assets/imgs/icons/ranking-1-cap.webp"
+                      alt="ranking-1-cap"
+                      width={36}
+                      height={24}
+                    />
+                  </div>
                   <span className="text-[24px] font-bold leading-[32px]">
                     1位
                   </span>
