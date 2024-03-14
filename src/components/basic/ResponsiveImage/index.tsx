@@ -27,7 +27,6 @@ const ResponsiveImage = ({ src, srcSet, alt, className }: ImageProps) => {
   }, [src, srcSet]);
   return (
     <img
-      fetchpriority="high"
       loading="lazy"
       src={src}
       srcSet={srcSet}

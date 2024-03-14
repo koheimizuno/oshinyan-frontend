@@ -315,8 +315,6 @@ const Top = () => {
               )}
             </>
           )}
-        </Container>
-        <Container>
           <div>
             <div className="pt-[40px] pb-[48px] md:pt-[48px] md:pb-[80px]">
               <div className="mb-[24px] hover:opacity-70">
@@ -351,9 +349,11 @@ const Top = () => {
                       height={nypImg[0]?.height}
                     />
                   </div>
-                  <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xl md:text-[32px] text-white font-medium tracking-widest whitespace-nowrap">
-                    『看板猫に会える場所』一覧
-                  </p>
+                  <div>
+                    <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xl md:text-[32px] text-white font-medium tracking-widest whitespace-nowrap">
+                      『看板猫に会える場所』一覧
+                    </p>
+                  </div>
                 </Link>
               </div>
               <div className="hover:opacity-70">
@@ -389,9 +389,11 @@ const Top = () => {
                             height={item.height}
                           />
                         ))}
-                      <p className="text-[20px] md:text-[32px] text-[#C38154] font-medium whitespace-nowrap">
-                        『推しニャン！会員』登録
-                      </p>
+                      <div>
+                        <p className="text-[20px] md:text-[32px] text-[#C38154] font-medium whitespace-nowrap pl-3 pr-6">
+                          『推しニャン！会員』登録
+                        </p>
+                      </div>
                       {memBnrImg
                         .slice(4, 8)
                         .map((item: ImgTagType, key: number) => (

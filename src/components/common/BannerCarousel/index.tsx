@@ -67,7 +67,6 @@ function BannerCarousel() {
             <SwiperSlide key={key}>
               <a href={item.url}>
                 <img
-                  fetchpriority="high"
                   loading="lazy"
                   src={item.image}
                   alt={item.image}

@@ -114,7 +114,6 @@ const CatCard = ({
                       className="h-full w-full"
                     >
                       <img
-                        fetchpriority="high"
                         loading="lazy"
                         src={item.imgs}
                         alt={item.imgs}

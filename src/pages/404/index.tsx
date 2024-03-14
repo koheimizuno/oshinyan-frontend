@@ -5,15 +5,7 @@ function NotFound() {
   return (
     <Container>
       <div className="h-screen flex justify-center items-center">
-        <div className="text-[#515151]">
-          <p>
-            <span className="text-9xl">404</span>
-            <span className="ml-10 text-7xl">Not found</span>
-          </p>
-          <p className="text-5xl py-2">
-            お探しのページは見つかりませんでした。
-          </p>
-        </div>
+        <img src="/assets/imgs/404.png" alt="404.png" />
       </div>
     </Container>
   );
