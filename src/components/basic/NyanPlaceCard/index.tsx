@@ -11,7 +11,7 @@ const NyanPlaceCard = (props: ShopType) => {
       >
         {props.shop_images && (
           <img
-          data-src={props.shop_images[0].imgs}
+            data-src={props.shop_images[0].imgs}
             alt={props.shop_images[0].imgs?.substring(
               props.shop_images[0].imgs.lastIndexOf("/") + 1
             )}
