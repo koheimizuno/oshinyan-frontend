@@ -7,6 +7,7 @@ import { RecommendAction, RecommendOutAction } from "../../../slices/cat";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import { isNewUtil } from "../../../utils/functions";
+import "lazysizes";
 
 const CatCard = ({
   id,
@@ -114,10 +115,11 @@ const CatCard = ({
                       className="h-full w-full"
                     >
                       <img
-                        loading="lazy"
-                        src={item.imgs}
-                        alt={item.imgs}
-                        className={`h-full m-auto cursor-pointer object-cover  overflow-hidden`}
+                        data-src={item.imgs}
+                        alt={String(item.imgs).substring(
+                          String(item.imgs).lastIndexOf("/") + 1
+                        )}
+                        className={`lazyload h-full m-auto cursor-pointer object-cover  overflow-hidden`}
                         onLoad={handleImageLoad}
                         width={imgWidth}
                         height={imgHeight}

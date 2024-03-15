@@ -13,6 +13,7 @@ import { Modal } from "@mui/material";
 import { Close } from "@mui/icons-material";
 import { CatObjectType, CommentImageType } from "../../constant/type";
 import { formatDateTime } from "../../utils/functions";
+import "lazysizes";
 const CatCard = lazy(() => import("../../components/basic/blog/CatCard"));
 const CommentImageCard = lazy(
   () => import("../../components/basic/CommentImageCard")
@@ -148,9 +149,11 @@ const MyPage = () => {
                   <button className="w-[72px] h-[72px]" onClick={handleAvatar}>
                     {currentUser.avatar_url && (
                       <img
-                        className="w-full"
-                        src={currentUser.avatar_url}
-                        alt={currentUser.username}
+                        className="lazyload w-full"
+                        data-src={currentUser.avatar_url}
+                        alt={currentUser.avatar_url.substring(
+                          currentUser.avatar_url.lastIndexOf("/") + 1
+                        )}
                       />
                     )}
                   </button>
@@ -201,7 +204,13 @@ const MyPage = () => {
                               className="cursor-pointer"
                               onClick={() => selectAvatar(item.id)}
                             >
-                              <img src={item.avatar} alt={item.avatar} />
+                              <img
+                                className="lazyload"
+                                data-src={item.avatar}
+                                alt={item.avatar.substring(
+                                  item.avatar.lastIndexOf("/") + 1
+                                )}
+                              />
                             </label>
                           ))}
                       </div>

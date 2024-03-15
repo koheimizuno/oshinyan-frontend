@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import ArrowLeft from "../../../basic/icons/ArrowLeft";
 import ArrowRight from "../../../basic/icons/ArrowRight";
+import "lazysizes";
 
 function CatDetailCarousel(props: any) {
   const [isZoomed, setIsZoomed] = useState(false);
@@ -42,9 +43,9 @@ function CatDetailCarousel(props: any) {
             className="h-[300px] sm:h-[400px] md:h-[576px] w-full"
           >
             <img
-              src={item}
-              alt={item}
-              className={`h-full m-auto cursor-pointer object-cover ${
+              data-src={item}
+              alt={item.substring(item.lastIndexOf("/") + 1)}
+              className={`lazyload h-full m-auto cursor-pointer object-cover ${
                 isZoomed ? "max-w-full w-[105%]" : ""
               }`}
               onClick={handleImageClick}

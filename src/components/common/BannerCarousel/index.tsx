@@ -16,7 +16,7 @@ import {
 
 const BannerCarousel = React.memo(() => {
   const bannerRef = useRef(null);
-  const [inViewport, setInViewport] = useState(false);
+  const [inViewport, setInViewport] = useState<boolean>(false);
   const [bannerData, setBannerData] = useState<BannerType[]>([]);
   const [imgWidth, setImgWidth] = useState<number>();
   const [imgHeight, setImgHeight] = useState<number>();
@@ -115,7 +115,7 @@ const BannerCarousel = React.memo(() => {
                 <img
                   fetchpriority="high"
                   src={item.image}
-                  alt={item.image}
+                  alt={item.image.substring(item.image.lastIndexOf("/") + 1)}
                   onLoad={handleImageLoad}
                   width={imgWidth}
                   height={imgHeight}

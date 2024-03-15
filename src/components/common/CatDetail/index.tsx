@@ -33,6 +33,7 @@ import { RecommendAction } from "../../../slices/cat";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import { formatDateTime } from "../../../utils/functions";
 import { Notification } from "../../../constant/notification";
+import "lazysizes";
 
 const CatCard = lazy(() => import("../../basic/blog/CatCard"));
 const AlbumGallery = lazy(() => import("./components/AlbumGallery"));
@@ -492,9 +493,11 @@ const CatDetail = () => {
                   .map((item, key) => (
                     <div className="flex items-center" key={key}>
                       <img
-                        className="w-7 h-7"
-                        src={item.avatar_url}
-                        alt={item.avatar_url}
+                        className="lazyload w-7 h-7"
+                        data-src={item.avatar_url}
+                        alt={item.avatar_url.substring(
+                          item.avatar_url.lastIndexOf("/") + 1
+                        )}
                       />
                       <div className="ms-3">{item.username}</div>
                     </div>
@@ -556,9 +559,12 @@ const CatDetail = () => {
                             item.comment === commentitem.id && (
                               <img
                                 key={key}
-                                src={item.imgs}
-                                alt={item.imgs}
+                                data-src={item.imgs}
+                                alt={item.imgs.substring(
+                                  item.imgs.lastIndexOf("/") + 1
+                                )}
                                 width={28}
+                                className="lazyload"
                               />
                             )
                         )}
@@ -705,9 +711,12 @@ const CatDetail = () => {
                           {isAuthenticated && (
                             <div className="flex items-center gap-3">
                               <img
-                                src={user.avatar && user.avatar.avatar}
-                                alt={user.username}
+                                data-src={user.avatar && user.avatar.avatar}
+                                alt={user.avatar.avatar.substring(
+                                  user.avatar.avatar.lastIndexOf("/") + 1
+                                )}
                                 width={32}
+                                className="lazyload"
                               />
                               <span>{user.username}</span>
                             </div>
@@ -789,9 +798,11 @@ const CatDetail = () => {
                               reactionWord.map((item, key) => (
                                 <img
                                   key={key}
-                                  src={item.imgs}
-                                  alt={item.imgs}
-                                  className="cursor-pointer w-7 sm:w-10"
+                                  data-src={item.imgs}
+                                  alt={item.imgs.substring(
+                                    item.imgs.lastIndexOf("/") + 1
+                                  )}
+                                  className="lazyload cursor-pointer w-7 sm:w-10"
                                   onClick={() =>
                                     handleCommentIcon(commentitem.id, item)
                                   }
@@ -803,9 +814,11 @@ const CatDetail = () => {
                               reactionCat.map((item, key) => (
                                 <img
                                   key={key}
-                                  src={item.imgs}
-                                  alt={item.imgs}
-                                  className="cursor-pointer w-7 sm:w-10"
+                                  data-src={item.imgs}
+                                  alt={item.imgs.substring(
+                                    item.imgs.lastIndexOf("/") + 1
+                                  )}
+                                  className="lazyload cursor-pointer w-7 sm:w-10"
                                   onClick={() =>
                                     handleCommentIcon(commentitem.id, item)
                                   }
@@ -817,9 +830,11 @@ const CatDetail = () => {
                               reactionHeart.map((item, key) => (
                                 <img
                                   key={key}
-                                  src={item.imgs}
-                                  alt={item.imgs}
-                                  className="cursor-pointer w-7 sm:w-10"
+                                  data-src={item.imgs}
+                                  alt={item.imgs.substring(
+                                    item.imgs.lastIndexOf("/") + 1
+                                  )}
+                                  className="lazyload cursor-pointer w-7 sm:w-10"
                                   onClick={() =>
                                     handleCommentIcon(commentitem.id, item)
                                   }
@@ -831,9 +846,11 @@ const CatDetail = () => {
                               reactionSeason.map((item, key) => (
                                 <img
                                   key={key}
-                                  src={item.imgs}
-                                  alt={item.imgs}
-                                  className="cursor-pointer w-7 sm:w-10"
+                                  data-src={item.imgs}
+                                  alt={item.imgs.substring(
+                                    item.imgs.lastIndexOf("/") + 1
+                                  )}
+                                  className="lazyload cursor-pointer w-7 sm:w-10"
                                   onClick={() =>
                                     handleCommentIcon(commentitem.id, item)
                                   }
@@ -845,9 +862,11 @@ const CatDetail = () => {
                               reactionParty.map((item, key) => (
                                 <img
                                   key={key}
-                                  src={item.imgs}
-                                  alt={item.imgs}
-                                  className="cursor-pointer w-7 sm:w-10"
+                                  data-src={item.imgs}
+                                  alt={item.imgs.substring(
+                                    item.imgs.lastIndexOf("/") + 1
+                                  )}
+                                  className="lazyload cursor-pointer w-7 sm:w-10"
                                   onClick={() =>
                                     handleCommentIcon(commentitem.id, item)
                                   }
@@ -859,9 +878,11 @@ const CatDetail = () => {
                               reactionFood.map((item, key) => (
                                 <img
                                   key={key}
-                                  src={item.imgs}
-                                  alt={item.imgs}
-                                  className="cursor-pointer w-7 sm:w-10"
+                                  data-src={item.imgs}
+                                  alt={item.imgs.substring(
+                                    item.imgs.lastIndexOf("/") + 1
+                                  )}
+                                  className="lazyload cursor-pointer w-7 sm:w-10"
                                   onClick={() =>
                                     handleCommentIcon(commentitem.id, item)
                                   }

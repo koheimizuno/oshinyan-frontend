@@ -9,6 +9,7 @@ import PageBar from "../../components/common/PageBar";
 import { ColumnType } from "../../constant/type";
 import { formatDateTime } from "../../utils/functions";
 import styles from "./index.module.css";
+import "lazysizes";
 const BlogColumnBox = lazy(
   () => import("../../components/basic/blog/BlogColumnBox")
 );
@@ -57,9 +58,11 @@ function ColumnDetail() {
         </div>
         <div className="my-12 h-[300px] sm:h-[400px] md:h-[576px]">
           <img
-            src={AcolumnData.detail_image}
-            alt={AcolumnData.detail_image}
-            className="h-full m-auto"
+            data-src={AcolumnData.detail_image}
+            alt={AcolumnData.detail_image?.substring(
+              AcolumnData.detail_image.lastIndexOf("/") + 1
+            )}
+            className="lazyload h-full m-auto"
           />
         </div>
         {AcolumnData.blog &&
@@ -73,7 +76,11 @@ function ColumnDetail() {
                   key % 2 !== 0 && "order-last"
                 }`}
               >
-                <img src={item.imgs} alt={item.imgs} className="w-full" />
+                <img
+                  data-src={item.imgs}
+                  alt={item.imgs.substring(item.imgs.lastIndexOf("/") + 1)}
+                  className="lazyload w-full"
+                />
                 <p className="text-base sm:mt-4">{item.img_caption}</p>
               </div>
               <p

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ColumnType } from "../../../constant/type";
 import { formatDateTime } from "../../../utils/functions";
+import "lazysizes";
 
 const BlogColumnBox = (props: ColumnType) => {
   const [hoverAction, setHoverAction] = useState(false);
@@ -34,9 +35,9 @@ const BlogColumnBox = (props: ColumnType) => {
         }}
       >
         <img
-          src={props.hero_image}
-          className="h-full m-auto object-cover"
-          alt={props.cat_name}
+          data-src={props.hero_image}
+          className="lazyload h-full m-auto object-cover"
+          alt={props.cat_name.substring(props.cat_name.lastIndexOf("/") + 1)}
           onLoad={handleImageLoad}
           width={imgWidth}
           height={imgHeight}

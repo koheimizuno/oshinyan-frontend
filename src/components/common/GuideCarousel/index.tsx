@@ -11,6 +11,7 @@ import {
 import ArrowLeft from "../../basic/icons/ArrowLeft";
 import ArrowRight from "../../basic/icons/ArrowRight";
 import { GUIDEBANNERIMGS } from "./constants";
+import "lazysizes";
 
 function GuideCarousel() {
   const [imgWidth, setImgWidth] = useState<number>();
@@ -42,9 +43,9 @@ function GuideCarousel() {
             <SwiperSlide key={key}>
               <Link to="/feature/1">
                 <img
-                  src={item.src}
-                  alt={item.src}
-                  className="h-full m-auto"
+                  data-src={item.src}
+                  alt={item.src.substring(item.src.lastIndexOf("/") + 1)}
+                  className="lazyload h-full m-auto"
                   onLoad={handleImageLoad}
                   width={imgWidth}
                   height={imgHeight}

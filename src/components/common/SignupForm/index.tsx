@@ -13,6 +13,7 @@ import {
   Select,
 } from "@mui/material";
 import { Close } from "@mui/icons-material";
+import "lazysizes";
 const Box = lazy(() => import("@mui/material/Box"));
 
 interface avatarType {
@@ -85,7 +86,14 @@ const SignupForm = () => {
               onClick={handleAvatar}
             >
               {selectedAvatar ? (
-                <img src={selectedAvatar} alt={selectedAvatar} width={40} />
+                <img
+                data-src={selectedAvatar}
+                  alt={selectedAvatar.substring(
+                    selectedAvatar.lastIndexOf("/" + 1)
+                  )}
+                  width={40}
+                  className="lazyload"
+                />
               ) : (
                 <img src="/assets/imgs/icons/icon_add.webp" alt="icon_add" />
               )}
@@ -122,9 +130,11 @@ const SignupForm = () => {
                         onClick={() => selectAvatar(item.id, item.avatar)}
                       >
                         <img
-                          src={item.avatar}
-                          alt={item.avatar}
-                          className="w-[25px] sm:w-[40px] md:w-[72px]"
+                          data-src={item.avatar}
+                          alt={item.avatar.substring(
+                            item.avatar.lastIndexOf("/") + 1
+                          )}
+                          className="lazyload w-[25px] sm:w-[40px] md:w-[72px]"
                         />
                       </label>
                     ))}

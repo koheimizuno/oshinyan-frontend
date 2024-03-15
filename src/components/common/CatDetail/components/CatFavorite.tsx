@@ -3,6 +3,7 @@ import Heart from "../../../basic/icons/Heart";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { CommentImageRecommentAction } from "../../../../slices/cat";
+import "lazysizes";
 
 interface Props {
   imgUrl: string;
@@ -36,9 +37,9 @@ const CatFavorite = ({ imgUrl, comment_images_id, onClick }: Props) => {
   return (
     <div className="relative overflow-x-hidden">
       <img
-        src={imgUrl}
-        alt={imgUrl}
-        className="m-auto h-[120px]"
+        data-src={imgUrl}
+        alt={imgUrl.substring(imgUrl.lastIndexOf("/") + 1)}
+        className="lazyload m-auto h-[120px]"
         onClick={onClick}
       />
       <div

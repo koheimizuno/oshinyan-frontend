@@ -13,6 +13,7 @@ import { CommentImageType } from "../../../../constant/type";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { CommentImageRecommentAction } from "../../../../slices/cat";
+import "lazysizes";
 
 type PropsType = {
   username: string;
@@ -91,9 +92,9 @@ const CommentImageCarousel = ({
             <SwiperSlide key={key} className="inline-block">
               <div className="h-[600px] relative">
                 <img
-                  src={item.imgs}
-                  alt={item.imgs}
-                  className={`m-auto`}
+                  data-src={item.imgs}
+                  alt={item.imgs.substring(item.imgs.lastIndexOf("/") + 1)}
+                  className="lazyload m-auto"
                   style={{ height: "calc(100% - 100px)" }}
                 />
                 <div className="px-[60px]">
@@ -182,9 +183,9 @@ const CommentImageCarousel = ({
               commentImgs.map((item: any, key: any) => (
                 <SwiperSlide key={key}>
                   <img
-                    src={item.imgs}
-                    alt={item.imgs}
-                    className="h-full m-auto"
+                    data-src={item.imgs}
+                    alt={item.imgs.substring(item.imgs.lastIndexOf("/") + 1)}
+                    className="lazyload h-full m-auto"
                   />
                 </SwiperSlide>
               ))}

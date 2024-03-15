@@ -12,6 +12,7 @@ import { CircularProgress } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import { CatObjectType, ShopType } from "../../constant/type";
+import "lazysizes";
 const CatCard = lazy(() => import("../../components/basic/blog/CatCard"));
 const NyanPlaceCard = lazy(
   () => import("../../components/basic/NyanPlaceCard")
@@ -92,9 +93,9 @@ function NyanplaceDetail() {
                     className="h-[300px] sm:h-[400px] md:h-[540px] overflow-x-hidden"
                   >
                     <img
-                      src={item.imgs}
-                      alt={item.imgs}
-                      className="h-full m-auto"
+                      className="lazyload h-full m-auto"
+                      data-src={item.imgs}
+                      alt={item.imgs.substring(item.imgs.lastIndexOf("/") + 1)}
                       onLoad={handleImageLoad}
                       width={imgWidth}
                       height={imgHeight}
