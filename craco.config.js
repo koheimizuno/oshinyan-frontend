@@ -3,17 +3,23 @@ const TerserPlugin = require("terser-webpack-plugin");
 module.exports = {
   webpack: {
     configure: (webpackConfig) => {
-      webpackConfig.optimization.minimizer = [
-        new TerserPlugin({
-          terserOptions: {
-            format: {
-              comments: false,
-            },
-          },
-          extractComments: false,
-        }),
-      ];
+      const terserPlugin = webpackConfig.optimization.minimizer.find(
+        (minimizer) => minimizer.options.terserOptions
+      );
+      if (terserPlugin) {
+        terserPlugin.options.terserOptions.mangle = true;
+      }
       return webpackConfig;
     },
   },
+  plugins: [
+    {
+      plugin: TerserPlugin,
+      options: {
+        terserOptions: {
+          mangle: true,
+        },
+      },
+    },
+  ],
 };
