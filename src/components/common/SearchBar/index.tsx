@@ -142,7 +142,8 @@ const SearchBar = ({
                 </span>
                 <span
                   className={`h-0 w-0 border-t-[8px] border-r-[6px] border-l-[6px] 
-                            border-solid border-r-transparent border-l-transparent border-t-white ml-[20px] mt-[5px] ${
+                            border-solid border-r-transparent border-l-transparent border-t-white ml-[20px] mt-[5px]
+                            delay-400 duration-500 transition-all ${
                               prefectureShow ? "transform rotate-180" : ""
                             }`}
                 ></span>
@@ -203,7 +204,8 @@ const SearchBar = ({
                 </span>
                 <span
                   className={`h-0 w-0 border-t-[8px] border-r-[6px] border-l-[6px] 
-                            border-solid border-r-transparent border-l-transparent border-t-white ml-[20px] mt-[5px] ${
+                            border-solid border-r-transparent border-l-transparent border-t-white ml-[20px] mt-[5px]
+                            delay-400 duration-500 transition-all ${
                               characterShow ? "transform rotate-180" : ""
                             }`}
                 ></span>
@@ -263,7 +265,8 @@ const SearchBar = ({
                 </span>
                 <span
                   className={`h-0 w-0 border-t-[8px] border-r-[6px] border-l-[6px] 
-                            border-solid border-r-transparent border-l-transparent border-t-white ml-[20px] mt-[5px] ${
+                            border-solid border-r-transparent border-l-transparent border-t-white ml-[20px] mt-[5px]
+                            delay-400 duration-500 transition-all ${
                               attendanceShow ? "transform rotate-180" : ""
                             }`}
                 ></span>

@@ -15,9 +15,6 @@
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
     <link rel="icon" type="image/webp" href="%PUBLIC_URL%/favicon.webp" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://use.typekit.net/" />
     <link rel="canonical" href="https://www.oshinyan.love" />
     <!-- Google Tag Manager -->
     <script>
@@ -27,6 +24,7 @@
         var f = d.getElementsByTagName(s)[0],
           j = d.createElement(s),
           dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
         j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
         f.parentNode.insertBefore(j, f);
       })(window, document, "script", "dataLayer", "GTM-KQ3M45Z4");
@@ -38,6 +36,7 @@
           var config = {
               kitId: "fxr5kvr",
               scriptTimeout: 3000,
+              async: true,
             },
             h = d.documentElement,
             t = setTimeout(function () {
@@ -50,6 +49,7 @@
             a;
           h.className += " wf-loading";
           tk.src = "https://use.typekit.net/" + config.kitId + ".js";
+          tk.async = true;
           tk.onload = tk.onreadystatechange = function () {
             a = this.readyState;
             if (f || (a && a != "complete" && a != "loaded")) return;

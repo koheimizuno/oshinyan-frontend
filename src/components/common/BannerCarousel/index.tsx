@@ -79,6 +79,7 @@ const BannerCarousel = React.memo(() => {
             <SwiperSlide key={key}>
               <a href={item.url}>
                 <img
+                  fetchpriority="high"
                   src={item.image}
                   alt={item.image.substring(item.image.lastIndexOf("/") + 1)}
                   onLoad={handleImageLoad}
