@@ -140,7 +140,9 @@ const CatDetail = () => {
           )
         );
         setCommentImgs(list);
-      } catch (error) {}
+      } catch (error) {
+        Notification("error", "サーバーエラー");
+      }
     };
     commentFetch();
     fetchReactionData("reactionword");
@@ -176,17 +178,21 @@ const CatDetail = () => {
             );
             setCatNearBy(data);
           } catch (error) {}
-        } catch (error) {}
+        } catch (error) {
+          Notification("error", "サーバーエラー");
+        }
       };
       RetrieveCat();
     } else {
-      const RetrieveCat = async () => {
+      const RetrieveAdvertiseCat = async () => {
         try {
           const { data } = await axios.get(`api/advertise/${id}/`);
           setRetrieveCat(data);
-        } catch (error) {}
+        } catch (error) {
+          Notification("error", "サーバーエラー");
+        }
       };
-      RetrieveCat();
+      RetrieveAdvertiseCat();
     }
   }, [isAuthenticated, catLoading, authLoading, advertise, id]);
 
@@ -213,7 +219,9 @@ const CatDetail = () => {
       try {
         const { data } = await axios.get("api/commentreactionicon/");
         setReactionIconData(data);
-      } catch (error) {}
+      } catch (error) {
+        Notification("error", "サーバーエラー");
+      }
     };
     fetchReactionIcon();
     setReactionIconCreated(false);

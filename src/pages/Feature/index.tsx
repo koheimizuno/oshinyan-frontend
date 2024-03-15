@@ -8,14 +8,19 @@ import PageBar from "../../components/common/PageBar";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import { Pagination } from "@mui/material";
 import { FeatureType } from "../../constant/type";
+import { Notification } from "../../constant/notification";
 const FeatureCard = lazy(() => import("../../components/basic/FeatureCard"));
 
 const FeaturePage = () => {
   const [featureData, setFeatureData] = useState<FeatureType[]>([]);
   useEffect(() => {
     const fetchFeatureData = async () => {
-      const { data } = await axios.get("api/feature/");
-      setFeatureData(data);
+      try {
+        const { data } = await axios.get("api/feature/");
+        setFeatureData(data);
+      } catch (error) {
+        Notification("error", "サーバーエラー");
+      }
     };
     fetchFeatureData();
   }, []);

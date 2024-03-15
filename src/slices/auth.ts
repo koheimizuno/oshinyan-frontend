@@ -118,6 +118,7 @@ const userSlice = createSlice({
       })
       .addCase(TokenLoginAction.rejected, (state, action) => {
         state.authLoading = false;
+        Notification("error", "サーバーエラー");
       });
     builder
       .addCase(LogOutAction.pending, (state, action) => {

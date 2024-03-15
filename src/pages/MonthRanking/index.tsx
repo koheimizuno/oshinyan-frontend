@@ -12,6 +12,7 @@ import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import axios from "axios";
 import { CatObjectType } from "../../constant/type";
 import BannerCarousel from "../../components/common/BannerCarousel";
+import { Notification } from "../../constant/notification";
 const ColumnSection = lazy(
   () => import("../../components/common/ColumnSection")
 );
@@ -53,7 +54,9 @@ const MonthRanking = () => {
           `api/monthrankingcat?date=${dates.year}-${dates.month}-${dates.date}`
         );
         setCatData(res.data);
-      } catch (error) {}
+      } catch (error) {
+        Notification("error", "サーバーエラー");
+      }
     };
     fetchData();
   }, [
@@ -74,7 +77,9 @@ const MonthRanking = () => {
           );
           setCatData(data);
         }
-      } catch (error) {}
+      } catch (error) {
+        Notification("error", "サーバーエラー");
+      }
     };
     const fetchCharacterSearchData = async () => {
       try {

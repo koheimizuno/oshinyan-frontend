@@ -2,13 +2,18 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { NoticeType } from "../../../constant/type";
 import { formatDateTime } from "../../../utils/functions";
+import { Notification } from "../../../constant/notification";
 
 const Notices = () => {
   const [noticeData, setNoticeData] = useState<NoticeType[]>([]);
   useEffect(() => {
     const fetchNotice = async () => {
-      const { data } = await axios.get("api/notice/");
-      setNoticeData(data);
+      try {
+        const { data } = await axios.get("api/notice/");
+        setNoticeData(data);
+      } catch (error) {
+        Notification("error", "サーバーエラー");
+      }
     };
     fetchNotice();
   }, []);

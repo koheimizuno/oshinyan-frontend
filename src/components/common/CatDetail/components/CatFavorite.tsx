@@ -3,6 +3,7 @@ import Heart from "../../../basic/icons/Heart";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { CommentImageRecommentAction } from "../../../../slices/cat";
+import { Notification } from "../../../../constant/notification";
 import "lazysizes";
 
 interface Props {
@@ -18,10 +19,14 @@ const CatFavorite = ({ imgUrl, comment_images_id, onClick }: Props) => {
   const { catLoading } = useSelector((state: any) => state.cat);
   useEffect(() => {
     const fetchCommentImageRecommend = async () => {
-      const { data } = await axios.get(
-        `api/commentimagerecommendbyimgsid/?comment_image_id=${comment_images_id}`
-      );
-      setCommentImgRecommendCount(data.length);
+      try {
+        const { data } = await axios.get(
+          `api/commentimagerecommendbyimgsid/?comment_image_id=${comment_images_id}`
+        );
+        setCommentImgRecommendCount(data.length);
+      } catch (error) {
+        Notification("error", "サーバーエラー");
+      }
     };
     fetchCommentImageRecommend();
   }, [comment_images_id, catLoading]);

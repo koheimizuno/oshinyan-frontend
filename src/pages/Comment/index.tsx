@@ -42,7 +42,9 @@ function Comment() {
             list.push(it.imgs);
           });
         setCatDetailImages(list);
-      } catch (error) {}
+      } catch (error) {
+        Notification("error", "サーバーエラー");
+      }
     };
     RetrieveCat();
   }, [id, navigate, isAuthenticated]);

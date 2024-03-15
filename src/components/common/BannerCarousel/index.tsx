@@ -21,8 +21,8 @@ const BannerCarousel = React.memo(() => {
 
   useEffect(() => {
     let link: any;
-    try {
-      const fetchBanner = async () => {
+    const fetchBanner = async () => {
+      try {
         const { data } = await axios.get("api/banner/");
         const duplicatedData = data.concat(data);
         setBannerData(duplicatedData);
@@ -36,14 +36,14 @@ const BannerCarousel = React.memo(() => {
             link.setAttribute("href", item.image);
             document.head.appendChild(link);
           });
-      };
-      fetchBanner();
-      return () => {
-        link && document.head.removeChild(link);
-      };
-    } catch (error) {
-      Notification("error", "サーバーエラー");
-    }
+        return () => {
+          link && document.head.removeChild(link);
+        };
+      } catch (error) {
+        Notification("error", "サーバーエラー");
+      }
+    };
+    fetchBanner();
   }, []);
 
   const handleImageLoad = (

@@ -34,15 +34,19 @@ function NyanplaceDetail() {
   });
   useEffect(() => {
     const fetchAShopData = async () => {
-      const { data } = await axios.get(`api/shop/${id}/`);
-      setAShopData(data);
-      const fetchShopData = async () => {
-        const { data } = await axios.get(
-          `api/shopnearby/?address=${AshopData.address}`
-        );
-        setShopNearByData(data);
-      };
-      fetchShopData();
+      try {
+        const { data } = await axios.get(`api/shop/${id}/`);
+        setAShopData(data);
+        const fetchShopData = async () => {
+          try {
+            const { data } = await axios.get(
+              `api/shopnearby/?address=${AshopData.address}`
+            );
+            setShopNearByData(data);
+          } catch (error) {}
+        };
+        fetchShopData();
+      } catch (error) {}
     };
     fetchAShopData();
   }, [id, AshopData.address]);

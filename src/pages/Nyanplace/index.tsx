@@ -25,8 +25,10 @@ const Nyanplace = () => {
   const [searchWord, setSearchWord] = useState<string>("");
   useEffect(() => {
     const fetchShopData = async () => {
-      const { data } = await axios.get("api/shop/");
-      setShopData(data);
+      try {
+        const { data } = await axios.get("api/shop/");
+        setShopData(data);
+      } catch (error) {}
     };
     fetchShopData();
   }, []);

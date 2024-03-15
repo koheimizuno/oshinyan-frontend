@@ -10,6 +10,7 @@ import {
 import MoreButton from "../../basic/BasicMoreButton";
 import { ColumnType } from "../../../constant/type";
 import SuspenseContent from "../../basic/SuspenseContent";
+import { Notification } from "../../../constant/notification";
 const BlogColumnBox = lazy(() => import("../../basic/blog/BlogColumnBox"));
 
 const ColumnSection = () => {
@@ -20,8 +21,12 @@ const ColumnSection = () => {
 
   useEffect(() => {
     const fetchColumnData = async () => {
-      const { data } = await axios.get(`api/advancedcolumn/?all=${false}`);
-      setColumnData(data);
+      try {
+        const { data } = await axios.get(`api/advancedcolumn/?all=${false}`);
+        setColumnData(data);
+      } catch (error) {
+        Notification("error", "サーバーエラー");
+      }
     };
     const observer = new IntersectionObserver(
       (entries) => {
@@ -48,9 +53,13 @@ const ColumnSection = () => {
   }, []);
 
   const handleMoreDisplay = useCallback(async () => {
-    const { data } = await axios.get(`api/advancedcolumn/?all=${true}`);
-    setIsAll(false);
-    setColumnData(data);
+    try {
+      const { data } = await axios.get(`api/advancedcolumn/?all=${true}`);
+      setIsAll(false);
+      setColumnData(data);
+    } catch (error) {
+      Notification("error", "サーバーエラー");
+    }
   }, []);
 
   return (

@@ -10,6 +10,7 @@ import { ColumnType } from "../../constant/type";
 import { formatDateTime } from "../../utils/functions";
 import styles from "./index.module.css";
 import "lazysizes";
+import { Notification } from "../../constant/notification";
 const BlogColumnBox = lazy(
   () => import("../../components/basic/blog/BlogColumnBox")
 );
@@ -30,12 +31,20 @@ function ColumnDetail() {
 
   useEffect(() => {
     const fetchColumnData = async () => {
-      const { data } = await axios.get(`api/advancedcolumn/?all=${false}`);
-      setColumnData(data);
+      try {
+        const { data } = await axios.get(`api/advancedcolumn/?all=${false}`);
+        setColumnData(data);
+      } catch (error) {
+        Notification("error", "サーバーエラー");
+      }
     };
     const fetchGetColumnDataById = async () => {
-      const { data } = await axios.get(`api/column/${id}/`);
-      setAcolumnData(data);
+      try {
+        const { data } = await axios.get(`api/column/${id}/`);
+        setAcolumnData(data);
+      } catch (error) {
+        Notification("error", "サーバーエラー");
+      }
     };
     fetchColumnData();
     fetchGetColumnDataById();

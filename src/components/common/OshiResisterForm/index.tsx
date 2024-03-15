@@ -35,8 +35,12 @@ const OshiResisterForm = () => {
 
   useEffect(() => {
     const fetchShopCategory = async () => {
-      const { data } = await axios.get("unregistered/shopcategory/");
-      setShopCategory(data);
+      try {
+        const { data } = await axios.get("unregistered/shopcategory/");
+        setShopCategory(data);
+      } catch (error) {
+        Notification("error", "サーバーエラー");
+      }
     };
     fetchShopCategory();
   }, []);

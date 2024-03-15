@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { PREFECTURE } from "../../../constant";
 import PrivacyComponent from "../PrivacyComponent";
 import InputText from "../../basic/InputText";
+import { Notification } from "../../../constant/notification";
 import { RegistrationAction } from "../../../slices/auth";
 import {
   Checkbox,
@@ -61,8 +62,12 @@ const SignupForm = () => {
   const handleAvatar = () => {
     setAvatarModal(true);
     const fetchAvatar = async () => {
-      const { data } = await axios.get("account/avatar/");
-      setAvatars(data);
+      try {
+        const { data } = await axios.get("account/avatar/");
+        setAvatars(data);
+      } catch (error) {
+        Notification("error", "サーバーエラー");
+      }
     };
     fetchAvatar();
   };
@@ -87,7 +92,7 @@ const SignupForm = () => {
             >
               {selectedAvatar ? (
                 <img
-                data-src={selectedAvatar}
+                  data-src={selectedAvatar}
                   alt={selectedAvatar.substring(
                     selectedAvatar.lastIndexOf("/" + 1)
                   )}

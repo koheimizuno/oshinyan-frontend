@@ -50,14 +50,16 @@ const MyPage = () => {
 
   useEffect(() => {
     const commentByUserFetch = async () => {
-      let list: any[] = [];
-      const { data } = await axios.get(`api/commentbyuser`);
-      data.forEach((item: any) => {
-        item.comment_images.forEach((it: any) => {
-          list.push(it);
+      try {
+        let list: any[] = [];
+        const { data } = await axios.get(`api/commentbyuser`);
+        data.forEach((item: any) => {
+          item.comment_images.forEach((it: any) => {
+            list.push(it);
+          });
         });
-      });
-      setCommentImgsByUser(list);
+        setCommentImgsByUser(list);
+      } catch (error) {}
     };
     commentByUserFetch();
   }, [isAuthenticated, navigate, catLoading]);
@@ -70,10 +72,12 @@ const MyPage = () => {
       } catch (error) {}
     };
     const fetchUser = async () => {
-      if (user.user_id) {
-        const { data } = await axios.get(`account/user/${user.user_id}/`);
-        setCurrentUser(data);
-      }
+      try {
+        if (user.user_id) {
+          const { data } = await axios.get(`account/user/${user.user_id}/`);
+          setCurrentUser(data);
+        }
+      } catch (error) {}
     };
     fetchuserCatData();
     fetchUser();
@@ -116,8 +120,10 @@ const MyPage = () => {
   const handleAvatar = () => {
     setAvatarModal(true);
     const fetchAvatar = async () => {
-      const { data } = await axios.get("account/avatar/");
-      setAvatars(data);
+      try {
+        const { data } = await axios.get("account/avatar/");
+        setAvatars(data);
+      } catch (error) {}
     };
     fetchAvatar();
   };

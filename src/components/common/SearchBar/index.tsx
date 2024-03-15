@@ -3,6 +3,7 @@ import { FormEvent, useEffect, useState } from "react";
 import PrefectureBtn from "../../basic/CustomButton";
 import { PREFECTURE } from "../../../constant";
 import Container from "../../basic/Container";
+import { Notification } from "../../../constant/notification";
 
 interface SearchProps {
   prefectureKeyword: string[];
@@ -60,8 +61,12 @@ const SearchBar = ({
   );
   useEffect(() => {
     const fetchCharacter = async () => {
-      const { data } = await axios.get("api/character/");
-      setCharacterData(data);
+      try {
+        const { data } = await axios.get("api/character/");
+        setCharacterData(data);
+      } catch (error) {
+        Notification("error", "サーバーエラー");
+      }
     };
     fetchCharacter();
   }, []);

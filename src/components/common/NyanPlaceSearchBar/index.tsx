@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { PREFECTURE } from "../../../constant";
 import PrefectureBtn from "../../basic/CustomButton";
 import Container from "../../basic/Container";
+import { Notification } from "../../../constant/notification";
 
 interface SearchProps {
   selectPrefectureKeyword: (val: string) => void;
@@ -30,11 +31,15 @@ const NyanPlaceSearchBar = ({
     { id: string; shop_type: string }[]
   >([]);
   useEffect(() => {
-    const fetchCharacter = async () => {
-      const { data } = await axios.get("api/shoptype/");
-      setShopTypeData(data);
+    const fetchShopType = async () => {
+      try {
+        const { data } = await axios.get("api/shoptype/");
+        setShopTypeData(data);
+      } catch (error) {
+        Notification("error", "サーバーエラー");
+      }
     };
-    fetchCharacter();
+    fetchShopType();
   }, []);
   return (
     <>

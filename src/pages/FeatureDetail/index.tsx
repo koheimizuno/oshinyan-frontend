@@ -9,6 +9,7 @@ import PageBar from "../../components/common/PageBar";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import { Pagination } from "@mui/material";
 import { FeatureType } from "../../constant/type";
+import { Notification } from "../../constant/notification";
 const CatCard = lazy(() => import("../../components/basic/blog/CatCard"));
 
 const FeatureDetail = () => {
@@ -16,8 +17,12 @@ const FeatureDetail = () => {
   const [featureData, setFeatureData] = useState<FeatureType>();
   useEffect(() => {
     const fetchFeatureData = async () => {
-      const { data } = await axios.get(`api/feature/${id}/`);
-      setFeatureData(data);
+      try {
+        const { data } = await axios.get(`api/feature/${id}/`);
+        setFeatureData(data);
+      } catch (error) {
+        Notification("error", "サーバーエラー");
+      }
     };
     fetchFeatureData();
   }, [id]);
