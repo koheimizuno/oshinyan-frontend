@@ -24,8 +24,6 @@ const BannerCarousel = React.memo(() => {
     const fetchBanner = async () => {
       try {
         const { data } = await axios.get("api/banner/");
-        const duplicatedData = data.concat(data);
-        setBannerData(duplicatedData);
         data &&
           data.forEach((item: BannerType) => {
             link = document.createElement("link");
@@ -36,6 +34,8 @@ const BannerCarousel = React.memo(() => {
             link.setAttribute("href", item.image);
             document.head.appendChild(link);
           });
+        const duplicatedData = data.concat(data);
+        setBannerData(duplicatedData);
         return () => {
           link && document.head.removeChild(link);
         };
@@ -79,7 +79,6 @@ const BannerCarousel = React.memo(() => {
             <SwiperSlide key={key}>
               <a href={item.url}>
                 <img
-                  fetchpriority="high"
                   src={item.image}
                   alt={item.image.substring(item.image.lastIndexOf("/") + 1)}
                   onLoad={handleImageLoad}
