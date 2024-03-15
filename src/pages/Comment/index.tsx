@@ -12,6 +12,7 @@ import PrivacyComponent from "../../components/common/PrivacyComponent";
 import { ImageType } from "../../constant/type";
 import { Notification } from "../../constant/notification";
 import FileUpload from "../../components/basic/icons/FileUpload";
+import "lazysizes";
 const CatDetailCarousel = lazy(
   () => import("../../components/common/CatDetail/components/Carousel")
 );
@@ -87,7 +88,13 @@ function Comment() {
         <Title title="推しコメント入力" />
         <section className="flex flex-col gap-5 md:flex-row md:items-center md:gap-10 py-9">
           <div className="flex items-center gap-4">
-            <img src={user.avatar.avatar} alt={user.username} />
+            <img
+              className="lazyload"
+              src={user.avatar.avatar}
+              alt={user.avatar.avatar.substring(
+                user.avatar.avatar.lastIndexOf("/") + 1
+              )}
+            />
             <span className="border-b border-[#6d6d6d]">{user.username}</span>
           </div>
           <div className="hidden md:block">

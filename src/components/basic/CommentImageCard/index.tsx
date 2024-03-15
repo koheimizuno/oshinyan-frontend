@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import Heart from "../icons/Heart";
 import { CommentImageDeleteAction } from "../../../slices/cat";
+import "lazysizes";
 
 const CommentImageCard = ({
   id,
@@ -21,7 +22,11 @@ const CommentImageCard = ({
     <div className="m-auto w-[288px] h-[241px]">
       <div className="relative overflow-x-hidden flex justify-center">
         <div className="h-[216px] m-auto">
-          <img src={imgs} alt={imgs} className="h-full" />
+          <img
+            src={imgs}
+            alt={imgs.substring(imgs.lastIndexOf("/") + 1)}
+            className="lazyload h-full"
+          />
           <div className="absolute flex w-[48px] h-[18px] right-[5px] bottom-[5px]">
             <div className="me-1">
               <Heart />

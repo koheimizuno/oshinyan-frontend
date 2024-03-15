@@ -1,5 +1,6 @@
 import PrefectureBtn from "../CustomButton";
 import { ShopType } from "../../../constant/type";
+import "lazysizes";
 
 const NyanPlaceCard = (props: ShopType) => {
   return (
@@ -11,8 +12,10 @@ const NyanPlaceCard = (props: ShopType) => {
         {props.shop_images && (
           <img
             src={props.shop_images[0].imgs}
-            alt={props.shop_images[0].imgs}
-            className="max-h-[234px] h-full m-auto object-cover"
+            alt={props.shop_images[0].imgs?.substring(
+              props.shop_images[0].imgs.lastIndexOf("/") + 1
+            )}
+            className="lazyload max-h-[234px] h-full m-auto object-cover"
           />
         )}
       </div>

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "lazysizes";
 
 const FeatureCard = ({
   id,
@@ -14,9 +15,9 @@ const FeatureCard = ({
       <div className="w-full h-[234px] text-center">
         <Link to={`/feature/${id}`}>
           <img
-            className="max-h-[234px] h-full m-auto object-cover"
+            className="lazyload max-h-[234px] h-full m-auto object-cover"
             src={imgUrl}
-            alt={imgUrl}
+            alt={imgUrl.substring(imgUrl.lastIndexOf("/") + 1)}
           />
         </Link>
       </div>

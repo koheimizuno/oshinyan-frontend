@@ -8,6 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
 import { RecommendAction } from "../../../slices/cat";
 import { isNewUtil } from "../../../utils/functions";
+import "lazysizes";
 
 const LargeCatCard = ({
   id,
@@ -89,8 +90,8 @@ const LargeCatCard = ({
                 <Link to={`/oshinyan/${id}`}>
                   <img
                     src={item.imgs}
-                    alt={item.imgs}
-                    className="m-auto cursor-pointer max-w-full h-full"
+                    alt={item.imgs.substring(item.imgs.lastIndexOf("/") + 1)}
+                    className="lazyload m-auto cursor-pointer max-w-full h-full"
                     onLoad={handleImageLoad}
                     width={imgWidth}
                     height={imgHeight}

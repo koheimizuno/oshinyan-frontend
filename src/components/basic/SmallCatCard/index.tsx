@@ -7,6 +7,7 @@ import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
 import { RecommendAction } from "../../../slices/cat";
 import { isNewUtil } from "../../../utils/functions";
 import CustomButton from "../CustomButton";
+import "lazysizes";
 
 const SmallCatCard = ({
   id,
@@ -84,8 +85,8 @@ const SmallCatCard = ({
                   <span className="inline-block ">
                     <img
                       src={item.imgs}
-                      alt={item.imgs}
-                      className="m-auto cursor-pointer h-full object-cover"
+                      alt={item.imgs.substring(item.imgs.lastIndexOf("/") + 1)}
+                      className="lazyload m-auto cursor-pointer h-full object-cover"
                       onLoad={handleImageLoad}
                       width={imgWidth}
                       height={imgHeight}

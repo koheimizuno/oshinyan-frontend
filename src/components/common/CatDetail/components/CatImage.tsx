@@ -1,4 +1,5 @@
 import Heart from "../../../basic/icons/Heart";
+import "lazysizes";
 
 interface Props {
   imgUrl: string;
@@ -9,7 +10,11 @@ const CatImage = ({ imgUrl, username, recommend }: Props) => {
   return (
     <div className="h-[241px] overflow-hidden pt-6">
       <div className="relative overflow-x-hidden">
-        <img src={imgUrl} alt={imgUrl} className="h-[216px] m-auto" />
+        <img
+          src={imgUrl}
+          alt={imgUrl.substring(imgUrl.lastIndexOf("/") + 1)}
+          className="lazyload h-[216px] m-auto"
+        />
         <div className="absolute flex w-[48px] h-[18px] right-[5px] bottom-[5px]">
           <div className="me-1">
             <Heart />
