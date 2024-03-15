@@ -11,9 +11,7 @@ import { CapThird } from "../../components/basic/icons/CapThird";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import axios from "axios";
 import { CatObjectType } from "../../constant/type";
-const BannerCarousel = lazy(
-  () => import("../../components/common/BannerCarousel")
-);
+import BannerCarousel from "../../components/common/BannerCarousel";
 const ColumnSection = lazy(
   () => import("../../components/common/ColumnSection")
 );

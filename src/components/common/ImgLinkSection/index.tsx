@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ImgTagType } from "../../../constant/type";
 import { NYP_IMG, NYP_SP_IMG, MEM_BNR_IMG, MEM_BNR_SP_IMG } from "./constants";
+import "lazysizes";
 
 const ImgLinkSection = () => {
   const [nypHeight, setNypHeight] = useState<string>();
@@ -39,30 +40,34 @@ const ImgLinkSection = () => {
               className={`relative flex items-center overflow-hidden ${nypHeight}`}
             >
               <img
-                src={nypImg[0]?.src}
+                loading="lazy"
+                data-src={nypImg[0]?.src}
                 alt={nypImg[0]?.alt}
-                className="absolute left-0"
+                className="lazyload absolute left-0"
                 width={nypImg[0]?.width}
                 height={nypImg[0]?.height}
               />
               <img
-                src={nypImg[1]?.src}
+                loading="lazy"
+                data-src={nypImg[1]?.src}
                 alt={nypImg[1]?.alt}
-                className="absolute left-[25%]"
+                className="lazyload absolute left-[25%]"
                 width={nypImg[0]?.width}
                 height={nypImg[0]?.height}
               />
               <img
-                src={nypImg[2]?.src}
+                loading="lazy"
+                data-src={nypImg[2]?.src}
                 alt={nypImg[2]?.alt}
-                className="absolute left-[50%]"
+                className="lazyload absolute left-[50%]"
                 width={nypImg[0]?.width}
                 height={nypImg[0]?.height}
               />
               <img
-                src={nypImg[3]?.src}
+                loading="lazy"
+                data-src={nypImg[3]?.src}
                 alt={nypImg[3]?.alt}
-                className="absolute left-[75%]"
+                className="lazyload absolute left-[75%]"
                 width={nypImg[0]?.width}
                 height={nypImg[0]?.height}
               />
@@ -81,11 +86,13 @@ const ImgLinkSection = () => {
               <div className={`flex flex-wrap ${memGap} justify-between`}>
                 {memBnrImg.slice(8).map((item: ImgTagType, key: number) => (
                   <img
+                    loading="lazy"
                     key={key}
-                    src={item.src}
+                    data-src={item.src}
                     alt={item.alt}
                     width={item.width}
                     height={item.height}
+                    className="lazyload"
                   />
                 ))}
               </div>
@@ -94,11 +101,13 @@ const ImgLinkSection = () => {
               <div className={`flex ${memGap} justify-center`}>
                 {memBnrImg.slice(0, 4).map((item: ImgTagType, key: number) => (
                   <img
+                    loading="lazy"
                     key={key}
-                    src={item.src}
+                    data-src={item.src}
                     alt={item.alt}
                     width={item.width}
                     height={item.height}
+                    className="lazyload"
                   />
                 ))}
                 <p className="text-[20px] sm:text-[28px] md:text-[32px] text-[#C38154] font-medium whitespace-nowrap pl-3 pr-6">
@@ -106,11 +115,13 @@ const ImgLinkSection = () => {
                 </p>
                 {memBnrImg.slice(4, 8).map((item: ImgTagType, key: number) => (
                   <img
+                    loading="lazy"
                     key={key}
-                    src={item.src}
+                    data-src={item.src}
                     alt={item.alt}
                     width={item.width}
                     height={item.height}
+                    className="lazyload"
                   />
                 ))}
               </div>
@@ -122,11 +133,13 @@ const ImgLinkSection = () => {
                   .slice(8)
                   .map((item: ImgTagType, key: number) => (
                     <img
+                      loading="lazy"
                       key={key}
-                      src={item.src}
+                      data-src={item.src}
                       alt={item.alt}
                       width={item.width}
                       height={item.height}
+                      className="lazyload"
                     />
                   ))}
               </div>

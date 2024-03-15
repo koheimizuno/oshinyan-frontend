@@ -9,9 +9,7 @@ import HelmetPage from "../../layouts/MainLayout/HelmetPage";
 import { CatObjectType } from "../../constant/type";
 import { Notification } from "../../constant/notification";
 import axios from "axios";
-const BannerCarousel = lazy(
-  () => import("../../components/common/BannerCarousel")
-);
+import BannerCarousel from "../../components/common/BannerCarousel";
 const ImgLinkSection = lazy(
   () => import("../../components/common/ImgLinkSection")
 );
@@ -145,14 +143,6 @@ const Top = () => {
       />
       <MainLayout>
         <SocialLinkGroup page="top" />
-        {/* <Suspense
-          fallback={
-            <div className="w-screen h-screen ">
-              <SuspenseContent />
-            </div>
-          }
-        >
-        </Suspense> */}
         <BannerCarousel />
         <SearchBar
           prefectureKeyword={prefectureKeyword}

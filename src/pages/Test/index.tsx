@@ -9,9 +9,7 @@ import RankingBar from "../../components/common/RankingBar";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import { CatObjectType } from "../../constant/type";
 import { Notification } from "../../constant/notification";
-const BannerCarousel = lazy(
-  () => import("../../components/common/BannerCarousel")
-);
+import BannerCarousel from "../../components/common/BannerCarousel";
 const CatCard = lazy(() => import("../../components/basic/blog/CatCard"));
 
 const Test = () => {

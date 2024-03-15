@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ArrowLeft from "../../basic/icons/ArrowLeft";
 import ArrowRight from "../../basic/icons/ArrowRight";
 import { BannerType } from "../../../constant/type";
@@ -15,61 +15,28 @@ import {
 } from "swiper/modules";
 
 const BannerCarousel = React.memo(() => {
-  const bannerRef = useRef(null);
-  const [inViewport, setInViewport] = useState<boolean>(false);
   const [bannerData, setBannerData] = useState<BannerType[]>([]);
   const [imgWidth, setImgWidth] = useState<number>();
   const [imgHeight, setImgHeight] = useState<number>();
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setInViewport(true);
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.5 } // you can adjust the threshold as needed
-    );
-
-    if (bannerRef.current) {
-      observer.observe(bannerRef.current);
-    }
-
-    return () => {
-      if (bannerRef.current) {
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        observer.unobserve(bannerRef.current);
-      }
-    };
-  }, []);
-
-  useEffect(() => {
     let link: any;
-    const fetchBanner = async () => {
-      let list: BannerType[] = [];
-      const { data } = await axios.get("api/banner/");
-      data.forEach((item: BannerType) => {
-        list.push(item);
-      });
-      data.forEach((item: BannerType) => {
-        list.push(item);
-      });
-      setBannerData(list);
-      data &&
-        data.forEach((item: BannerType) => {
-          link = document.createElement("link");
-          link.setAttribute("rel", "preload");
-          link.setAttribute("as", "image");
-          link.setAttribute("type", "image/webp");
-          link.setAttribute("fetchpriority", "high");
-          link.setAttribute("href", item.image);
-          document.head.appendChild(link);
-        });
-    };
     try {
+      const fetchBanner = async () => {
+        const { data } = await axios.get("api/banner/");
+        const duplicatedData = data.concat(data);
+        setBannerData(duplicatedData);
+        data &&
+          data.forEach((item: BannerType) => {
+            link = document.createElement("link");
+            link.setAttribute("rel", "preload");
+            link.setAttribute("as", "image");
+            link.setAttribute("type", "image/webp");
+            link.setAttribute("fetchpriority", "high");
+            link.setAttribute("href", item.image);
+            document.head.appendChild(link);
+          });
+      };
       fetchBanner();
       return () => {
         link && document.head.removeChild(link);
@@ -88,7 +55,7 @@ const BannerCarousel = React.memo(() => {
   };
 
   return (
-    <div ref={bannerRef} className="bg-white">
+    <div className="bg-white">
       <Swiper
         modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
         speed={800}
@@ -107,8 +74,7 @@ const BannerCarousel = React.memo(() => {
         navigation={{ nextEl: ".arrow-right", prevEl: ".arrow-left" }}
         className="h-[256px] cursor-pointer py-2 m-0"
       >
-        {inViewport &&
-          bannerData &&
+        {bannerData &&
           bannerData.map((item: any, key: any) => (
             <SwiperSlide key={key}>
               <a href={item.url}>

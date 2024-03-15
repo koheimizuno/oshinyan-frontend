@@ -11,9 +11,7 @@ import { CapSecond } from "../../components/basic/icons/CapSecond";
 import { CapThird } from "../../components/basic/icons/CapThird";
 import axios from "axios";
 import { CatObjectType } from "../../constant/type";
-const BannerCarousel = lazy(
-  () => import("../../components/common/BannerCarousel")
-);
+import BannerCarousel from "../../components/common/BannerCarousel";
 const ColumnSection = lazy(
   () => import("../../components/common/ColumnSection")
 );
