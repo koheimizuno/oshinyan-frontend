@@ -9,7 +9,7 @@
       property="og:description"
       content="推しニャンは『 お気に入りの看板猫が探せる！推せるサイト』 です"
     />
-    <meta property="og:image" content="%PUBLIC_URL%/OGP-oshinyan.webp" />
+    <meta property="og:image" content="%PUBLIC_URL%/ogp.webp" />
     <meta property="og:url" content="https://www.oshinyan.love" />
     <meta property="og:type" content="website" />
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
@@ -18,7 +18,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://use.typekit.net/" />
-    <link rel="preload" href="https://use.typekit.net/fxr5kvr.js" as="script" />
     <link rel="canonical" href="https://www.oshinyan.love" />
     <!-- Google Tag Manager -->
     <script>
@@ -39,7 +38,6 @@
           var config = {
               kitId: "fxr5kvr",
               scriptTimeout: 3000,
-              async: true,
             },
             h = d.documentElement,
             t = setTimeout(function () {
@@ -52,7 +50,6 @@
             a;
           h.className += " wf-loading";
           tk.src = "https://use.typekit.net/" + config.kitId + ".js";
-          tk.async = true;
           tk.onload = tk.onreadystatechange = function () {
             a = this.readyState;
             if (f || (a && a != "complete" && a != "loaded")) return;

@@ -42,7 +42,7 @@ const Header = React.forwardRef(
         <div>
           <ul
             className={`text-[16px] max-h-0 overflow-hidden transition-all duration-1000 ease-in-out 
-                      xs:text-center xs:absolute xs:border-t xs:top-[96px] xs:left-0 xs:z-10 xs:w-full xs:bg-white 
+                      xs:text-center xs:absolute xs:top-[96px] xs:left-0 xs:z-10 xs:w-full xs:bg-white 
                       md:static md:max-h-full md:border-0 md:flex md:justify-between md:items-center ${hidden}`}
           >
             <li className="hover:text-[#C38154] xs:pt-3 md:pt-0">

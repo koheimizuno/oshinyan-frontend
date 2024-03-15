@@ -47,32 +47,36 @@ const BannerCarousel = React.memo(() => {
   }, []);
 
   useEffect(() => {
+    let link: any;
     const fetchBanner = async () => {
-      try {
-        let list: BannerType[] = [];
-        const { data } = await axios.get("api/banner/");
+      let list: BannerType[] = [];
+      const { data } = await axios.get("api/banner/");
+      data.forEach((item: BannerType) => {
+        list.push(item);
+      });
+      data.forEach((item: BannerType) => {
+        list.push(item);
+      });
+      setBannerData(list);
+      data &&
         data.forEach((item: BannerType) => {
-          list.push(item);
+          link = document.createElement("link");
+          link.setAttribute("rel", "preload");
+          link.setAttribute("as", "image");
+          link.setAttribute("type", "image/webp");
+          link.setAttribute("fetchpriority", "high");
+          link.setAttribute("href", item.image);
+          document.head.appendChild(link);
         });
-        data.forEach((item: BannerType) => {
-          list.push(item);
-        });
-        setBannerData(list);
-        data &&
-          data.forEach((item: BannerType) => {
-            const link = document.createElement("link");
-            link.setAttribute("rel", "preload");
-            link.setAttribute("as", "image");
-            link.setAttribute("type", "image/webp");
-            // link.setAttribute("fetchpriority", "high");
-            link.setAttribute("href", item.image);
-            document.head.appendChild(link);
-          });
-      } catch (error) {
-        Notification("error", "サーバーエラー");
-      }
     };
-    fetchBanner();
+    try {
+      fetchBanner();
+      return () => {
+        link && document.head.removeChild(link);
+      };
+    } catch (error) {
+      Notification("error", "サーバーエラー");
+    }
   }, []);
 
   const handleImageLoad = (

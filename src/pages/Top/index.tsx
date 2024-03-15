@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useEffect, useState } from "react";
+import React, { lazy, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import MainLayout from "../../layouts/MainLayout";
 import RankingBar from "../../components/common/RankingBar";
@@ -6,7 +6,6 @@ import Container from "../../components/basic/Container";
 import SocialLinkGroup from "../../components/common/SocialLinkGroup";
 import SearchBar from "../../components/common/SearchBar";
 import HelmetPage from "../../layouts/MainLayout/HelmetPage";
-import SuspenseContent from "../../components/basic/SuspenseContent";
 import { CatObjectType } from "../../constant/type";
 import { Notification } from "../../constant/notification";
 import axios from "axios";
@@ -146,6 +145,14 @@ const Top = () => {
       />
       <MainLayout>
         <SocialLinkGroup page="top" />
+        {/* <Suspense
+          fallback={
+            <div className="w-screen h-screen ">
+              <SuspenseContent />
+            </div>
+          }
+        >
+        </Suspense> */}
         <BannerCarousel />
         <SearchBar
           prefectureKeyword={prefectureKeyword}
@@ -171,25 +178,23 @@ const Top = () => {
           <RankingBar />
           <div className="mt-[12px]">
             <div className="flex justify-start flex-wrap gap-3">
-              <Suspense fallback={<SuspenseContent />}>
-                {catData.length !== 0 &&
-                  catData.map((e, i) => (
-                    <CatCard
-                      key={i}
-                      id={e.id}
-                      is_public={e.is_public}
-                      cat_name={e.cat_name}
-                      shop={e.shop}
-                      images={e.images}
-                      admin_images={e.admin_images}
-                      character={e.character}
-                      attendance={e.attendance}
-                      description={e.description}
-                      recommend={e.recommend}
-                      created_date={e.created_date}
-                    />
-                  ))}
-              </Suspense>
+              {catData.length !== 0 &&
+                catData.map((e, i) => (
+                  <CatCard
+                    key={i}
+                    id={e.id}
+                    is_public={e.is_public}
+                    cat_name={e.cat_name}
+                    shop={e.shop}
+                    images={e.images}
+                    admin_images={e.admin_images}
+                    character={e.character}
+                    attendance={e.attendance}
+                    description={e.description}
+                    recommend={e.recommend}
+                    created_date={e.created_date}
+                  />
+                ))}
             </div>
             {catMoreBtnShow && (
               <div className="w-full py-[35px] text-center border-b border-b-solid border-[#CCC]">

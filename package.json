@@ -36,10 +36,10 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "craco eject"
   },
   "eslintConfig": {
     "extends": [
@@ -60,6 +60,8 @@
     ]
   },
   "devDependencies": {
-    "@types/react-helmet": "^6.1.11"
+    "@craco/craco": "^7.1.0",
+    "@types/react-helmet": "^6.1.11",
+    "terser-webpack-plugin": "^5.3.10"
   }
 }
