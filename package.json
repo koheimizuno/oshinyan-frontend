@@ -38,7 +38,7 @@
   },
   "scripts": {
     "start": "craco start",
-    "build": "craco build",
+    "build": "craco build && node critical.mjs",
     "test": "craco test",
     "eject": "react-scripts eject"
   },
@@ -63,6 +63,7 @@
   "devDependencies": {
     "@craco/craco": "^7.1.0",
     "@types/react-helmet": "^6.1.11",
+    "critical": "^7.1.0",
     "terser-webpack-plugin": "^5.3.10"
   }
 }
