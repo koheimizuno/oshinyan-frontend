@@ -10,6 +10,7 @@ import { CatObjectType } from "../../constant/type";
 import { Notification } from "../../constant/notification";
 import axios from "axios";
 import BannerCarousel from "../../components/common/BannerCarousel";
+import usePageViews from "../../utils/customHook";
 const ImgLinkSection = lazy(
   () => import("../../components/common/ImgLinkSection")
 );
@@ -36,6 +37,8 @@ const Top = () => {
   const { authLoading, isAuthenticated } = useSelector(
     (state: any) => state.user
   );
+
+  usePageViews();
 
   useEffect(() => {
     const fetchCatData = async () => {

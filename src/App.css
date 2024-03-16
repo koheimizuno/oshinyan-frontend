@@ -1,7 +1,3 @@
-@import "react-notifications-component/dist/theme.css";
-@import "swiper/css";
-@import "swiper/css/pagination";
-
 .comment-link-tooptip {
   background: url("../public/assets/imgs/comment_link_outline.webp") no-repeat;
   background-size: cover;

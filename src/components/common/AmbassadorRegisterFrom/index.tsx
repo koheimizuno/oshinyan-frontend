@@ -312,7 +312,7 @@ const AmbassadorRegisterFrom = () => {
             </h2>
             <div className="flex justify-between px-[54px] py-[27px]">
               <div className="text-xl text-[#515151] tracking-[-0.1em]">
-                <p className="font-thin">
+                <p className="font-light">
                   <span>推しニャンWebサイトでは、</span>
                   <br />
                   <span>アンバサダーを大募集しております。</span>
@@ -322,7 +322,7 @@ const AmbassadorRegisterFrom = () => {
                   <span>是非、私たちの活動にご協力をお願いします。</span>
                   <br />
                 </p>
-                <p className="py-6 font-thin">
+                <p className="py-6 font-light">
                   アンバサダーの方にお願いをしていること
                 </p>
                 <p className="font-medium">
@@ -339,7 +339,7 @@ const AmbassadorRegisterFrom = () => {
                   <span>・推しニャンサイトの宣伝業務お手伝い</span>
                   <br />
                 </p>
-                <p className="font-thin pt-6">
+                <p className="font-light pt-6">
                   <span>
                     ご協力いただいた方には、推しニャンオリジナルグッズ提供他
                   </span>

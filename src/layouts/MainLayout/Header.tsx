@@ -108,7 +108,7 @@ const Header = React.forwardRef(
                     <img
                       width="16"
                       height="16"
-                      src="https://img.icons8.com/office/16/lock--v1.png"
+                      src="/assets/imgs/icons/lock.png"
                       alt="lock--v1"
                     />
                   </div>
@@ -127,7 +127,7 @@ const Header = React.forwardRef(
                   <img
                     width="16"
                     height="16"
-                    src="https://img.icons8.com/office/16/unlock.png"
+                    src="/assets/imgs/icons/unlock.png"
                     alt="unlock"
                   />
                   <p className="text-white text-[16px] tracking-[-.15em] font-medium drop-shadow-[1px_1px_rgba(195,129,84,1)]">

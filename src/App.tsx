@@ -1,3 +1,4 @@
+import ReactGA from "react-ga";
 import { Suspense, lazy, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -32,6 +33,8 @@ const Test = lazy(() => import("./pages/Test"));
 const NotFound = lazy(() => import("./pages/404"));
 
 axios.defaults.baseURL = "https://x162-43-50-92.static.xvps.ne.jp";
+
+ReactGA.initialize("6219758680");
 
 function App() {
   const dispatch = useDispatch();
