@@ -1,23 +1,23 @@
 import axios from "axios";
-import React, { LegacyRef, useEffect, useState } from "react";
+import React, { LegacyRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { LogOutAction } from "../../slices/auth";
 
 const Header = React.forwardRef(
   (_, ref: LegacyRef<HTMLDivElement> | undefined) => {
-    useEffect(() => {
-      let link = document.createElement("link");
-      link.setAttribute("rel", "preload");
-      link.setAttribute("as", "image");
-      link.setAttribute("type", "image/webp");
-      link.setAttribute("fetchpriority", "high");
-      link.setAttribute("href", "/assets/imgs/logo.webp");
-      document.head.appendChild(link);
-      return () => {
-        link && document.head.removeChild(link);
-      };
-    }, []);
+    // useEffect(() => {
+    //   let link = document.createElement("link");
+    //   link.setAttribute("rel", "preload");
+    //   link.setAttribute("as", "image");
+    //   link.setAttribute("type", "image/webp");
+    //   link.setAttribute("fetchpriority", "high");
+    //   link.setAttribute("href", "/assets/imgs/logo.webp");
+    //   document.head.appendChild(link);
+    //   return () => {
+    //     link && document.head.removeChild(link);
+    //   };
+    // }, []);
     const dispatch = useDispatch();
     const [hidden, setHidden] = useState("");
     const { isAuthenticated } = useSelector((state: any) => state.user);

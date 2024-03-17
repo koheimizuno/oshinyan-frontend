@@ -1,4 +1,5 @@
-import React, { lazy, useEffect, useState } from "react";
+import axios from "axios";
+import { lazy, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import MainLayout from "../../layouts/MainLayout";
 import RankingBar from "../../components/common/RankingBar";
@@ -8,9 +9,8 @@ import SearchBar from "../../components/common/SearchBar";
 import HelmetPage from "../../layouts/MainLayout/HelmetPage";
 import { CatObjectType } from "../../constant/type";
 import { Notification } from "../../constant/notification";
-import axios from "axios";
 import BannerCarousel from "../../components/common/BannerCarousel";
-import usePageViews from "../../utils/customHook";
+import { usePageViews } from "../../utils/customHook";
 const ImgLinkSection = lazy(
   () => import("../../components/common/ImgLinkSection")
 );

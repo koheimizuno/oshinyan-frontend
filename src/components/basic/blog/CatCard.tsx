@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { memo, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomButton from "../CustomButton";
 import { CatObjectType } from "../../../constant/type";
@@ -318,4 +318,4 @@ const CatCard = ({
   );
 };
 
-export default CatCard;
+export default memo(CatCard);

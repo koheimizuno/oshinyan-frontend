@@ -14,30 +14,30 @@ import {
   Autoplay,
 } from "swiper/modules";
 
-const BannerCarousel = React.memo(() => {
+const BannerCarousel = () => {
   const [bannerData, setBannerData] = useState<BannerType[]>([]);
   const [imgWidth, setImgWidth] = useState<number>();
   const [imgHeight, setImgHeight] = useState<number>();
 
   useEffect(() => {
-    let link: any;
+    // let link: any;
     const fetchBanner = async () => {
       try {
         const { data } = await axios.get("api/banner/");
-        data &&
-          data.forEach((item: BannerType) => {
-            link = document.createElement("link");
-            link.setAttribute("rel", "preload");
-            link.setAttribute("as", "image");
-            link.setAttribute("type", "image/webp");
-            link.setAttribute("href", item.image);
-            document.head.appendChild(link);
-          });
+        // data &&
+        //   data.forEach((item: BannerType) => {
+        //     link = document.createElement("link");
+        //     link.setAttribute("rel", "preload");
+        //     link.setAttribute("as", "image");
+        //     link.setAttribute("type", "image/webp");
+        //     link.setAttribute("href", item.image);
+        //     document.head.appendChild(link);
+        //   });
         const duplicatedData = data.concat(data);
         setBannerData(duplicatedData);
-        return () => {
-          link && document.head.removeChild(link);
-        };
+        // return () => {
+        //   link && document.head.removeChild(link);
+        // };
       } catch (error) {
         Notification("error", "サーバーエラー");
       }
@@ -107,6 +107,6 @@ const BannerCarousel = React.memo(() => {
       </Swiper>
     </div>
   );
-});
+};
 
 export default BannerCarousel;
