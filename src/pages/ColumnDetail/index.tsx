@@ -67,11 +67,11 @@ function ColumnDetail() {
         </div>
         <div className="my-12 h-[300px] sm:h-[400px] md:h-[576px]">
           <img
-            data-src={AcolumnData.detail_image}
+            src={AcolumnData.detail_image}
             alt={AcolumnData.detail_image?.substring(
               AcolumnData.detail_image.lastIndexOf("/") + 1
             )}
-            className="lazyload h-full m-auto"
+            className="h-full m-auto"
           />
         </div>
         {AcolumnData.blog &&
