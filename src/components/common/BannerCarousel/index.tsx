@@ -30,7 +30,6 @@ const BannerCarousel = React.memo(() => {
             link.setAttribute("rel", "preload");
             link.setAttribute("as", "image");
             link.setAttribute("type", "image/webp");
-            link.setAttribute("fetchpriority", "high");
             link.setAttribute("href", item.image);
             document.head.appendChild(link);
           });
@@ -79,7 +78,6 @@ const BannerCarousel = React.memo(() => {
             <SwiperSlide key={key}>
               <a href={item.url}>
                 <img
-                  fetchpriority="high"
                   src={item.image}
                   alt={item.image.substring(item.image.lastIndexOf("/") + 1)}
                   onLoad={handleImageLoad}

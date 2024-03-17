@@ -5,11 +5,16 @@
 @import "react-notifications-component/dist/theme.css";
 @import "swiper/css";
 @import "swiper/css/pagination";
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;500;700&display=swap");
+@import "@fontsource/noto-sans-jp/japanese-300.css";
+@import "@fontsource/noto-sans-jp/japanese-400.css";
+@import "@fontsource/noto-sans-jp/japanese-500.css";
+@import "@fontsource/noto-sans-jp/japanese-700.css";
 
 body {
   margin: 0;
   font-family: "Noto Sans JP", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
