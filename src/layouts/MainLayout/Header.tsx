@@ -6,18 +6,6 @@ import { LogOutAction } from "../../slices/auth";
 
 const Header = React.forwardRef(
   (_, ref: LegacyRef<HTMLDivElement> | undefined) => {
-    // useEffect(() => {
-    //   let link = document.createElement("link");
-    //   link.setAttribute("rel", "preload");
-    //   link.setAttribute("as", "image");
-    //   link.setAttribute("type", "image/webp");
-    //   link.setAttribute("fetchpriority", "high");
-    //   link.setAttribute("href", "/assets/imgs/logo.webp");
-    //   document.head.appendChild(link);
-    //   return () => {
-    //     link && document.head.removeChild(link);
-    //   };
-    // }, []);
     const dispatch = useDispatch();
     const [hidden, setHidden] = useState("");
     const { isAuthenticated } = useSelector((state: any) => state.user);

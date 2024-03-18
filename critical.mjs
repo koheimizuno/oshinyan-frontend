@@ -23,7 +23,7 @@ generate(
     if (err) {
       console.error(err);
     } else if (output) {
-      console.log("Generated successfully!");
+      console.log("Generated critical CSS successfully!");
     }
   }
 );
