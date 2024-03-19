@@ -39,7 +39,7 @@ const Header = React.forwardRef(
               height={51}
             />
           </Link>
-          {window.location.href === "http://oshinyan.love/" ? (
+          {window.location.href === "https://oshinyan.love/" ? (
             <h1 className="text-[12px] font-medium tracking-tighter ">
               お気に入りの看板猫が探せる！推せるサイト
             </h1>
