@@ -66,9 +66,9 @@ const ColumnSection = () => {
     <div ref={columnRef} className="bg-white">
       <div className="max-w-[960px] xs:px-5 lg:px-0 m-auto py-[48px]">
         <div className="text-center pb-[48px]">
-          <h3 className=" w-full border-y border-solid border-[#707070] text-center text-[32px] inline-block">
+          <h2 className=" w-full border-y border-solid border-[#707070] text-center text-[32px] inline-block">
             推しニャン！コラム
-          </h3>
+          </h2>
         </div>
         <div className="flex justify-start flex-wrap gap-3">
           <Suspense fallback={<SuspenseContent />}>

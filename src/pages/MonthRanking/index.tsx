@@ -1,5 +1,4 @@
 import React, { lazy, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import MainLayout from "../../layouts/MainLayout";
 import Container from "../../components/basic/Container";
@@ -13,6 +12,9 @@ import axios from "axios";
 import { CatObjectType } from "../../constant/type";
 import BannerCarousel from "../../components/common/BannerCarousel";
 import { Notification } from "../../constant/notification";
+const ImgLinkSection = lazy(
+  () => import("../../components/common/ImgLinkSection")
+);
 const ColumnSection = lazy(
   () => import("../../components/common/ColumnSection")
 );
@@ -413,26 +415,7 @@ const MonthRanking = () => {
                 </button>
               </div>
             )}
-            <div>
-              <div className="xs:pt-[20px] md:pt-[48px] md:pb-[80px]">
-                <div className="mb-[24px] hover:opacity-70">
-                  <Link to="/nyanplace" className="relative">
-                    <img
-                      src="/assets/imgs/nyanplace-banner.webp"
-                      alt="nyanplace-banner"
-                    />
-                    <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap xs:text-[20px] sm:text-[32px] text-white font-bold tracking-widest">
-                      『看板猫に会える場所』一覧
-                    </p>
-                  </Link>
-                </div>
-                <div className="hover:opacity-70">
-                  <Link to="/shopresister">
-                    <img src="/assets/imgs/member.webp" alt="member" />
-                  </Link>
-                </div>
-              </div>
-            </div>
+            <ImgLinkSection />
           </Container>
         </div>
         <ColumnSection />

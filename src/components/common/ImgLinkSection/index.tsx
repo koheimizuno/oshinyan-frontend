@@ -72,9 +72,9 @@ const ImgLinkSection = () => {
                 height={nypImg[0]?.height}
               />
             </div>
-            <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[20px] sm:text-[28px] md:text-[32px] text-white font-medium tracking-widest whitespace-nowrap">
+            <h2 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[20px] sm:text-[28px] md:text-[32px] text-white font-medium tracking-widest whitespace-nowrap">
               『看板猫に会える場所』一覧
-            </p>
+            </h2>
           </Link>
         </div>
         <div className="hover:opacity-70">
@@ -110,9 +110,9 @@ const ImgLinkSection = () => {
                     className="lazyload"
                   />
                 ))}
-                <p className="text-[20px] sm:text-[28px] md:text-[32px] text-[#C38154] font-medium whitespace-nowrap pl-3 pr-6">
+                <h2 className="text-[20px] sm:text-[28px] md:text-[32px] text-[#C38154] font-medium whitespace-nowrap pl-3 pr-6">
                   『推しニャン！会員』登録
-                </p>
+                </h2>
                 {memBnrImg.slice(4, 8).map((item: ImgTagType, key: number) => (
                   <img
                     loading="lazy"

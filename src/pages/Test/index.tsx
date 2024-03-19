@@ -28,7 +28,9 @@ const Test = () => {
   );
 
   useEffect(() => {
-    if (isAuthenticated) user.username !== "admin" && navigate("/");
+    if (!isAuthenticated || user.username !== "admin") {
+      navigate("/");
+    }
   }, [isAuthenticated, navigate, user.username]);
 
   useEffect(() => {

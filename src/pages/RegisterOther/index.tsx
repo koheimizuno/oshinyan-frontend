@@ -72,7 +72,12 @@ const RegisterOther = () => {
                   className="text-[20px] md:text-2xl md:max-w-[364px] md:w-[370px] text-2xl py-2 px-6 whitespace-nowrap"
                   onClick={redirectShopRegister}
                 >
-                  看板猫登録
+                  {window.location.href ===
+                  "https://oshinyan.love/shopresister" ? (
+                    <h1>看板猫登録</h1>
+                  ) : (
+                    <span>看板猫登録</span>
+                  )}
                 </button>
               </Tab>
               <Tab
@@ -86,9 +91,20 @@ const RegisterOther = () => {
                   className="text-[20px] md:text-2xl md:max-w-[364px] md:w-[370px] text-2xl py-2 px-6 whitespace-nowrap"
                   onClick={redirectAmbassadorRegister}
                 >
-                  {window.innerWidth < 580
-                    ? "アンバサダー"
-                    : "推しニャンアンバサダー募集"}
+                  {window.location.href ===
+                  "https://oshinyan.love/ambassador" ? (
+                    <h1>
+                      {window.innerWidth < 580
+                        ? "アンバサダー"
+                        : "推しニャンアンバサダー募集"}
+                    </h1>
+                  ) : (
+                    <span>
+                      {window.innerWidth < 580
+                        ? "アンバサダー"
+                        : "推しニャンアンバサダー募集"}
+                    </span>
+                  )}
                 </button>
               </Tab>
             </TabList>

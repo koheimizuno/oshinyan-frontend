@@ -7,7 +7,13 @@ const PageBar = ({ page }: { page: string }) => {
         TOP
       </Link>
       <span>&gt;&nbsp;</span>
-      <Link to="#">{page}</Link>
+      <Link to="#">
+        {window.location.href.includes("oshinyan/") ? (
+          <h1>{page}</h1>
+        ) : (
+          <span>{page}</span>
+        )}
+      </Link>
     </div>
   );
 };

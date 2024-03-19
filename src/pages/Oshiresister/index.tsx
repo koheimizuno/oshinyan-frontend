@@ -3,6 +3,7 @@ import MainLayout from "../../layouts/MainLayout";
 import Container from "../../components/basic/Container";
 import HelmetPage from "../../layouts/MainLayout/HelmetPage";
 import PageBar from "../../components/common/PageBar";
+import Title from "../../components/common/Typography/Title";
 const OshiresisterForm = lazy(
   () => import("../../components/common/OshiResisterForm")
 );
@@ -20,9 +21,7 @@ const Oshiresister = () => {
           <div className="mt-4">
             <PageBar page="推しニャン申請" />
           </div>
-          <div className="text-[32px] leading-[40px] mt-[24px] pb-[14px] border-b border-[#CBB279]">
-            推しニャン申請
-          </div>
+          <Title title="推しニャン申請" />
           <div className="mt-[16px] text-[16px] leading-[21px]">
             以下のフォームに必要な項目を入力のうえ、確認をクリックしてくださいニャ
           </div>

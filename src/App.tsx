@@ -77,8 +77,8 @@ function App() {
         <Routes>
           <Route path="/">
             <Route index element={<Top />} />
-            <Route path="ranking/gekkan" element={<MonthRanking />} />
             <Route path="ranking" element={<TotalRanking />} />
+            <Route path="ranking/gekkan" element={<MonthRanking />} />
             <Route path="guide" element={<Guide />} />
             <Route path="registration" element={<Registration />} />
             <Route path="login" element={<Login />} />

@@ -21,6 +21,9 @@ const Header = React.forwardRef(
       delete axios.defaults.headers.common["Authorization"];
       localStorage.removeItem("token");
     };
+
+    console.log(window.location.href);
+
     return (
       <div
         ref={ref}
@@ -36,9 +39,15 @@ const Header = React.forwardRef(
               height={51}
             />
           </Link>
-          <h1 className="text-[12px] font-medium tracking-tighter ">
-            お気に入りの看板猫が探せる！推せるサイト
-          </h1>
+          {window.location.href === "http://oshinyan.love/" ? (
+            <h1 className="text-[12px] font-medium tracking-tighter ">
+              お気に入りの看板猫が探せる！推せるサイト
+            </h1>
+          ) : (
+            <span className="text-[12px] font-medium tracking-tighter ">
+              お気に入りの看板猫が探せる！推せるサイト
+            </span>
+          )}
         </div>
         <div>
           <ul

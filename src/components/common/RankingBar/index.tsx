@@ -23,7 +23,11 @@ const RankingBar = () => {
             } underline-0" `}
             to="/ranking/gekkan"
           >
-            月間TOP10
+            {window.location.href === "http://oshinyan.love/ranking/gekkan" ? (
+              <h1>月間TOP10</h1>
+            ) : (
+              <span>月間TOP10</span>
+            )}
           </Link>
         </div>
         <div className="w-0 h-[16px] border border-solid border-[#CBB279] mt-[2px]"></div>
@@ -36,7 +40,11 @@ const RankingBar = () => {
             } underline-0`}
             to="/ranking"
           >
-            総合TOP10
+            {window.location.href === "https://oshinyan.love/ranking" ? (
+              <h1>総合TOP10</h1>
+            ) : (
+              <span>総合TOP10</span>
+            )}
           </Link>
         </div>
       </div>
