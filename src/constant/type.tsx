@@ -51,9 +51,6 @@ export interface CatObjectType {
   description: string;
   recommend: RecommendType[];
   created_date: string;
-  setRecommendAddData?: (
-    data: { id: number; cat: number; user: number } | undefined
-  ) => void;
 }
 
 export interface BannerType {

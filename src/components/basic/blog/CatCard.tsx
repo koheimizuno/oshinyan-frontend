@@ -21,7 +21,6 @@ const CatCard = ({
   description,
   recommend,
   created_date,
-  setRecommendAddData,
 }: CatObjectType) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -33,6 +32,9 @@ const CatCard = ({
   const [imgWidth, setImgWidth] = useState<number>();
   const [imgHeight, setImgHeight] = useState<number>();
   const { user, isAuthenticated } = useSelector((state: any) => state.user);
+  const [isRecommend, setIsRecommend] = useState<boolean>(
+    recommend.some((e) => e.user === user.user_id)
+  );
 
   useEffect(() => {
     setIsNew(isNewUtil(created_date));
@@ -47,12 +49,7 @@ const CatCard = ({
             user_id: user.user_id,
           };
           const data = await dispatch(RecommendAction(submitData));
-          setRecommendAddData &&
-            setRecommendAddData({
-              id: id,
-              cat: data.meta.arg.cat_id,
-              user: data.meta.arg.user_id,
-            });
+          data.type.includes("fulfilled") && setIsRecommend(true);
         }
       } else {
         if (!recommend?.find((e) => e.user === user.user_id)) {
@@ -60,7 +57,7 @@ const CatCard = ({
             advertise_id: id,
             user_id: user.user_id,
           };
-          await dispatch(RecommendAction(submitData));
+          dispatch(RecommendAction(submitData));
         }
       }
       // Recommend Delete Start
@@ -205,7 +202,7 @@ const CatCard = ({
                 className="cursor-pointer rounded-full"
                 onClick={handleRecommend}
               >
-                {recommend && recommend.find((e) => e.user === user.user_id) ? (
+                {isRecommend ? (
                   <img
                     src="/assets/imgs/icons/recommend-on.webp"
                     alt="recommend-on"
