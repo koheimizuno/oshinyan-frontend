@@ -22,8 +22,6 @@ const Header = React.forwardRef(
       localStorage.removeItem("token");
     };
 
-    console.log(window.location.href);
-
     return (
       <div
         ref={ref}

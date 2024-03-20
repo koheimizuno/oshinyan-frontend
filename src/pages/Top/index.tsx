@@ -1,5 +1,5 @@
 import axios from "axios";
-import { lazy, useEffect, useState } from "react";
+import { lazy, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import MainLayout from "../../layouts/MainLayout";
 import RankingBar from "../../components/common/RankingBar";
@@ -33,7 +33,9 @@ const Top = () => {
   const [attendanceKeyword, selectAttendanceKeyword] = useState<string[]>([]);
   const [attendanceShow, setAttendanceShow] = useState<boolean>(false);
   const [searchWord, setSearchWord] = useState<string>("");
-  const { catLoading } = useSelector((state: any) => state.cat);
+  const [recommendAddData, setRecommendAddData] = useState<
+    { id: number; cat: number; user: number } | undefined
+  >();
   const { authLoading, isAuthenticated } = useSelector(
     (state: any) => state.user
   );
@@ -59,7 +61,16 @@ const Top = () => {
     };
     fetchCatData();
     fetchAdvertiseCatData();
-  }, [isAuthenticated, catLoading, authLoading]);
+  }, [isAuthenticated, authLoading]);
+
+  useMemo(() => {
+    recommendAddData?.cat && console.log(catData);
+    catData &&
+      catData.forEach((item: CatObjectType) => {
+        item.id === recommendAddData?.cat &&
+          item.recommend.push(recommendAddData);
+      });
+  }, [recommendAddData, catData]);
 
   const handleMoreDisplay = async (count: number) => {
     try {
@@ -176,6 +187,7 @@ const Top = () => {
                   <CatCard
                     key={i}
                     id={e.id}
+                    setRecommendAddData={setRecommendAddData}
                     is_public={e.is_public}
                     cat_name={e.cat_name}
                     shop={e.shop}

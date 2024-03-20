@@ -21,6 +21,7 @@ const CatCard = ({
   description,
   recommend,
   created_date,
+  setRecommendAddData,
 }: CatObjectType) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -45,7 +46,13 @@ const CatCard = ({
             cat_id: id,
             user_id: user.user_id,
           };
-          await dispatch(RecommendAction(submitData));
+          const data = await dispatch(RecommendAction(submitData));
+          setRecommendAddData &&
+            setRecommendAddData({
+              id: id,
+              cat: data.meta.arg.cat_id,
+              user: data.meta.arg.user_id,
+            });
         }
       } else {
         if (!recommend?.find((e) => e.user === user.user_id)) {
