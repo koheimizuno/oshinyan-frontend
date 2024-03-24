@@ -174,7 +174,7 @@ const CatDetail = () => {
           setCatDetailImages(list);
           try {
             const { data } = await axios.get(
-              `api/catnearby/?address=${cattemp.shop.address}`
+              `api/catnearby/?prefecture=${cattemp.shop.prefecture}`
             );
             setCatNearBy(data);
           } catch (error) {}
@@ -962,7 +962,7 @@ const CatDetail = () => {
 
         {/* signboard cat in the same place */}
         <div className="text-2xl mt-8 font-medium">
-          同じ地域の看板猫を探すニャン！
+          同じ県に看板猫を探すニャン！
         </div>
         <div className="w-full border-b border-[#CBB279] mt-4"></div>
         <div className="mt-6 mb-12 flex flex-wrap justify-start gap-3">

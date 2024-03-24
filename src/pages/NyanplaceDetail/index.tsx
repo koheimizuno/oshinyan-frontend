@@ -40,7 +40,7 @@ function NyanplaceDetail() {
         const fetchShopData = async () => {
           try {
             const { data } = await axios.get(
-              `api/shopnearby/?address=${AshopData.address}`
+              `api/shopnearby/?prefecture=${AshopData.prefecture}`
             );
             setShopNearByData(data);
           } catch (error) {}
@@ -49,7 +49,7 @@ function NyanplaceDetail() {
       } catch (error) {}
     };
     fetchAShopData();
-  }, [id, AshopData.address]);
+  }, [id, AshopData.prefecture]);
 
   const handleImageLoad = (
     event: React.SyntheticEvent<HTMLImageElement, Event>
@@ -270,7 +270,7 @@ function NyanplaceDetail() {
         <section>
           <Container>
             <h3 className="text-2xl mt-[76px] mb-[40px] pb-3 border-b border-[#CBB279]">
-              近くの「看板猫」がいる場所
+              同じ県に「看板猫」がいる場所
             </h3>
             <div className="mt-[40px] mb-[20px] flex justify-start flex-wrap gap-3">
               {shopNearByData.length !== 0 ? (
