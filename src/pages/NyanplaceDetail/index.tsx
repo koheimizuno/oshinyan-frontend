@@ -269,9 +269,11 @@ function NyanplaceDetail() {
         </section>
         <section>
           <Container>
-            <h3 className="text-2xl mt-[76px] mb-[40px] pb-3 border-b border-[#CBB279]">
-              同じ県に「看板猫」がいる場所
-            </h3>
+            {shopNearByData.length !== 0 && (
+              <h3 className="text-2xl mt-[76px] mb-[40px] pb-3 border-b border-[#CBB279]">
+                同じ県に「看板猫」がいる場所
+              </h3>
+            )}
             <div className="mt-[40px] mb-[20px] flex justify-start flex-wrap gap-3">
               {shopNearByData.length !== 0 ? (
                 shopNearByData.map(

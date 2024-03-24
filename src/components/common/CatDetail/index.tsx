@@ -961,10 +961,14 @@ const CatDetail = () => {
         </div>
 
         {/* signboard cat in the same place */}
-        <div className="text-2xl mt-8 font-medium">
-          同じ県に看板猫を探すニャン！
-        </div>
-        <div className="w-full border-b border-[#CBB279] mt-4"></div>
+        {catNearby.length !== 0 && (
+          <>
+            <div className="text-2xl mt-8 font-medium">
+              同じ県に看板猫を探すニャン！
+            </div>
+            <div className="w-full border-b border-[#CBB279] mt-4"></div>
+          </>
+        )}
         <div className="mt-6 mb-12 flex flex-wrap justify-start gap-3">
           {catNearby.length !== 0 ? (
             catNearby.map(
