@@ -173,10 +173,12 @@ const CatDetail = () => {
             });
           setCatDetailImages(list);
           try {
-            const { data } = await axios.get(
-              `api/catnearby/?prefecture=${cattemp.shop.prefecture}`
-            );
-            setCatNearBy(data);
+            if (cattemp.shop.prefecture) {
+              const { data } = await axios.get(
+                `api/catnearby/?prefecture=${cattemp.shop.prefecture}`
+              );
+              setCatNearBy(data);
+            }
           } catch (error) {}
         } catch (error) {
           Notification("error", "サーバーエラー");
@@ -961,7 +963,7 @@ const CatDetail = () => {
         </div>
 
         {/* signboard cat in the same place */}
-        {catNearby.length !== 0 && (
+        {catNearby.length > 1 && (
           <>
             <div className="text-2xl mt-8 font-medium">
               同じ県に看板猫を探すニャン！

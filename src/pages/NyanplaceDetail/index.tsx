@@ -39,13 +39,16 @@ function NyanplaceDetail() {
         setAShopData(data);
         const fetchShopData = async () => {
           try {
-            const { data } = await axios.get(
-              `api/shopnearby/?prefecture=${AshopData.prefecture}`
-            );
-            setShopNearByData(data);
+            if (AshopData.prefecture) {
+              const { data } = await axios.get(
+                `api/shopnearby/?prefecture=${AshopData.prefecture}`
+              );
+              setShopNearByData(data);
+            }
           } catch (error) {}
         };
         fetchShopData();
+        console.log("💚💚💚", AshopData.prefecture);
       } catch (error) {}
     };
     fetchAShopData();
@@ -269,7 +272,7 @@ function NyanplaceDetail() {
         </section>
         <section>
           <Container>
-            {shopNearByData.length !== 0 && (
+            {shopNearByData.length > 1 && (
               <h3 className="text-2xl mt-[76px] mb-[40px] pb-3 border-b border-[#CBB279]">
                 同じ県に「看板猫」がいる場所
               </h3>
