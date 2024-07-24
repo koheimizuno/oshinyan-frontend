@@ -426,7 +426,7 @@ const CatDetail = () => {
           <div className="mt-4 break-all">{retrieveCat.description}</div>
           <div className="mt-2 flex gap-5">
             <Link
-              to={`/nyanplace/${id}`}
+              to={`/nyanplace/${retrieveCat.shop?.id}`}
               className="underline text-base inline-block"
             >
               {retrieveCat.shop.shop_name}
@@ -544,7 +544,7 @@ const CatDetail = () => {
                     {commentitem.comment}
                   </div>
                 </div>
-                <div className="mt-6 flex gap-2">
+                <div className="mt-6 flex flex-wrap gap-2">
                   {commentitem.comment_images &&
                     commentitem.comment_images.map((e, i) => {
                       return (

@@ -44,7 +44,7 @@ const CatFavorite = ({ imgUrl, comment_images_id, onClick }: Props) => {
       <img
         data-src={imgUrl}
         alt={imgUrl.substring(imgUrl.lastIndexOf("/") + 1)}
-        className="lazyload m-auto h-[120px]"
+        className="lazyload m-auto h-[120px] object-cover"
         onClick={onClick}
       />
       <div

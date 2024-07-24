@@ -48,7 +48,6 @@ function NyanplaceDetail() {
           } catch (error) {}
         };
         fetchShopData();
-        console.log("💚💚💚", AshopData.prefecture);
       } catch (error) {}
     };
     fetchAShopData();

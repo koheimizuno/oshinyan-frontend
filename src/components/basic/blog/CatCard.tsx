@@ -112,81 +112,87 @@ const CatCard = ({
               className="cursor-pointer"
             >
               {images &&
-                images.map((item: any, key: any) => (
-                  <SwiperSlide key={key} className="h-[234px] bg-white">
-                    <button
-                      onClick={() => goToCatDetail(id)}
-                      className="h-full w-full"
-                    >
-                      <img
-                        data-src={item.imgs}
-                        alt={String(item.imgs).substring(
-                          String(item.imgs).lastIndexOf("/") + 1
-                        )}
-                        className={`lazyload h-full m-auto cursor-pointer object-cover  overflow-hidden`}
-                        onLoad={handleImageLoad}
-                        width={imgWidth}
-                        height={imgHeight}
-                      />
-                    </button>
-                  </SwiperSlide>
-                ))}
+                images?.map((item: any, key: any) => {
+                  return (
+                    <SwiperSlide key={key} className="h-[234px] bg-white">
+                      <button
+                        onClick={() => goToCatDetail(id)}
+                        className="h-full w-full"
+                      >
+                        <img
+                          data-src={item.imgs}
+                          alt={String(item.imgs).substring(
+                            String(item.imgs).lastIndexOf("/") + 1
+                          )}
+                          className={`lazyload h-full m-auto cursor-pointer object-cover  overflow-hidden`}
+                          onLoad={handleImageLoad}
+                          width={imgWidth}
+                          height={imgHeight}
+                        />
+                      </button>
+                    </SwiperSlide>
+                  );
+                })}
               <div className="swiper-pagination custom-pagination-bullets"></div>
-              <button
-                className={`arrow-left${id}${
-                  advertise && id
-                } xs:hidden md:block`}
-              >
-                <div className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
-                  {/* <ArrowLeft /> */}
-                  <svg
-                    style={{ marginRight: "4px" }}
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="12.728"
-                    height="12.728"
-                    viewBox="0 0 12.728 12.728"
+              {images && images?.length > 1 && (
+                <>
+                  <button
+                    className={`arrow-left${id}${
+                      advertise && id
+                    } xs:hidden md:block`}
                   >
-                    <path
-                      id="arr_left"
-                      d="M499-1749v8h-8"
-                      transform="translate(-877.52 -1577.555) rotate(135)"
-                      fill="none"
-                      stroke="#fff"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="1"
-                      opacity="0.75"
-                    />
-                  </svg>
-                </div>
-              </button>
-              <button
-                className={`arrow-right${id}${
-                  advertise && id
-                } xs:hidden md:block`}
-              >
-                <div className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
-                  {/* <ArrowRight /> */}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="12.728"
-                    height="12.728"
-                    viewBox="0 0 12.728 12.728"
+                    <div className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
+                      {/* <ArrowLeft /> */}
+                      <svg
+                        style={{ marginRight: "4px" }}
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="12.728"
+                        height="12.728"
+                        viewBox="0 0 12.728 12.728"
+                      >
+                        <path
+                          id="arr_left"
+                          d="M499-1749v8h-8"
+                          transform="translate(-877.52 -1577.555) rotate(135)"
+                          fill="none"
+                          stroke="#fff"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="1"
+                          opacity="0.75"
+                        />
+                      </svg>
+                    </div>
+                  </button>
+                  <button
+                    className={`arrow-right${id}${
+                      advertise && id
+                    } xs:hidden md:block`}
                   >
-                    <path
-                      id="arr_right"
-                      d="M499-1749v8h-8"
-                      transform="translate(890.247 1590.283) rotate(-45)"
-                      fill="none"
-                      stroke="#fff"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="1"
-                      opacity="0.75"
-                    />
-                  </svg>
-                </div>
-              </button>
+                    <div className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
+                      {/* <ArrowRight /> */}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="12.728"
+                        height="12.728"
+                        viewBox="0 0 12.728 12.728"
+                      >
+                        <path
+                          id="arr_right"
+                          d="M499-1749v8h-8"
+                          transform="translate(890.247 1590.283) rotate(-45)"
+                          fill="none"
+                          stroke="#fff"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="1"
+                          opacity="0.75"
+                        />
+                      </svg>
+                    </div>
+                  </button>
+                </>
+              )}
             </Swiper>
             <div
               className="absolute top-[8px] right-[8px] z-10"
