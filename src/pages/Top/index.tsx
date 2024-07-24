@@ -127,12 +127,8 @@ const Top = () => {
 
   const handleFreeSearch = async () => {
     try {
-      if (searchWord !== null) {
-        const { data } = await axios.get(
-          `api/searchword?keyword=${searchWord}`
-        );
-        setCatData(data);
-      }
+      const { data } = await axios.get(`api/searchword?keyword=${searchWord}`);
+      setCatData(data);
     } catch (error) {}
   };
 
@@ -170,23 +166,30 @@ const Top = () => {
           <RankingBar />
           <div className="mt-[12px]">
             <div className="flex justify-start flex-wrap gap-3">
-              {catData.length !== 0 &&
-                catData.map((e, i) => (
-                  <CatCard
-                    key={i}
-                    id={e.id}
-                    is_public={e.is_public}
-                    cat_name={e.cat_name}
-                    shop={e.shop}
-                    images={e.images}
-                    admin_images={e.admin_images}
-                    character={e.character}
-                    attendance={e.attendance}
-                    description={e.description}
-                    recommend={e.recommend}
-                    created_date={e.created_date}
-                  />
-                ))}
+              {catData.length !== 0 ? (
+                catData.map((e, i) => {
+                  return (
+                    <CatCard
+                      key={i}
+                      id={e.id}
+                      is_public={e.is_public}
+                      cat_name={e.cat_name}
+                      shop={e.shop}
+                      images={e.images}
+                      admin_images={e.admin_images}
+                      character={e.character}
+                      attendance={e.attendance}
+                      description={e.description}
+                      recommend={e.recommend}
+                      created_date={e.created_date}
+                    />
+                  );
+                })
+              ) : (
+                <p className="py-10 block w-full text-center text-xl">
+                  お探しの看板猫はありません
+                </p>
+              )}
             </div>
             {catMoreBtnShow && (
               <div className="w-full py-[35px] text-center border-b border-b-solid border-[#CCC]">
