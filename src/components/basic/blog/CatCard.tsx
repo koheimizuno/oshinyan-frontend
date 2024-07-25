@@ -112,7 +112,7 @@ const CatCard = ({
               className="cursor-pointer"
             >
               {images &&
-                images?.map((item: any, key: any) => {
+                images?.map((item: any, key: number) => {
                   return (
                     <SwiperSlide key={key} className="h-[234px] bg-white">
                       <button
@@ -120,7 +120,7 @@ const CatCard = ({
                         className="h-full w-full"
                       >
                         <img
-                          data-src={item.imgs}
+                          src={item.imgs}
                           alt={String(item.imgs).substring(
                             String(item.imgs).lastIndexOf("/") + 1
                           )}
