@@ -60,9 +60,9 @@ const CommentImageCarousel = ({
       }}
     >
       <Box className="absolute w-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 outline-none">
-        <div className="w-[960px] m-auto px-14 text-right">
+        <div className="max-w-[960px] m-auto px-14 text-right">
           <span
-            className="text-white text-[60px] cursor-pointer"
+            className="text-white text-[20px] sm:text-[40px] inline-block my-2 md:text-[60px] cursor-pointer"
             onClick={() => setShowAlbumGallery(false)}
           >
             &times;
@@ -84,20 +84,20 @@ const CommentImageCarousel = ({
             nextEl: `.arrow-right`,
             prevEl: `.arrow-left`,
           }}
-          className="cursor-pointer w-[960px]"
+          className="cursor-pointer max-w-[960px]"
           onSwiper={setFirstSwiper}
           controller={{ control: secondSwiper }}
         >
           {commentImgs.map((item, key) => (
             <SwiperSlide key={key} className="inline-block">
-              <div className="h-[600px] relative">
+              <div className="h-[300px] sm:h-[400px] md:h-[480px] relative px-10 sm:px-16">
                 <img
                   data-src={item.imgs}
                   alt={item.imgs.substring(item.imgs.lastIndexOf("/") + 1)}
                   className="lazyload m-auto"
                   style={{ height: "calc(100% - 100px)" }}
                 />
-                <div className="px-[60px]">
+                <div className="m-auto">
                   <div className="flex justify-between py-3 text-white text-base">
                     <p>{username}</p>
                     <div className="flex gap-2">
@@ -111,14 +111,14 @@ const CommentImageCarousel = ({
                       </span>
                     </div>
                   </div>
-                  <p className="text-white text-base py-4">{comment}</p>
+                  <p className="text-white text-base">{comment}</p>
                 </div>
               </div>
             </SwiperSlide>
           ))}
           {/* <div className="swiper-pagination custom-pagination-bullets bottom-[130px] left-[50px]"></div> */}
-          <button className={`arrow-left xs:hidden md:block`}>
-            <div className="absolute top-0 -start-4 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
+          <button className="arrow-left xs:hidden md:block">
+            <div className="absolute top-0 -start-2 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
               <svg
                 style={{ marginRight: "4px" }}
                 xmlns="http://www.w3.org/2000/svg"
@@ -141,7 +141,7 @@ const CommentImageCarousel = ({
             </div>
           </button>
           <button className={`arrow-right xs:hidden md:block`}>
-            <div className="absolute top-0 -end-4 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
+            <div className="absolute top-0 -end-2 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="35"
