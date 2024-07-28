@@ -360,61 +360,59 @@ const MonthRanking = () => {
                   </div>
                 ))}
             </div>
-            {catData.length !== 0 && (
-              <div className="flex justify-between pb-[8px] border-b border-[#CBB279] mb-[24px]">
-                <button
-                  className="flex mt-[32px] items-center"
-                  onClick={previousMonthFetch}
+            <div className="flex justify-between pb-[8px] border-b border-[#CBB279] mb-[24px]">
+              <button
+                className="flex mt-[32px] items-center"
+                onClick={previousMonthFetch}
+              >
+                <svg
+                  style={{ marginRight: "4px" }}
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="12.728"
+                  height="12.728"
+                  viewBox="0 0 12.728 12.728"
                 >
-                  <svg
-                    style={{ marginRight: "4px" }}
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="12.728"
-                    height="12.728"
-                    viewBox="0 0 12.728 12.728"
-                  >
-                    <path
-                      id="arr_left"
-                      d="M499-1749v8h-8"
-                      transform="translate(-877.52 -1577.555) rotate(135)"
-                      fill="none"
-                      stroke="#000"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="1"
-                      opacity="0.75"
-                    />
-                  </svg>
-                  前月
-                </button>
-                <button
-                  className={`flex mt-[32px] items-center ${
-                    dates.month === dateObj.getMonth() + 1 && "hidden"
-                  }`}
-                  onClick={nextMonthFetch}
+                  <path
+                    id="arr_left"
+                    d="M499-1749v8h-8"
+                    transform="translate(-877.52 -1577.555) rotate(135)"
+                    fill="none"
+                    stroke="#000"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1"
+                    opacity="0.75"
+                  />
+                </svg>
+                前月
+              </button>
+              <button
+                className={`flex mt-[32px] items-center ${
+                  dates.month === dateObj.getMonth() + 1 && "hidden"
+                }`}
+                onClick={nextMonthFetch}
+              >
+                翌月
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="12.728"
+                  height="12.728"
+                  viewBox="0 0 12.728 12.728"
                 >
-                  翌月
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="12.728"
-                    height="12.728"
-                    viewBox="0 0 12.728 12.728"
-                  >
-                    <path
-                      id="arr_right"
-                      d="M499-1749v8h-8"
-                      transform="translate(890.247 1590.283) rotate(-45)"
-                      fill="none"
-                      stroke="#000"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="1"
-                      opacity="0.75"
-                    />
-                  </svg>
-                </button>
-              </div>
-            )}
+                  <path
+                    id="arr_right"
+                    d="M499-1749v8h-8"
+                    transform="translate(890.247 1590.283) rotate(-45)"
+                    fill="none"
+                    stroke="#000"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1"
+                    opacity="0.75"
+                  />
+                </svg>
+              </button>
+            </div>
             <ImgLinkSection />
           </Container>
         </div>
