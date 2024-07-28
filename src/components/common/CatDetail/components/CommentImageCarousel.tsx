@@ -170,12 +170,12 @@ const CommentImageCarousel = ({
             centeredSlides={true}
             centeredSlidesBounds={true}
             spaceBetween="16px"
-            slidesPerView={window.innerWidth / 160}
+            slidesPerView={window.innerWidth / 200}
             navigation={{
               nextEl: `.arrow-right`,
               prevEl: `.arrow-left`,
             }}
-            className="h-40 cursor-pointer flex flex-wrap"
+            className="h-40 cursor-pointer"
             onSwiper={setSecondSwiper}
             controller={{ control: firstSwiper }}
           >
@@ -185,7 +185,7 @@ const CommentImageCarousel = ({
                   <img
                     data-src={item.imgs}
                     alt={item.imgs.substring(item.imgs.lastIndexOf("/") + 1)}
-                    className="lazyload h-full m-auto"
+                    className="lazyload h-full m-auto object-cover"
                   />
                 </SwiperSlide>
               ))}

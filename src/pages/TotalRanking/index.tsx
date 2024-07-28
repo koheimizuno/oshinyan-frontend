@@ -187,7 +187,7 @@ const TotalRanking = () => {
                 ))}
             </div>
             <div
-              className={`flex-wrap m-auto mt-[16px] grid grid-cols-2 gap-x-[24px] gap-y-[16px] border-b border-[#CBB279] ${
+              className={`m-auto mt-[16px] md:grid md:grid-cols-2 gap-x-[24px] gap-y-[16px] border-b border-[#CBB279] ${
                 catData.length !== 0 && "pb-[65px]"
               }`}
             >
@@ -197,8 +197,8 @@ const TotalRanking = () => {
                     className="xs:max-w-[300px] md:max-w-none flex flex-col m-auto w-full"
                     key={i}
                   >
-                    <div className="m-auto">
-                      <div className="flex leading-[27px] mb-[7px]">
+                    <div className="m-auto w-full">
+                      <div className="flex leading-[27px] mb-[7px] py-2 md:py-0">
                         {i + 5}位
                       </div>
                       <SmallCatCard

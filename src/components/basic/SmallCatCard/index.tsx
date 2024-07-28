@@ -80,18 +80,16 @@ const SmallCatCard = ({
         >
           {images &&
             images.map((item: any, key: any) => (
-              <SwiperSlide key={key} className="lg:h-[144px]">
+              <SwiperSlide key={key} className="h-[234px] md:h-[144px]">
                 <Link to={`/oshinyan/${id}`}>
-                  <span className="inline-block ">
-                    <img
-                      data-src={item.imgs}
-                      alt={item.imgs.substring(item.imgs.lastIndexOf("/") + 1)}
-                      className="lazyload m-auto cursor-pointer h-full object-cover"
-                      onLoad={handleImageLoad}
-                      width={imgWidth}
-                      height={imgHeight}
-                    />
-                  </span>
+                  <img
+                    data-src={item.imgs}
+                    alt={item.imgs.substring(item.imgs.lastIndexOf("/") + 1)}
+                    className="lazyload m-auto cursor-pointer h-full object-cover"
+                    onLoad={handleImageLoad}
+                    width={imgWidth}
+                    height={imgHeight}
+                  />
                 </Link>
               </SwiperSlide>
             ))}

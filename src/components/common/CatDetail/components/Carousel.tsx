@@ -43,7 +43,7 @@ function CatDetailCarousel(props: any) {
             className="h-[300px] sm:h-[400px] md:h-[576px] w-full"
           >
             <img
-              data-src={item}
+              src={item}
               alt={item.substring(item.lastIndexOf("/") + 1)}
               className={`lazyload h-full m-auto cursor-pointer object-cover ${
                 isZoomed ? "max-w-full w-[105%]" : ""
@@ -56,20 +56,16 @@ function CatDetailCarousel(props: any) {
           </SwiperSlide>
         ))}
       <div className="swiper-pagination custom-pagination-bullets"></div>
-      {props.data && props.data?.length > 1 && (
-        <>
-          <button className="arrow-left xs:hidden md:block">
-            <div className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
-              <ArrowLeft />
-            </div>
-          </button>
-          <button className="arrow-right xs:hidden md:block">
-            <div className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
-              <ArrowRight />
-            </div>
-          </button>
-        </>
-      )}
+      <button className={`arrow-left xs:hidden md:block`}>
+        <div className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
+          <ArrowLeft />
+        </div>
+      </button>
+      <button className="arrow-right xs:hidden md:block">
+        <div className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
+          <ArrowRight />
+        </div>
+      </button>
     </Swiper>
   );
 }
