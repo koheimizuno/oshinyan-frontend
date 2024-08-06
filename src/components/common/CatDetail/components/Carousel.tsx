@@ -45,7 +45,7 @@ function CatDetailCarousel(props: any) {
             <img
               src={item}
               alt={item.substring(item.lastIndexOf("/") + 1)}
-              className={`lazyload h-full m-auto cursor-pointer object-cover ${
+              className={`lazyload h-full m-auto cursor-pointer object-top object-cover overflow-hidden ${
                 isZoomed ? "max-w-full w-[105%]" : ""
               }`}
               onClick={handleImageClick}

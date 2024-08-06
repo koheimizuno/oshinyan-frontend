@@ -124,7 +124,7 @@ const CatCard = ({
                           alt={String(item.imgs).substring(
                             String(item.imgs).lastIndexOf("/") + 1
                           )}
-                          className={`lazyload h-full m-auto cursor-pointer object-cover  overflow-hidden`}
+                          className={`lazyload h-full m-auto cursor-pointer object-cover overflow-hidden`}
                           onLoad={handleImageLoad}
                           width={imgWidth}
                           height={imgHeight}
