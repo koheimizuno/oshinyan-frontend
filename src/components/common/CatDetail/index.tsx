@@ -161,7 +161,6 @@ const CatDetail = () => {
               },
             };
           const { data } = await axios.get(`api/cats/${id}/`);
-          console.log(data.is_public);
 
           data.is_public === false ? navigate("/") : setRetrieveCat(data);
 
@@ -199,7 +198,7 @@ const CatDetail = () => {
       };
       RetrieveAdvertiseCat();
     }
-  }, [isAuthenticated, catLoading, authLoading, advertise, id]);
+  }, [isAuthenticated, catLoading, authLoading, advertise, id, navigate]);
 
   useEffect(() => {
     const ListRecommendUser = async () => {
@@ -530,8 +529,8 @@ const CatDetail = () => {
                       <img
                         className="w-full"
                         src={
-                          commentitem.user.avatar &&
-                          commentitem.user.avatar.avatar
+                          commentitem.user?.avatar &&
+                          commentitem.user?.avatar.avatar
                         }
                         alt="avatar"
                       />
@@ -724,10 +723,18 @@ const CatDetail = () => {
                           {isAuthenticated && (
                             <div className="flex items-center gap-3">
                               <img
-                                data-src={user.avatar && user.avatar.avatar}
-                                alt={user.avatar.avatar.substring(
-                                  user.avatar.avatar.lastIndexOf("/") + 1
-                                )}
+                                data-src={
+                                  user?.avatar
+                                    ? user?.avatar.avatar
+                                    : "/assets/imgs/default_avatar.webp"
+                                }
+                                alt={
+                                  user?.avatar
+                                    ? user?.avatar.avatar.substring(
+                                        user?.avatar.avatar.lastIndexOf("/") + 1
+                                      )
+                                    : "default_avatar"
+                                }
                                 width={32}
                                 className="lazyload"
                               />
