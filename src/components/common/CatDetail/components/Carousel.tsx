@@ -40,12 +40,12 @@ function CatDetailCarousel(props: any) {
         props.data.map((item: any, key: any) => (
           <SwiperSlide
             key={key}
-            className="h-[300px] sm:h-[400px] md:h-[576px] w-full bg-white"
+            className="h-[300px] sm:h-[400px] md:h-[576px] w-full"
           >
             <img
               src={item}
               alt={item.substring(item.lastIndexOf("/") + 1)}
-              className={`lazyload h-full m-auto cursor-pointer object-contain overflow-hidden ${
+              className={`lazyload h-full m-auto cursor-pointer object-top object-cover overflow-hidden ${
                 isZoomed ? "max-w-full w-[105%]" : ""
               }`}
               onClick={handleImageClick}
