@@ -161,7 +161,10 @@ const CatDetail = () => {
               },
             };
           const { data } = await axios.get(`api/cats/${id}/`);
-          setRetrieveCat(data);
+          console.log(data.is_public);
+
+          data.is_public === false ? navigate("/") : setRetrieveCat(data);
+
           cattemp = data;
           data.images &&
             data.images.forEach((item: ImageType) => {
