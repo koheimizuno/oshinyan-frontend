@@ -1,19 +1,49 @@
-# Project description
+# 推しニャンサイト(Frontend)
 
-This is the catshop frontend.
+![Copy of Fullstack Twitter Clone (8)](https://oshinyan.love/ogp.webp)
 
-# To run this project
+推しニャンは『 お気に入りの看板猫が探せる！推せるサイト』 です
 
-```sh
-npm install
+Features:
+
+- Tailwind and MUI design
+- Tailwind animations and effects
+- Full responsiveness
+- Favorites system
+- How to write POST and DELETE routes in route handlers (app/api)
+- Swiper for carousel
+- TypeScript
+- react-tabs
+- react-helmet
+- react-ga
+- react-notifications-component
+- lazysizes for image lazy loading
+- craro
+
+### Prerequisites
+
+**Node version 20.x**
+
+### Cloning the repository
+
+```shell
+git clone https://github.com/weijiezhang-star/oshinyan-frontend
 ```
 
-```sh
-npm start
+### Install packages
+
+```shell
+npm i or yarn install
 ```
 
-# To build this project
+### Setup .env file
 
-```sh
-npm run build
+```js
+PORT=
+```
+
+### Start the app
+
+```shell
+npm run start
 ```
