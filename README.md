@@ -12,6 +12,7 @@ Features:
 - Favorites system
 - How to write POST and DELETE routes in route handlers (app/api)
 - Swiper for carousel
+- redux-toolkit
 - TypeScript
 - react-tabs
 - react-helmet
